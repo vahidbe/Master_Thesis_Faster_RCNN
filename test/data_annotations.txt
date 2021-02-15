@@ -1,0 +1,6 @@
+abeille_mellifere0000.jpg,427,130,869,566,abeille_mellifere
+abeille_mellifere0001.jpg,342,182,828,613,abeille_mellifere
+abeille_mellifere0002.jpg,168,12,734,704,abeille_mellifere
+abeille_mellifere0003.jpg,123,196,574,606,abeille_mellifere
+abeille_mellifere0004.jpg,187,237,774,621,abeille_mellifere
+abeille_mellifere0005.jpg,274,484,653,780,abeille_mellifere
