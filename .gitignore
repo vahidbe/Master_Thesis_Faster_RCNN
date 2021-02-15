@@ -9,3 +9,4 @@
 /.idea
 /venv/
 *.csv
+*.h5
