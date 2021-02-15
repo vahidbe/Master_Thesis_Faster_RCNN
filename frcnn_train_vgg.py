@@ -57,6 +57,8 @@ if __name__ == "__main__":
 
     config_output_filename = os.path.join(base_path, 'model_vgg_config.pickle')
 
+    # %%
+
     # Create the config
     C = Config()
 
@@ -70,6 +72,8 @@ if __name__ == "__main__":
 
     C.base_net_weights = base_weight_path
 
+    # %%
+
     # --------------------------------------------------------#
     # This step will spend some time to load the data        #
     # --------------------------------------------------------#
@@ -77,6 +81,8 @@ if __name__ == "__main__":
     train_imgs, classes_count, class_mapping = get_data(train_path, data_path)
     print()
     print('Spend %0.2f mins to load the data' % ((time.time() - st) / 60))
+
+    # %%
 
     if 'bg' not in classes_count:
         classes_count['bg'] = 0
@@ -97,6 +103,7 @@ if __name__ == "__main__":
         print('Config has been written to {}, and can be loaded when testing to ensure correct results'.format(
             config_output_filename))
 
+    # %%
 
     # Shuffle the images with seed
     random.seed(1)
@@ -104,9 +111,19 @@ if __name__ == "__main__":
 
     print('Num train samples (images) {}'.format(len(train_imgs)))
 
+    # %%
+
+    # Get train data generator which generate X, Y, image_data
     data_gen_train = get_anchor_gt(train_imgs, C, get_img_output_length, mode='train')
 
+    # %% md
+
+    #### Explore 'data_gen_train'
+
+    # print(type(data_gen_train))
     X, Y, image_data, debug_img, debug_num_pos = next(data_gen_train)
+
+    # %%
 
     print('Original image: height=%d width=%d' % (image_data['height'], image_data['width']))
     print('Resized image:  height=%d width=%d C.im_size=%d' % (X.shape[1], X.shape[2], C.im_size))
@@ -190,6 +207,12 @@ if __name__ == "__main__":
     plt.imshow(img)
     plt.show()
 
+    # %% md
+
+    #### Build the model
+
+    # %%
+
     input_shape_img = (None, None, 3)
 
     img_input = Input(shape=input_shape_img)
@@ -197,6 +220,11 @@ if __name__ == "__main__":
 
     # define the base network (VGG here, can be Resnet50, Inception, etc)
     shared_layers = nn_base(img_input, trainable=True)
+
+    # %%
+
+    # WEIGHTS_PATH = ('https://storage.googleapis.com/tensorflow/keras-applications/'
+    #                 'vgg16/vgg16_weights_tf_dim_ordering_tf_kernels.h5')
 
     # define the RPN, built on the base layers
     num_anchors = len(C.anchor_box_scales) * len(C.anchor_box_ratios)  # 9
@@ -209,6 +237,14 @@ if __name__ == "__main__":
 
     # this is a model that holds both the RPN and the classifier, used to load/save weights for the models
     model_all = Model([img_input, roi_input], rpn[:2] + classifier)
+
+    # weights_path = data_utils.get_file(
+    #           'vgg16_weights_tf_dim_ordering_tf_kernels.h5',
+    #           WEIGHTS_PATH,
+    #           cache_subdir='models',
+    #           file_hash='64373286793e3c8b2b4e3219cbf3544b')
+    # model_classifier.load_weights(weights_path)
+    # model_all.load_weights(weights_path)
 
     # Because the google colab can only run the session several hours one time (then you need to connect again),
     # we need to save the model and load the model to continue training
@@ -247,9 +283,9 @@ if __name__ == "__main__":
         r_elapsed_time = record_df['elapsed_time']
         r_mAP = record_df['mAP']
 
-
-
         print('Already train %dK batches' % (len(record_df)))
+
+    # %%
 
     optimizer = Adam(lr=1e-5)
     optimizer_classifier = Adam(lr=1e-5)
@@ -259,12 +295,14 @@ if __name__ == "__main__":
                              metrics={'dense_class_{}'.format(len(classes_count)): 'accuracy'})
     model_all.compile(optimizer='sgd', loss='mae')
 
+    # %%
+
     # Training setting
     total_epochs = len(record_df)
     r_epochs = len(record_df)
 
-    epoch_length = 1000
-    num_epochs = 40
+    epoch_length = 100
+    num_epochs = 5
     iter_num = 0
 
     total_epochs += num_epochs
@@ -278,7 +316,11 @@ if __name__ == "__main__":
     else:
         best_loss = np.min(r_curr_loss)
 
+    # %%
+
     print(len(record_df))
+
+    # %%
 
     start_time = time.time()
     for epoch_num in range(num_epochs):
@@ -310,7 +352,7 @@ if __name__ == "__main__":
 
                 # R: bboxes (shape=(300,4))
                 # Convert rpn layer to roi bboxes
-                R = rpn_to_roi(P_rpn[0], P_rpn[1], C, K.image_dim_ordering(), use_regr=True, overlap_thresh=0.7,
+                R = rpn_to_roi(P_rpn[0], P_rpn[1], C, K.image_data_format(), use_regr=True, overlap_thresh=0.7,
                                max_boxes=300)
 
                 # note: calc_iou converts from (x1,y1,x2,y2) to (x,y,w,h) format
@@ -444,7 +486,7 @@ if __name__ == "__main__":
 
     print('Training complete, exiting.')
 
-
+    # %%
 
     plt.figure(figsize=(15, 5))
     plt.subplot(1, 2, 1)
@@ -494,3 +536,5 @@ if __name__ == "__main__":
     # plt.plot(np.arange(0, r_epochs), record_df['loss_class_regr'], 'c')
     # # plt.plot(np.arange(0, r_epochs), record_df['curr_loss'], 'm')
     # plt.show()
+
+    # %%
