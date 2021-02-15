@@ -1,0 +1,10 @@
+abeille_mellifere0789.jpg,71,63,319,297,abeille_mellifere
+abeille_mellifere0788.jpg,311,190,748,638,abeille_mellifere
+abeille_mellifere0787.jpg,74,40,314,281,abeille_mellifere
+abeille_mellifere0786.jpg,83,69,314,270,abeille_mellifere
+abeille_mellifere0785.jpg,64,98,186,290,abeille_mellifere
+abeille_mellifere0783.jpg,142,105,233,239,abeille_mellifere
+abeille_mellifere0782.jpg,109,104,206,269,abeille_mellifere
+abeille_mellifere0781.jpg,230,154,302,228,abeille_mellifere
+abeille_mellifere0780.jpg,165,107,340,234,abeille_mellifere
+abeille_mellifere0779.jpg,2,48,278,265,abeille_mellifere
