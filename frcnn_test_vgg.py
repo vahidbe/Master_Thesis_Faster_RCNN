@@ -1,5 +1,6 @@
 from libraries import *
 
+
 def plot_some_graphs(C):
     # Load the records
     record_df = pd.read_csv(C.record_path)
@@ -49,6 +50,7 @@ def plot_some_graphs(C):
 
     return record_df
 
+
 def draw_box_on_images():
     num_features = 512
 
@@ -87,18 +89,20 @@ def draw_box_on_images():
 
     test_imgs = os.listdir(test_base_path)
 
-    imgs_path = []
-    for i in range(20):
-        idx = np.random.randint(len(test_imgs))
-        imgs_path.append(test_imgs[idx])
-
-    all_imgs = []
-
-    classes = {}
+    # imgs_path = []
+    # for i in range(10):
+    #     idx = np.random.randint(len(test_imgs))
+    #     imgs_path.append(test_imgs[idx])
+    #
+    # all_imgs = []
+    #
+    # classes = {}
 
     bbox_threshold = 0.7
 
-    for idx, img_name in enumerate(imgs_path):
+    # for idx, img_name in enumerate(imgs_path):
+    print(len(test_imgs))
+    for idx, img_name in enumerate(test_imgs):
         if not img_name.lower().endswith(('.bmp', '.jpeg', '.jpg', '.png', '.tif', '.tiff')):
             continue
         print(img_name)
@@ -209,7 +213,8 @@ def draw_box_on_images():
 
         print(class_mapping)
 
-        return model_rpn, class_mapping, model_classifier_only
+    return model_rpn, class_mapping, model_classifier_only
+
 
 def accuracy():
     test_imgs, _, _ = get_data(test_path, data_test_path)
@@ -347,6 +352,7 @@ if __name__ == "__main__":
     C.use_horizontal_flips = False
     C.use_vertical_flips = False
     C.rot_90 = False
+    C.model_path = os.path.join(base_path, 'model/model_frcnn_vgg.hdf5') #UPDATE WEIGHTS PATH HERE !!!!!!!!
 
     record_df = plot_some_graphs(C)
     model_rpn, class_mapping, model_classifier_only = draw_box_on_images()
