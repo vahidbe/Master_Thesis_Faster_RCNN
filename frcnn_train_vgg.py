@@ -1,42 +1,7 @@
-from __future__ import division
-from __future__ import print_function
-from __future__ import absolute_import
-import random
-import pprint
-import sys
-import time
-import numpy as np
-from optparse import OptionParser
-import pickle
-import math
-import cv2
-import copy
-from matplotlib import pyplot as plt
-import tensorflow as tf
-import pandas as pd
-import os
-
-from sklearn.metrics import average_precision_score
-
-from keras import backend as K
-from keras.optimizers import Adam, SGD, RMSprop
-from keras.layers import Flatten, Dense, Input, Conv2D, MaxPooling2D, Dropout
-from keras.layers import GlobalAveragePooling2D, GlobalMaxPooling2D, TimeDistributed
-from keras.engine.topology import get_source_inputs
-from keras.utils import layer_utils
-from keras.utils.data_utils import get_file
-from keras.objectives import categorical_crossentropy
-
-from keras.models import Model
-from keras.utils import generic_utils
-from keras.engine import Layer, InputSpec
-from keras import initializers, regularizers
-
 from libraries import *
 
 if __name__ == "__main__":
     base_path = '.'
-    # base_path = 'drive/My Drive/AI/Faster_RCNN'
 
     train_path = './data/data_annotations.txt'  # Training data (annotation file)
     data_path = './data'
@@ -48,7 +13,7 @@ if __name__ == "__main__":
     vertical_flips = True  # Augment with vertical flips in training.
     rot_90 = True  # Augment with 90 degree rotations in training.
 
-    output_weight_path = os.path.join(base_path, 'model/model_frcnn_vgg.hdf5')
+    output_weight_path = os.path.join(base_path, 'model/weights_test.hdf5')
 
     record_path = os.path.join(base_path,
                                'model/record.csv')  # Record data (used to save the losses, classification accuracy and mean average precision)
@@ -57,9 +22,6 @@ if __name__ == "__main__":
 
     config_output_filename = os.path.join(base_path, 'model_vgg_config.pickle')
 
-    # %%
-
-    # Create the config
     C = Config()
 
     C.use_horizontal_flips = horizontal_flips
@@ -72,17 +34,10 @@ if __name__ == "__main__":
 
     C.base_net_weights = base_weight_path
 
-    # %%
-
-    # --------------------------------------------------------#
-    # This step will spend some time to load the data        #
-    # --------------------------------------------------------#
     st = time.time()
     train_imgs, classes_count, class_mapping = get_data(train_path, data_path)
     print()
     print('Spend %0.2f mins to load the data' % ((time.time() - st) / 60))
-
-    # %%
 
     if 'bg' not in classes_count:
         classes_count['bg'] = 0
@@ -103,27 +58,14 @@ if __name__ == "__main__":
         print('Config has been written to {}, and can be loaded when testing to ensure correct results'.format(
             config_output_filename))
 
-    # %%
-
-    # Shuffle the images with seed
     random.seed(1)
     random.shuffle(train_imgs)
 
     print('Num train samples (images) {}'.format(len(train_imgs)))
 
-    # %%
-
-    # Get train data generator which generate X, Y, image_data
     data_gen_train = get_anchor_gt(train_imgs, C, get_img_output_length, mode='train')
 
-    # %% md
-
-    #### Explore 'data_gen_train'
-
-    # print(type(data_gen_train))
     X, Y, image_data, debug_img, debug_num_pos = next(data_gen_train)
-
-    # %%
 
     print('Original image: height=%d width=%d' % (image_data['height'], image_data['width']))
     print('Resized image:  height=%d width=%d C.im_size=%d' % (X.shape[1], X.shape[2], C.im_size))
@@ -207,12 +149,6 @@ if __name__ == "__main__":
     plt.imshow(img)
     plt.show()
 
-    # %% md
-
-    #### Build the model
-
-    # %%
-
     input_shape_img = (None, None, 3)
 
     img_input = Input(shape=input_shape_img)
@@ -220,11 +156,6 @@ if __name__ == "__main__":
 
     # define the base network (VGG here, can be Resnet50, Inception, etc)
     shared_layers = nn_base(img_input, trainable=True)
-
-    # %%
-
-    # WEIGHTS_PATH = ('https://storage.googleapis.com/tensorflow/keras-applications/'
-    #                 'vgg16/vgg16_weights_tf_dim_ordering_tf_kernels.h5')
 
     # define the RPN, built on the base layers
     num_anchors = len(C.anchor_box_scales) * len(C.anchor_box_ratios)  # 9
@@ -285,8 +216,6 @@ if __name__ == "__main__":
 
         print('Already train %dK batches' % (len(record_df)))
 
-    # %%
-
     optimizer = Adam(lr=1e-5)
     optimizer_classifier = Adam(lr=1e-5)
     model_rpn.compile(optimizer=optimizer, loss=[rpn_loss_cls(num_anchors), rpn_loss_regr(num_anchors)])
@@ -295,14 +224,12 @@ if __name__ == "__main__":
                              metrics={'dense_class_{}'.format(len(classes_count)): 'accuracy'})
     model_all.compile(optimizer='sgd', loss='mae')
 
-    # %%
-
     # Training setting
     total_epochs = len(record_df)
     r_epochs = len(record_df)
 
-    epoch_length = 100
-    num_epochs = 5
+    epoch_length = 20
+    num_epochs = 2
     iter_num = 0
 
     total_epochs += num_epochs
@@ -316,11 +243,7 @@ if __name__ == "__main__":
     else:
         best_loss = np.min(r_curr_loss)
 
-    # %%
-
     print(len(record_df))
-
-    # %%
 
     start_time = time.time()
     for epoch_num in range(num_epochs):
@@ -486,8 +409,6 @@ if __name__ == "__main__":
 
     print('Training complete, exiting.')
 
-    # %%
-
     plt.figure(figsize=(15, 5))
     plt.subplot(1, 2, 1)
     plt.plot(np.arange(0, r_epochs), record_df['mean_overlapping_bboxes'], 'r')
@@ -536,5 +457,3 @@ if __name__ == "__main__":
     # plt.plot(np.arange(0, r_epochs), record_df['loss_class_regr'], 'c')
     # # plt.plot(np.arange(0, r_epochs), record_df['curr_loss'], 'm')
     # plt.show()
-
-    # %%
