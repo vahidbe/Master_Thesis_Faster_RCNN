@@ -31,10 +31,10 @@ from keras.models import Model
 from keras.utils import generic_utils
 from keras.engine import Layer, InputSpec
 from keras import initializers, regularizers
+import roi_helpers
 
 
 class Config:
-
     def __init__(self):
         # Print the process or not
         self.verbose = True
@@ -152,23 +152,23 @@ def get_data(input_path, data_path):
                     found_bg = True
                 class_mapping[class_name] = len(class_mapping)
 
-    if filename not in all_imgs:
-        all_imgs[filename] = {}
-        thepath = os.path.join(data_path, filename)
-        print(thepath)
-        img = cv2.imread(thepath)
-        (rows, cols) = img.shape[:2]
-        all_imgs[filename]['filepath'] = filename
-        all_imgs[filename]['width'] = cols
-        all_imgs[filename]['height'] = rows
-        all_imgs[filename]['bboxes'] = []
-        # if np.random.randint(0,6) > 0:
-        # 	all_imgs[filename]['imageset'] = 'trainval'
-        # else:
-        # 	all_imgs[filename]['imageset'] = 'test'
-        #
-        all_imgs[filename]['bboxes'].append(
-            {'class': class_name, 'x1': int(x1), 'x2': int(x2), 'y1': int(y1), 'y2': int(y2)})
+            if filename not in all_imgs:
+                all_imgs[filename] = {}
+                thepath = os.path.join(data_path, filename)
+                # print(thepath)
+                img = cv2.imread(thepath)
+                (rows, cols) = img.shape[:2]
+                all_imgs[filename]['filepath'] = thepath
+                all_imgs[filename]['width'] = cols
+                all_imgs[filename]['height'] = rows
+                all_imgs[filename]['bboxes'] = []
+            # if np.random.randint(0,6) > 0:
+            # 	all_imgs[filename]['imageset'] = 'trainval'
+            # else:
+            # 	all_imgs[filename]['imageset'] = 'test'
+            #
+            all_imgs[filename]['bboxes'].append(
+                {'class': class_name, 'x1': int(x1), 'x2': int(x2), 'y1': int(y1), 'y2': int(y2)})
 
         all_data = []
         for key in all_imgs:
@@ -205,7 +205,7 @@ class RoiPoolingConv(Layer):
     '''
 
     def __init__(self, pool_size, num_rois, **kwargs):
-        self.dim_ordering = K.image_dim_ordering()
+        self.dim_ordering = K.image_data_format()
         self.pool_size = pool_size
         self.num_rois = num_rois
 
@@ -242,7 +242,7 @@ class RoiPoolingConv(Layer):
             h = K.cast(h, 'int32')
 
             # Resized roi of the image to pooling size (7x7)
-            rs = tf.image.resize_images(img[:, y:y + h, x:x + w, :], (self.pool_size, self.pool_size))
+            rs = tf.image.resize(img[:, y:y + h, x:x + w, :], (self.pool_size, self.pool_size))
             outputs.append(rs)
 
         final_output = K.concatenate(outputs, axis=0)
@@ -339,12 +339,6 @@ def rpn_layer(base_layers, num_anchors):
 
     return [x_class, x_regr, base_layers]
 
-
-# %% md
-
-####  Classifier layer
-
-# %%
 
 def classifier_layer(base_layers, input_rois, num_rois, nb_classes=4):
     """Create a classifier layer
@@ -771,86 +765,6 @@ def get_anchor_gt(all_img_data, C, img_length_calc_function, mode='train'):
                 continue
 
 
-lambda_rpn_regr = 1.0
-lambda_rpn_class = 1.0
-
-lambda_cls_regr = 1.0
-lambda_cls_class = 1.0
-
-epsilon = 1e-4
-
-
-def rpn_loss_regr(num_anchors):
-    """Loss function for rpn regression
-    Args:
-        num_anchors: number of anchors (9 in here)
-    Returns:
-        Smooth L1 loss function
-                           0.5*x*x (if x_abs < 1)
-                           x_abx - 0.5 (otherwise)
-    """
-
-    def rpn_loss_regr_fixed_num(y_true, y_pred):
-        # x is the difference between true value and predicted vaue
-        x = y_true[:, :, :, 4 * num_anchors:] - y_pred
-
-        # absolute value of x
-        x_abs = K.abs(x)
-
-        # If x_abs <= 1.0, x_bool = 1
-        x_bool = K.cast(K.less_equal(x_abs, 1.0), tf.float32)
-
-        return lambda_rpn_regr * K.sum(
-            y_true[:, :, :, :4 * num_anchors] * (x_bool * (0.5 * x * x) + (1 - x_bool) * (x_abs - 0.5))) / K.sum(
-            epsilon + y_true[:, :, :, :4 * num_anchors])
-
-    return rpn_loss_regr_fixed_num
-
-
-def rpn_loss_cls(num_anchors):
-    """Loss function for rpn classification
-    Args:
-        num_anchors: number of anchors (9 in here)
-        y_true[:, :, :, :9]: [0,1,0,0,0,0,0,1,0] means only the second and the eighth box is valid which contains pos or neg anchor => isValid
-        y_true[:, :, :, 9:]: [0,1,0,0,0,0,0,0,0] means the second box is pos and eighth box is negative
-    Returns:
-        lambda * sum((binary_crossentropy(isValid*y_pred,y_true))) / N
-    """
-
-    def rpn_loss_cls_fixed_num(y_true, y_pred):
-        return lambda_rpn_class * K.sum(y_true[:, :, :, :num_anchors] * K.binary_crossentropy(y_pred[:, :, :, :],
-                                                                                              y_true[:, :, :,
-                                                                                              num_anchors:])) / K.sum(
-            epsilon + y_true[:, :, :, :num_anchors])
-
-    return rpn_loss_cls_fixed_num
-
-
-def class_loss_regr(num_classes):
-    """Loss function for rpn regression
-    Args:
-        num_anchors: number of anchors (9 in here)
-    Returns:
-        Smooth L1 loss function
-                           0.5*x*x (if x_abs < 1)
-                           x_abx - 0.5 (otherwise)
-    """
-
-    def class_loss_regr_fixed_num(y_true, y_pred):
-        x = y_true[:, :, 4 * num_classes:] - y_pred
-        x_abs = K.abs(x)
-        x_bool = K.cast(K.less_equal(x_abs, 1.0), 'float32')
-        return lambda_cls_regr * K.sum(
-            y_true[:, :, :4 * num_classes] * (x_bool * (0.5 * x * x) + (1 - x_bool) * (x_abs - 0.5))) / K.sum(
-            epsilon + y_true[:, :, :4 * num_classes])
-
-    return class_loss_regr_fixed_num
-
-
-def class_loss_cls(y_true, y_pred):
-    return lambda_cls_class * K.mean(categorical_crossentropy(y_true[0, :, :], y_pred[0, :, :]))
-
-
 def non_max_suppression_fast(boxes, probs, overlap_thresh=0.9, max_boxes=300):
     # code used from here: http://www.pyimagesearch.com/2015/02/16/faster-non-maximum-suppression-python/
     # if there are no boxes, return an empty list
@@ -994,119 +908,16 @@ def apply_regr(x, y, w, h, tx, ty, tw, th):
         return x, y, w, h
 
 
-def calc_iou(R, img_data, C, class_mapping):
-    """Converts from (x1,y1,x2,y2) to (x,y,w,h) format
-
-    Args:
-        R: bboxes, probs
-    """
-    bboxes = img_data['bboxes']
-    (width, height) = (img_data['width'], img_data['height'])
-    # get image dimensions for resizing
-    (resized_width, resized_height) = get_new_img_size(width, height, C.im_size)
-
-    gta = np.zeros((len(bboxes), 4))
-
-    for bbox_num, bbox in enumerate(bboxes):
-        # get the GT box coordinates, and resize to account for image resizing
-        # gta[bbox_num, 0] = (40 * (600 / 800)) / 16 = int(round(1.875)) = 2 (x in feature map)
-        gta[bbox_num, 0] = int(round(bbox['x1'] * (resized_width / float(width)) / C.rpn_stride))
-        gta[bbox_num, 1] = int(round(bbox['x2'] * (resized_width / float(width)) / C.rpn_stride))
-        gta[bbox_num, 2] = int(round(bbox['y1'] * (resized_height / float(height)) / C.rpn_stride))
-        gta[bbox_num, 3] = int(round(bbox['y2'] * (resized_height / float(height)) / C.rpn_stride))
-
-    x_roi = []
-    y_class_num = []
-    y_class_regr_coords = []
-    y_class_regr_label = []
-    IoUs = []  # for debugging only
-
-    # R.shape[0]: number of bboxes (=300 from non_max_suppression)
-    for ix in range(R.shape[0]):
-        (x1, y1, x2, y2) = R[ix, :]
-        x1 = int(round(x1))
-        y1 = int(round(y1))
-        x2 = int(round(x2))
-        y2 = int(round(y2))
-
-        best_iou = 0.0
-        best_bbox = -1
-        # Iterate through all the ground-truth bboxes to calculate the iou
-        for bbox_num in range(len(bboxes)):
-            curr_iou = iou([gta[bbox_num, 0], gta[bbox_num, 2], gta[bbox_num, 1], gta[bbox_num, 3]], [x1, y1, x2, y2])
-
-            # Find out the corresponding ground-truth bbox_num with larget iou
-            if curr_iou > best_iou:
-                best_iou = curr_iou
-                best_bbox = bbox_num
-
-        if best_iou < C.classifier_min_overlap:
-            continue
-        else:
-            w = x2 - x1
-            h = y2 - y1
-            x_roi.append([x1, y1, w, h])
-            IoUs.append(best_iou)
-
-            if C.classifier_min_overlap <= best_iou < C.classifier_max_overlap:
-                # hard negative example
-                cls_name = 'bg'
-            elif C.classifier_max_overlap <= best_iou:
-                cls_name = bboxes[best_bbox]['class']
-                cxg = (gta[best_bbox, 0] + gta[best_bbox, 1]) / 2.0
-                cyg = (gta[best_bbox, 2] + gta[best_bbox, 3]) / 2.0
-
-                cx = x1 + w / 2.0
-                cy = y1 + h / 2.0
-
-                tx = (cxg - cx) / float(w)
-                ty = (cyg - cy) / float(h)
-                tw = np.log((gta[best_bbox, 1] - gta[best_bbox, 0]) / float(w))
-                th = np.log((gta[best_bbox, 3] - gta[best_bbox, 2]) / float(h))
-            else:
-                print('roi = {}'.format(best_iou))
-                raise RuntimeError
-
-        class_num = class_mapping[cls_name]
-        class_label = len(class_mapping) * [0]
-        class_label[class_num] = 1
-        y_class_num.append(copy.deepcopy(class_label))
-        coords = [0] * 4 * (len(class_mapping) - 1)
-        labels = [0] * 4 * (len(class_mapping) - 1)
-        if cls_name != 'bg':
-            label_pos = 4 * class_num
-            sx, sy, sw, sh = C.classifier_regr_std
-            coords[label_pos:4 + label_pos] = [sx * tx, sy * ty, sw * tw, sh * th]
-            labels[label_pos:4 + label_pos] = [1, 1, 1, 1]
-            y_class_regr_coords.append(copy.deepcopy(coords))
-            y_class_regr_label.append(copy.deepcopy(labels))
-        else:
-            y_class_regr_coords.append(copy.deepcopy(coords))
-            y_class_regr_label.append(copy.deepcopy(labels))
-
-    if len(x_roi) == 0:
-        return None, None, None, None
-
-    # bboxes that iou > C.classifier_min_overlap for all gt bboxes in 300 non_max_suppression bboxes
-    X = np.array(x_roi)
-    # one hot code for bboxes from above => x_roi (X)
-    Y1 = np.array(y_class_num)
-    # corresponding labels and corresponding gt bboxes
-    Y2 = np.concatenate([np.array(y_class_regr_label), np.array(y_class_regr_coords)], axis=1)
-
-    return np.expand_dims(X, axis=0), np.expand_dims(Y1, axis=0), np.expand_dims(Y2, axis=0), IoUs
-
-
 def rpn_to_roi(rpn_layer, regr_layer, C, dim_ordering, use_regr=True, max_boxes=300, overlap_thresh=0.9):
     """Convert rpn layer to roi bboxes
 
     Args: (num_anchors = 9)
         rpn_layer: output layer for rpn classification
             shape (1, feature_map.height, feature_map.width, num_anchors)
-            Might be (1, 18, 25, 18) if resized image is 400 width and 300
+            Might be (1, 18, 25, 9) if resized image is 400 width and 300
         regr_layer: output layer for rpn regression
             shape (1, feature_map.height, feature_map.width, num_anchors)
-            Might be (1, 18, 25, 72) if resized image is 400 width and 300
+            Might be (1, 18, 25, 36) if resized image is 400 width and 300
         C: config
         use_regr: Wether to use bboxes regression in rpn
         max_boxes: max bboxes number for non-max-suppression (NMS)
@@ -1128,7 +939,7 @@ def rpn_to_roi(rpn_layer, regr_layer, C, dim_ordering, use_regr=True, max_boxes=
     curr_layer = 0
 
     # A.shape = (4, feature_map.height, feature_map.width, num_anchors)
-    # Might be (4, 18, 25, 18) if resized image is 400 width and 300
+    # Might be (4, 18, 25, 9) if resized image is 400 width and 300
     # A is the coordinates for 9 anchors for every point in the feature map
     # => all 18x25x9=4050 anchors cooridnates
     A = np.zeros((4, rpn_layer.shape[1], rpn_layer.shape[2], rpn_layer.shape[3]))
@@ -1198,3 +1009,157 @@ def rpn_to_roi(rpn_layer, regr_layer, C, dim_ordering, use_regr=True, max_boxes=
     result = non_max_suppression_fast(all_boxes, all_probs, overlap_thresh=overlap_thresh, max_boxes=max_boxes)[0]
 
     return result
+
+
+'''
+    Some testing stuff
+'''
+
+
+def format_img_size(img, C):
+    """ formats the image size based on config """
+    img_min_side = float(C.im_size)
+    (height, width, _) = img.shape
+
+    if width <= height:
+        ratio = img_min_side / width
+        new_height = int(ratio * height)
+        new_width = int(img_min_side)
+    else:
+        ratio = img_min_side / height
+        new_width = int(ratio * width)
+        new_height = int(img_min_side)
+    img = cv2.resize(img, (new_width, new_height), interpolation=cv2.INTER_CUBIC)
+    return img, ratio
+
+
+def format_img_channels(img, C):
+    """ formats the image channels based on config """
+    img = img[:, :, (2, 1, 0)]
+    img = img.astype(np.float32)
+    img[:, :, 0] -= C.img_channel_mean[0]
+    img[:, :, 1] -= C.img_channel_mean[1]
+    img[:, :, 2] -= C.img_channel_mean[2]
+    img /= C.img_scaling_factor
+    img = np.transpose(img, (2, 0, 1))
+    img = np.expand_dims(img, axis=0)
+    return img
+
+
+def format_img(img, C):
+    """ formats an image for model prediction based on config """
+    img, ratio = format_img_size(img, C)
+    img = format_img_channels(img, C)
+    return img, ratio
+
+
+# Method to transform the coordinates of the bounding box to its original size
+def get_real_coordinates(ratio, x1, y1, x2, y2):
+    real_x1 = int(round(x1 // ratio))
+    real_y1 = int(round(y1 // ratio))
+    real_x2 = int(round(x2 // ratio))
+    real_y2 = int(round(y2 // ratio))
+
+    return (real_x1, real_y1, real_x2, real_y2)
+
+
+def get_map(pred, gt, f):
+    T = {}
+    P = {}
+    fx, fy = f
+
+    for bbox in gt:
+        bbox['bbox_matched'] = False
+
+    pred_probs = np.array([s['prob'] for s in pred])
+    box_idx_sorted_by_prob = np.argsort(pred_probs)[::-1]
+
+    for box_idx in box_idx_sorted_by_prob:
+        pred_box = pred[box_idx]
+        pred_class = pred_box['class']
+        pred_x1 = pred_box['x1']
+        pred_x2 = pred_box['x2']
+        pred_y1 = pred_box['y1']
+        pred_y2 = pred_box['y2']
+        pred_prob = pred_box['prob']
+        if pred_class not in P:
+            P[pred_class] = []
+            T[pred_class] = []
+        P[pred_class].append(pred_prob)
+        found_match = False
+
+        for gt_box in gt:
+            gt_class = gt_box['class']
+            gt_x1 = gt_box['x1'] / fx
+            gt_x2 = gt_box['x2'] / fx
+            gt_y1 = gt_box['y1'] / fy
+            gt_y2 = gt_box['y2'] / fy
+            gt_seen = gt_box['bbox_matched']
+            if gt_class != pred_class:
+                continue
+            if gt_seen:
+                continue
+            iou_map = iou((pred_x1, pred_y1, pred_x2, pred_y2), (gt_x1, gt_y1, gt_x2, gt_y2))
+            if iou_map >= 0.5:
+                found_match = True
+                gt_box['bbox_matched'] = True
+                break
+            else:
+                continue
+
+        T[pred_class].append(int(found_match))
+
+    for gt_box in gt:
+        if not gt_box['bbox_matched']:  # and not gt_box['difficult']:
+            if gt_box['class'] not in P:
+                P[gt_box['class']] = []
+                T[gt_box['class']] = []
+
+            T[gt_box['class']].append(1)
+            P[gt_box['class']].append(0)
+
+    # import pdb
+    # pdb.set_trace()
+    return T, P
+
+
+def format_img_map(img, C):
+    """Format image for mAP. Resize original image to C.im_size (300 in here)
+
+    Args:
+        img: cv2 image
+        C: config
+
+    Returns:
+        img: Scaled and normalized image with expanding dimension
+        fx: ratio for width scaling
+        fy: ratio for height scaling
+    """
+
+    img_min_side = float(C.im_size)
+    (height, width, _) = img.shape
+
+    if width <= height:
+        f = img_min_side / width
+        new_height = int(f * height)
+        new_width = int(img_min_side)
+    else:
+        f = img_min_side / height
+        new_width = int(f * width)
+        new_height = int(img_min_side)
+    fx = width / float(new_width)
+    fy = height / float(new_height)
+    img = cv2.resize(img, (new_width, new_height), interpolation=cv2.INTER_CUBIC)
+    # Change image channel from BGR to RGB
+    img = img[:, :, (2, 1, 0)]
+    img = img.astype(np.float32)
+    img[:, :, 0] -= C.img_channel_mean[0]
+    img[:, :, 1] -= C.img_channel_mean[1]
+    img[:, :, 2] -= C.img_channel_mean[2]
+    img /= C.img_scaling_factor
+    # Change img shape from (height, width, channel) to (channel, height, width)
+    img = np.transpose(img, (2, 0, 1))
+    # Expand one dimension at axis 0
+    # img shape becames (1, channel, height, width)
+    img = np.expand_dims(img, axis=0)
+    return img, fx, fy
