@@ -1,9 +1,5 @@
 import os
 import cv2
-import sys
-import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib.widgets import Button
 
 if __name__ == '__main__':
     import argparse

@@ -338,7 +338,7 @@ def accuracy():
 if __name__ == "__main__":
     base_path = '.'
 
-    test_path = './data_test_old/data_annotations.txt'  # Test data (annotation file)
+    test_path = './data_test/data_annotations.txt'  # Test data (annotation file)
     data_test_path = './data_test'
 
     test_base_path = './data_test'  # Directory to save the test images
@@ -356,4 +356,4 @@ if __name__ == "__main__":
 
     record_df = plot_some_graphs(C)
     model_rpn, class_mapping, model_classifier_only = draw_box_on_images()
-    # accuracy()
+    accuracy()
