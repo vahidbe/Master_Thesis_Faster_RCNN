@@ -51,7 +51,7 @@ def plot_some_graphs(C):
     return record_df
 
 
-def draw_box_on_images():
+def init_models():
     num_features = 512
 
     input_shape_img = (None, None, 3)
@@ -85,6 +85,11 @@ def draw_box_on_images():
     class_mapping = C.class_mapping
     class_mapping = {v: k for k, v in class_mapping.items()}
     print(class_mapping)
+
+    return model_rpn, class_mapping, model_classifier_only
+
+
+def draw_box_on_images():
     class_to_color = {class_mapping[v]: np.random.randint(0, 255, 3) for v in class_mapping}
 
     test_imgs = os.listdir(test_base_path)
@@ -212,8 +217,6 @@ def draw_box_on_images():
         plt.show()
 
         print(class_mapping)
-
-    return model_rpn, class_mapping, model_classifier_only
 
 
 def accuracy():
@@ -352,8 +355,9 @@ if __name__ == "__main__":
     C.use_horizontal_flips = False
     C.use_vertical_flips = False
     C.rot_90 = False
-    C.model_path = os.path.join(base_path, 'model/model_frcnn_vgg.hdf5') #UPDATE WEIGHTS PATH HERE !!!!!!!!
+    C.model_path = os.path.join(base_path, 'model/model_frcnn_vgg.hdf5')  # UPDATE WEIGHTS PATH HERE !!!!!!!!
 
     record_df = plot_some_graphs(C)
-    model_rpn, class_mapping, model_classifier_only = draw_box_on_images()
+    model_rpn, class_mapping, model_classifier_only = init_models()
+    # draw_box_on_images()
     accuracy()
