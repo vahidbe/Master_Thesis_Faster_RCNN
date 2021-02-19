@@ -222,6 +222,8 @@ def accuracy():
     T = {}
     P = {}
     mAPs = []
+    mRecalls = []
+    mAccs = []
     for idx, img_data in enumerate(test_imgs):
         print('{}/{}'.format(idx, len(test_imgs)))
         st = time.time()
@@ -314,21 +316,42 @@ def accuracy():
             T[key].extend(t[key])
             P[key].extend(p[key])
         all_aps = []
+        all_recalls = []
+        all_accs = []
         for key in T.keys():
             ap = average_precision_score(T[key], P[key])
+            recall = recall_score(T[key], P[key])
+            acc = accuracy_score(T[key], P[key])
             print('{} AP: {}'.format(key, ap))
+            print('{} Recall: {}'.format(key, recall))
+            print('{} Acc: {}'.format(key, acc))
             all_aps.append(ap)
+            all_recalls.append(recall)
+            all_accs.append(acc)
         print('mAP = {}'.format(np.mean(np.array(all_aps))))
+        print('mRecall = {}'.format(np.mean(np.array(all_recalls))))
+        print('mAcc = {}'.format(np.mean(np.array(all_accs))))
         mAPs.append(np.mean(np.array(all_aps)))
+        mRecalls.append(np.mean(np.array(all_recalls)))
+        mAccs.append(np.mean(np.array(all_accs)))
+
         # print(T)
         # print(P)
 
     print()
     print('mean average precision:', np.mean(np.array(mAPs)))
+    print('mean average recall:', np.mean(np.array(mRecalls)))
+    print('mean average accuracy:', np.mean(np.array(mAccs)))
 
     mAP = [mAP for mAP in mAPs if str(mAP) != 'nan']
+    mRecall = [mRecall for mRecall in mRecalls if str(mRecall) != 'nan']
+    mAcc = [mAcc for mAcc in mAccs if str(mAcc) != 'nan']
     mean_average_prec = round(np.mean(np.array(mAP)), 3)
+    mean_average_recall = round(np.mean(np.array(mRecall)), 3)
+    mean_average_acc = round(np.mean(np.array(mAcc)), 3)
     print('After training %dk batches, the mean average precision is %0.3f' % (len(record_df), mean_average_prec))
+    print('After training %dk batches, the mean average recall is %0.3f' % (len(record_df), mean_average_recall))
+    print('After training %dk batches, the mean average accuracy is %0.3f' % (len(record_df), mean_average_acc))
 
     # record_df.loc[len(record_df)-1, 'mAP'] = mean_average_prec
     # record_df.to_csv(C.record_path, index=0)
@@ -352,7 +375,7 @@ if __name__ == "__main__":
     C.use_horizontal_flips = False
     C.use_vertical_flips = False
     C.rot_90 = False
-    C.model_path = os.path.join(base_path, 'model/model_frcnn_vgg.hdf5') #UPDATE WEIGHTS PATH HERE !!!!!!!!
+    C.model_path = os.path.join(base_path, 'model/weights_100epoch_supervised.hdf5') #UPDATE WEIGHTS PATH HERE !!!!!!!!
 
     record_df = plot_some_graphs(C)
     model_rpn, class_mapping, model_classifier_only = draw_box_on_images()
