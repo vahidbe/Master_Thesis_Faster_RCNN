@@ -338,9 +338,6 @@ def accuracy():
         mRecalls.append(np.mean(np.array(all_recalls)))
         mAccs.append(np.mean(np.array(all_accs)))
 
-        # print(T)
-        # print(P)
-
     print()
     print('mean average precision:', np.mean(np.array(mAPs)))
     print('mean average recall:', np.mean(np.array(mRecalls)))
@@ -369,6 +366,9 @@ if __name__ == "__main__":
 
     test_base_path = './data_test'  # Directory to save the test images
 
+    output_results_filename = './results_test.txt' # TODO: output results of accuracy in file
+    # TODO: parametrer le programme pour afficher les images ou calculer les metrics
+
     config_output_filename = os.path.join(base_path, 'model_vgg_config.pickle')
 
     with open(config_output_filename, 'rb') as f_in:
@@ -378,7 +378,7 @@ if __name__ == "__main__":
     C.use_horizontal_flips = False
     C.use_vertical_flips = False
     C.rot_90 = False
-    C.model_path = os.path.join(base_path, 'model/weights_100epoch_supervised.hdf5') # UPDATE WEIGHTS PATH HERE
+    C.model_path = os.path.join(base_path, 'model/weights_100epoch_supervised.hdf5')  # UPDATE WEIGHTS PATH HERE
 
     record_df = plot_some_graphs(C)
     model_rpn, class_mapping, model_classifier_only = init_models()
