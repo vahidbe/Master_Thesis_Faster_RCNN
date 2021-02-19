@@ -323,8 +323,8 @@ def accuracy():
         all_accs = []
         for key in T.keys():
             ap = average_precision_score(T[key], P[key])
-            recall = recall_score(T[key], P[key])
-            acc = accuracy_score(T[key], P[key])
+            recall = recall_score(T[key], [round(num) for num in P[key]])
+            acc = accuracy_score(T[key], [round(num) for num in P[key]])
             print('{} AP: {}'.format(key, ap))
             print('{} Recall: {}'.format(key, recall))
             print('{} Acc: {}'.format(key, acc))
@@ -378,7 +378,8 @@ if __name__ == "__main__":
     C.use_horizontal_flips = False
     C.use_vertical_flips = False
     C.rot_90 = False
-    C.model_path = os.path.join(base_path, 'model/weights_100epoch_supervised.hdf5')  # UPDATE WEIGHTS PATH HERE
+
+    C.model_path = os.path.join(base_path, 'model/model_frcnn_vgg.hdf5') #UPDATE WEIGHTS PATH HERE !!!!!!!!
 
     record_df = plot_some_graphs(C)
     model_rpn, class_mapping, model_classifier_only = init_models()
