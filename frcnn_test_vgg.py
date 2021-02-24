@@ -39,8 +39,16 @@ def plot_some_graphs(C):
     plt.show()
     plt.figure(figsize=(15, 5))
     plt.subplot(1, 2, 1)
-    plt.plot(np.arange(0, r_epochs), record_df['curr_loss'], 'r')
-    plt.title('total_loss')
+    plt.plot(np.arange(0, r_epochs), record_df['curr_loss_classifier'], 'r')
+    plt.title('total_loss_classifer')
+
+    plt.subplot(1, 2, 2)
+    plt.plot(np.arange(0, r_epochs), record_df['elapsed_time'], 'r')
+    plt.title('elapsed_time')
+    plt.figure(figsize=(15, 5))
+    plt.subplot(1, 2, 1)
+    plt.plot(np.arange(0, r_epochs), record_df['curr_loss_rpn'], 'r')
+    plt.title('total_loss_rpn')
 
     plt.subplot(1, 2, 2)
     plt.plot(np.arange(0, r_epochs), record_df['elapsed_time'], 'r')
@@ -379,9 +387,9 @@ if __name__ == "__main__":
     C.use_vertical_flips = False
     C.rot_90 = False
 
-    C.model_path = os.path.join(base_path, 'model/model_frcnn_vgg.hdf5') #UPDATE WEIGHTS PATH HERE !!!!!!!!
+    C.model_path = os.path.join(base_path, 'model/weights_test2epoch_supervised.hdf5') #UPDATE WEIGHTS PATH HERE !!!!!!!!
 
     record_df = plot_some_graphs(C)
     model_rpn, class_mapping, model_classifier_only = init_models()
-    # draw_box_on_images()
+    draw_box_on_images()
     accuracy()
