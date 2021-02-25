@@ -106,8 +106,10 @@ def draw_box_on_images():
     bbox_threshold = 0.7
 
     # for idx, img_name in enumerate(imgs_path):
-    print(len(test_imgs))
+    length = len(test_imgs) - 1
+    print(length)
     for idx, img_name in enumerate(test_imgs):
+        print("Progression : " + str(idx + 1) + "/" + str(length))
         if not img_name.lower().endswith(('.bmp', '.jpeg', '.jpg', '.png', '.tif', '.tiff')):
             continue
         print(img_name)
@@ -339,16 +341,16 @@ def accuracy():
         mAccs.append(np.mean(np.array(all_accs)))
 
     print()
-    print('mean average precision:', np.mean(np.array(mAPs)))
-    print('mean average recall:', np.mean(np.array(mRecalls)))
-    print('mean average accuracy:', np.mean(np.array(mAccs)))
+    print('mean average precision:', np.nanmean(np.array(mAPs)))
+    print('mean average recall:', np.nanmean(np.array(mRecalls)))
+    print('mean average accuracy:', np.nanmean(np.array(mAccs)))
 
     mAP = [mAP for mAP in mAPs if str(mAP) != 'nan']
     mRecall = [mRecall for mRecall in mRecalls if str(mRecall) != 'nan']
     mAcc = [mAcc for mAcc in mAccs if str(mAcc) != 'nan']
-    mean_average_prec = round(np.mean(np.array(mAP)), 3)
-    mean_average_recall = round(np.mean(np.array(mRecall)), 3)
-    mean_average_acc = round(np.mean(np.array(mAcc)), 3)
+    mean_average_prec = round(np.nanmean(np.array(mAP)), 3)
+    mean_average_recall = round(np.nanmean(np.array(mRecall)), 3)
+    mean_average_acc = round(np.nanmean(np.array(mAcc)), 3)
     print('After training %dk batches, the mean average precision is %0.3f' % (len(record_df), mean_average_prec))
     print('After training %dk batches, the mean average recall is %0.3f' % (len(record_df), mean_average_recall))
     print('After training %dk batches, the mean average accuracy is %0.3f' % (len(record_df), mean_average_acc))
@@ -369,7 +371,7 @@ if __name__ == "__main__":
     output_results_filename = './results_test.txt' # TODO: output results of accuracy in file
     # TODO: parametrer le programme pour afficher les images ou calculer les metrics
 
-    config_output_filename = os.path.join(base_path, 'model_vgg_config.pickle')
+    config_output_filename = os.path.join(base_path, 'weights1500.pickle')
 
     with open(config_output_filename, 'rb') as f_in:
         C = pickle.load(f_in)
@@ -379,9 +381,9 @@ if __name__ == "__main__":
     C.use_vertical_flips = False
     C.rot_90 = False
 
-    C.model_path = os.path.join(base_path, 'model/model_frcnn_vgg.hdf5') #UPDATE WEIGHTS PATH HERE !!!!!!!!
+    C.model_path = os.path.join(base_path, 'model/weights1500.hdf5') #UPDATE WEIGHTS PATH HERE !!!!!!!!
 
     record_df = plot_some_graphs(C)
     model_rpn, class_mapping, model_classifier_only = init_models()
-    # draw_box_on_images()
+    draw_box_on_images()
     accuracy()
