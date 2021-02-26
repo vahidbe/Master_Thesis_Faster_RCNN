@@ -363,10 +363,10 @@ def accuracy():
 if __name__ == "__main__":
     base_path = '.'
 
-    test_path = './data_test/data_annotations.txt'  # Test data (annotation file)
-    data_test_path = './data_test'
+    test_path = './data_test2/data_annotations.txt'  # Test data (annotation file)
+    data_test_path = './data_test2'
 
-    test_base_path = './data_test'  # Directory to save the test images
+    test_base_path = './data_test2'  # Directory to save the test images
 
     output_results_filename = './results_test.txt' # TODO: output results of accuracy in file
     # TODO: parametrer le programme pour afficher les images ou calculer les metrics
