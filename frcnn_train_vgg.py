@@ -250,14 +250,14 @@ if __name__ == "__main__":
     vertical_flips = True  # Augment with vertical flips in training.
     rot_90 = True  # Augment with 90 degree rotations in training.
 
-    output_weight_path = os.path.join(base_path, 'model/weights_test2epoch_supervised.hdf5')
+    output_weight_path = os.path.join(base_path, 'model/weights1500.hdf5')
 
     record_path = os.path.join(base_path,
-                               'model/record_test2epoch_supervised.csv')  # Record data (used to save the losses, classification accuracy and mean average precision)
+                               'model/weights1500.csv')  # Record data (used to save the losses, classification accuracy and mean average precision)
 
     base_weight_path = os.path.join(base_path, 'model/vgg16_weights_tf_dim_ordering_tf_kernels.h5')
 
-    config_output_filename = os.path.join(base_path, 'model_vgg_config.pickle')
+    config_output_filename = os.path.join(base_path, 'weights1500.pickle')
 
     C = Config()
 
@@ -380,10 +380,9 @@ if __name__ == "__main__":
     total_epochs = len(record_df)
     r_epochs = len(record_df)
 
-    # epoch_length = 100
-    # num_epochs = 10 * 4 * 2
-    epoch_length = 10
-    num_epochs = 2
+    epoch_length = 100
+    num_epochs = 10*6*2
+    iter_num = 0
 
     total_epochs += num_epochs
 
