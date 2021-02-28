@@ -1,9 +1,14 @@
 from libraries import *
-# from recorder import Recorder
+from recorder import Recorder
 
 
-def train_model(train_imgs, val_imgs, num_epochs):
-    # Recorder.add_entry()
+# dict = {'epoch_num': [50, 100], 'preproc': [processwithbox, processnormal]}
+# list_of_configs = get_all_configs(dict) # [{epoch_num: 50, preproc: processwithbox}, other combi...]
+# for config in list_of_configs:
+#     train(config['epoch_num'], config['preproc'])
+
+def train_model(train_imgs, val_imgs, num_epochs, record_filepath):
+    recorder = Recorder(record_filepath)
     losses = np.zeros((len(train_imgs), 5))
     losses_val = np.zeros((len(val_imgs), 5))
     best_loss_val = float('inf')
@@ -140,9 +145,11 @@ def train_model(train_imgs, val_imgs, num_epochs):
 
                             best_loss_val = curr_loss_val
                             model_all.save_weights(C.model_path)
-                        # else:
-                        # early stopping
-                        #     return best_loss_val
+
+                        recorder.add_new_entry(class_acc, loss_rpn_cls, loss_rpn_regr, loss_class_cls, loss_class_regr,
+                                               curr_loss, elapsed_time, class_acc_val, loss_rpn_cls_val,
+                                               loss_rpn_regr_val, loss_class_cls_val, loss_class_regr_val,
+                                               curr_loss_val, best_loss_val)
 
                         break
 
@@ -154,6 +161,8 @@ def train_model(train_imgs, val_imgs, num_epochs):
                 print('Exception: {}'.format(e))
                 continue
 
+    recorder.show_graphs()
+    recorder.save_graphs()
     return curr_loss_val, best_loss_val
 
 
