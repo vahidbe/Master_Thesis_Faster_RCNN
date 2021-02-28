@@ -1,7 +1,6 @@
 from libraries import *
 from recorder import Recorder
 from sklearn.model_selection import KFold
-from shutil import copyfile
 
 
 def train_model(train_imgs, num_epochs, record_filepath):
@@ -13,13 +12,12 @@ def train_model(train_imgs, num_epochs, record_filepath):
 
     for epoch_num in range(num_epochs):
         start_time = time.time()
-        iter_num = 0
         progbar = generic_utils.Progbar(len(train_imgs))
         print('Epoch {}/{}'.format(epoch_num + 1, num_epochs))
         data_gen_train = get_anchor_gt(train_imgs, C, get_img_output_length,
                                        mode='train')  # TODO: tester mode:'augmentation'
 
-        while True:  # TODO maybe replace stopiteration by for loop on epochlength & vallength and recover lengths
+        for iter_num in range(len(train_imgs)):
             try:
 
                 # Generate X (x_img) and label Y ([y_rpn_cls, y_rpn_regr])
@@ -48,73 +46,71 @@ def train_model(train_imgs, num_epochs, record_filepath):
                 losses[iter_num, 3] = loss_class[2]
                 losses[iter_num, 4] = loss_class[3]
 
-                iter_num += 1
-
-                progbar.update(iter_num,
-                               [('rpn_cls', np.mean(losses[:iter_num, 0])), ('rpn_regr', np.mean(losses[:iter_num, 1])),
-                                ('final_cls', np.mean(losses[:iter_num, 2])),
-                                ('final_regr', np.mean(losses[:iter_num, 3]))])
-
-            except StopIteration:
-                # TODO: Comprendre si train_on_batch
-                #   modifie les weights et que save_weights ne fait que les save dans un fichier du PC (dans ce
-                #   cas il va falloir faire en sorte de repartir du best_weights à chaque fois si la loss n'était
-                #   pas meilleure à la fin de l'epoch) ou si train_on_batch ne modifie les weights qu'au moment
-                #   ou on appelle save_weights (et dans ce cas ce serait bizarre de faire un predict juste après
-                #   vu que le predict ne se fera pas sur les nouveaux poids)
-                loss_rpn_cls = np.mean(losses[:, 0])
-                loss_rpn_regr = np.mean(losses[:, 1])
-                loss_class_cls = np.mean(losses[:, 2])
-                loss_class_regr = np.mean(losses[:, 3])
-                class_acc = np.mean(losses[:, 4])
-
-                mean_overlapping_bboxes = float(sum(rpn_accuracy_for_epoch)) / len(rpn_accuracy_for_epoch)
-                rpn_accuracy_for_epoch = []
-                curr_loss = loss_rpn_cls + loss_rpn_regr + loss_class_cls + loss_class_regr
-                elapsed_time = (time.time() - start_time)
-
-                if C.verbose:
-                    print('Mean number of bounding boxes from RPN overlapping ground truth boxes: {}'.format(
-                        mean_overlapping_bboxes))
-                    print('Classifier accuracy for bounding boxes from RPN: {}'.format(class_acc))
-                    print('Loss RPN classifier: {}'.format(loss_rpn_cls))
-                    print('Loss RPN regression: {}'.format(loss_rpn_regr))
-                    print('Loss Detector classifier: {}'.format(loss_class_cls))
-                    print('Loss Detector regression: {}'.format(loss_class_regr))
-                    print('Total loss: {}'.format(curr_loss))
-                    print('Elapsed time: {}'.format(elapsed_time))
-
-                recorder.add_new_entry(class_acc, loss_rpn_cls, loss_rpn_regr, loss_class_cls, loss_class_regr,
-                                       curr_loss, elapsed_time)
+                progbar.update(iter_num + 1,
+                               [('rpn_cls', np.mean(losses[:iter_num + 1, 0])), ('rpn_regr', np.mean(losses[:iter_num + 1, 1])),
+                                ('final_cls', np.mean(losses[:iter_num + 1, 2])),
+                                ('final_regr', np.mean(losses[:iter_num + 1, 3]))])
 
             except Exception as e:
                 print('Exception: {}'.format(e))
                 continue
 
-    recorder.show_graphs()
+        # TODO: Comprendre si train_on_batch
+        #   modifie les weights et que save_weights ne fait que les save dans un fichier du PC (dans ce
+        #   cas il va falloir faire en sorte de repartir du best_weights à chaque fois si la loss n'était
+        #   pas meilleure à la fin de l'epoch) ou si train_on_batch ne modifie les weights qu'au moment
+        #   ou on appelle save_weights (et dans ce cas ce serait bizarre de faire un predict juste après
+        #   vu que le predict ne se fera pas sur les nouveaux poids)
+        loss_rpn_cls = np.mean(losses[:, 0])
+        loss_rpn_regr = np.mean(losses[:, 1])
+        loss_class_cls = np.mean(losses[:, 2])
+        loss_class_regr = np.mean(losses[:, 3])
+        class_acc = np.mean(losses[:, 4])
+
+        mean_overlapping_bboxes = float(sum(rpn_accuracy_for_epoch)) / len(rpn_accuracy_for_epoch)
+        rpn_accuracy_for_epoch = []
+        curr_loss = loss_rpn_cls + loss_rpn_regr + loss_class_cls + loss_class_regr
+        elapsed_time = (time.time() - start_time)
+
+        if C.verbose:
+            print('Mean number of bounding boxes from RPN overlapping ground truth boxes: {}'.format(
+                mean_overlapping_bboxes))
+            print('Classifier accuracy for bounding boxes from RPN: {}'.format(class_acc))
+            print('Loss RPN classifier: {}'.format(loss_rpn_cls))
+            print('Loss RPN regression: {}'.format(loss_rpn_regr))
+            print('Loss Detector classifier: {}'.format(loss_class_cls))
+            print('Loss Detector regression: {}'.format(loss_class_regr))
+            print('Total loss: {}'.format(curr_loss))
+            print('Elapsed time: {}'.format(elapsed_time))
+
+        recorder.add_new_entry(class_acc, loss_rpn_cls, loss_rpn_regr, loss_class_cls, loss_class_regr,
+                               curr_loss, elapsed_time)
+
+    # recorder.show_graphs()
     recorder.save_graphs()
     model_all.save_weights(C.model_path)
 
 
-def val_model(train_imgs, val_imgs, param, paramNames,  record_path):
+def val_model(train_imgs, val_imgs, param, paramNames, record_path):
     recorder = Recorder(record_path, has_validation=True)
     losses = np.zeros((len(train_imgs), 5))
     losses_val = np.zeros((len(val_imgs), 5))
     best_loss_val = float('inf')
     curr_loss_val = float('inf')
-    rpn_accuracy_rpn_monitor = []
-    rpn_accuracy_for_epoch = []
     print("Rpn training:")
     best_epoch = -1
 
     for epoch_num in range(num_epochs):
         start_time = time.time()
-        iter_num = 0
         progbar = generic_utils.Progbar(len(train_imgs))
+        progbar_val = generic_utils.Progbar(len(val_imgs))
+        rpn_accuracy_rpn_monitor = []
+        rpn_accuracy_for_epoch = []
         print('Epoch {}/{}'.format(epoch_num + 1, num_epochs))
-        data_gen_train = get_anchor_gt(train_imgs, C, get_img_output_length, mode='train') # TODO: tester mode:'augmentation'
+        # TODO: tester mode:'augmentation'
+        data_gen_train = get_anchor_gt(train_imgs, C, get_img_output_length, mode='train')
 
-        while True:  # TODO maybe replace stopiteration by for loop on epochlength & vallength and recover lengths
+        for iter_num in range(len(train_imgs)):
             try:
 
                 # Generate X (x_img) and label Y ([y_rpn_cls, y_rpn_regr])
@@ -143,113 +139,113 @@ def val_model(train_imgs, val_imgs, param, paramNames,  record_path):
                 losses[iter_num, 3] = loss_class[2]
                 losses[iter_num, 4] = loss_class[3]
 
-                iter_num += 1
-
-                progbar.update(iter_num,
-                               [('rpn_cls', np.mean(losses[:iter_num, 0])), ('rpn_regr', np.mean(losses[:iter_num, 1])),
-                                ('final_cls', np.mean(losses[:iter_num, 2])),
-                                ('final_regr', np.mean(losses[:iter_num, 3]))])
-
-            except StopIteration:
-                # TODO: Comprendre si train_on_batch
-                #   modifie les weights et que save_weights ne fait que les save dans un fichier du PC (dans ce
-                #   cas il va falloir faire en sorte de repartir du best_weights à chaque fois si la loss n'était
-                #   pas meilleure à la fin de l'epoch) ou si train_on_batch ne modifie les weights qu'au moment
-                #   ou on appelle save_weights (et dans ce cas ce serait bizarre de faire un predict juste après
-                #   vu que le predict ne se fera pas sur les nouveaux poids)
-                loss_rpn_cls = np.mean(losses[:, 0])
-                loss_rpn_regr = np.mean(losses[:, 1])
-                loss_class_cls = np.mean(losses[:, 2])
-                loss_class_regr = np.mean(losses[:, 3])
-                class_acc = np.mean(losses[:, 4])
-
-                mean_overlapping_bboxes = float(sum(rpn_accuracy_for_epoch)) / len(rpn_accuracy_for_epoch)
-                rpn_accuracy_for_epoch = []
-                curr_loss = loss_rpn_cls + loss_rpn_regr + loss_class_cls + loss_class_regr
-                elapsed_time = (time.time() - start_time)
-
-                if C.verbose:
-                    print('Mean number of bounding boxes from RPN overlapping ground truth boxes: {}'.format(
-                        mean_overlapping_bboxes))
-                    print('Classifier accuracy for bounding boxes from RPN: {}'.format(class_acc))
-                    print('Loss RPN classifier: {}'.format(loss_rpn_cls))
-                    print('Loss RPN regression: {}'.format(loss_rpn_regr))
-                    print('Loss Detector classifier: {}'.format(loss_class_cls))
-                    print('Loss Detector regression: {}'.format(loss_class_regr))
-                    print('Total loss: {}'.format(curr_loss))
-                    print('Elapsed time: {}'.format(elapsed_time))
-
-                print('Start of the validation phase')
-                data_gen_val = get_anchor_gt(val_imgs, C, get_img_output_length, mode='train')
-
-                while True:
-                    try:
-                        # Generate X (x_img) and label Y ([y_rpn_cls, y_rpn_regr])
-                        X_val, Y_val, img_data_val, _, _ = next(data_gen_val)
-                        loss_rpn_val = model_rpn.test_on_batch(X_val, Y_val)
-                        losses_val[iter_num, 0] = loss_rpn_val[1]
-                        losses_val[iter_num, 1] = loss_rpn_val[2]
-
-                        X2_val, Y1_val, Y2_val, sel_samples_val = rpn_to_class(X_val, img_data_val, [], [])
-
-                        if X2_val is None:
-                            continue
-
-                        # training_data: [X, X2[:, sel_samples, :]]
-                        # labels: [Y1[:, sel_samples, :], Y2[:, sel_samples, :]]
-                        #  X                     => img_data resized image
-                        #  X2[:, sel_samples, :] => num_rois (4 in here) bboxes which contains selected neg and pos
-                        #  Y1[:, sel_samples, :] => one hot encode for num_rois bboxes which contains selected neg and pos
-                        #  Y2[:, sel_samples, :] => labels and gt bboxes for num_rois bboxes which contains selected neg and pos
-                        loss_class_val = model_classifier.test_on_batch([X_val, X2_val[:, sel_samples_val, :]],
-                                                                        [Y1_val[:, sel_samples_val, :],
-                                                                         Y2_val[:, sel_samples_val, :]])
-
-                        losses_val[iter_num, 2] = loss_class_val[1]
-                        losses_val[iter_num, 3] = loss_class_val[2]
-                        losses_val[iter_num, 4] = loss_class_val[3]
-
-                    except StopIteration:
-                        print('End of the validation phase')
-
-                        loss_rpn_cls_val = np.mean(losses_val[:, 0])
-                        loss_rpn_regr_val = np.mean(losses_val[:, 1])
-                        loss_class_cls_val = np.mean(losses_val[:, 2])
-                        loss_class_regr_val = np.mean(losses_val[:, 3])
-                        class_acc_val = np.mean(losses_val[:, 4])
-                        curr_loss_val = loss_rpn_cls_val + loss_rpn_regr_val + loss_class_cls_val + loss_class_regr_val
-
-                        if C.verbose:
-                            print('Validation classifier accuracy for bounding boxes from RPN: {}'.format(
-                                class_acc_val))
-                            print('Validation loss RPN classifier: {}'.format(loss_rpn_cls_val))
-                            print('Validation loss RPN regression: {}'.format(loss_rpn_regr_val))
-                            print('Validation loss Detector classifier: {}'.format(loss_class_cls_val))
-                            print('Validation loss Detector regression: {}'.format(loss_class_regr_val))
-                            print('Total validation loss: {}'.format(curr_loss_val))
-
-                        if curr_loss_val <= best_loss_val:
-                            if C.verbose:
-                                print('Total validation loss decreased from {} to {}'.format(best_loss_val,
-                                                                                             curr_loss_val))
-                            # model_all.save_weights(C.model_path)
-                            best_epoch = epoch_num
-
-                        recorder.add_new_entry_with_validation(class_acc, loss_rpn_cls, loss_rpn_regr, loss_class_cls,
-                                                               loss_class_regr, curr_loss, elapsed_time, class_acc_val,
-                                                               loss_rpn_cls_val, loss_rpn_regr_val, loss_class_cls_val,
-                                                               loss_class_regr_val, curr_loss_val, best_loss_val)
-                        break
-
-                    except Exception as e:
-                        print('Exception: {}'.format(e))
-                        continue
+                progbar.update(iter_num + 1,
+                               [('rpn_cls', np.mean(losses[:iter_num + 1, 0])), ('rpn_regr', np.mean(losses[:iter_num + 1, 1])),
+                                ('final_cls', np.mean(losses[:iter_num + 1, 2])),
+                                ('final_regr', np.mean(losses[:iter_num + 1, 3]))])
 
             except Exception as e:
                 print('Exception: {}'.format(e))
                 continue
 
-    recorder.show_graphs()
+        # TODO: Comprendre si train_on_batch
+        #   modifie les weights et que save_weights ne fait que les save dans un fichier du PC (dans ce
+        #   cas il va falloir faire en sorte de repartir du best_weights à chaque fois si la loss n'était
+        #   pas meilleure à la fin de l'epoch) ou si train_on_batch ne modifie les weights qu'au moment
+        #   ou on appelle save_weights (et dans ce cas ce serait bizarre de faire un predict juste après
+        #   vu que le predict ne se fera pas sur les nouveaux poids)
+        loss_rpn_cls = np.mean(losses[:, 0])
+        loss_rpn_regr = np.mean(losses[:, 1])
+        loss_class_cls = np.mean(losses[:, 2])
+        loss_class_regr = np.mean(losses[:, 3])
+        class_acc = np.mean(losses[:, 4])
+
+        mean_overlapping_bboxes = float(sum(rpn_accuracy_for_epoch)) / len(rpn_accuracy_for_epoch)
+        curr_loss = loss_rpn_cls + loss_rpn_regr + loss_class_cls + loss_class_regr
+        elapsed_time = (time.time() - start_time)
+
+        if C.verbose:
+            print('Mean number of bounding boxes from RPN overlapping ground truth boxes: {}'.format(
+                mean_overlapping_bboxes))
+            print('Classifier accuracy for bounding boxes from RPN: {}'.format(class_acc))
+            print('Loss RPN classifier: {}'.format(loss_rpn_cls))
+            print('Loss RPN regression: {}'.format(loss_rpn_regr))
+            print('Loss Detector classifier: {}'.format(loss_class_cls))
+            print('Loss Detector regression: {}'.format(loss_class_regr))
+            print('Total loss: {}'.format(curr_loss))
+            print('Elapsed time: {}'.format(elapsed_time))
+
+        print('Start of the validation phase')
+        data_gen_val = get_anchor_gt(val_imgs, C, get_img_output_length, mode='train')
+
+        for iter_num_val in range(len(val_imgs)):
+            try:
+                # Generate X (x_img) and label Y ([y_rpn_cls, y_rpn_regr])
+                X_val, Y_val, img_data_val, _, _ = next(data_gen_val)
+                loss_rpn_val = model_rpn.test_on_batch(X_val, Y_val)
+                losses_val[iter_num_val, 0] = loss_rpn_val[1]
+                losses_val[iter_num_val, 1] = loss_rpn_val[2]
+
+                X2_val, Y1_val, Y2_val, sel_samples_val = rpn_to_class(X_val, img_data_val, [], [])
+
+                if X2_val is None:
+                    continue
+
+                # training_data: [X, X2[:, sel_samples, :]]
+                # labels: [Y1[:, sel_samples, :], Y2[:, sel_samples, :]]
+                #  X                     => img_data resized image
+                #  X2[:, sel_samples, :] => num_rois (4 in here) bboxes which contains selected neg and pos
+                #  Y1[:, sel_samples, :] => one hot encode for num_rois bboxes which contains selected neg and pos
+                #  Y2[:, sel_samples, :] => labels and gt bboxes for num_rois bboxes which contains selected neg and pos
+                loss_class_val = model_classifier.test_on_batch([X_val, X2_val[:, sel_samples_val, :]],
+                                                                [Y1_val[:, sel_samples_val, :],
+                                                                 Y2_val[:, sel_samples_val, :]])
+
+                losses_val[iter_num_val, 2] = loss_class_val[1]
+                losses_val[iter_num_val, 3] = loss_class_val[2]
+                losses_val[iter_num_val, 4] = loss_class_val[3]
+
+                progbar_val.update(iter_num_val + 1,
+                                   [('rpn_cls_val', np.mean(losses_val[:iter_num_val + 1, 0])),
+                                    ('rpn_regr_val', np.mean(losses_val[:iter_num_val + 1, 1])),
+                                    ('final_cls_val', np.mean(losses_val[:iter_num_val + 1, 2])),
+                                    ('final_regr_val', np.mean(losses_val[:iter_num_val + 1, 3]))])
+
+            except Exception as e:
+                print('Exception: {}'.format(e))
+                continue
+
+        print('End of the validation phase')
+
+        loss_rpn_cls_val = np.mean(losses_val[:, 0])
+        loss_rpn_regr_val = np.mean(losses_val[:, 1])
+        loss_class_cls_val = np.mean(losses_val[:, 2])
+        loss_class_regr_val = np.mean(losses_val[:, 3])
+        class_acc_val = np.mean(losses_val[:, 4])
+        curr_loss_val = loss_rpn_cls_val + loss_rpn_regr_val + loss_class_cls_val + loss_class_regr_val
+
+        if C.verbose:
+            print('Validation classifier accuracy for bounding boxes from RPN: {}'.format(
+                class_acc_val))
+            print('Validation loss RPN classifier: {}'.format(loss_rpn_cls_val))
+            print('Validation loss RPN regression: {}'.format(loss_rpn_regr_val))
+            print('Validation loss Detector classifier: {}'.format(loss_class_cls_val))
+            print('Validation loss Detector regression: {}'.format(loss_class_regr_val))
+            print('Total validation loss: {}'.format(curr_loss_val))
+
+        if curr_loss_val <= best_loss_val:
+            if C.verbose:
+                print('Total validation loss decreased from {} to {}'.format(best_loss_val,
+                                                                             curr_loss_val))
+            best_loss_val = curr_loss_val
+            best_epoch = epoch_num + 1
+
+        recorder.add_new_entry_with_validation(class_acc, loss_rpn_cls, loss_rpn_regr, loss_class_cls,
+                                               loss_class_regr, curr_loss, elapsed_time, class_acc_val,
+                                               loss_rpn_cls_val, loss_rpn_regr_val, loss_class_cls_val,
+                                               loss_class_regr_val, curr_loss_val, best_loss_val)
+
+    # recorder.show_graphs()
     recorder.save_graphs()
     return curr_loss_val, best_loss_val, best_epoch
 
@@ -321,7 +317,7 @@ def rpn_to_class(X, img_data, rpn_accuracy_rpn_monitor, rpn_accuracy_for_epoch):
     return X2, Y1, Y2, sel_samples
 
 
-def initialize_model():
+def initialize_model():  # TODO: maybe we need to simply reload the pretrained vgg weights and call this method only once
     # define the base network (VGG here, can be Resnet50, Inception, etc)
 
     shared_layers = nn_base(img_input, trainable=True)
@@ -400,8 +396,8 @@ def initialize_model():
 if __name__ == "__main__":
     base_path = '.'
 
-    train_path = './data_test/data_annotations.txt'  # Training data (annotation file)
-    data_path = './data_test'
+    train_path = './data_small/data_annotations.txt'  # Training data (annotation file)
+    data_path = './data_small'
 
     num_rois = 4  # Number of RoIs to process at once.
 
@@ -465,9 +461,8 @@ if __name__ == "__main__":
     img_input = Input(shape=input_shape_img)
     roi_input = Input(shape=(None, 4))
 
-    # epoch_length = 100
     num_epochs = 2
-    n_splits = 2
+    n_splits = 10
 
     import itertools as it
 
@@ -497,20 +492,24 @@ if __name__ == "__main__":
         idx = 0
         for train_index, val_index in kf.split(all_imgs):
             model_all, model_rpn, model_classifier = initialize_model()
-            train_imgs, val_imgs = all_imgs[train_index], all_imgs[val_index]
-            curr_loss_val, best_loss_val, best_epoch = val_model(train_imgs, val_imgs, param, paramNames, " ".join(paramNames))
+            train_imgs, val_imgs = np.array(all_imgs)[train_index], np.array(all_imgs)[val_index]
+            curr_loss_val, best_loss_val, best_epoch = val_model(train_imgs, val_imgs, param, paramNames,
+                                                                 " ".join(paramNames) + " - " + str(list(param))
+                                                                 + " - split " + str(idx))
+
             if best_loss_val < best_fold_loss:
                 val_loss = best_fold_loss
             losses[idx] = best_loss_val
             best_epoch_list[idx] = best_epoch
             idx += 1
-        curr_loss = np.mean(losses) #On regarde la mean car on peut avoir un training set qui match parfaitement au validation set
-        #mais les autres folds sont à chier. Du coup on doit bien observer la moyenne
+        curr_loss = np.mean(
+            losses)  # On regarde la mean car on peut avoir un training set qui match parfaitement au validation set
+        # mais les autres folds sont à chier. Du coup on doit bien observer la moyenne
         if curr_loss < best_loss:
             best_loss = curr_loss
             best_num_epochs = np.mean(best_epoch_list)
 
-    train_model(all_imgs, best_epoch, C.record_path)
+    train_model(all_imgs, int(best_num_epochs), C.record_path)
 
     print('Training complete, exiting.')
 

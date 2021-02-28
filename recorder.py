@@ -24,7 +24,7 @@ class Recorder:
                        'best_loss_val': []}
 
     def _create_graphs(self, save=False):
-        num_epochs = len(self.record)
+        num_epochs = len(self.record['class_acc'])
 
         # Training
         plt.figure(figsize=(15, 5))
@@ -133,33 +133,35 @@ class Recorder:
     def add_new_entry_with_validation(self, class_acc, loss_rpn_cls, loss_rpn_regr, loss_class_cls, loss_class_regr, curr_loss,
                       elapsed_time, class_acc_val, loss_rpn_cls_val, loss_rpn_regr_val, loss_class_cls_val,
                       loss_class_regr_val, curr_loss_val, best_loss_val):
-        self.record['class_acc'] += class_acc
-        self.record['loss_rpn_cls'] += loss_rpn_cls
-        self.record['loss_rpn_regr'] += loss_rpn_regr
-        self.record['loss_class_cls'] += loss_class_cls
-        self.record['loss_class_regr'] += loss_class_regr
-        self.record['curr_loss'] += curr_loss
-        self.record['elapsed_time'] += elapsed_time
-        self.record['loss_rpn_cls_val'] += loss_rpn_cls_val
-        self.record['loss_rpn_regr_val'] += loss_rpn_regr_val
-        self.record['loss_class_cls_val'] += loss_class_cls_val
-        self.record['loss_class_regr_val'] += loss_class_regr_val
-        self.record['class_acc_val'] += class_acc_val
-        self.record['curr_loss_val'] += curr_loss_val
-        self.record['best_loss_val'] += best_loss_val
+        self.record['class_acc'].append(class_acc)
+        self.record['loss_rpn_cls'].append(loss_rpn_cls)
+        self.record['loss_rpn_regr'].append(loss_rpn_regr)
+        self.record['loss_class_cls'].append(loss_class_cls)
+        self.record['loss_class_regr'].append(loss_class_regr)
+        self.record['curr_loss'].append(curr_loss)
+        self.record['elapsed_time'].append(elapsed_time)
+        self.record['loss_rpn_cls_val'].append(loss_rpn_cls_val)
+        self.record['loss_rpn_regr_val'].append(loss_rpn_regr_val)
+        self.record['loss_class_cls_val'].append(loss_class_cls_val)
+        self.record['loss_class_regr_val'].append(loss_class_regr_val)
+        self.record['class_acc_val'].append(class_acc_val)
+        self.record['curr_loss_val'].append(curr_loss_val)
+        self.record['best_loss_val'].append(best_loss_val)
 
     def add_new_entry(self, class_acc, loss_rpn_cls, loss_rpn_regr, loss_class_cls, loss_class_regr, curr_loss,
                       elapsed_time):
-        self.record['class_acc'] += class_acc
-        self.record['loss_rpn_cls'] += loss_rpn_cls
-        self.record['loss_rpn_regr'] += loss_rpn_regr
-        self.record['loss_class_cls'] += loss_class_cls
-        self.record['loss_class_regr'] += loss_class_regr
-        self.record['curr_loss'] += curr_loss
-        self.record['elapsed_time'] += elapsed_time
+        self.record['class_acc'].append(class_acc)
+        self.record['loss_rpn_cls'].append(loss_rpn_cls)
+        self.record['loss_rpn_regr'].append(loss_rpn_regr)
+        self.record['loss_class_cls'].append(loss_class_cls)
+        self.record['loss_class_regr'].append(loss_class_regr)
+        self.record['curr_loss'].append(curr_loss)
+        self.record['elapsed_time'].append(elapsed_time)
 
     def show_graphs(self):
         self._create_graphs(False)
 
     def save_graphs(self):
+        if not os.path.exists(self.base_path):
+            os.mkdir(self.base_path)
         self._create_graphs(True)
