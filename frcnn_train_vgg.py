@@ -96,7 +96,7 @@ def train_model(train_imgs, num_epochs, record_filepath):
     model_all.save_weights(C.model_path)
 
 
-def val_model(train_imgs, val_imgs, num_epochs, record_path):
+def val_model(train_imgs, val_imgs, param, paramNames,  record_path):
     recorder = Recorder(record_path, has_validation=True)
     losses = np.zeros((len(train_imgs), 5))
     losses_val = np.zeros((len(val_imgs), 5))
@@ -400,8 +400,8 @@ def initialize_model():
 if __name__ == "__main__":
     base_path = '.'
 
-    train_path = './data/valid_data_annotations.txt'  # Training data (annotation file)
-    data_path = './data'
+    train_path = './data_test/data_annotations.txt'  # Training data (annotation file)
+    data_path = './data_test'
 
     num_rois = 4  # Number of RoIs to process at once.
 
@@ -410,14 +410,14 @@ if __name__ == "__main__":
     vertical_flips = True  # Augment with vertical flips in training.
     rot_90 = True  # Augment with 90 degree rotations in training.
 
-    output_weight_path = os.path.join(base_path, 'model/weights_test2epoch_supervised.hdf5')
+    output_weight_path = os.path.join(base_path, 'model/weights_test.hdf5')
 
     record_path = os.path.join(base_path,
-                               'model/record_test2epoch_supervised.csv')  # Record data (used to save the losses, classification accuracy and mean average precision)
+                               'model/weights_test')  # Record data (used to save the losses, classification accuracy and mean average precision)
 
     base_weight_path = os.path.join(base_path, 'model/vgg16_weights_tf_dim_ordering_tf_kernels.h5')
 
-    config_output_filename = os.path.join(base_path, 'model_vgg_config.pickle')
+    config_output_filename = os.path.join(base_path, 'weights_test.pickle')
 
     C = Config()
 
@@ -466,10 +466,14 @@ if __name__ == "__main__":
     roi_input = Input(shape=(None, 4))
 
     # epoch_length = 100
-    num_epochs = 10 * 4 * 2
-    num_epochs_list = [50, 100]
-    n_splits = 10
-    param_list = [1]
+    num_epochs = 2
+    n_splits = 2
+
+    import itertools as it
+
+    param = {'theParma': [0]}
+    paramNames = param.keys()
+    combinations = it.product(*(param[Name] for Name in paramNames))
     # loss_rpn_cls_at_epoch = np.zeros((r_epochs))
     # loss_rpn_regr_at_epoch = np.zeros((r_epochs))
 
@@ -484,7 +488,7 @@ if __name__ == "__main__":
     best_num_epochs = 0
     param_name = ['param']
 
-    for param in param_list:
+    for param in combinations:
         random.shuffle(all_imgs)
         kf = KFold(n_splits=n_splits)
         losses = np.zeros(n_splits)
@@ -494,7 +498,7 @@ if __name__ == "__main__":
         for train_index, val_index in kf.split(all_imgs):
             model_all, model_rpn, model_classifier = initialize_model()
             train_imgs, val_imgs = all_imgs[train_index], all_imgs[val_index]
-            curr_loss_val, best_loss_val, best_epoch = val_model(train_imgs, val_imgs, param)
+            curr_loss_val, best_loss_val, best_epoch = val_model(train_imgs, val_imgs, param, paramNames, " ".join(paramNames))
             if best_loss_val < best_fold_loss:
                 val_loss = best_fold_loss
             losses[idx] = best_loss_val
@@ -506,7 +510,7 @@ if __name__ == "__main__":
             best_loss = curr_loss
             best_num_epochs = np.mean(best_epoch_list)
 
-    train_model(all_imgs, best_epoch)
+    train_model(all_imgs, best_epoch, C.record_path)
 
     print('Training complete, exiting.')
 
