@@ -391,7 +391,7 @@ if __name__ == "__main__":
 
     C.model_path = os.path.join(base_path, 'model/weights1500.hdf5') #UPDATE WEIGHTS PATH HERE !!!!!!!!
 
-    record_df = plot_some_graphs(C)
+    # record_df = plot_some_graphs(C)
     model_rpn, class_mapping, model_classifier_only = init_models()
     draw_box_on_images()
     accuracy()
