@@ -394,10 +394,15 @@ def initialize_model():  # TODO: maybe we need to simply reload the pretrained v
 
 
 if __name__ == "__main__":
+    config = tf.compat.v1.ConfigProto()
+    config.gpu_options.allow_growth = True
+    config.gpu_options.per_process_gpu_memory_fraction = 0.9
+    session = tf.compat.v1.InteractiveSession(config=config)
+
     base_path = '.'
 
-    train_path = './data_small/data_annotations.txt'  # Training data (annotation file)
-    data_path = './data_small'
+    train_path = './data/valid_data_annotations.txt'  # Training data (annotation file)
+    data_path = './data'
 
     num_rois = 4  # Number of RoIs to process at once.
 
@@ -406,14 +411,14 @@ if __name__ == "__main__":
     vertical_flips = True  # Augment with vertical flips in training.
     rot_90 = True  # Augment with 90 degree rotations in training.
 
-    output_weight_path = os.path.join(base_path, 'model/weights_test.hdf5')
+    output_weight_path = os.path.join(base_path, 'model/weights_val.hdf5')
 
     record_path = os.path.join(base_path,
-                               'model/weights_test')  # Record data (used to save the losses, classification accuracy and mean average precision)
+                               'model/weights_val')  # Record data (used to save the losses, classification accuracy and mean average precision)
 
     base_weight_path = os.path.join(base_path, 'model/vgg16_weights_tf_dim_ordering_tf_kernels.h5')
 
-    config_output_filename = os.path.join(base_path, 'weights_test.pickle')
+    config_output_filename = os.path.join(base_path, 'weights_val.pickle')
 
     C = Config()
 
@@ -461,7 +466,7 @@ if __name__ == "__main__":
     img_input = Input(shape=input_shape_img)
     roi_input = Input(shape=(None, 4))
 
-    num_epochs = 2
+    num_epochs = 10 
     n_splits = 10
 
     import itertools as it
