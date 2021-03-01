@@ -30,11 +30,19 @@ def display_histogram(hist, title, type):
 
 def get_box_image_ratio(input_path, data_path):
 
-    ratio_dict = {}
-    ratio_dict["abeille_mellifere"] = []
-    ratio_dict["boudon_des_arbres"] = []
-    ratio_dict["anthophore_plumeuse"] = []
-    ratio_dict["bourdon_des_jardins"] = []
+    ratio_surface = {}
+
+    ratio_surface["abeille_mellifere"] = []
+    ratio_surface["boudon_des_arbres"] = []
+    ratio_surface["anthophore_plumeuse"] = []
+    ratio_surface["bourdon_des_jardins"] = []
+
+    ratio_width_height = {}
+
+    ratio_width_height["abeille_mellifere"] = []
+    ratio_width_height["boudon_des_arbres"] = []
+    ratio_width_height["anthophore_plumeuse"] = []
+    ratio_width_height["bourdon_des_jardins"] = []
 
     i = 1
 
@@ -58,9 +66,10 @@ def get_box_image_ratio(input_path, data_path):
             im = cv2.imread(thepath)
             h, w, c = im.shape
             surface = h * w
-            ratio_dict[class_name].append(box_surface/surface)
+            ratio_surface[class_name].append(box_surface/surface)
+            ratio_width_height[class_name].append(wbox/hbox)
 
-    return ratio_dict
+    return ratio_surface, ratio_width_height
 
 
 if __name__ == '__main__':
@@ -70,11 +79,19 @@ if __name__ == '__main__':
     test_path = './data_test/data_annotations.txt'  # Training data (annotation file)
     data_test_path = './data_test'
 
-    ratio_dict = get_box_image_ratio(train_path, data_path)
-    for class_name in ratio_dict.keys():
-        display_histogram(ratio_dict[class_name], '[Train] Ratio box on image : ' + class_name, type='train')
+    ratio_surface, ratio_width_height = get_box_image_ratio(train_path, data_path)
+    ratio_surface_test, ratio_width_height_test = get_box_image_ratio(test_path, data_test_path)
 
-    ratio_dict_test = get_box_image_ratio(test_path, data_test_path)
-    for class_name in ratio_dict_test.keys():
-        display_histogram(ratio_dict_test[class_name], '[Test] Ratio box on image : ' + class_name, type='test')
+
+    for class_name in ratio_surface.keys():
+        display_histogram(ratio_surface[class_name], '[Train] Ratio box on image : ' + class_name, type='train')
+
+    for class_name in ratio_surface_test.keys():
+        display_histogram(ratio_surface_test[class_name], '[Test] Ratio box on image : ' + class_name, type='test')
+
+    for class_name in ratio_width_height.keys():
+        display_histogram(ratio_width_height[class_name], '[Train] Ratio width on height : ' + class_name, type='train')
+
+    for class_name in ratio_width_height_test.keys():
+        display_histogram(ratio_width_height_test[class_name], '[Test] Ratio width on height : ' + class_name, type='test')
 
