@@ -51,6 +51,7 @@ class Recorder:
         else:
             plt.show()
 
+        plt.figure(figsize=(15, 5))
         plt.plot(np.arange(0, num_epochs), self.record['curr_loss'], 'r')
         plt.title('total_loss')
         if save:
@@ -70,6 +71,7 @@ class Recorder:
         else:
             plt.show()
 
+        plt.figure(figsize=(15, 5))
         plt.title('loss')
         plt.plot(np.arange(0, num_epochs), self.record['loss_rpn_cls'], 'b')
         plt.plot(np.arange(0, num_epochs), self.record['loss_rpn_regr'], 'g')
@@ -106,6 +108,7 @@ class Recorder:
             else:
                 plt.show()
 
+            plt.figure(figsize=(15, 5))
             plt.plot(np.arange(0, num_epochs), self.record['curr_loss_val'], 'r')
             plt.title('total_loss_val')
             if save:
@@ -113,6 +116,7 @@ class Recorder:
             else:
                 plt.show()
 
+            plt.figure(figsize=(15, 5))
             plt.plot(np.arange(0, num_epochs), self.record['best_loss_val'], 'r')
             plt.title('best_loss_val')
             if save:
@@ -120,6 +124,7 @@ class Recorder:
             else:
                 plt.show()
 
+            plt.figure(figsize=(15, 5))
             plt.title('loss_val')
             plt.plot(np.arange(0, num_epochs), self.record['loss_rpn_cls_val'], 'b')
             plt.plot(np.arange(0, num_epochs), self.record['loss_rpn_regr_val'], 'g')

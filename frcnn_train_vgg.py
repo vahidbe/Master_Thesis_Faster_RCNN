@@ -8,7 +8,6 @@ def train_model(train_imgs, num_epochs, record_filepath):
     losses = np.zeros((len(train_imgs), 5))
     rpn_accuracy_rpn_monitor = []
     rpn_accuracy_for_epoch = []
-    print("Rpn training:")
 
     for epoch_num in range(num_epochs):
         start_time = time.time()
@@ -47,7 +46,8 @@ def train_model(train_imgs, num_epochs, record_filepath):
                 losses[iter_num, 4] = loss_class[3]
 
                 progbar.update(iter_num + 1,
-                               [('rpn_cls', np.mean(losses[:iter_num + 1, 0])), ('rpn_regr', np.mean(losses[:iter_num + 1, 1])),
+                               [('rpn_cls', np.mean(losses[:iter_num + 1, 0])),
+                                ('rpn_regr', np.mean(losses[:iter_num + 1, 1])),
                                 ('final_cls', np.mean(losses[:iter_num + 1, 2])),
                                 ('final_regr', np.mean(losses[:iter_num + 1, 3]))])
 
@@ -67,8 +67,11 @@ def train_model(train_imgs, num_epochs, record_filepath):
         loss_class_regr = np.mean(losses[:, 3])
         class_acc = np.mean(losses[:, 4])
 
-        mean_overlapping_bboxes = float(sum(rpn_accuracy_for_epoch)) / len(rpn_accuracy_for_epoch)
-        rpn_accuracy_for_epoch = []
+        if len(rpn_accuracy_for_epoch) == 0:
+            mean_overlapping_bboxes = 0
+        else:
+            mean_overlapping_bboxes = float(sum(rpn_accuracy_for_epoch)) / len(rpn_accuracy_for_epoch)
+
         curr_loss = loss_rpn_cls + loss_rpn_regr + loss_class_cls + loss_class_regr
         elapsed_time = (time.time() - start_time)
 
@@ -97,7 +100,6 @@ def val_model(train_imgs, val_imgs, param, paramNames, record_path):
     losses_val = np.zeros((len(val_imgs), 5))
     best_loss_val = float('inf')
     curr_loss_val = float('inf')
-    print("Rpn training:")
     best_epoch = -1
 
     for epoch_num in range(num_epochs):
@@ -140,9 +142,14 @@ def val_model(train_imgs, val_imgs, param, paramNames, record_path):
                 losses[iter_num, 4] = loss_class[3]
 
                 progbar.update(iter_num + 1,
-                               [('rpn_cls', np.mean(losses[:iter_num + 1, 0])), ('rpn_regr', np.mean(losses[:iter_num + 1, 1])),
+                               [('rpn_cls', np.mean(losses[:iter_num + 1, 0])),
+                                ('rpn_regr', np.mean(losses[:iter_num + 1, 1])),
                                 ('final_cls', np.mean(losses[:iter_num + 1, 2])),
-                                ('final_regr', np.mean(losses[:iter_num + 1, 3]))])
+                                ('final_regr', np.mean(losses[:iter_num + 1, 3])),
+                                ('loss', np.mean(losses[:iter_num + 1, 0])
+                                 + np.mean(losses[:iter_num + 1, 1])
+                                 + np.mean(losses[:iter_num + 1, 2])
+                                 + np.mean(losses[:iter_num + 1, 3]))])
 
             except Exception as e:
                 print('Exception: {}'.format(e))
@@ -160,7 +167,11 @@ def val_model(train_imgs, val_imgs, param, paramNames, record_path):
         loss_class_regr = np.mean(losses[:, 3])
         class_acc = np.mean(losses[:, 4])
 
-        mean_overlapping_bboxes = float(sum(rpn_accuracy_for_epoch)) / len(rpn_accuracy_for_epoch)
+        if len(rpn_accuracy_for_epoch) == 0:
+            mean_overlapping_bboxes = 0
+        else:
+            mean_overlapping_bboxes = float(sum(rpn_accuracy_for_epoch)) / len(rpn_accuracy_for_epoch)
+
         curr_loss = loss_rpn_cls + loss_rpn_regr + loss_class_cls + loss_class_regr
         elapsed_time = (time.time() - start_time)
 
@@ -209,7 +220,11 @@ def val_model(train_imgs, val_imgs, param, paramNames, record_path):
                                    [('rpn_cls_val', np.mean(losses_val[:iter_num_val + 1, 0])),
                                     ('rpn_regr_val', np.mean(losses_val[:iter_num_val + 1, 1])),
                                     ('final_cls_val', np.mean(losses_val[:iter_num_val + 1, 2])),
-                                    ('final_regr_val', np.mean(losses_val[:iter_num_val + 1, 3]))])
+                                    ('final_regr_val', np.mean(losses_val[:iter_num_val + 1, 3])),
+                                    ('loss_val', np.mean(losses_val[:iter_num_val + 1, 0])
+                                     + np.mean(losses_val[:iter_num_val + 1, 1])
+                                     + np.mean(losses_val[:iter_num_val + 1, 2])
+                                     + np.mean(losses_val[:iter_num_val + 1, 3]))])
 
             except Exception as e:
                 print('Exception: {}'.format(e))
@@ -317,12 +332,14 @@ def rpn_to_class(X, img_data, rpn_accuracy_rpn_monitor, rpn_accuracy_for_epoch):
     return X2, Y1, Y2, sel_samples
 
 
-def initialize_model():  # TODO: maybe we need to simply reload the pretrained vgg weights and call this method only once
-    # define the base network (VGG here, can be Resnet50, Inception, etc)
-
+"""
+    Define the base network (VGG)
+"""
+def initialize_model():
+    # TODO: maybe we need to simply reload the pretrained vgg weights and call this method only once
     shared_layers = nn_base(img_input, trainable=True)
 
-    # define the RPN, built on the base layers
+    # Define the RPN, built on the base layers
     num_anchors = len(C.anchor_box_scales) * len(C.anchor_box_ratios)  # 9
     rpn = rpn_layer(shared_layers, num_anchors)
 
@@ -331,56 +348,16 @@ def initialize_model():  # TODO: maybe we need to simply reload the pretrained v
     model_rpn = Model(img_input, rpn[:2])
     model_classifier = Model([img_input, roi_input], classifier)
 
-    # this is a model that holds both the RPN and the classifier, used to load/save weights for the models
+    # This is a model that holds both the RPN and the classifier, used to load/save weights for the models
     model_all = Model([img_input, roi_input], rpn[:2] + classifier)
 
-    # weights_path = data_utils.get_file(
-    #           'vgg16_weights_tf_dim_ordering_tf_kernels.h5',
-    #           WEIGHTS_PATH,
-    #           cache_subdir='models',
-    #           file_hash='64373286793e3c8b2b4e3219cbf3544b')
-    # model_classifier.load_weights(weights_path)
-    # model_all.load_weights(weights_path)
-
-    # Because the google colab can only run the session several hours one time (then you need to connect again),
-    # we need to save the model and load the model to continue training
-
-    # if not os.path.isfile(C.model_path):
-    # If this is the beginning of the training, load the pre-traind base network such as vgg-16
     try:
-        print('This is the first time of your training')
-        print('loading weights from {}'.format(C.base_net_weights))
+        print('Loading weights from {}'.format(C.base_net_weights))
         model_rpn.load_weights(C.base_net_weights, by_name=True)
         model_classifier.load_weights(C.base_net_weights, by_name=True)
     except:
         print('Could not load pretrained model weights. Weights can be found in the keras application folder \
             https://github.com/fchollet/keras/tree/master/keras/applications')
-
-    # Create the record.csv file to record losses, acc and mAP
-    record_df = pd.DataFrame(
-        columns=['mean_overlapping_bboxes', 'class_acc', 'loss_rpn_cls', 'loss_rpn_regr', 'loss_class_cls',
-                 'loss_class_regr', 'curr_loss', 'elapsed_time', 'mAP'])
-    # else:
-    #     # If this is a continued training, load the trained model from before
-    #     print('Continue training based on previous trained model')
-    #     print('Loading weights from {}'.format(C.model_path))
-    #     model_rpn.load_weights(C.model_path, by_name=True)
-    #     model_classifier.load_weights(C.model_path, by_name=True)
-    #
-    #     # Load the records
-    #     record_df = pd.read_csv(record_path)
-    #
-    #     r_mean_overlapping_bboxes = record_df['mean_overlapping_bboxes']
-    #     r_class_acc = record_df['class_acc']
-    #     r_loss_rpn_cls = record_df['loss_rpn_cls']
-    #     r_loss_rpn_regr = record_df['loss_rpn_regr']
-    #     r_loss_class_cls = record_df['loss_class_cls']
-    #     r_loss_class_regr = record_df['loss_class_regr']
-    #     r_curr_loss = record_df['curr_loss']
-    #     r_elapsed_time = record_df['elapsed_time']
-    #     r_mAP = record_df['mAP']
-    #
-    # print('Already train %dK batches' % (len(record_df)))
 
     optimizer = Adam(lr=1e-5)
     optimizer_classifier = Adam(lr=1e-5)
@@ -394,15 +371,15 @@ def initialize_model():  # TODO: maybe we need to simply reload the pretrained v
 
 
 if __name__ == "__main__":
-    config = tf.compat.v1.ConfigProto()
-    config.gpu_options.allow_growth = True
-    config.gpu_options.per_process_gpu_memory_fraction = 0.9
-    session = tf.compat.v1.InteractiveSession(config=config)
+    # config = tf.compat.v1.ConfigProto()
+    # config.gpu_options.allow_growth = True
+    # config.gpu_options.per_process_gpu_memory_fraction = 0.9
+    # session = tf.compat.v1.InteractiveSession(config=config)
 
     base_path = '.'
 
-    train_path = './data/valid_data_annotations.txt'  # Training data (annotation file)
-    data_path = './data'
+    train_path = './data_small/valid_data_annotations.txt'  # Training data (annotation file)
+    data_path = './data_small'
 
     num_rois = 4  # Number of RoIs to process at once.
 
@@ -466,12 +443,12 @@ if __name__ == "__main__":
     img_input = Input(shape=input_shape_img)
     roi_input = Input(shape=(None, 4))
 
-    num_epochs = 10 
+    num_epochs = 10
     n_splits = 10
 
     import itertools as it
 
-    param = {'theParma': [0]}
+    param = {'param': [0]}
     paramNames = param.keys()
     combinations = it.product(*(param[Name] for Name in paramNames))
     # loss_rpn_cls_at_epoch = np.zeros((r_epochs))
@@ -486,7 +463,6 @@ if __name__ == "__main__":
     best_epoch = -1
 
     best_num_epochs = 0
-    param_name = ['param']
 
     for param in combinations:
         random.shuffle(all_imgs)
@@ -496,6 +472,7 @@ if __name__ == "__main__":
         best_fold_loss = np.inf
         idx = 0
         for train_index, val_index in kf.split(all_imgs):
+            print("=== Fold {}/{} ===".format(idx+1, n_splits))
             model_all, model_rpn, model_classifier = initialize_model()
             train_imgs, val_imgs = np.array(all_imgs)[train_index], np.array(all_imgs)[val_index]
             curr_loss_val, best_loss_val, best_epoch = val_model(train_imgs, val_imgs, param, paramNames,
@@ -517,5 +494,3 @@ if __name__ == "__main__":
     train_model(all_imgs, int(best_num_epochs), C.record_path)
 
     print('Training complete, exiting.')
-
-    # plot_figures()
