@@ -467,7 +467,7 @@ if __name__ == "__main__":
     roi_input = Input(shape=(None, 4))
 
     num_epochs = 10 
-    n_splits = 10
+    n_splits = 4
 
     import itertools as it
 
