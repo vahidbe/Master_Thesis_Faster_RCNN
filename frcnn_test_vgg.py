@@ -369,17 +369,22 @@ def accuracy():
 
 
 if __name__ == "__main__":
+    config = tf.compat.v1.ConfigProto()
+    config.gpu_options.allow_growth = True
+    config.gpu_options.per_process_gpu_memory_fraction = 0.2
+    session = tf.compat.v1.InteractiveSession(config=config)
+
     base_path = '.'
 
-    test_path = './data_test2/data_annotations.txt'  # Test data (annotation file)
-    data_test_path = './data_test2'
+    test_path = './data_test/data_annotations.txt'  # Test data (annotation file)
+    data_test_path = './data_test'
 
-    test_base_path = './data_test2'  # Directory to save the test images
+    test_base_path = './data_test'  # Directory to save the test images
 
     output_results_filename = './results_test.txt' # TODO: output results of accuracy in file
     # TODO: parametrer le programme pour afficher les images ou calculer les metrics
 
-    config_output_filename = os.path.join(base_path, 'weights1500.pickle')
+    config_output_filename = os.path.join(base_path, 'weights_val.pickle')
 
     with open(config_output_filename, 'rb') as f_in:
         C = pickle.load(f_in)
@@ -389,7 +394,7 @@ if __name__ == "__main__":
     C.use_vertical_flips = False
     C.rot_90 = False
 
-    C.model_path = os.path.join(base_path, 'model/weights1500.hdf5') #UPDATE WEIGHTS PATH HERE !!!!!!!!
+    C.model_path = os.path.join(base_path, 'model/weights_val.hdf5') #UPDATE WEIGHTS PATH HERE !!!!!!!!
 
     # record_df = plot_some_graphs(C)
     model_rpn, class_mapping, model_classifier_only = init_models()

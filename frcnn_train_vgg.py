@@ -371,10 +371,10 @@ def initialize_model():
 
 
 if __name__ == "__main__":
-    # config = tf.compat.v1.ConfigProto()
-    # config.gpu_options.allow_growth = True
-    # config.gpu_options.per_process_gpu_memory_fraction = 0.9
-    # session = tf.compat.v1.InteractiveSession(config=config)
+    config = tf.compat.v1.ConfigProto()
+    config.gpu_options.allow_growth = True
+    config.gpu_options.per_process_gpu_memory_fraction = 0.9
+    session = tf.compat.v1.InteractiveSession(config=config)
 
     base_path = '.'
 
