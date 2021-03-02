@@ -29,10 +29,10 @@ class Recorder:
         # Training
         plt.figure(figsize=(15, 5))
         plt.subplot(1, 2, 1)
-        plt.plot(np.arange(0, num_epochs), self.record['loss_rpn_cls'], 'r')
+        plt.plot(np.arange(1, num_epochs+1), self.record['loss_rpn_cls'], 'r')
         plt.title('loss_rpn_cls')
         plt.subplot(1, 2, 2)
-        plt.plot(np.arange(0, num_epochs), self.record['loss_rpn_regr'], 'r')
+        plt.plot(np.arange(1, num_epochs+1), self.record['loss_rpn_regr'], 'r')
         plt.title('loss_rpn_regr')
         if save:
             plt.savefig(os.path.join(self.base_path, 'loss_rpn_cls&loss_rpn_regr.png'))
@@ -41,10 +41,10 @@ class Recorder:
 
         plt.figure(figsize=(15, 5))
         plt.subplot(1, 2, 1)
-        plt.plot(np.arange(0, num_epochs), self.record['loss_class_cls'], 'r')
+        plt.plot(np.arange(1, num_epochs+1), self.record['loss_class_cls'], 'r')
         plt.title('loss_class_cls')
         plt.subplot(1, 2, 2)
-        plt.plot(np.arange(0, num_epochs), self.record['loss_class_regr'], 'r')
+        plt.plot(np.arange(1, num_epochs+1), self.record['loss_class_regr'], 'r')
         plt.title('loss_class_regr')
         if save:
             plt.savefig(os.path.join(self.base_path, 'loss_class_cls&loss_class_regr.png'))
@@ -52,7 +52,7 @@ class Recorder:
             plt.show()
 
         plt.figure(figsize=(15, 5))
-        plt.plot(np.arange(0, num_epochs), self.record['curr_loss'], 'r')
+        plt.plot(np.arange(1, num_epochs+1), self.record['curr_loss'], 'r')
         plt.title('total_loss')
         if save:
             plt.savefig(os.path.join(self.base_path, 'total_loss.png'))
@@ -61,10 +61,10 @@ class Recorder:
 
         plt.figure(figsize=(15, 5))
         plt.subplot(1, 2, 1)
-        plt.plot(np.arange(0, num_epochs), self.record['curr_loss'], 'r')
+        plt.plot(np.arange(1, num_epochs+1), self.record['curr_loss'], 'r')
         plt.title('total_loss')
         plt.subplot(1, 2, 2)
-        plt.plot(np.arange(0, num_epochs), self.record['elapsed_time'], 'r')
+        plt.plot(np.arange(1, num_epochs+1), self.record['elapsed_time'], 'r')
         plt.title('elapsed_time')
         if save:
             plt.savefig(os.path.join(self.base_path, 'total_loss&elapsed_time.png'))
@@ -73,10 +73,10 @@ class Recorder:
 
         plt.figure(figsize=(15, 5))
         plt.title('loss')
-        plt.plot(np.arange(0, num_epochs), self.record['loss_rpn_cls'], 'b')
-        plt.plot(np.arange(0, num_epochs), self.record['loss_rpn_regr'], 'g')
-        plt.plot(np.arange(0, num_epochs), self.record['loss_class_cls'], 'r')
-        plt.plot(np.arange(0, num_epochs), self.record['loss_class_regr'], 'c')
+        plt.plot(np.arange(1, num_epochs+1), self.record['loss_rpn_cls'], 'b')
+        plt.plot(np.arange(1, num_epochs+1), self.record['loss_rpn_regr'], 'g')
+        plt.plot(np.arange(1, num_epochs+1), self.record['loss_class_cls'], 'r')
+        plt.plot(np.arange(1, num_epochs+1), self.record['loss_class_regr'], 'c')
         if save:
             plt.savefig(os.path.join(self.base_path, 'loss.png'))
         else:
@@ -86,10 +86,10 @@ class Recorder:
         if self.has_validation:
             plt.figure(figsize=(15, 5))
             plt.subplot(1, 2, 1)
-            plt.plot(np.arange(0, num_epochs), self.record['loss_rpn_cls_val'], 'r')
+            plt.plot(np.arange(1, num_epochs+1), self.record['loss_rpn_cls_val'], 'r')
             plt.title('loss_rpn_cls_val')
             plt.subplot(1, 2, 2)
-            plt.plot(np.arange(0, num_epochs), self.record['loss_rpn_regr_val'], 'r')
+            plt.plot(np.arange(1, num_epochs+1), self.record['loss_rpn_regr_val'], 'r')
             plt.title('loss_rpn_regr_val')
             if save:
                 plt.savefig(os.path.join(self.base_path, 'loss_rpn_cls_val&loss_rpn_regr_val.png'))
@@ -98,10 +98,10 @@ class Recorder:
 
             plt.figure(figsize=(15, 5))
             plt.subplot(1, 2, 1)
-            plt.plot(np.arange(0, num_epochs), self.record['loss_class_cls_val'], 'r')
+            plt.plot(np.arange(1, num_epochs+1), self.record['loss_class_cls_val'], 'r')
             plt.title('loss_class_cls_val')
             plt.subplot(1, 2, 2)
-            plt.plot(np.arange(0, num_epochs), self.record['loss_class_regr_val'], 'r')
+            plt.plot(np.arange(1, num_epochs+1), self.record['loss_class_regr_val'], 'r')
             plt.title('loss_class_regr_val')
             if save:
                 plt.savefig(os.path.join(self.base_path, 'loss_class_cls_val&loss_class_regr_val.png'))
@@ -109,7 +109,7 @@ class Recorder:
                 plt.show()
 
             plt.figure(figsize=(15, 5))
-            plt.plot(np.arange(0, num_epochs), self.record['curr_loss_val'], 'r')
+            plt.plot(np.arange(1, num_epochs+1), self.record['curr_loss_val'], 'r')
             plt.title('total_loss_val')
             if save:
                 plt.savefig(os.path.join(self.base_path, 'total_loss_val.png'))
@@ -117,7 +117,7 @@ class Recorder:
                 plt.show()
 
             plt.figure(figsize=(15, 5))
-            plt.plot(np.arange(0, num_epochs), self.record['best_loss_val'], 'r')
+            plt.plot(np.arange(1, num_epochs+1), self.record['best_loss_val'], 'r')
             plt.title('best_loss_val')
             if save:
                 plt.savefig(os.path.join(self.base_path, 'best_loss_val.png'))
@@ -126,10 +126,10 @@ class Recorder:
 
             plt.figure(figsize=(15, 5))
             plt.title('loss_val')
-            plt.plot(np.arange(0, num_epochs), self.record['loss_rpn_cls_val'], 'b')
-            plt.plot(np.arange(0, num_epochs), self.record['loss_rpn_regr_val'], 'g')
-            plt.plot(np.arange(0, num_epochs), self.record['loss_class_cls_val'], 'r')
-            plt.plot(np.arange(0, num_epochs), self.record['loss_class_regr_val'], 'c')
+            plt.plot(np.arange(1, num_epochs+1), self.record['loss_rpn_cls_val'], 'b')
+            plt.plot(np.arange(1, num_epochs+1), self.record['loss_rpn_regr_val'], 'g')
+            plt.plot(np.arange(1, num_epochs+1), self.record['loss_class_cls_val'], 'r')
+            plt.plot(np.arange(1, num_epochs+1), self.record['loss_class_regr_val'], 'c')
             if save:
                 plt.savefig(os.path.join(self.base_path, 'loss_val.png'))
             else:

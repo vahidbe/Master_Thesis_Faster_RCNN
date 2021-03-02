@@ -1,62 +1,62 @@
 from libraries import *
 
 
-def plot_some_graphs(C):
-    # Load the records
-    record_df = pd.read_csv(C.record_path)
-
-    r_epochs = len(record_df)
-
-    plt.figure(figsize=(15, 5))
-    plt.subplot(1, 2, 1)
-    plt.plot(np.arange(0, r_epochs), record_df['mean_overlapping_bboxes'], 'r')
-    plt.title('mean_overlapping_bboxes')
-
-    plt.subplot(1, 2, 2)
-    plt.plot(np.arange(0, r_epochs), record_df['class_acc'], 'r')
-    plt.title('class_acc')
-
-    plt.show()
-
-    plt.figure(figsize=(15, 5))
-
-    plt.subplot(1, 2, 1)
-    plt.plot(np.arange(0, r_epochs), record_df['loss_rpn_cls'], 'r')
-    plt.title('loss_rpn_cls')
-
-    plt.subplot(1, 2, 2)
-    plt.plot(np.arange(0, r_epochs), record_df['loss_rpn_regr'], 'r')
-    plt.title('loss_rpn_regr')
-    plt.show()
-    plt.figure(figsize=(15, 5))
-    plt.subplot(1, 2, 1)
-    plt.plot(np.arange(0, r_epochs), record_df['loss_class_cls'], 'r')
-    plt.title('loss_class_cls')
-
-    plt.subplot(1, 2, 2)
-    plt.plot(np.arange(0, r_epochs), record_df['loss_class_regr'], 'r')
-    plt.title('loss_class_regr')
-    plt.show()
-    plt.figure(figsize=(15, 5))
-    plt.subplot(1, 2, 1)
-    plt.plot(np.arange(0, r_epochs), record_df['curr_loss_classifier'], 'r')
-    plt.title('total_loss_classifer')
-
-    plt.subplot(1, 2, 2)
-    plt.plot(np.arange(0, r_epochs), record_df['elapsed_time'], 'r')
-    plt.title('elapsed_time')
-    plt.figure(figsize=(15, 5))
-    plt.subplot(1, 2, 1)
-    plt.plot(np.arange(0, r_epochs), record_df['curr_loss_rpn'], 'r')
-    plt.title('total_loss_rpn')
-
-    plt.subplot(1, 2, 2)
-    plt.plot(np.arange(0, r_epochs), record_df['elapsed_time'], 'r')
-    plt.title('elapsed_time')
-
-    plt.show()
-
-    return record_df
+# def plot_some_graphs(C):
+#     # Load the records
+#     record_df = pd.read_csv(C.record_path)
+#
+#     r_epochs = len(record_df)
+#
+#     plt.figure(figsize=(15, 5))
+#     plt.subplot(1, 2, 1)
+#     plt.plot(np.arange(0, r_epochs), record_df['mean_overlapping_bboxes'], 'r')
+#     plt.title('mean_overlapping_bboxes')
+#
+#     plt.subplot(1, 2, 2)
+#     plt.plot(np.arange(0, r_epochs), record_df['class_acc'], 'r')
+#     plt.title('class_acc')
+#
+#     plt.show()
+#
+#     plt.figure(figsize=(15, 5))
+#
+#     plt.subplot(1, 2, 1)
+#     plt.plot(np.arange(0, r_epochs), record_df['loss_rpn_cls'], 'r')
+#     plt.title('loss_rpn_cls')
+#
+#     plt.subplot(1, 2, 2)
+#     plt.plot(np.arange(0, r_epochs), record_df['loss_rpn_regr'], 'r')
+#     plt.title('loss_rpn_regr')
+#     plt.show()
+#     plt.figure(figsize=(15, 5))
+#     plt.subplot(1, 2, 1)
+#     plt.plot(np.arange(0, r_epochs), record_df['loss_class_cls'], 'r')
+#     plt.title('loss_class_cls')
+#
+#     plt.subplot(1, 2, 2)
+#     plt.plot(np.arange(0, r_epochs), record_df['loss_class_regr'], 'r')
+#     plt.title('loss_class_regr')
+#     plt.show()
+#     plt.figure(figsize=(15, 5))
+#     plt.subplot(1, 2, 1)
+#     plt.plot(np.arange(0, r_epochs), record_df['curr_loss_classifier'], 'r')
+#     plt.title('total_loss_classifer')
+#
+#     plt.subplot(1, 2, 2)
+#     plt.plot(np.arange(0, r_epochs), record_df['elapsed_time'], 'r')
+#     plt.title('elapsed_time')
+#     plt.figure(figsize=(15, 5))
+#     plt.subplot(1, 2, 1)
+#     plt.plot(np.arange(0, r_epochs), record_df['curr_loss_rpn'], 'r')
+#     plt.title('total_loss_rpn')
+#
+#     plt.subplot(1, 2, 2)
+#     plt.plot(np.arange(0, r_epochs), record_df['elapsed_time'], 'r')
+#     plt.title('elapsed_time')
+#
+#     plt.show()
+#
+#     return record_df
 
 
 def init_models():
@@ -100,7 +100,7 @@ def init_models():
 def draw_box_on_images():
     class_to_color = {class_mapping[v]: np.random.randint(0, 255, 3) for v in class_mapping}
 
-    test_imgs = os.listdir(test_base_path)
+    test_imgs = os.listdir(data_test_path)
 
     # imgs_path = []
     # for i in range(10):
@@ -114,7 +114,7 @@ def draw_box_on_images():
     bbox_threshold = 0.7
 
     # for idx, img_name in enumerate(imgs_path):
-    length = len(test_imgs) - 1
+    length = len(test_imgs)
     print(length)
     for idx, img_name in enumerate(test_imgs):
         print("Progression : " + str(idx + 1) + "/" + str(length))
@@ -122,7 +122,7 @@ def draw_box_on_images():
             continue
         print(img_name)
         st = time.time()
-        filepath = os.path.join(test_base_path, img_name)
+        filepath = os.path.join(data_test_path, img_name)
 
         img = cv2.imread(filepath)
 
@@ -359,9 +359,9 @@ def accuracy():
     mean_average_prec = round(np.nanmean(np.array(mAP)), 3)
     mean_average_recall = round(np.nanmean(np.array(mRecall)), 3)
     mean_average_acc = round(np.nanmean(np.array(mAcc)), 3)
-    print('After training %dk batches, the mean average precision is %0.3f' % (len(record_df), mean_average_prec))
-    print('After training %dk batches, the mean average recall is %0.3f' % (len(record_df), mean_average_recall))
-    print('After training %dk batches, the mean average accuracy is %0.3f' % (len(record_df), mean_average_acc))
+    print('The mean average precision is %0.3f' % (mean_average_prec))
+    print('The mean average recall is %0.3f' % (mean_average_recall))
+    print('The mean average accuracy is %0.3f' % (mean_average_acc))
 
     # record_df.loc[len(record_df)-1, 'mAP'] = mean_average_prec
     # record_df.to_csv(C.record_path, index=0)
@@ -369,22 +369,45 @@ def accuracy():
 
 
 if __name__ == "__main__":
-    config = tf.compat.v1.ConfigProto()
-    config.gpu_options.allow_growth = True
-    config.gpu_options.per_process_gpu_memory_fraction = 0.2
-    session = tf.compat.v1.InteractiveSession(config=config)
 
-    base_path = '.'
+    import argparse
 
-    test_path = './data_test/data_annotations.txt'  # Test data (annotation file)
-    data_test_path = './data_test'
+    # Parse command line arguments
+    parser = argparse.ArgumentParser(
+        description='Use Faster R-CNN to detect insects.')
+    parser.add_argument('--model_name', required=False,
+                        metavar="name_of_your_model", default='model',
+                        help='Name of the model being tested')
+    parser.add_argument('--dataset', required=False,
+                        metavar="/path/to/insects/test/dataset/", default='./data_test',
+                        help='Directory of the Insects test dataset')
+    parser.add_argument('--annotations', required=False, default='./data/data_annotations.txt',
+                        metavar="/path/to/insects/dataset/annotations/file.txt",
+                        help='Annotation file for the provided dataset')
+    parser.add_argument('--show_images', required=False, default=False,
+                        metavar="True/False",
+                        help="True if you want to show the images after detection, False otherwise")
+    parser.add_argument('--use_gpu', required=False, default=True,
+                        metavar="True/False",
+                        help="True if you want to run the training on a gpu, False otherwise")
+    args = parser.parse_args()
 
-    test_base_path = './data_test'  # Directory to save the test images
+    if args.use_gpu:
+        config = tf.compat.v1.ConfigProto()
+        config.gpu_options.allow_growth = True
+        config.gpu_options.per_process_gpu_memory_fraction = 0.2
+        session = tf.compat.v1.InteractiveSession(config=config)
 
-    output_results_filename = './results_test.txt' # TODO: output results of accuracy in file
+    test_path = args.annotations  # Test data (annotation file)
+    data_test_path = args.dataset
+
+    output_results_filename = "./results/{}".format(args.model_name)
+    if not os.path.exists(output_results_filename):
+        os.mkdir(output_results_filename)
+    # TODO: output results of accuracy in file
     # TODO: parametrer le programme pour afficher les images ou calculer les metrics
 
-    config_output_filename = os.path.join(base_path, 'weights_val.pickle')
+    config_output_filename = "./config/{}.pickle".format(args.model_name)
 
     with open(config_output_filename, 'rb') as f_in:
         C = pickle.load(f_in)
@@ -394,9 +417,10 @@ if __name__ == "__main__":
     C.use_vertical_flips = False
     C.rot_90 = False
 
-    C.model_path = os.path.join(base_path, 'model/weights_val.hdf5') #UPDATE WEIGHTS PATH HERE !!!!!!!!
+    C.model_path = "./model/{}.hdf5".format(args.model_name)  # UPDATE WEIGHTS PATH HERE !!!!!!!!
 
     # record_df = plot_some_graphs(C)
     model_rpn, class_mapping, model_classifier_only = init_models()
-    draw_box_on_images()
+    if args.show_images:
+        draw_box_on_images()
     accuracy()

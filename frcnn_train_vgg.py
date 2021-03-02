@@ -335,6 +335,8 @@ def rpn_to_class(X, img_data, rpn_accuracy_rpn_monitor, rpn_accuracy_for_epoch):
 """
     Define the base network (VGG)
 """
+
+
 def initialize_model():
     # TODO: maybe we need to simply reload the pretrained vgg weights and call this method only once
     shared_layers = nn_base(img_input, trainable=True)
@@ -371,15 +373,50 @@ def initialize_model():
 
 
 if __name__ == "__main__":
-    config = tf.compat.v1.ConfigProto()
-    config.gpu_options.allow_growth = True
-    config.gpu_options.per_process_gpu_memory_fraction = 0.9
-    session = tf.compat.v1.InteractiveSession(config=config)
 
-    base_path = '.'
+    import argparse
 
-    train_path = './data_small/valid_data_annotations.txt'  # Training data (annotation file)
-    data_path = './data_small'
+    # Parse command line arguments
+    parser = argparse.ArgumentParser(
+        description='Use Faster R-CNN to detect insects.')
+    parser.add_argument('--model_name', required=False,
+                        metavar="name_of_your_model", default='model',
+                        help='Name of the model being tested')
+    parser.add_argument('--dataset', required=False,
+                        metavar="/path/to/insects/dataset/", default='./data',
+                        help='Directory of the Insects dataset')
+    parser.add_argument('--annotations', required=False, default='./data/data_annotations.txt',
+                        metavar="/path/to/insects/dataset/annotations/file.txt",
+                        help='Annotation file for the provided dataset')
+    parser.add_argument('--validation', required=False,
+                        metavar="True/False", default=False,
+                        help='True to do a validation')
+    parser.add_argument('--validation_splits', required=False,
+                        metavar="Integer", default=4,
+                        help='Number of splits for the validation if --validation has been set to true')
+    parser.add_argument('--num_epochs', required=False,
+                        metavar="Integer", default=10,
+                        help='Number of epochs for the training if --validation has been set to False\n'
+                             'Maximum number of epochs for the validation if --validation has been set to True')
+    parser.add_argument('--weights', required=False, default='./model/vgg16_weights_tf_dim_ordering_tf_kernels.h5',
+                        metavar="/path/to/base/weights.h5",
+                        help="Path to base weights .h5 file")
+    parser.add_argument('--use_gpu', required=False, default=True,
+                        metavar="True/False",
+                        help="True if you want to run the training on a gpu, False otherwise")
+    args = parser.parse_args()
+
+    if args.use_gpu:
+        config = tf.compat.v1.ConfigProto()
+        config.gpu_options.allow_growth = True
+        config.gpu_options.per_process_gpu_memory_fraction = 0.9
+        session = tf.compat.v1.InteractiveSession(config=config)
+
+    num_epochs = int(args.num_epochs)
+    n_splits = int(args.validation_splits)
+
+    train_path = args.annotations  # Training data (annotation file)
+    data_path = args.dataset
 
     num_rois = 4  # Number of RoIs to process at once.
 
@@ -388,14 +425,13 @@ if __name__ == "__main__":
     vertical_flips = True  # Augment with vertical flips in training.
     rot_90 = True  # Augment with 90 degree rotations in training.
 
-    output_weight_path = os.path.join(base_path, 'model/weights_val.hdf5')
-
-    record_path = os.path.join(base_path,
-                               'model/weights_val')  # Record data (used to save the losses, classification accuracy and mean average precision)
-
-    base_weight_path = os.path.join(base_path, 'model/vgg16_weights_tf_dim_ordering_tf_kernels.h5')
-
-    config_output_filename = os.path.join(base_path, 'weights_val.pickle')
+    # Record data (used to save the losses, classification accuracy and mean average precision)
+    record_path = "./logs/{}".format(args.model_name)
+    if not os.path.exists(record_path):
+        os.mkdir(record_path)
+    output_weight_path = "./model/{}.hdf5".format(args.model_name)
+    base_weight_path = args.weights
+    config_output_filename = "./config/{}.pickle".format(args.model_name)
 
     C = Config()
 
@@ -443,10 +479,6 @@ if __name__ == "__main__":
     img_input = Input(shape=input_shape_img)
     roi_input = Input(shape=(None, 4))
 
-
-    num_epochs = 10 
-    n_splits = 4
-
     import itertools as it
 
     param = {'param': [0]}
@@ -465,33 +497,40 @@ if __name__ == "__main__":
 
     best_num_epochs = 0
 
-    for param in combinations:
-        random.shuffle(all_imgs)
-        kf = KFold(n_splits=n_splits)
-        losses = np.zeros(n_splits)
-        best_epoch_list = np.zeros(n_splits)
-        best_fold_loss = np.inf
-        idx = 0
-        for train_index, val_index in kf.split(all_imgs):
-            print("=== Fold {}/{} ===".format(idx+1, n_splits))
-            model_all, model_rpn, model_classifier = initialize_model()
-            train_imgs, val_imgs = np.array(all_imgs)[train_index], np.array(all_imgs)[val_index]
-            curr_loss_val, best_loss_val, best_epoch = val_model(train_imgs, val_imgs, param, paramNames,
-                                                                 " ".join(paramNames) + " - " + str(list(param))
-                                                                 + " - split " + str(idx))
+    if args.validation:
+        for param in combinations:
+            random.shuffle(all_imgs)
+            kf = KFold(n_splits=n_splits)
+            losses = np.zeros(n_splits)
+            best_epoch_list = np.zeros(n_splits)
+            best_fold_loss = np.inf
+            idx = 0
+            for train_index, val_index in kf.split(all_imgs):
+                print("=== Fold {}/{} ===".format(idx + 1, n_splits))
+                model_all, model_rpn, model_classifier = initialize_model()
+                train_imgs, val_imgs = np.array(all_imgs)[train_index], np.array(all_imgs)[val_index]
+                curr_loss_val, best_loss_val, best_epoch = val_model(train_imgs, val_imgs, param, paramNames,
+                                                                     os.path.join(record_path, "Validation - "
+                                                                                  + " ".join(paramNames) + " - "
+                                                                                  + str(list(param))
+                                                                                  + " - split "
+                                                                                  + str(idx)))
 
-            if best_loss_val < best_fold_loss:
-                val_loss = best_fold_loss
-            losses[idx] = best_loss_val
-            best_epoch_list[idx] = best_epoch
-            idx += 1
-        curr_loss = np.mean(
-            losses)  # On regarde la mean car on peut avoir un training set qui match parfaitement au validation set
-        # mais les autres folds sont à chier. Du coup on doit bien observer la moyenne
-        if curr_loss < best_loss:
-            best_loss = curr_loss
-            best_num_epochs = np.mean(best_epoch_list)
+                if best_loss_val < best_fold_loss:
+                    val_loss = best_fold_loss
+                losses[idx] = best_loss_val
+                best_epoch_list[idx] = best_epoch
+                idx += 1
+            curr_loss = np.mean(
+                losses)  # On regarde la mean car on peut avoir un training set qui match parfaitement au validation set
+            # mais les autres folds sont à chier. Du coup on doit bien observer la moyenne
+            if curr_loss < best_loss:
+                best_loss = curr_loss
+                best_num_epochs = np.mean(best_epoch_list)
+    else:
+        best_num_epochs = args.num_epochs
 
-    train_model(all_imgs, int(best_num_epochs), C.record_path)
+    model_all, model_rpn, model_classifier = initialize_model()
+    train_model(all_imgs, int(best_num_epochs), os.path.join(C.record_path, "Training"))
 
     print('Training complete, exiting.')
