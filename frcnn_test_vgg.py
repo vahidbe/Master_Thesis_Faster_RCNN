@@ -392,10 +392,15 @@ if __name__ == "__main__":
                         help="True if you want to run the training on a gpu, False otherwise")
     args = parser.parse_args()
 
-    if args.use_gpu:
+    use_gpu = eval(args.use_gpu)
+    if use_gpu is True:
         config = tf.compat.v1.ConfigProto()
         config.gpu_options.allow_growth = True
         config.gpu_options.per_process_gpu_memory_fraction = 0.9
+        session = tf.compat.v1.InteractiveSession(config=config)
+    else:
+        print("False:{}".format(use_gpu))
+        config = tf.compat.v1.ConfigProto(device_count={'GPU': 0})
         session = tf.compat.v1.InteractiveSession(config=config)
 
     test_path = args.annotations  # Test data (annotation file)
