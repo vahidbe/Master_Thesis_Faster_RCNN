@@ -501,7 +501,7 @@ if __name__ == "__main__":
     best_loss = np.inf
     best_epoch = -1
 
-    model_all, model_rpn, model_classifier = None, None, None
+    model_all, model_rpn, model_classifier = initialize_model()
     best_num_epochs = 0
     if args.validation:
         for param in combinations:
@@ -513,8 +513,6 @@ if __name__ == "__main__":
             idx = 0
             for train_index, val_index in kf.split(all_imgs):
                 print("=== Fold {}/{} ===".format(idx + 1, n_splits))
-                del model_all, model_rpn, model_classifier
-                model_all, model_rpn, model_classifier = initialize_model()
                 train_imgs, val_imgs = np.array(all_imgs)[train_index], np.array(all_imgs)[val_index]
                 curr_loss_val, best_loss_val, best_epoch = val_model(train_imgs, val_imgs, param, paramNames,
                                                                      os.path.join(record_path, "Validation - "
@@ -534,6 +532,7 @@ if __name__ == "__main__":
             if curr_loss < best_loss:
                 best_loss = curr_loss
                 best_num_epochs = np.mean(best_epoch_list)
+            del model_all, model_rpn, model_classifier
     else:
         best_num_epochs = args.num_epochs
 
