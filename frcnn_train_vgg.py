@@ -86,12 +86,14 @@ def train_model(train_imgs, num_epochs, record_filepath):
             print('Total loss: {}'.format(curr_loss))
             print('Elapsed time: {}'.format(elapsed_time))
 
+        model_all.save_weights(C.model_path + "_temp")
         recorder.add_new_entry(class_acc, loss_rpn_cls, loss_rpn_regr, loss_class_cls, loss_class_regr,
                                curr_loss, elapsed_time)
 
     # recorder.show_graphs()
     recorder.save_graphs()
     model_all.save_weights(C.model_path)
+    os.remove(C.model_path + "_temp")
 
 
 def val_model(train_imgs, val_imgs, param, paramNames, record_path):
