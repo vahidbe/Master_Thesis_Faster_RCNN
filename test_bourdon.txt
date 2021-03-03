@@ -1,0 +1,1227 @@
+2021-03-03 23:56:52.997483: I tensorflow/core/platform/profile_utils/cpu_utils.cc:102] CPU Frequency: 3800000000 Hz
+2021-03-03 23:56:52.998215: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55e5e58e4260 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2021-03-03 23:56:52.998240: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+2021-03-03 23:56:53.007828: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcuda.so.1
+2021-03-03 23:56:53.096838: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55e5e5896150 initialized for platform CUDA (this does not guarantee that XLA will be used). Devices:
+2021-03-03 23:56:53.096876: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): GeForce RTX 2080 SUPER, Compute Capability 7.5
+2021-03-03 23:56:53.097352: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1558] Found device 0 with properties: 
+pciBusID: 0000:65:00.0 name: GeForce RTX 2080 SUPER computeCapability: 7.5
+coreClock: 1.845GHz coreCount: 48 deviceMemorySize: 7.79GiB deviceMemoryBandwidth: 462.00GiB/s
+2021-03-03 23:56:53.103459: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.2
+2021-03-03 23:56:53.114637: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10
+2021-03-03 23:56:53.126604: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10
+2021-03-03 23:56:53.126905: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10
+2021-03-03 23:56:53.128365: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10
+2021-03-03 23:56:53.129228: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10
+2021-03-03 23:56:53.132759: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
+2021-03-03 23:56:53.133479: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1700] Adding visible gpu devices: 0
+2021-03-03 23:56:53.133523: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.2
+2021-03-03 23:56:53.134564: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1099] Device interconnect StreamExecutor with strength 1 edge matrix:
+2021-03-03 23:56:53.134583: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1105]      0 
+2021-03-03 23:56:53.134588: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1118] 0:   N 
+2021-03-03 23:56:53.135271: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1244] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 7184 MB memory) -> physical GPU (device: 0, name: GeForce RTX 2080 SUPER, pci bus id: 0000:65:00.0, compute capability: 7.5)
+2021-03-03 23:56:53.836939: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1558] Found device 0 with properties: 
+pciBusID: 0000:65:00.0 name: GeForce RTX 2080 SUPER computeCapability: 7.5
+coreClock: 1.845GHz coreCount: 48 deviceMemorySize: 7.79GiB deviceMemoryBandwidth: 462.00GiB/s
+2021-03-03 23:56:53.837039: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.2
+2021-03-03 23:56:53.837051: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10
+2021-03-03 23:56:53.837064: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10
+2021-03-03 23:56:53.837074: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10
+2021-03-03 23:56:53.837083: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10
+2021-03-03 23:56:53.837097: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10
+2021-03-03 23:56:53.837109: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
+2021-03-03 23:56:53.837718: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1700] Adding visible gpu devices: 0
+2021-03-03 23:56:53.838500: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1558] Found device 0 with properties: 
+pciBusID: 0000:65:00.0 name: GeForce RTX 2080 SUPER computeCapability: 7.5
+coreClock: 1.845GHz coreCount: 48 deviceMemorySize: 7.79GiB deviceMemoryBandwidth: 462.00GiB/s
+2021-03-03 23:56:53.838557: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.2
+2021-03-03 23:56:53.838570: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10
+2021-03-03 23:56:53.838580: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10
+2021-03-03 23:56:53.838589: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10
+2021-03-03 23:56:53.838598: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10
+2021-03-03 23:56:53.838608: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10
+2021-03-03 23:56:53.838617: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
+2021-03-03 23:56:53.839193: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1700] Adding visible gpu devices: 0
+2021-03-03 23:56:53.839220: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1099] Device interconnect StreamExecutor with strength 1 edge matrix:
+2021-03-03 23:56:53.839225: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1105]      0 
+2021-03-03 23:56:53.839229: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1118] 0:   N 
+2021-03-03 23:56:53.839814: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1244] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 7184 MB memory) -> physical GPU (device: 0, name: GeForce RTX 2080 SUPER, pci bus id: 0000:65:00.0, compute capability: 7.5)
+2021-03-03 23:56:56.160627: W tensorflow/core/framework/cpu_allocator_impl.cc:81] Allocation of 411041792 exceeds 10% of free system memory.
+2021-03-03 23:56:56.765366: W tensorflow/core/framework/cpu_allocator_impl.cc:81] Allocation of 67108864 exceeds 10% of free system memory.
+2021-03-03 23:56:58.387885: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
+2021-03-03 23:56:59.418441: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10
+Parsing annotation files
+idx=1idx=2idx=3idx=4idx=5idx=6idx=7idx=8idx=9idx=10idx=11idx=12idx=13idx=14idx=15idx=16idx=17idx=18idx=19idx=20idx=21idx=22idx=23idx=24idx=25idx=26idx=27idx=28idx=29idx=30idx=31idx=32idx=33idx=34idx=35idx=36idx=37idx=38idx=39idx=40idx=41idx=42idx=43idx=44idx=45idx=46idx=47idx=48idx=49idx=50idx=51idx=52idx=53idx=54idx=55idx=56idx=57idx=58idx=59idx=60idx=61idx=62idx=63idx=64idx=65idx=66idx=67idx=68idx=69idx=70idx=71idx=72idx=73idx=74idx=75idx=76idx=77idx=78idx=79idx=80idx=81idx=82idx=83idx=84idx=85idx=86idx=87idx=88idx=89idx=90idx=91idx=92idx=93idx=94idx=95idx=96idx=97
+Spend 0.01 mins to load the data
+Training images per class:
+{'bg': 0, 'bourdon_des_jardins': 97}
+Num classes (including bg) = 2
+{'bourdon_des_jardins': 0, 'bg': 1}
+Config has been written to ./config/test_100_bourdons_val.pickle, and can be loaded when testing to ensure correct results
+Num train samples (images) 97
+Loading weights from ./model/vgg16_weights_tf_dim_ordering_tf_kernels.h5
+=== Fold 1/4 ===
+Epoch 1/2
+
+ 1/72 [..............................] - ETA: 6:42 - rpn_cls: 6.2438 - rpn_regr: 0.1411 - final_cls: 0.6931 - final_regr: 0.5761 - loss: 7.6540
+ 2/72 [..............................] - ETA: 3:52 - rpn_cls: 6.2364 - rpn_regr: 0.1323 - final_cls: 0.6933 - final_regr: 0.5633 - loss: 7.6252
+ 3/72 [>.............................] - ETA: 2:36 - rpn_cls: 5.5419 - rpn_regr: 0.1572 - final_cls: 0.6933 - final_regr: 0.5375 - loss: 6.9299
+ 4/72 [>.............................] - ETA: 2:09 - rpn_cls: 5.3515 - rpn_regr: 0.1809 - final_cls: 0.6934 - final_regr: 0.5360 - loss: 6.7618
+ 5/72 [=>............................] - ETA: 1:52 - rpn_cls: 5.3122 - rpn_regr: 0.1880 - final_cls: 0.6935 - final_regr: 0.5398 - loss: 6.7335
+ 6/72 [=>............................] - ETA: 1:34 - rpn_cls: 5.4971 - rpn_regr: 0.1907 - final_cls: 0.6934 - final_regr: 0.5384 - loss: 6.9196
+ 7/72 [=>............................] - ETA: 1:21 - rpn_cls: 5.5339 - rpn_regr: 0.1952 - final_cls: 0.6932 - final_regr: 0.5361 - loss: 6.9584
+ 8/72 [==>...........................] - ETA: 1:18 - rpn_cls: 5.6107 - rpn_regr: 0.1967 - final_cls: 0.6932 - final_regr: 0.5345 - loss: 7.0351
+ 9/72 [==>...........................] - ETA: 1:14 - rpn_cls: 5.6189 - rpn_regr: 0.1972 - final_cls: 0.6931 - final_regr: 0.5351 - loss: 7.0443
+10/72 [===>..........................] - ETA: 1:12 - rpn_cls: 5.6406 - rpn_regr: 0.1979 - final_cls: 0.6929 - final_regr: 0.5337 - loss: 7.0651
+11/72 [===>..........................] - ETA: 1:10 - rpn_cls: 5.6619 - rpn_regr: 0.1990 - final_cls: 0.6927 - final_regr: 0.5319 - loss: 7.0855
+12/72 [====>.........................] - ETA: 1:06 - rpn_cls: 5.7175 - rpn_regr: 0.1989 - final_cls: 0.6925 - final_regr: 0.5295 - loss: 7.1384
+13/72 [====>.........................] - ETA: 1:04 - rpn_cls: 5.7661 - rpn_regr: 0.1980 - final_cls: 0.6923 - final_regr: 0.5268 - loss: 7.1833
+14/72 [====>.........................] - ETA: 59s - rpn_cls: 5.7756 - rpn_regr: 0.1969 - final_cls: 0.6921 - final_regr: 0.5245 - loss: 7.1891 
+15/72 [=====>........................] - ETA: 55s - rpn_cls: 5.7830 - rpn_regr: 0.1958 - final_cls: 0.6919 - final_regr: 0.5225 - loss: 7.1932
+16/72 [=====>........................] - ETA: 53s - rpn_cls: 5.7872 - rpn_regr: 0.1948 - final_cls: 0.6917 - final_regr: 0.5202 - loss: 7.1939
+17/72 [======>.......................] - ETA: 49s - rpn_cls: 5.7935 - rpn_regr: 0.1933 - final_cls: 0.6916 - final_regr: 0.5188 - loss: 7.1972
+18/72 [======>.......................] - ETA: 47s - rpn_cls: 5.8215 - rpn_regr: 0.1920 - final_cls: 0.6915 - final_regr: 0.5160 - loss: 7.2211
+19/72 [======>.......................] - ETA: 46s - rpn_cls: 5.8556 - rpn_regr: 0.1909 - final_cls: 0.6916 - final_regr: 0.5144 - loss: 7.2526
+20/72 [=======>......................] - ETA: 44s - rpn_cls: 5.8863 - rpn_regr: 0.1902 - final_cls: 0.6917 - final_regr: 0.5133 - loss: 7.2815
+21/72 [=======>......................] - ETA: 42s - rpn_cls: 5.9202 - rpn_regr: 0.1896 - final_cls: 0.6917 - final_regr: 0.5121 - loss: 7.3136
+22/72 [========>.....................] - ETA: 41s - rpn_cls: 5.9509 - rpn_regr: 0.1892 - final_cls: 0.6918 - final_regr: 0.5109 - loss: 7.3429
+23/72 [========>.....................] - ETA: 40s - rpn_cls: 5.9666 - rpn_regr: 0.1889 - final_cls: 0.6918 - final_regr: 0.5098 - loss: 7.3572
+24/72 [=========>....................] - ETA: 38s - rpn_cls: 5.9864 - rpn_regr: 0.1884 - final_cls: 0.6919 - final_regr: 0.5089 - loss: 7.3756
+25/72 [=========>....................] - ETA: 38s - rpn_cls: 6.0040 - rpn_regr: 0.1877 - final_cls: 0.6919 - final_regr: 0.5084 - loss: 7.3919
+26/72 [=========>....................] - ETA: 37s - rpn_cls: 6.0166 - rpn_regr: 0.1870 - final_cls: 0.6918 - final_regr: 0.5079 - loss: 7.4034
+27/72 [==========>...................] - ETA: 35s - rpn_cls: 6.0285 - rpn_regr: 0.1864 - final_cls: 0.6918 - final_regr: 0.5072 - loss: 7.4139
+28/72 [==========>...................] - ETA: 33s - rpn_cls: 6.0316 - rpn_regr: 0.1859 - final_cls: 0.6918 - final_regr: 0.5067 - loss: 7.4161
+29/72 [===========>..................] - ETA: 32s - rpn_cls: 6.0339 - rpn_regr: 0.1853 - final_cls: 0.6917 - final_regr: 0.5062 - loss: 7.4172
+30/72 [===========>..................] - ETA: 31s - rpn_cls: 6.0292 - rpn_regr: 0.1846 - final_cls: 0.6916 - final_regr: 0.5059 - loss: 7.4113
+31/72 [===========>..................] - ETA: 29s - rpn_cls: 6.0279 - rpn_regr: 0.1839 - final_cls: 0.6914 - final_regr: 0.5055 - loss: 7.4088
+32/72 [============>.................] - ETA: 28s - rpn_cls: 6.0333 - rpn_regr: 0.1834 - final_cls: 0.6913 - final_regr: 0.5047 - loss: 7.4127
+33/72 [============>.................] - ETA: 26s - rpn_cls: 6.0402 - rpn_regr: 0.1829 - final_cls: 0.6912 - final_regr: 0.5037 - loss: 7.4179
+34/72 [=============>................] - ETA: 26s - rpn_cls: 6.0473 - rpn_regr: 0.1823 - final_cls: 0.6911 - final_regr: 0.5027 - loss: 7.4234
+35/72 [=============>................] - ETA: 25s - rpn_cls: 6.0512 - rpn_regr: 0.1816 - final_cls: 0.6910 - final_regr: 0.5015 - loss: 7.4254
+36/72 [==============>...............] - ETA: 24s - rpn_cls: 6.0576 - rpn_regr: 0.1809 - final_cls: 0.6909 - final_regr: 0.5007 - loss: 7.4301
+37/72 [==============>...............] - ETA: 23s - rpn_cls: 6.0645 - rpn_regr: 0.1802 - final_cls: 0.6907 - final_regr: 0.4999 - loss: 7.4353
+38/72 [==============>...............] - ETA: 22s - rpn_cls: 6.0667 - rpn_regr: 0.1794 - final_cls: 0.6906 - final_regr: 0.4991 - loss: 7.4359
+39/72 [===============>..............] - ETA: 21s - rpn_cls: 6.0707 - rpn_regr: 0.1788 - final_cls: 0.6905 - final_regr: 0.4984 - loss: 7.4383
+40/72 [===============>..............] - ETA: 20s - rpn_cls: 6.0752 - rpn_regr: 0.1781 - final_cls: 0.6903 - final_regr: 0.4979 - loss: 7.4416
+41/72 [================>.............] - ETA: 19s - rpn_cls: 6.0811 - rpn_regr: 0.1775 - final_cls: 0.6902 - final_regr: 0.4974 - loss: 7.4461
+42/72 [================>.............] - ETA: 18s - rpn_cls: 6.0879 - rpn_regr: 0.1769 - final_cls: 0.6900 - final_regr: 0.4969 - loss: 7.4516
+43/72 [================>.............] - ETA: 17s - rpn_cls: 6.0942 - rpn_regr: 0.1764 - final_cls: 0.6899 - final_regr: 0.4964 - loss: 7.4568
+44/72 [=================>............] - ETA: 16s - rpn_cls: 6.0983 - rpn_regr: 0.1759 - final_cls: 0.6897 - final_regr: 0.4958 - loss: 7.4597
+45/72 [=================>............] - ETA: 16s - rpn_cls: 6.1018 - rpn_regr: 0.1753 - final_cls: 0.6896 - final_regr: 0.4951 - loss: 7.4617
+46/72 [==================>...........] - ETA: 15s - rpn_cls: 6.1026 - rpn_regr: 0.1747 - final_cls: 0.6894 - final_regr: 0.4944 - loss: 7.4612
+47/72 [==================>...........] - ETA: 14s - rpn_cls: 6.1041 - rpn_regr: 0.1742 - final_cls: 0.6892 - final_regr: 0.4938 - loss: 7.4613
+48/72 [===================>..........] - ETA: 13s - rpn_cls: 6.1042 - rpn_regr: 0.1736 - final_cls: 0.6891 - final_regr: 0.4931 - loss: 7.4599
+49/72 [===================>..........] - ETA: 13s - rpn_cls: 6.1018 - rpn_regr: 0.1730 - final_cls: 0.6889 - final_regr: 0.4924 - loss: 7.4562
+50/72 [===================>..........] - ETA: 12s - rpn_cls: 6.0996 - rpn_regr: 0.1724 - final_cls: 0.6888 - final_regr: 0.4919 - loss: 7.4526
+51/72 [====================>.........] - ETA: 12s - rpn_cls: 6.0986 - rpn_regr: 0.1718 - final_cls: 0.6886 - final_regr: 0.4914 - loss: 7.4505
+52/72 [====================>.........] - ETA: 11s - rpn_cls: 6.0955 - rpn_regr: 0.1713 - final_cls: 0.6885 - final_regr: 0.4910 - loss: 7.4463
+53/72 [=====================>........] - ETA: 11s - rpn_cls: 6.0915 - rpn_regr: 0.1707 - final_cls: 0.6884 - final_regr: 0.4905 - loss: 7.4412
+54/72 [=====================>........] - ETA: 10s - rpn_cls: 6.0866 - rpn_regr: 0.1702 - final_cls: 0.6882 - final_regr: 0.4900 - loss: 7.4350
+55/72 [=====================>........] - ETA: 9s - rpn_cls: 6.0827 - rpn_regr: 0.1697 - final_cls: 0.6881 - final_regr: 0.4895 - loss: 7.4301 
+56/72 [======================>.......] - ETA: 9s - rpn_cls: 6.0792 - rpn_regr: 0.1693 - final_cls: 0.6880 - final_regr: 0.4892 - loss: 7.4256
+57/72 [======================>.......] - ETA: 8s - rpn_cls: 6.0754 - rpn_regr: 0.1688 - final_cls: 0.6879 - final_regr: 0.4889 - loss: 7.4209
+58/72 [=======================>......] - ETA: 7s - rpn_cls: 6.0700 - rpn_regr: 0.1684 - final_cls: 0.6877 - final_regr: 0.4886 - loss: 7.4147
+59/72 [=======================>......] - ETA: 7s - rpn_cls: 6.0646 - rpn_regr: 0.1680 - final_cls: 0.6876 - final_regr: 0.4882 - loss: 7.4084
+60/72 [========================>.....] - ETA: 6s - rpn_cls: 6.0578 - rpn_regr: 0.1675 - final_cls: 0.6875 - final_regr: 0.4879 - loss: 7.4007
+61/72 [========================>.....] - ETA: 5s - rpn_cls: 6.0500 - rpn_regr: 0.1671 - final_cls: 0.6874 - final_regr: 0.4875 - loss: 7.3919
+62/72 [========================>.....] - ETA: 5s - rpn_cls: 6.0425 - rpn_regr: 0.1667 - final_cls: 0.6873 - final_regr: 0.4871 - loss: 7.3835
+63/72 [=========================>....] - ETA: 4s - rpn_cls: 6.0342 - rpn_regr: 0.1662 - final_cls: 0.6872 - final_regr: 0.4867 - loss: 7.3742
+64/72 [=========================>....] - ETA: 4s - rpn_cls: 6.0258 - rpn_regr: 0.1658 - final_cls: 0.6870 - final_regr: 0.4863 - loss: 7.3649
+65/72 [==========================>...] - ETA: 3s - rpn_cls: 6.0171 - rpn_regr: 0.1653 - final_cls: 0.6869 - final_regr: 0.4859 - loss: 7.3553
+66/72 [==========================>...] - ETA: 3s - rpn_cls: 6.0075 - rpn_regr: 0.1648 - final_cls: 0.6868 - final_regr: 0.4856 - loss: 7.3447
+67/72 [==========================>...] - ETA: 2s - rpn_cls: 5.9983 - rpn_regr: 0.1644 - final_cls: 0.6866 - final_regr: 0.4852 - loss: 7.3344
+68/72 [===========================>..] - ETA: 2s - rpn_cls: 5.9896 - rpn_regr: 0.1639 - final_cls: 0.6863 - final_regr: 0.4848 - loss: 7.3247
+69/72 [===========================>..] - ETA: 1s - rpn_cls: 5.9813 - rpn_regr: 0.1635 - final_cls: 0.6861 - final_regr: 0.4845 - loss: 7.3154
+70/72 [============================>.] - ETA: 1s - rpn_cls: 5.9730 - rpn_regr: 0.1631 - final_cls: 0.6860 - final_regr: 0.4841 - loss: 7.3061
+71/72 [============================>.] - ETA: 0s - rpn_cls: 5.9654 - rpn_regr: 0.1627 - final_cls: 0.6858 - final_regr: 0.4838 - loss: 7.2977
+72/72 [==============================] - 38s 533ms/step - rpn_cls: 5.9576 - rpn_regr: 0.1623 - final_cls: 0.6856 - final_regr: 0.4835 - loss: 7.2890
+Mean number of bounding boxes from RPN overlapping ground truth boxes: 9.26388888888889
+Classifier accuracy for bounding boxes from RPN: 0.6319444444444444
+Loss RPN classifier: 5.4027428541780305
+Loss RPN regression: 0.13727479606556395
+Loss Detector classifier: 0.6714347079396248
+Loss Detector regression: 0.4611131014923255
+Total loss: 6.672565459675545
+Elapsed time: 38.35448431968689
+Start of the validation phase
+
+ 1/25 [>.............................] - ETA: 15:32 - rpn_cls_val: 6.3407 - rpn_regr_val: 0.5693 - final_cls_val: 0.6558 - final_regr_val: 0.7345 - loss_val: 8.3003
+ 2/25 [=>............................] - ETA: 7:31 - rpn_cls_val: 6.3514 - rpn_regr_val: 0.4325 - final_cls_val: 0.6294 - final_regr_val: 0.7059 - loss_val: 8.1192 
+ 3/25 [==>...........................] - ETA: 4:48 - rpn_cls_val: 5.9852 - rpn_regr_val: 0.3966 - final_cls_val: 0.6007 - final_regr_val: 0.6684 - loss_val: 7.6510
+ 4/25 [===>..........................] - ETA: 3:28 - rpn_cls_val: 5.8275 - rpn_regr_val: 0.3766 - final_cls_val: 0.5904 - final_regr_val: 0.6404 - loss_val: 7.4350
+ 5/25 [=====>........................] - ETA: 2:38 - rpn_cls_val: 5.5193 - rpn_regr_val: 0.3623 - final_cls_val: 0.5872 - final_regr_val: 0.6220 - loss_val: 7.0908
+ 6/25 [======>.......................] - ETA: 2:06 - rpn_cls_val: 5.2741 - rpn_regr_val: 0.3578 - final_cls_val: 0.5847 - final_regr_val: 0.6054 - loss_val: 6.8220
+ 7/25 [=======>......................] - ETA: 1:42 - rpn_cls_val: 5.1864 - rpn_regr_val: 0.3531 - final_cls_val: 0.5851 - final_regr_val: 0.5912 - loss_val: 6.7158
+ 8/25 [========>.....................] - ETA: 1:24 - rpn_cls_val: 5.2471 - rpn_regr_val: 0.3470 - final_cls_val: 0.5824 - final_regr_val: 0.5776 - loss_val: 6.7541
+ 9/25 [=========>....................] - ETA: 1:11 - rpn_cls_val: 5.3035 - rpn_regr_val: 0.3440 - final_cls_val: 0.5787 - final_regr_val: 0.5611 - loss_val: 6.7873
+10/25 [===========>..................] - ETA: 1:00 - rpn_cls_val: 5.3607 - rpn_regr_val: 0.3437 - final_cls_val: 0.5757 - final_regr_val: 0.5487 - loss_val: 6.8289
+11/25 [============>.................] - ETA: 51s - rpn_cls_val: 5.4495 - rpn_regr_val: 0.3428 - final_cls_val: 0.5724 - final_regr_val: 0.5380 - loss_val: 6.9027 
+12/25 [=============>................] - ETA: 43s - rpn_cls_val: 5.5240 - rpn_regr_val: 0.3414 - final_cls_val: 0.5689 - final_regr_val: 0.5261 - loss_val: 6.9604
+13/25 [==============>...............] - ETA: 37s - rpn_cls_val: 5.5784 - rpn_regr_val: 0.3388 - final_cls_val: 0.5670 - final_regr_val: 0.5159 - loss_val: 7.0001
+14/25 [===============>..............] - ETA: 32s - rpn_cls_val: 5.6424 - rpn_regr_val: 0.3353 - final_cls_val: 0.5655 - final_regr_val: 0.5081 - loss_val: 7.0513
+15/25 [=================>............] - ETA: 27s - rpn_cls_val: 5.6975 - rpn_regr_val: 0.3320 - final_cls_val: 0.5641 - final_regr_val: 0.5004 - loss_val: 7.0939
+16/25 [==================>...........] - ETA: 23s - rpn_cls_val: 5.7304 - rpn_regr_val: 0.3295 - final_cls_val: 0.5625 - final_regr_val: 0.4935 - loss_val: 7.1159
+17/25 [===================>..........] - ETA: 19s - rpn_cls_val: 5.7656 - rpn_regr_val: 0.3272 - final_cls_val: 0.5615 - final_regr_val: 0.4882 - loss_val: 7.1425
+18/25 [====================>.........] - ETA: 16s - rpn_cls_val: 5.8160 - rpn_regr_val: 0.3245 - final_cls_val: 0.5613 - final_regr_val: 0.4843 - loss_val: 7.18612021-03-03 23:57:38.368114: W tensorflow/core/common_runtime/bfc_allocator.cc:245] Allocator (GPU_0_bfc) ran out of memory trying to allocate 2.96GiB with freed_by_count=0. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+2021-03-03 23:57:38.368170: W tensorflow/core/common_runtime/bfc_allocator.cc:245] Allocator (GPU_0_bfc) ran out of memory trying to allocate 2.96GiB with freed_by_count=0. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory were available.
+
+19/25 [=====================>........] - ETA: 13s - rpn_cls_val: 5.8771 - rpn_regr_val: 0.3214 - final_cls_val: 0.5614 - final_regr_val: 0.4806 - loss_val: 7.2406
+20/25 [=======================>......] - ETA: 10s - rpn_cls_val: 5.9357 - rpn_regr_val: 0.3182 - final_cls_val: 0.5615 - final_regr_val: 0.4775 - loss_val: 7.2929
+21/25 [========================>.....] - ETA: 8s - rpn_cls_val: 6.0024 - rpn_regr_val: 0.3150 - final_cls_val: 0.5620 - final_regr_val: 0.4747 - loss_val: 7.3540 
+22/25 [=========================>....] - ETA: 5s - rpn_cls_val: 6.0478 - rpn_regr_val: 0.3116 - final_cls_val: 0.5624 - final_regr_val: 0.4724 - loss_val: 7.3942
+23/25 [==========================>...] - ETA: 3s - rpn_cls_val: 6.0904 - rpn_regr_val: 0.3086 - final_cls_val: 0.5634 - final_regr_val: 0.4714 - loss_val: 7.4338
+24/25 [===========================>..] - ETA: 1s - rpn_cls_val: 6.1171 - rpn_regr_val: 0.3057 - final_cls_val: 0.5643 - final_regr_val: 0.4702 - loss_val: 7.4572
+25/25 [==============================] - 43s 2s/step - rpn_cls_val: 6.1338 - rpn_regr_val: 0.3028 - final_cls_val: 0.5650 - final_regr_val: 0.4687 - loss_val: 7.4704
+End of the validation phase
+Validation classifier accuracy for bounding boxes from RPN: 0.77
+Validation loss RPN classifier: 6.535060529541224
+Validation loss RPN regression: 0.23499335922300815
+Validation loss Detector classifier: 0.5825110805034638
+Validation loss Detector regression: 0.43293862640857694
+Total validation loss: 7.785503595676272
+Total validation loss decreased from inf to 7.785503595676272
+Epoch 2/2
+
+ 1/72 [..............................] - ETA: 12s - rpn_cls: 6.3638 - rpn_regr: 0.0787 - final_cls: 0.6981 - final_regr: 0.3656 - loss: 7.5062
+ 2/72 [..............................] - ETA: 12s - rpn_cls: 6.3445 - rpn_regr: 0.0614 - final_cls: 0.6811 - final_regr: 0.3770 - loss: 7.4640
+ 3/72 [>.............................] - ETA: 12s - rpn_cls: 5.6353 - rpn_regr: 0.0861 - final_cls: 0.7042 - final_regr: 0.3845 - loss: 6.8101
+ 4/72 [>.............................] - ETA: 11s - rpn_cls: 5.4378 - rpn_regr: 0.1144 - final_cls: 0.7086 - final_regr: 0.3951 - loss: 6.6559
+ 5/72 [=>............................] - ETA: 18s - rpn_cls: 5.1770 - rpn_regr: 0.1277 - final_cls: 0.7015 - final_regr: 0.3965 - loss: 6.4028
+ 6/72 [=>............................] - ETA: 17s - rpn_cls: 5.0665 - rpn_regr: 0.1323 - final_cls: 0.6890 - final_regr: 0.3980 - loss: 6.2858
+ 7/72 [=>............................] - ETA: 16s - rpn_cls: 5.1506 - rpn_regr: 0.1353 - final_cls: 0.6845 - final_regr: 0.3955 - loss: 6.3659
+ 8/72 [==>...........................] - ETA: 22s - rpn_cls: 5.1524 - rpn_regr: 0.1399 - final_cls: 0.6775 - final_regr: 0.3948 - loss: 6.3646
+ 9/72 [==>...........................] - ETA: 21s - rpn_cls: 5.1541 - rpn_regr: 0.1415 - final_cls: 0.6711 - final_regr: 0.3922 - loss: 6.3588
+10/72 [===>..........................] - ETA: 24s - rpn_cls: 5.2304 - rpn_regr: 0.1435 - final_cls: 0.6657 - final_regr: 0.3909 - loss: 6.4306
+11/72 [===>..........................] - ETA: 23s - rpn_cls: 5.2960 - rpn_regr: 0.1456 - final_cls: 0.6613 - final_regr: 0.3888 - loss: 6.4917
+12/72 [====>.........................] - ETA: 25s - rpn_cls: 5.3239 - rpn_regr: 0.1466 - final_cls: 0.6569 - final_regr: 0.3866 - loss: 6.5140
+13/72 [====>.........................] - ETA: 23s - rpn_cls: 5.3266 - rpn_regr: 0.1468 - final_cls: 0.6533 - final_regr: 0.3855 - loss: 6.5123
+14/72 [====>.........................] - ETA: 22s - rpn_cls: 5.3374 - rpn_regr: 0.1466 - final_cls: 0.6513 - final_regr: 0.3841 - loss: 6.5195
+15/72 [=====>........................] - ETA: 21s - rpn_cls: 5.3501 - rpn_regr: 0.1459 - final_cls: 0.6490 - final_regr: 0.3814 - loss: 6.5264
+16/72 [=====>........................] - ETA: 20s - rpn_cls: 5.3496 - rpn_regr: 0.1461 - final_cls: 0.6468 - final_regr: 0.3784 - loss: 6.5209
+17/72 [======>.......................] - ETA: 19s - rpn_cls: 5.3418 - rpn_regr: 0.1460 - final_cls: 0.6441 - final_regr: 0.3756 - loss: 6.5075
+18/72 [======>.......................] - ETA: 19s - rpn_cls: 5.3393 - rpn_regr: 0.1465 - final_cls: 0.6421 - final_regr: 0.3738 - loss: 6.5018
+19/72 [======>.......................] - ETA: 20s - rpn_cls: 5.3307 - rpn_regr: 0.1469 - final_cls: 0.6410 - final_regr: 0.3719 - loss: 6.4905
+20/72 [=======>......................] - ETA: 20s - rpn_cls: 5.3101 - rpn_regr: 0.1473 - final_cls: 0.6392 - final_regr: 0.3707 - loss: 6.4672
+21/72 [=======>......................] - ETA: 19s - rpn_cls: 5.2945 - rpn_regr: 0.1474 - final_cls: 0.6375 - final_regr: 0.3693 - loss: 6.4487
+22/72 [========>.....................] - ETA: 18s - rpn_cls: 5.2838 - rpn_regr: 0.1478 - final_cls: 0.6354 - final_regr: 0.3691 - loss: 6.4361
+23/72 [========>.....................] - ETA: 17s - rpn_cls: 5.2644 - rpn_regr: 0.1485 - final_cls: 0.6340 - final_regr: 0.3696 - loss: 6.4166
+24/72 [=========>....................] - ETA: 17s - rpn_cls: 5.2565 - rpn_regr: 0.1495 - final_cls: 0.6326 - final_regr: 0.3702 - loss: 6.4088
+25/72 [=========>....................] - ETA: 17s - rpn_cls: 5.2464 - rpn_regr: 0.1504 - final_cls: 0.6318 - final_regr: 0.3709 - loss: 6.3994
+26/72 [=========>....................] - ETA: 16s - rpn_cls: 5.2318 - rpn_regr: 0.1517 - final_cls: 0.6308 - final_regr: 0.3711 - loss: 6.3854
+27/72 [==========>...................] - ETA: 15s - rpn_cls: 5.2150 - rpn_regr: 0.1528 - final_cls: 0.6300 - final_regr: 0.3719 - loss: 6.3697
+28/72 [==========>...................] - ETA: 15s - rpn_cls: 5.1934 - rpn_regr: 0.1539 - final_cls: 0.6289 - final_regr: 0.3726 - loss: 6.3488
+29/72 [===========>..................] - ETA: 14s - rpn_cls: 5.1680 - rpn_regr: 0.1550 - final_cls: 0.6277 - final_regr: 0.3731 - loss: 6.3237
+30/72 [===========>..................] - ETA: 14s - rpn_cls: 5.1417 - rpn_regr: 0.1559 - final_cls: 0.6263 - final_regr: 0.3737 - loss: 6.2976
+31/72 [===========>..................] - ETA: 13s - rpn_cls: 5.1154 - rpn_regr: 0.1566 - final_cls: 0.6251 - final_regr: 0.3741 - loss: 6.2712
+32/72 [============>.................] - ETA: 13s - rpn_cls: 5.0927 - rpn_regr: 0.1572 - final_cls: 0.6240 - final_regr: 0.3741 - loss: 6.2480
+33/72 [============>.................] - ETA: 12s - rpn_cls: 5.0695 - rpn_regr: 0.1577 - final_cls: 0.6228 - final_regr: 0.3744 - loss: 6.2244
+34/72 [=============>................] - ETA: 12s - rpn_cls: 5.0560 - rpn_regr: 0.1586 - final_cls: 0.6219 - final_regr: 0.3745 - loss: 6.2110
+35/72 [=============>................] - ETA: 11s - rpn_cls: 5.0441 - rpn_regr: 0.1593 - final_cls: 0.6209 - final_regr: 0.3746 - loss: 6.1989
+36/72 [==============>...............] - ETA: 11s - rpn_cls: 5.0346 - rpn_regr: 0.1599 - final_cls: 0.6200 - final_regr: 0.3750 - loss: 6.1895
+37/72 [==============>...............] - ETA: 10s - rpn_cls: 5.0240 - rpn_regr: 0.1604 - final_cls: 0.6191 - final_regr: 0.3754 - loss: 6.1788
+38/72 [==============>...............] - ETA: 10s - rpn_cls: 5.0110 - rpn_regr: 0.1609 - final_cls: 0.6180 - final_regr: 0.3756 - loss: 6.1654
+39/72 [===============>..............] - ETA: 9s - rpn_cls: 4.9985 - rpn_regr: 0.1613 - final_cls: 0.6170 - final_regr: 0.3758 - loss: 6.1525 
+40/72 [===============>..............] - ETA: 9s - rpn_cls: 4.9917 - rpn_regr: 0.1618 - final_cls: 0.6159 - final_regr: 0.3760 - loss: 6.1453
+41/72 [================>.............] - ETA: 9s - rpn_cls: 4.9829 - rpn_regr: 0.1621 - final_cls: 0.6146 - final_regr: 0.3760 - loss: 6.1356
+42/72 [================>.............] - ETA: 8s - rpn_cls: 4.9728 - rpn_regr: 0.1625 - final_cls: 0.6133 - final_regr: 0.3759 - loss: 6.1245
+43/72 [================>.............] - ETA: 8s - rpn_cls: 4.9606 - rpn_regr: 0.1629 - final_cls: 0.6120 - final_regr: 0.3759 - loss: 6.1114
+44/72 [=================>............] - ETA: 7s - rpn_cls: 4.9469 - rpn_regr: 0.1632 - final_cls: 0.6106 - final_regr: 0.3757 - loss: 6.0964
+45/72 [=================>............] - ETA: 7s - rpn_cls: 4.9325 - rpn_regr: 0.1635 - final_cls: 0.6093 - final_regr: 0.3755 - loss: 6.0809
+46/72 [==================>...........] - ETA: 7s - rpn_cls: 4.9168 - rpn_regr: 0.1636 - final_cls: 0.6080 - final_regr: 0.3753 - loss: 6.0637
+47/72 [==================>...........] - ETA: 7s - rpn_cls: 4.9011 - rpn_regr: 0.1638 - final_cls: 0.6068 - final_regr: 0.3752 - loss: 6.0469
+48/72 [===================>..........] - ETA: 6s - rpn_cls: 4.8842 - rpn_regr: 0.1639 - final_cls: 0.6059 - final_regr: 0.3750 - loss: 6.0290
+49/72 [===================>..........] - ETA: 6s - rpn_cls: 4.8691 - rpn_regr: 0.1640 - final_cls: 0.6052 - final_regr: 0.3748 - loss: 6.0130
+50/72 [===================>..........] - ETA: 6s - rpn_cls: 4.8573 - rpn_regr: 0.1640 - final_cls: 0.6044 - final_regr: 0.3746 - loss: 6.0003
+51/72 [====================>.........] - ETA: 6s - rpn_cls: 4.8448 - rpn_regr: 0.1640 - final_cls: 0.6036 - final_regr: 0.3746 - loss: 5.9870
+52/72 [====================>.........] - ETA: 5s - rpn_cls: 4.8311 - rpn_regr: 0.1640 - final_cls: 0.6031 - final_regr: 0.3745 - loss: 5.9727
+53/72 [=====================>........] - ETA: 5s - rpn_cls: 4.8180 - rpn_regr: 0.1640 - final_cls: 0.6026 - final_regr: 0.3744 - loss: 5.9590
+54/72 [=====================>........] - ETA: 5s - rpn_cls: 4.8047 - rpn_regr: 0.1640 - final_cls: 0.6020 - final_regr: 0.3742 - loss: 5.9448
+55/72 [=====================>........] - ETA: 4s - rpn_cls: 4.7939 - rpn_regr: 0.1642 - final_cls: 0.6014 - final_regr: 0.3739 - loss: 5.9334
+56/72 [======================>.......] - ETA: 4s - rpn_cls: 4.7821 - rpn_regr: 0.1645 - final_cls: 0.6009 - final_regr: 0.3737 - loss: 5.9211
+57/72 [======================>.......] - ETA: 4s - rpn_cls: 4.7702 - rpn_regr: 0.1646 - final_cls: 0.6003 - final_regr: 0.3734 - loss: 5.9085
+58/72 [=======================>......] - ETA: 3s - rpn_cls: 4.7575 - rpn_regr: 0.1648 - final_cls: 0.5996 - final_regr: 0.3733 - loss: 5.8951
+59/72 [=======================>......] - ETA: 3s - rpn_cls: 4.7441 - rpn_regr: 0.1649 - final_cls: 0.5989 - final_regr: 0.3731 - loss: 5.8811
+60/72 [========================>.....] - ETA: 3s - rpn_cls: 4.7302 - rpn_regr: 0.1650 - final_cls: 0.5983 - final_regr: 0.3729 - loss: 5.8664
+61/72 [========================>.....] - ETA: 3s - rpn_cls: 4.7157 - rpn_regr: 0.1650 - final_cls: 0.5978 - final_regr: 0.3727 - loss: 5.8512
+62/72 [========================>.....] - ETA: 2s - rpn_cls: 4.7006 - rpn_regr: 0.1651 - final_cls: 0.5972 - final_regr: 0.3725 - loss: 5.8354
+63/72 [=========================>....] - ETA: 2s - rpn_cls: 4.6851 - rpn_regr: 0.1651 - final_cls: 0.5966 - final_regr: 0.3723 - loss: 5.8191
+64/72 [=========================>....] - ETA: 2s - rpn_cls: 4.6692 - rpn_regr: 0.1650 - final_cls: 0.5960 - final_regr: 0.3720 - loss: 5.8023
+65/72 [==========================>...] - ETA: 1s - rpn_cls: 4.6535 - rpn_regr: 0.1650 - final_cls: 0.5954 - final_regr: 0.3717 - loss: 5.7856
+66/72 [==========================>...] - ETA: 1s - rpn_cls: 4.6387 - rpn_regr: 0.1649 - final_cls: 0.5947 - final_regr: 0.3714 - loss: 5.7698
+67/72 [==========================>...] - ETA: 1s - rpn_cls: 4.6251 - rpn_regr: 0.1649 - final_cls: 0.5941 - final_regr: 0.3711 - loss: 5.7552
+68/72 [===========================>..] - ETA: 1s - rpn_cls: 4.6113 - rpn_regr: 0.1649 - final_cls: 0.5935 - final_regr: 0.3709 - loss: 5.7405
+69/72 [===========================>..] - ETA: 0s - rpn_cls: 4.5985 - rpn_regr: 0.1648 - final_cls: 0.5929 - final_regr: 0.3705 - loss: 5.7267
+70/72 [============================>.] - ETA: 0s - rpn_cls: 4.5856 - rpn_regr: 0.1649 - final_cls: 0.5923 - final_regr: 0.3702 - loss: 5.7130
+71/72 [============================>.] - ETA: 0s - rpn_cls: 4.5728 - rpn_regr: 0.1649 - final_cls: 0.5918 - final_regr: 0.3699 - loss: 5.6994
+72/72 [==============================] - 21s 287ms/step - rpn_cls: 4.5599 - rpn_regr: 0.1649 - final_cls: 0.5913 - final_regr: 0.3696 - loss: 5.6857
+Mean number of bounding boxes from RPN overlapping ground truth boxes: 10.125
+Classifier accuracy for bounding boxes from RPN: 0.7430555555555556
+Loss RPN classifier: 3.6442539660713913
+Loss RPN regression: 0.1668901374667055
+Loss Detector classifier: 0.5526700504124165
+Loss Detector regression: 0.3501398235352503
+Total loss: 4.7139539774857635
+Elapsed time: 20.699556827545166
+Start of the validation phase
+
+ 1/25 [>.............................] - ETA: 8:18 - rpn_cls_val: 8.9235 - rpn_regr_val: 0.4514 - final_cls_val: 0.7189 - final_regr_val: 0.3735 - loss_val: 10.4673
+ 2/25 [=>............................] - ETA: 3:59 - rpn_cls_val: 8.0223 - rpn_regr_val: 0.3514 - final_cls_val: 0.6556 - final_regr_val: 0.3790 - loss_val: 9.4083 
+ 3/25 [==>...........................] - ETA: 2:33 - rpn_cls_val: 7.4895 - rpn_regr_val: 0.3196 - final_cls_val: 0.6029 - final_regr_val: 0.3740 - loss_val: 8.7859
+ 4/25 [===>..........................] - ETA: 1:50 - rpn_cls_val: 7.3039 - rpn_regr_val: 0.3039 - final_cls_val: 0.5827 - final_regr_val: 0.3488 - loss_val: 8.5392
+ 5/25 [=====>........................] - ETA: 1:24 - rpn_cls_val: 7.1792 - rpn_regr_val: 0.3011 - final_cls_val: 0.5693 - final_regr_val: 0.3352 - loss_val: 8.3848
+ 6/25 [======>.......................] - ETA: 1:07 - rpn_cls_val: 7.0013 - rpn_regr_val: 0.2998 - final_cls_val: 0.5562 - final_regr_val: 0.3280 - loss_val: 8.1852
+ 7/25 [=======>......................] - ETA: 55s - rpn_cls_val: 6.7836 - rpn_regr_val: 0.2945 - final_cls_val: 0.5449 - final_regr_val: 0.3250 - loss_val: 7.9479 
+ 8/25 [========>.....................] - ETA: 45s - rpn_cls_val: 6.5354 - rpn_regr_val: 0.2994 - final_cls_val: 0.5330 - final_regr_val: 0.3230 - loss_val: 7.6908
+ 9/25 [=========>....................] - ETA: 38s - rpn_cls_val: 6.3203 - rpn_regr_val: 0.3026 - final_cls_val: 0.5242 - final_regr_val: 0.3212 - loss_val: 7.4683
+10/25 [===========>..................] - ETA: 32s - rpn_cls_val: 6.1242 - rpn_regr_val: 0.3044 - final_cls_val: 0.5164 - final_regr_val: 0.3203 - loss_val: 7.2654
+11/25 [============>.................] - ETA: 27s - rpn_cls_val: 5.9586 - rpn_regr_val: 0.3039 - final_cls_val: 0.5094 - final_regr_val: 0.3184 - loss_val: 7.0903
+12/25 [=============>................] - ETA: 23s - rpn_cls_val: 5.8322 - rpn_regr_val: 0.3056 - final_cls_val: 0.5045 - final_regr_val: 0.3178 - loss_val: 6.9600
+13/25 [==============>...............] - ETA: 20s - rpn_cls_val: 5.6989 - rpn_regr_val: 0.3060 - final_cls_val: 0.4995 - final_regr_val: 0.3183 - loss_val: 6.8226
+14/25 [===============>..............] - ETA: 17s - rpn_cls_val: 5.5775 - rpn_regr_val: 0.3051 - final_cls_val: 0.4945 - final_regr_val: 0.3189 - loss_val: 6.6960
+15/25 [=================>............] - ETA: 14s - rpn_cls_val: 5.5053 - rpn_regr_val: 0.3036 - final_cls_val: 0.4906 - final_regr_val: 0.3181 - loss_val: 6.6176
+16/25 [==================>...........] - ETA: 12s - rpn_cls_val: 5.4346 - rpn_regr_val: 0.3021 - final_cls_val: 0.4871 - final_regr_val: 0.3176 - loss_val: 6.5414
+17/25 [===================>..........] - ETA: 10s - rpn_cls_val: 5.3572 - rpn_regr_val: 0.3010 - final_cls_val: 0.4843 - final_regr_val: 0.3182 - loss_val: 6.4607
+18/25 [====================>.........] - ETA: 8s - rpn_cls_val: 5.2946 - rpn_regr_val: 0.2994 - final_cls_val: 0.4822 - final_regr_val: 0.3178 - loss_val: 6.3940 2021-03-03 23:58:02.456155: W tensorflow/core/common_runtime/bfc_allocator.cc:311] Garbage collection: deallocate free memory regions (i.e., allocations) so that we can re-allocate a larger region to avoid OOM due to memory fragmentation. If you see this message frequently, you are running near the threshold of the available device memory and re-allocation may incur great performance overhead. You may try smaller batch sizes to observe the performance impact. Set TF_ENABLE_GPU_GARBAGE_COLLECTION=false if you'd like to disable this feature.
+
+19/25 [=====================>........] - ETA: 7s - rpn_cls_val: 5.2306 - rpn_regr_val: 0.2999 - final_cls_val: 0.4795 - final_regr_val: 0.3169 - loss_val: 6.3269
+20/25 [=======================>......] - ETA: 5s - rpn_cls_val: 5.1716 - rpn_regr_val: 0.2997 - final_cls_val: 0.4772 - final_regr_val: 0.3162 - loss_val: 6.2648
+21/25 [========================>.....] - ETA: 4s - rpn_cls_val: 5.1240 - rpn_regr_val: 0.2990 - final_cls_val: 0.4756 - final_regr_val: 0.3149 - loss_val: 6.2134
+22/25 [=========================>....] - ETA: 3s - rpn_cls_val: 5.0720 - rpn_regr_val: 0.2978 - final_cls_val: 0.4739 - final_regr_val: 0.3140 - loss_val: 6.1577
+23/25 [==========================>...] - ETA: 2s - rpn_cls_val: 5.0284 - rpn_regr_val: 0.2967 - final_cls_val: 0.4741 - final_regr_val: 0.3135 - loss_val: 6.1126
+24/25 [===========================>..] - ETA: 0s - rpn_cls_val: 4.9816 - rpn_regr_val: 0.2953 - final_cls_val: 0.4747 - final_regr_val: 0.3129 - loss_val: 6.0644
+25/25 [==============================] - 24s 958ms/step - rpn_cls_val: 4.9337 - rpn_regr_val: 0.2939 - final_cls_val: 0.4748 - final_regr_val: 0.3124 - loss_val: 6.0148
+2021-03-03 23:58:05.372905: W tensorflow/core/framework/cpu_allocator_impl.cc:81] Allocation of 411041792 exceeds 10% of free system memory.
+2021-03-03 23:58:06.528173: W tensorflow/core/framework/cpu_allocator_impl.cc:81] Allocation of 67108864 exceeds 10% of free system memory.
+2021-03-03 23:58:12.621473: W tensorflow/core/framework/cpu_allocator_impl.cc:81] Allocation of 411041792 exceeds 10% of free system memory.
+End of the validation phase
+Validation classifier accuracy for bounding boxes from RPN: 0.83
+Validation loss RPN classifier: 3.7863990685568933
+Validation loss RPN regression: 0.26033152103424073
+Validation loss Detector classifier: 0.4769723618030548
+Validation loss Detector regression: 0.29932507038116457
+Total validation loss: 4.823028021775354
+Total validation loss decreased from 7.785503595676272 to 4.823028021775354
+=== Fold 2/4 ===
+Epoch 1/2
+
+ 1/73 [..............................] - ETA: 13s - rpn_cls: 9.1221 - rpn_regr: 0.2565 - final_cls: 0.6931 - final_regr: 0.5632 - loss: 10.6349
+ 2/73 [..............................] - ETA: 18s - rpn_cls: 9.1743 - rpn_regr: 0.2211 - final_cls: 0.6930 - final_regr: 0.5391 - loss: 10.6274
+ 3/73 [>.............................] - ETA: 16s - rpn_cls: 9.2206 - rpn_regr: 0.1936 - final_cls: 0.6929 - final_regr: 0.5193 - loss: 10.6264
+ 4/73 [>.............................] - ETA: 15s - rpn_cls: 9.2637 - rpn_regr: 0.1924 - final_cls: 0.6928 - final_regr: 0.5161 - loss: 10.6651
+ 5/73 [=>............................] - ETA: 14s - rpn_cls: 9.4208 - rpn_regr: 0.1906 - final_cls: 0.6928 - final_regr: 0.5150 - loss: 10.8192
+ 6/73 [=>............................] - ETA: 15s - rpn_cls: 9.2891 - rpn_regr: 0.1855 - final_cls: 0.6929 - final_regr: 0.5054 - loss: 10.6728
+ 7/73 [=>............................] - ETA: 15s - rpn_cls: 9.2061 - rpn_regr: 0.1791 - final_cls: 0.6927 - final_regr: 0.5033 - loss: 10.5814
+ 8/73 [==>...........................] - ETA: 14s - rpn_cls: 9.1069 - rpn_regr: 0.1776 - final_cls: 0.6926 - final_regr: 0.5009 - loss: 10.4781
+ 9/73 [==>...........................] - ETA: 13s - rpn_cls: 9.0102 - rpn_regr: 0.1763 - final_cls: 0.6929 - final_regr: 0.5034 - loss: 10.3828
+10/73 [===>..........................] - ETA: 13s - rpn_cls: 8.8703 - rpn_regr: 0.1745 - final_cls: 0.6930 - final_regr: 0.5027 - loss: 10.2405
+11/73 [===>..........................] - ETA: 13s - rpn_cls: 8.7407 - rpn_regr: 0.1725 - final_cls: 0.6931 - final_regr: 0.5009 - loss: 10.1072
+12/73 [===>..........................] - ETA: 13s - rpn_cls: 8.6654 - rpn_regr: 0.1711 - final_cls: 0.6931 - final_regr: 0.5005 - loss: 10.0302
+13/73 [====>.........................] - ETA: 12s - rpn_cls: 8.5982 - rpn_regr: 0.1701 - final_cls: 0.6932 - final_regr: 0.5006 - loss: 9.9621 
+14/73 [====>.........................] - ETA: 12s - rpn_cls: 8.5060 - rpn_regr: 0.1687 - final_cls: 0.6933 - final_regr: 0.5008 - loss: 9.8688
+15/73 [=====>........................] - ETA: 11s - rpn_cls: 8.4502 - rpn_regr: 0.1675 - final_cls: 0.6934 - final_regr: 0.5033 - loss: 9.8145
+16/73 [=====>........................] - ETA: 12s - rpn_cls: 8.3760 - rpn_regr: 0.1662 - final_cls: 0.6935 - final_regr: 0.5058 - loss: 9.7414
+17/73 [=====>........................] - ETA: 12s - rpn_cls: 8.2854 - rpn_regr: 0.1660 - final_cls: 0.6935 - final_regr: 0.5070 - loss: 9.6519
+18/73 [======>.......................] - ETA: 11s - rpn_cls: 8.2030 - rpn_regr: 0.1657 - final_cls: 0.6937 - final_regr: 0.5064 - loss: 9.5687
+19/73 [======>.......................] - ETA: 13s - rpn_cls: 8.1368 - rpn_regr: 0.1653 - final_cls: 0.6937 - final_regr: 0.5067 - loss: 9.5024
+20/73 [=======>......................] - ETA: 13s - rpn_cls: 8.0716 - rpn_regr: 0.1646 - final_cls: 0.6937 - final_regr: 0.5071 - loss: 9.4370
+21/73 [=======>......................] - ETA: 13s - rpn_cls: 8.0135 - rpn_regr: 0.1637 - final_cls: 0.6937 - final_regr: 0.5086 - loss: 9.3796
+22/73 [========>.....................] - ETA: 13s - rpn_cls: 7.9465 - rpn_regr: 0.1630 - final_cls: 0.6937 - final_regr: 0.5101 - loss: 9.3134
+23/73 [========>.....................] - ETA: 12s - rpn_cls: 7.8922 - rpn_regr: 0.1625 - final_cls: 0.6937 - final_regr: 0.5114 - loss: 9.2598
+24/73 [========>.....................] - ETA: 12s - rpn_cls: 7.8419 - rpn_regr: 0.1623 - final_cls: 0.6937 - final_regr: 0.5127 - loss: 9.2105
+25/73 [=========>....................] - ETA: 11s - rpn_cls: 7.8001 - rpn_regr: 0.1620 - final_cls: 0.6937 - final_regr: 0.5135 - loss: 9.1693
+26/73 [=========>....................] - ETA: 11s - rpn_cls: 7.7541 - rpn_regr: 0.1616 - final_cls: 0.6937 - final_regr: 0.5142 - loss: 9.1236
+27/73 [==========>...................] - ETA: 11s - rpn_cls: 7.7079 - rpn_regr: 0.1612 - final_cls: 0.6937 - final_regr: 0.5146 - loss: 9.0773
+28/73 [==========>...................] - ETA: 11s - rpn_cls: 7.6655 - rpn_regr: 0.1607 - final_cls: 0.6938 - final_regr: 0.5152 - loss: 9.0352
+29/73 [==========>...................] - ETA: 10s - rpn_cls: 7.6335 - rpn_regr: 0.1604 - final_cls: 0.6938 - final_regr: 0.5158 - loss: 9.0036
+30/73 [===========>..................] - ETA: 10s - rpn_cls: 7.6069 - rpn_regr: 0.1600 - final_cls: 0.6938 - final_regr: 0.5163 - loss: 8.9771
+31/73 [===========>..................] - ETA: 10s - rpn_cls: 7.5818 - rpn_regr: 0.1596 - final_cls: 0.6939 - final_regr: 0.5169 - loss: 8.9522
+32/73 [============>.................] - ETA: 9s - rpn_cls: 7.5516 - rpn_regr: 0.1592 - final_cls: 0.6939 - final_regr: 0.5174 - loss: 8.9221 
+33/73 [============>.................] - ETA: 9s - rpn_cls: 7.5222 - rpn_regr: 0.1588 - final_cls: 0.6939 - final_regr: 0.5179 - loss: 8.8928
+34/73 [============>.................] - ETA: 9s - rpn_cls: 7.4951 - rpn_regr: 0.1584 - final_cls: 0.6939 - final_regr: 0.5184 - loss: 8.8658
+35/73 [=============>................] - ETA: 8s - rpn_cls: 7.4697 - rpn_regr: 0.1579 - final_cls: 0.6939 - final_regr: 0.5189 - loss: 8.8405
+36/73 [=============>................] - ETA: 9s - rpn_cls: 7.4470 - rpn_regr: 0.1573 - final_cls: 0.6939 - final_regr: 0.5194 - loss: 8.8176
+37/73 [==============>...............] - ETA: 9s - rpn_cls: 7.4254 - rpn_regr: 0.1567 - final_cls: 0.6938 - final_regr: 0.5197 - loss: 8.7956
+38/73 [==============>...............] - ETA: 8s - rpn_cls: 7.4075 - rpn_regr: 0.1561 - final_cls: 0.6937 - final_regr: 0.5199 - loss: 8.7772
+39/73 [===============>..............] - ETA: 8s - rpn_cls: 7.3902 - rpn_regr: 0.1556 - final_cls: 0.6937 - final_regr: 0.5201 - loss: 8.7595
+40/73 [===============>..............] - ETA: 8s - rpn_cls: 7.3697 - rpn_regr: 0.1551 - final_cls: 0.6935 - final_regr: 0.5202 - loss: 8.7385
+41/73 [===============>..............] - ETA: 7s - rpn_cls: 7.3462 - rpn_regr: 0.1546 - final_cls: 0.6935 - final_regr: 0.5202 - loss: 8.7145
+42/73 [================>.............] - ETA: 7s - rpn_cls: 7.3255 - rpn_regr: 0.1541 - final_cls: 0.6934 - final_regr: 0.5203 - loss: 8.6933
+43/73 [================>.............] - ETA: 7s - rpn_cls: 7.3022 - rpn_regr: 0.1537 - final_cls: 0.6934 - final_regr: 0.5203 - loss: 8.6695
+44/73 [=================>............] - ETA: 6s - rpn_cls: 7.2836 - rpn_regr: 0.1533 - final_cls: 0.6933 - final_regr: 0.5204 - loss: 8.6506
+45/73 [=================>............] - ETA: 6s - rpn_cls: 7.2645 - rpn_regr: 0.1529 - final_cls: 0.6933 - final_regr: 0.5204 - loss: 8.6311
+46/73 [=================>............] - ETA: 6s - rpn_cls: 7.2462 - rpn_regr: 0.1525 - final_cls: 0.6932 - final_regr: 0.5206 - loss: 8.6125
+47/73 [==================>...........] - ETA: 6s - rpn_cls: 7.2274 - rpn_regr: 0.1521 - final_cls: 0.6932 - final_regr: 0.5206 - loss: 8.5932
+48/73 [==================>...........] - ETA: 5s - rpn_cls: 7.2101 - rpn_regr: 0.1516 - final_cls: 0.6931 - final_regr: 0.5205 - loss: 8.5754
+49/73 [===================>..........] - ETA: 5s - rpn_cls: 7.1946 - rpn_regr: 0.1512 - final_cls: 0.6931 - final_regr: 0.5204 - loss: 8.5593
+50/73 [===================>..........] - ETA: 5s - rpn_cls: 7.1798 - rpn_regr: 0.1508 - final_cls: 0.6930 - final_regr: 0.5204 - loss: 8.5439
+51/73 [===================>..........] - ETA: 5s - rpn_cls: 7.1630 - rpn_regr: 0.1504 - final_cls: 0.6930 - final_regr: 0.5203 - loss: 8.5267
+52/73 [====================>.........] - ETA: 4s - rpn_cls: 7.1471 - rpn_regr: 0.1500 - final_cls: 0.6929 - final_regr: 0.5202 - loss: 8.5102
+53/73 [====================>.........] - ETA: 4s - rpn_cls: 7.1318 - rpn_regr: 0.1496 - final_cls: 0.6929 - final_regr: 0.5201 - loss: 8.4944
+54/73 [=====================>........] - ETA: 4s - rpn_cls: 7.1165 - rpn_regr: 0.1492 - final_cls: 0.6928 - final_regr: 0.5200 - loss: 8.4785
+55/73 [=====================>........] - ETA: 4s - rpn_cls: 7.1009 - rpn_regr: 0.1489 - final_cls: 0.6928 - final_regr: 0.5197 - loss: 8.4623
+56/73 [======================>.......] - ETA: 3s - rpn_cls: 7.0871 - rpn_regr: 0.1485 - final_cls: 0.6927 - final_regr: 0.5196 - loss: 8.4480
+57/73 [======================>.......] - ETA: 3s - rpn_cls: 7.0735 - rpn_regr: 0.1482 - final_cls: 0.6926 - final_regr: 0.5195 - loss: 8.4338
+58/73 [======================>.......] - ETA: 3s - rpn_cls: 7.0601 - rpn_regr: 0.1479 - final_cls: 0.6926 - final_regr: 0.5194 - loss: 8.4200
+59/73 [=======================>......] - ETA: 3s - rpn_cls: 7.0458 - rpn_regr: 0.1476 - final_cls: 0.6925 - final_regr: 0.5194 - loss: 8.4052
+60/73 [=======================>......] - ETA: 2s - rpn_cls: 7.0325 - rpn_regr: 0.1473 - final_cls: 0.6924 - final_regr: 0.5193 - loss: 8.3915
+61/73 [========================>.....] - ETA: 2s - rpn_cls: 7.0183 - rpn_regr: 0.1470 - final_cls: 0.6923 - final_regr: 0.5192 - loss: 8.3768
+62/73 [========================>.....] - ETA: 2s - rpn_cls: 7.0033 - rpn_regr: 0.1467 - final_cls: 0.6922 - final_regr: 0.5190 - loss: 8.3612
+63/73 [========================>.....] - ETA: 2s - rpn_cls: 6.9872 - rpn_regr: 0.1463 - final_cls: 0.6921 - final_regr: 0.5187 - loss: 8.3444
+64/73 [=========================>....] - ETA: 2s - rpn_cls: 6.9706 - rpn_regr: 0.1460 - final_cls: 0.6920 - final_regr: 0.5185 - loss: 8.3271
+65/73 [=========================>....] - ETA: 1s - rpn_cls: 6.9531 - rpn_regr: 0.1457 - final_cls: 0.6919 - final_regr: 0.5182 - loss: 8.3089
+66/73 [==========================>...] - ETA: 1s - rpn_cls: 6.9351 - rpn_regr: 0.1453 - final_cls: 0.6918 - final_regr: 0.5179 - loss: 8.2901
+67/73 [==========================>...] - ETA: 1s - rpn_cls: 6.9164 - rpn_regr: 0.1450 - final_cls: 0.6917 - final_regr: 0.5175 - loss: 8.2706
+68/73 [==========================>...] - ETA: 1s - rpn_cls: 6.8984 - rpn_regr: 0.1447 - final_cls: 0.6916 - final_regr: 0.5172 - loss: 8.2518
+69/73 [===========================>..] - ETA: 0s - rpn_cls: 6.8824 - rpn_regr: 0.1445 - final_cls: 0.6914 - final_regr: 0.5169 - loss: 8.2352
+70/73 [===========================>..] - ETA: 0s - rpn_cls: 6.8657 - rpn_regr: 0.1442 - final_cls: 0.6913 - final_regr: 0.5166 - loss: 8.2178
+71/73 [============================>.] - ETA: 0s - rpn_cls: 6.8489 - rpn_regr: 0.1440 - final_cls: 0.6911 - final_regr: 0.5162 - loss: 8.2003
+72/73 [============================>.] - ETA: 0s - rpn_cls: 6.8315 - rpn_regr: 0.1438 - final_cls: 0.6910 - final_regr: 0.5160 - loss: 8.1823
+73/73 [==============================] - 16s 223ms/step - rpn_cls: 6.8143 - rpn_regr: 0.1437 - final_cls: 0.6908 - final_regr: 0.5157 - loss: 8.1644
+Mean number of bounding boxes from RPN overlapping ground truth boxes: 9.10958904109589
+Classifier accuracy for bounding boxes from RPN: 0.6301369863013698
+Loss RPN classifier: 5.5738149340015495
+Loss RPN regression: 0.13152180155356452
+Loss Detector classifier: 0.6795235676308201
+Loss Detector regression: 0.49424646611083045
+Total loss: 6.879106769296764
+Elapsed time: 16.24691390991211
+Start of the validation phase
+
+ 1/24 [>.............................] - ETA: 6:15 - rpn_cls_val: 0.0015 - rpn_regr_val: 0.1271 - final_cls_val: 0.6418 - final_regr_val: 0.4971 - loss_val: 1.2675
+ 2/24 [=>............................] - ETA: 3:00 - rpn_cls_val: 0.0011 - rpn_regr_val: 0.1055 - final_cls_val: 0.6156 - final_regr_val: 0.4391 - loss_val: 1.1613
+ 3/24 [==>...........................] - ETA: 1:55 - rpn_cls_val: 0.7135 - rpn_regr_val: 0.1257 - final_cls_val: 0.6121 - final_regr_val: 0.4188 - loss_val: 1.8700
+ 4/24 [====>.........................] - ETA: 1:22 - rpn_cls_val: 0.9605 - rpn_regr_val: 0.1426 - final_cls_val: 0.6117 - final_regr_val: 0.4231 - loss_val: 2.1380
+ 5/24 [=====>........................] - ETA: 1:03 - rpn_cls_val: 1.1419 - rpn_regr_val: 0.1550 - final_cls_val: 0.6116 - final_regr_val: 0.4231 - loss_val: 2.3315
+ 6/24 [======>.......................] - ETA: 50s - rpn_cls_val: 1.2109 - rpn_regr_val: 0.1602 - final_cls_val: 0.6089 - final_regr_val: 0.4219 - loss_val: 2.4019 
+ 7/24 [=======>......................] - ETA: 40s - rpn_cls_val: 1.2285 - rpn_regr_val: 0.1607 - final_cls_val: 0.6076 - final_regr_val: 0.4212 - loss_val: 2.4180
+ 8/24 [=========>....................] - ETA: 33s - rpn_cls_val: 1.2670 - rpn_regr_val: 0.1631 - final_cls_val: 0.6075 - final_regr_val: 0.4192 - loss_val: 2.4568
+ 9/24 [==========>...................] - ETA: 28s - rpn_cls_val: 1.3138 - rpn_regr_val: 0.1633 - final_cls_val: 0.6072 - final_regr_val: 0.4166 - loss_val: 2.5010
+10/24 [===========>..................] - ETA: 23s - rpn_cls_val: 1.3563 - rpn_regr_val: 0.1658 - final_cls_val: 0.6078 - final_regr_val: 0.4173 - loss_val: 2.5473
+11/24 [============>.................] - ETA: 20s - rpn_cls_val: 1.4001 - rpn_regr_val: 0.1674 - final_cls_val: 0.6083 - final_regr_val: 0.4229 - loss_val: 2.5988
+12/24 [==============>...............] - ETA: 17s - rpn_cls_val: 1.4473 - rpn_regr_val: 0.1686 - final_cls_val: 0.6089 - final_regr_val: 0.4264 - loss_val: 2.6513
+13/24 [===============>..............] - ETA: 14s - rpn_cls_val: 1.4840 - rpn_regr_val: 0.1686 - final_cls_val: 0.6096 - final_regr_val: 0.4284 - loss_val: 2.6907
+14/24 [================>.............] - ETA: 12s - rpn_cls_val: 1.5378 - rpn_regr_val: 0.1685 - final_cls_val: 0.6106 - final_regr_val: 0.4301 - loss_val: 2.7470
+15/24 [=================>............] - ETA: 10s - rpn_cls_val: 1.6021 - rpn_regr_val: 0.1682 - final_cls_val: 0.6120 - final_regr_val: 0.4296 - loss_val: 2.8119
+16/24 [===================>..........] - ETA: 8s - rpn_cls_val: 1.6536 - rpn_regr_val: 0.1677 - final_cls_val: 0.6135 - final_regr_val: 0.4280 - loss_val: 2.8628 
+17/24 [====================>.........] - ETA: 7s - rpn_cls_val: 1.6973 - rpn_regr_val: 0.1676 - final_cls_val: 0.6146 - final_regr_val: 0.4269 - loss_val: 2.9064
+18/24 [=====================>........] - ETA: 5s - rpn_cls_val: 1.7493 - rpn_regr_val: 0.1677 - final_cls_val: 0.6157 - final_regr_val: 0.4263 - loss_val: 2.9590
+19/24 [======================>.......] - ETA: 4s - rpn_cls_val: 1.7958 - rpn_regr_val: 0.1684 - final_cls_val: 0.6170 - final_regr_val: 0.4265 - loss_val: 3.0078
+20/24 [========================>.....] - ETA: 3s - rpn_cls_val: 1.8321 - rpn_regr_val: 0.1697 - final_cls_val: 0.6180 - final_regr_val: 0.4280 - loss_val: 3.0478
+21/24 [=========================>....] - ETA: 2s - rpn_cls_val: 1.8804 - rpn_regr_val: 0.1706 - final_cls_val: 0.6186 - final_regr_val: 0.4289 - loss_val: 3.0985
+22/24 [==========================>...] - ETA: 1s - rpn_cls_val: 1.9223 - rpn_regr_val: 0.1714 - final_cls_val: 0.6193 - final_regr_val: 0.4300 - loss_val: 3.1429
+23/24 [===========================>..] - ETA: 0s - rpn_cls_val: 1.9552 - rpn_regr_val: 0.1721 - final_cls_val: 0.6201 - final_regr_val: 0.4312 - loss_val: 3.1785
+24/24 [==============================] - 18s 763ms/step - rpn_cls_val: 1.9909 - rpn_regr_val: 0.1727 - final_cls_val: 0.6209 - final_regr_val: 0.4325 - loss_val: 3.2170
+End of the validation phase
+Validation classifier accuracy for bounding boxes from RPN: 0.6770833333333334
+Validation loss RPN classifier: 2.8123101400297323
+Validation loss RPN regression: 0.1885130451216052
+Validation loss Detector classifier: 0.64000686754783
+Validation loss Detector regression: 0.46261067936817807
+Total validation loss: 4.103440732067345
+Total validation loss decreased from inf to 4.103440732067345
+Epoch 2/2
+
+ 1/73 [..............................] - ETA: 13s - rpn_cls: 6.3406 - rpn_regr: 0.3619 - final_cls: 0.5981 - final_regr: 0.6884 - loss: 7.9890
+ 2/73 [..............................] - ETA: 12s - rpn_cls: 4.8799 - rpn_regr: 0.2823 - final_cls: 0.6010 - final_regr: 0.5958 - loss: 6.3591
+ 3/73 [>.............................] - ETA: 12s - rpn_cls: 4.8768 - rpn_regr: 0.2657 - final_cls: 0.6134 - final_regr: 0.5900 - loss: 6.3459
+ 4/73 [>.............................] - ETA: 12s - rpn_cls: 4.9191 - rpn_regr: 0.2548 - final_cls: 0.6180 - final_regr: 0.5904 - loss: 6.3823
+ 5/73 [=>............................] - ETA: 12s - rpn_cls: 4.7442 - rpn_regr: 0.2512 - final_cls: 0.6216 - final_regr: 0.5918 - loss: 6.2088
+ 6/73 [=>............................] - ETA: 12s - rpn_cls: 4.6304 - rpn_regr: 0.2453 - final_cls: 0.6221 - final_regr: 0.5839 - loss: 6.0818
+ 7/73 [=>............................] - ETA: 11s - rpn_cls: 4.5679 - rpn_regr: 0.2373 - final_cls: 0.6218 - final_regr: 0.5735 - loss: 6.0006
+ 8/73 [==>...........................] - ETA: 11s - rpn_cls: 4.4681 - rpn_regr: 0.2325 - final_cls: 0.6219 - final_regr: 0.5656 - loss: 5.8881
+ 9/73 [==>...........................] - ETA: 11s - rpn_cls: 4.4232 - rpn_regr: 0.2308 - final_cls: 0.6222 - final_regr: 0.5638 - loss: 5.8399
+10/73 [===>..........................] - ETA: 11s - rpn_cls: 4.4498 - rpn_regr: 0.2280 - final_cls: 0.6204 - final_regr: 0.5603 - loss: 5.8585
+11/73 [===>..........................] - ETA: 11s - rpn_cls: 4.4630 - rpn_regr: 0.2255 - final_cls: 0.6185 - final_regr: 0.5561 - loss: 5.8630
+12/73 [===>..........................] - ETA: 10s - rpn_cls: 4.4420 - rpn_regr: 0.2233 - final_cls: 0.6162 - final_regr: 0.5521 - loss: 5.8336
+13/73 [====>.........................] - ETA: 10s - rpn_cls: 4.3994 - rpn_regr: 0.2205 - final_cls: 0.6148 - final_regr: 0.5479 - loss: 5.7825
+14/73 [====>.........................] - ETA: 10s - rpn_cls: 4.3524 - rpn_regr: 0.2181 - final_cls: 0.6131 - final_regr: 0.5443 - loss: 5.7280
+15/73 [=====>........................] - ETA: 10s - rpn_cls: 4.2951 - rpn_regr: 0.2155 - final_cls: 0.6119 - final_regr: 0.5390 - loss: 5.6615
+16/73 [=====>........................] - ETA: 10s - rpn_cls: 4.2320 - rpn_regr: 0.2126 - final_cls: 0.6109 - final_regr: 0.5342 - loss: 5.5897
+17/73 [=====>........................] - ETA: 10s - rpn_cls: 4.1876 - rpn_regr: 0.2112 - final_cls: 0.6101 - final_regr: 0.5307 - loss: 5.5396
+18/73 [======>.......................] - ETA: 9s - rpn_cls: 4.1537 - rpn_regr: 0.2103 - final_cls: 0.6095 - final_regr: 0.5262 - loss: 5.4997 
+19/73 [======>.......................] - ETA: 9s - rpn_cls: 4.1373 - rpn_regr: 0.2091 - final_cls: 0.6093 - final_regr: 0.5218 - loss: 5.4774
+20/73 [=======>......................] - ETA: 10s - rpn_cls: 4.1175 - rpn_regr: 0.2077 - final_cls: 0.6090 - final_regr: 0.5173 - loss: 5.4515
+21/73 [=======>......................] - ETA: 10s - rpn_cls: 4.1208 - rpn_regr: 0.2061 - final_cls: 0.6086 - final_regr: 0.5141 - loss: 5.4496
+22/73 [========>.....................] - ETA: 9s - rpn_cls: 4.1151 - rpn_regr: 0.2047 - final_cls: 0.6079 - final_regr: 0.5109 - loss: 5.4385 
+23/73 [========>.....................] - ETA: 9s - rpn_cls: 4.1057 - rpn_regr: 0.2041 - final_cls: 0.6075 - final_regr: 0.5080 - loss: 5.4253
+24/73 [========>.....................] - ETA: 9s - rpn_cls: 4.1014 - rpn_regr: 0.2033 - final_cls: 0.6073 - final_regr: 0.5056 - loss: 5.4176
+25/73 [=========>....................] - ETA: 9s - rpn_cls: 4.0972 - rpn_regr: 0.2028 - final_cls: 0.6069 - final_regr: 0.5030 - loss: 5.4099
+26/73 [=========>....................] - ETA: 9s - rpn_cls: 4.0908 - rpn_regr: 0.2021 - final_cls: 0.6066 - final_regr: 0.5008 - loss: 5.4003
+27/73 [==========>...................] - ETA: 8s - rpn_cls: 4.0815 - rpn_regr: 0.2014 - final_cls: 0.6063 - final_regr: 0.4987 - loss: 5.3878
+28/73 [==========>...................] - ETA: 8s - rpn_cls: 4.0766 - rpn_regr: 0.2006 - final_cls: 0.6058 - final_regr: 0.4972 - loss: 5.3801
+29/73 [==========>...................] - ETA: 8s - rpn_cls: 4.0673 - rpn_regr: 0.2000 - final_cls: 0.6053 - final_regr: 0.4958 - loss: 5.3684
+30/73 [===========>..................] - ETA: 8s - rpn_cls: 4.0570 - rpn_regr: 0.1992 - final_cls: 0.6046 - final_regr: 0.4944 - loss: 5.3552
+31/73 [===========>..................] - ETA: 7s - rpn_cls: 4.0563 - rpn_regr: 0.1984 - final_cls: 0.6040 - final_regr: 0.4929 - loss: 5.3515
+32/73 [============>.................] - ETA: 7s - rpn_cls: 4.0516 - rpn_regr: 0.1976 - final_cls: 0.6032 - final_regr: 0.4918 - loss: 5.3442
+33/73 [============>.................] - ETA: 7s - rpn_cls: 4.0496 - rpn_regr: 0.1968 - final_cls: 0.6025 - final_regr: 0.4903 - loss: 5.3392
+34/73 [============>.................] - ETA: 7s - rpn_cls: 4.0504 - rpn_regr: 0.1959 - final_cls: 0.6023 - final_regr: 0.4889 - loss: 5.3375
+35/73 [=============>................] - ETA: 7s - rpn_cls: 4.0536 - rpn_regr: 0.1951 - final_cls: 0.6018 - final_regr: 0.4878 - loss: 5.3382
+36/73 [=============>................] - ETA: 7s - rpn_cls: 4.0566 - rpn_regr: 0.1943 - final_cls: 0.6010 - final_regr: 0.4866 - loss: 5.3385
+37/73 [==============>...............] - ETA: 7s - rpn_cls: 4.0599 - rpn_regr: 0.1934 - final_cls: 0.6003 - final_regr: 0.4854 - loss: 5.3390
+38/73 [==============>...............] - ETA: 6s - rpn_cls: 4.0608 - rpn_regr: 0.1925 - final_cls: 0.5998 - final_regr: 0.4841 - loss: 5.3373
+39/73 [===============>..............] - ETA: 6s - rpn_cls: 4.0593 - rpn_regr: 0.1916 - final_cls: 0.5991 - final_regr: 0.4829 - loss: 5.3330
+40/73 [===============>..............] - ETA: 6s - rpn_cls: 4.0554 - rpn_regr: 0.1909 - final_cls: 0.5983 - final_regr: 0.4817 - loss: 5.3264
+41/73 [===============>..............] - ETA: 6s - rpn_cls: 4.0494 - rpn_regr: 0.1902 - final_cls: 0.5976 - final_regr: 0.4805 - loss: 5.3178
+42/73 [================>.............] - ETA: 6s - rpn_cls: 4.0415 - rpn_regr: 0.1896 - final_cls: 0.5968 - final_regr: 0.4794 - loss: 5.3074
+43/73 [================>.............] - ETA: 5s - rpn_cls: 4.0339 - rpn_regr: 0.1891 - final_cls: 0.5958 - final_regr: 0.4783 - loss: 5.2972
+44/73 [=================>............] - ETA: 5s - rpn_cls: 4.0247 - rpn_regr: 0.1887 - final_cls: 0.5947 - final_regr: 0.4774 - loss: 5.2855
+45/73 [=================>............] - ETA: 5s - rpn_cls: 4.0150 - rpn_regr: 0.1883 - final_cls: 0.5936 - final_regr: 0.4763 - loss: 5.2731
+46/73 [=================>............] - ETA: 5s - rpn_cls: 4.0054 - rpn_regr: 0.1879 - final_cls: 0.5923 - final_regr: 0.4752 - loss: 5.2607
+47/73 [==================>...........] - ETA: 5s - rpn_cls: 3.9974 - rpn_regr: 0.1874 - final_cls: 0.5909 - final_regr: 0.4742 - loss: 5.2499
+48/73 [==================>...........] - ETA: 4s - rpn_cls: 3.9891 - rpn_regr: 0.1870 - final_cls: 0.5903 - final_regr: 0.4732 - loss: 5.2395
+49/73 [===================>..........] - ETA: 4s - rpn_cls: 3.9806 - rpn_regr: 0.1866 - final_cls: 0.5896 - final_regr: 0.4721 - loss: 5.2289
+50/73 [===================>..........] - ETA: 4s - rpn_cls: 3.9737 - rpn_regr: 0.1861 - final_cls: 0.5888 - final_regr: 0.4710 - loss: 5.2195
+51/73 [===================>..........] - ETA: 4s - rpn_cls: 3.9659 - rpn_regr: 0.1856 - final_cls: 0.5881 - final_regr: 0.4700 - loss: 5.2096
+52/73 [====================>.........] - ETA: 4s - rpn_cls: 3.9579 - rpn_regr: 0.1852 - final_cls: 0.5874 - final_regr: 0.4689 - loss: 5.1993
+53/73 [====================>.........] - ETA: 3s - rpn_cls: 3.9512 - rpn_regr: 0.1848 - final_cls: 0.5873 - final_regr: 0.4680 - loss: 5.1913
+54/73 [=====================>........] - ETA: 3s - rpn_cls: 3.9438 - rpn_regr: 0.1846 - final_cls: 0.5873 - final_regr: 0.4672 - loss: 5.1828
+55/73 [=====================>........] - ETA: 3s - rpn_cls: 3.9366 - rpn_regr: 0.1843 - final_cls: 0.5872 - final_regr: 0.4664 - loss: 5.1745
+56/73 [======================>.......] - ETA: 3s - rpn_cls: 3.9300 - rpn_regr: 0.1841 - final_cls: 0.5871 - final_regr: 0.4655 - loss: 5.1667
+57/73 [======================>.......] - ETA: 3s - rpn_cls: 3.9225 - rpn_regr: 0.1839 - final_cls: 0.5871 - final_regr: 0.4646 - loss: 5.1581
+58/73 [======================>.......] - ETA: 2s - rpn_cls: 3.9151 - rpn_regr: 0.1838 - final_cls: 0.5870 - final_regr: 0.4638 - loss: 5.1497
+59/73 [=======================>......] - ETA: 2s - rpn_cls: 3.9069 - rpn_regr: 0.1837 - final_cls: 0.5870 - final_regr: 0.4630 - loss: 5.1405
+60/73 [=======================>......] - ETA: 2s - rpn_cls: 3.8990 - rpn_regr: 0.1835 - final_cls: 0.5869 - final_regr: 0.4623 - loss: 5.1317
+61/73 [========================>.....] - ETA: 2s - rpn_cls: 3.8915 - rpn_regr: 0.1833 - final_cls: 0.5869 - final_regr: 0.4615 - loss: 5.1232
+62/73 [========================>.....] - ETA: 2s - rpn_cls: 3.8842 - rpn_regr: 0.1831 - final_cls: 0.5868 - final_regr: 0.4609 - loss: 5.1150
+63/73 [========================>.....] - ETA: 1s - rpn_cls: 3.8764 - rpn_regr: 0.1828 - final_cls: 0.5867 - final_regr: 0.4602 - loss: 5.1061
+64/73 [=========================>....] - ETA: 1s - rpn_cls: 3.8689 - rpn_regr: 0.1825 - final_cls: 0.5866 - final_regr: 0.4595 - loss: 5.0976
+65/73 [=========================>....] - ETA: 1s - rpn_cls: 3.8608 - rpn_regr: 0.1823 - final_cls: 0.5865 - final_regr: 0.4589 - loss: 5.0886
+66/73 [==========================>...] - ETA: 1s - rpn_cls: 3.8526 - rpn_regr: 0.1821 - final_cls: 0.5864 - final_regr: 0.4583 - loss: 5.0794
+67/73 [==========================>...] - ETA: 1s - rpn_cls: 3.8439 - rpn_regr: 0.1818 - final_cls: 0.5863 - final_regr: 0.4578 - loss: 5.0698
+68/73 [==========================>...] - ETA: 0s - rpn_cls: 3.8350 - rpn_regr: 0.1816 - final_cls: 0.5862 - final_regr: 0.4574 - loss: 5.0602
+69/73 [===========================>..] - ETA: 0s - rpn_cls: 3.8273 - rpn_regr: 0.1813 - final_cls: 0.5860 - final_regr: 0.4570 - loss: 5.0516
+70/73 [===========================>..] - ETA: 0s - rpn_cls: 3.8205 - rpn_regr: 0.1810 - final_cls: 0.5858 - final_regr: 0.4565 - loss: 5.0439
+71/73 [============================>.] - ETA: 0s - rpn_cls: 3.8138 - rpn_regr: 0.1808 - final_cls: 0.5856 - final_regr: 0.4561 - loss: 5.0364
+72/73 [============================>.] - ETA: 0s - rpn_cls: 3.8070 - rpn_regr: 0.1806 - final_cls: 0.5855 - final_regr: 0.4557 - loss: 5.0288
+73/73 [==============================] - 14s 189ms/step - rpn_cls: 3.8001 - rpn_regr: 0.1804 - final_cls: 0.5853 - final_regr: 0.4553 - loss: 5.0210
+Mean number of bounding boxes from RPN overlapping ground truth boxes: 10.95890410958904
+Classifier accuracy for bounding boxes from RPN: 0.7431506849315068
+Loss RPN classifier: 3.2985952086930306
+Loss RPN regression: 0.16520892886113223
+Loss Detector classifier: 0.5742462708117211
+Loss Detector regression: 0.4230152046027249
+Total loss: 4.461065612968609
+Elapsed time: 13.800254821777344
+Start of the validation phase
+
+ 1/24 [>.............................] - ETA: 5:19 - rpn_cls_val: 2.0058 - rpn_regr_val: 0.1929 - final_cls_val: 0.4473 - final_regr_val: 0.2442 - loss_val: 2.8901
+ 2/24 [=>............................] - ETA: 2:33 - rpn_cls_val: 1.5044 - rpn_regr_val: 0.1521 - final_cls_val: 0.4624 - final_regr_val: 0.3482 - loss_val: 2.4671
+ 3/24 [==>...........................] - ETA: 1:38 - rpn_cls_val: 1.2258 - rpn_regr_val: 0.1593 - final_cls_val: 0.4742 - final_regr_val: 0.3814 - loss_val: 2.2407
+ 4/24 [====>.........................] - ETA: 1:10 - rpn_cls_val: 1.0447 - rpn_regr_val: 0.1694 - final_cls_val: 0.4569 - final_regr_val: 0.3964 - loss_val: 2.0674
+ 5/24 [=====>........................] - ETA: 53s - rpn_cls_val: 1.0328 - rpn_regr_val: 0.1765 - final_cls_val: 0.4511 - final_regr_val: 0.3945 - loss_val: 2.0548 
+ 6/24 [======>.......................] - ETA: 42s - rpn_cls_val: 0.9993 - rpn_regr_val: 0.1830 - final_cls_val: 0.4395 - final_regr_val: 0.3940 - loss_val: 2.0158
+ 7/24 [=======>......................] - ETA: 34s - rpn_cls_val: 1.0853 - rpn_regr_val: 0.1911 - final_cls_val: 0.4367 - final_regr_val: 0.3856 - loss_val: 2.0987
+ 8/24 [=========>....................] - ETA: 28s - rpn_cls_val: 1.1455 - rpn_regr_val: 0.1983 - final_cls_val: 0.4355 - final_regr_val: 0.3822 - loss_val: 2.1615
+ 9/24 [==========>...................] - ETA: 24s - rpn_cls_val: 1.1928 - rpn_regr_val: 0.2048 - final_cls_val: 0.4356 - final_regr_val: 0.3824 - loss_val: 2.2156
+10/24 [===========>..................] - ETA: 20s - rpn_cls_val: 1.2787 - rpn_regr_val: 0.2081 - final_cls_val: 0.4352 - final_regr_val: 0.3824 - loss_val: 2.3044
+11/24 [============>.................] - ETA: 17s - rpn_cls_val: 1.3320 - rpn_regr_val: 0.2095 - final_cls_val: 0.4365 - final_regr_val: 0.3822 - loss_val: 2.3603
+12/24 [==============>...............] - ETA: 14s - rpn_cls_val: 1.3815 - rpn_regr_val: 0.2106 - final_cls_val: 0.4373 - final_regr_val: 0.3821 - loss_val: 2.4116
+13/24 [===============>..............] - ETA: 12s - rpn_cls_val: 1.4179 - rpn_regr_val: 0.2104 - final_cls_val: 0.4385 - final_regr_val: 0.3813 - loss_val: 2.4480
+14/24 [================>.............] - ETA: 10s - rpn_cls_val: 1.4396 - rpn_regr_val: 0.2099 - final_cls_val: 0.4385 - final_regr_val: 0.3801 - loss_val: 2.4682
+15/24 [=================>............] - ETA: 9s - rpn_cls_val: 1.4507 - rpn_regr_val: 0.2087 - final_cls_val: 0.4404 - final_regr_val: 0.3792 - loss_val: 2.4790 
+16/24 [===================>..........] - ETA: 7s - rpn_cls_val: 1.4717 - rpn_regr_val: 0.2085 - final_cls_val: 0.4412 - final_regr_val: 0.3784 - loss_val: 2.4998
+17/24 [====================>.........] - ETA: 6s - rpn_cls_val: 1.4895 - rpn_regr_val: 0.2088 - final_cls_val: 0.4432 - final_regr_val: 0.3778 - loss_val: 2.5193
+18/24 [=====================>........] - ETA: 5s - rpn_cls_val: 1.5391 - rpn_regr_val: 0.2092 - final_cls_val: 0.4452 - final_regr_val: 0.3762 - loss_val: 2.5697
+19/24 [======================>.......] - ETA: 4s - rpn_cls_val: 1.5823 - rpn_regr_val: 0.2104 - final_cls_val: 0.4476 - final_regr_val: 0.3749 - loss_val: 2.6151
+20/24 [========================>.....] - ETA: 3s - rpn_cls_val: 1.6152 - rpn_regr_val: 0.2119 - final_cls_val: 0.4499 - final_regr_val: 0.3743 - loss_val: 2.6513
+21/24 [=========================>....] - ETA: 2s - rpn_cls_val: 1.6400 - rpn_regr_val: 0.2133 - final_cls_val: 0.4522 - final_regr_val: 0.3741 - loss_val: 2.6796
+22/24 [==========================>...] - ETA: 1s - rpn_cls_val: 1.6581 - rpn_regr_val: 0.2143 - final_cls_val: 0.4543 - final_regr_val: 0.3740 - loss_val: 2.7007
+23/24 [===========================>..] - ETA: 0s - rpn_cls_val: 1.6831 - rpn_regr_val: 0.2150 - final_cls_val: 0.4564 - final_regr_val: 0.3740 - loss_val: 2.7285
+24/24 [==============================] - 16s 665ms/step - rpn_cls_val: 1.7206 - rpn_regr_val: 0.2158 - final_cls_val: 0.4584 - final_regr_val: 0.3734 - loss_val: 2.7681
+End of the validation phase
+Validation classifier accuracy for bounding boxes from RPN: 0.7395833333333334
+Validation loss RPN classifier: 2.5823394950587075
+Validation loss RPN regression: 0.23510614584665745
+Validation loss Detector classifier: 0.5037200463314851
+Validation loss Detector regression: 0.35893591679632664
+Total validation loss: 3.680101604033177
+Total validation loss decreased from 4.103440732067345 to 3.680101604033177
+=== Fold 3/4 ===
+Epoch 1/2
+
+ 1/73 [..............................] - ETA: 13s - rpn_cls: 6.3419 - rpn_regr: 0.2553 - final_cls: 0.6931 - final_regr: 0.7196 - loss: 8.0099
+ 2/73 [..............................] - ETA: 12s - rpn_cls: 6.4010 - rpn_regr: 0.2197 - final_cls: 0.6928 - final_regr: 0.7380 - loss: 8.0515
+ 3/73 [>.............................] - ETA: 12s - rpn_cls: 6.3917 - rpn_regr: 0.1928 - final_cls: 0.6925 - final_regr: 0.6982 - loss: 7.9752
+ 4/73 [>.............................] - ETA: 12s - rpn_cls: 6.7381 - rpn_regr: 0.1889 - final_cls: 0.6926 - final_regr: 0.6727 - loss: 8.2923
+ 5/73 [=>............................] - ETA: 12s - rpn_cls: 6.8885 - rpn_regr: 0.1863 - final_cls: 0.6925 - final_regr: 0.6556 - loss: 8.4229
+ 6/73 [=>............................] - ETA: 12s - rpn_cls: 6.8680 - rpn_regr: 0.1810 - final_cls: 0.6924 - final_regr: 0.6367 - loss: 8.3782
+ 7/73 [=>............................] - ETA: 11s - rpn_cls: 6.7991 - rpn_regr: 0.1748 - final_cls: 0.6923 - final_regr: 0.6232 - loss: 8.2894
+ 8/73 [==>...........................] - ETA: 11s - rpn_cls: 6.7478 - rpn_regr: 0.1729 - final_cls: 0.6922 - final_regr: 0.6065 - loss: 8.2195
+ 9/73 [==>...........................] - ETA: 11s - rpn_cls: 6.6424 - rpn_regr: 0.1715 - final_cls: 0.6923 - final_regr: 0.5922 - loss: 8.0984
+10/73 [===>..........................] - ETA: 11s - rpn_cls: 6.5412 - rpn_regr: 0.1701 - final_cls: 0.6923 - final_regr: 0.5810 - loss: 7.9847
+11/73 [===>..........................] - ETA: 11s - rpn_cls: 6.4714 - rpn_regr: 0.1682 - final_cls: 0.6922 - final_regr: 0.5706 - loss: 7.9025
+12/73 [===>..........................] - ETA: 11s - rpn_cls: 6.3732 - rpn_regr: 0.1669 - final_cls: 0.6921 - final_regr: 0.5602 - loss: 7.7924
+13/73 [====>.........................] - ETA: 11s - rpn_cls: 6.3380 - rpn_regr: 0.1658 - final_cls: 0.6920 - final_regr: 0.5513 - loss: 7.7472
+14/73 [====>.........................] - ETA: 10s - rpn_cls: 6.2983 - rpn_regr: 0.1644 - final_cls: 0.6919 - final_regr: 0.5435 - loss: 7.6980
+15/73 [=====>........................] - ETA: 10s - rpn_cls: 6.2668 - rpn_regr: 0.1630 - final_cls: 0.6921 - final_regr: 0.5347 - loss: 7.6566
+16/73 [=====>........................] - ETA: 10s - rpn_cls: 6.2180 - rpn_regr: 0.1615 - final_cls: 0.6922 - final_regr: 0.5271 - loss: 7.5988
+17/73 [=====>........................] - ETA: 10s - rpn_cls: 6.1791 - rpn_regr: 0.1612 - final_cls: 0.6923 - final_regr: 0.5203 - loss: 7.5529
+18/73 [======>.......................] - ETA: 9s - rpn_cls: 6.1659 - rpn_regr: 0.1607 - final_cls: 0.6926 - final_regr: 0.5130 - loss: 7.5321 
+19/73 [======>.......................] - ETA: 9s - rpn_cls: 6.1658 - rpn_regr: 0.1601 - final_cls: 0.6927 - final_regr: 0.5067 - loss: 7.5254
+20/73 [=======>......................] - ETA: 9s - rpn_cls: 6.1607 - rpn_regr: 0.1594 - final_cls: 0.6929 - final_regr: 0.5020 - loss: 7.5149
+21/73 [=======>......................] - ETA: 9s - rpn_cls: 6.1719 - rpn_regr: 0.1585 - final_cls: 0.6930 - final_regr: 0.4982 - loss: 7.5216
+22/73 [========>.....................] - ETA: 9s - rpn_cls: 6.1745 - rpn_regr: 0.1576 - final_cls: 0.6930 - final_regr: 0.4945 - loss: 7.5196
+23/73 [========>.....................] - ETA: 9s - rpn_cls: 6.1829 - rpn_regr: 0.1569 - final_cls: 0.6931 - final_regr: 0.4916 - loss: 7.5245
+24/73 [========>.....................] - ETA: 8s - rpn_cls: 6.1911 - rpn_regr: 0.1565 - final_cls: 0.6931 - final_regr: 0.4887 - loss: 7.5295
+25/73 [=========>....................] - ETA: 8s - rpn_cls: 6.2033 - rpn_regr: 0.1562 - final_cls: 0.6932 - final_regr: 0.4867 - loss: 7.5393
+26/73 [=========>....................] - ETA: 8s - rpn_cls: 6.2059 - rpn_regr: 0.1558 - final_cls: 0.6932 - final_regr: 0.4849 - loss: 7.5398
+27/73 [==========>...................] - ETA: 8s - rpn_cls: 6.2082 - rpn_regr: 0.1555 - final_cls: 0.6932 - final_regr: 0.4833 - loss: 7.5402
+28/73 [==========>...................] - ETA: 8s - rpn_cls: 6.2093 - rpn_regr: 0.1556 - final_cls: 0.6932 - final_regr: 0.4818 - loss: 7.5400
+29/73 [==========>...................] - ETA: 7s - rpn_cls: 6.2069 - rpn_regr: 0.1559 - final_cls: 0.6933 - final_regr: 0.4805 - loss: 7.5366
+30/73 [===========>..................] - ETA: 7s - rpn_cls: 6.2023 - rpn_regr: 0.1562 - final_cls: 0.6933 - final_regr: 0.4793 - loss: 7.5311
+31/73 [===========>..................] - ETA: 7s - rpn_cls: 6.1917 - rpn_regr: 0.1563 - final_cls: 0.6933 - final_regr: 0.4782 - loss: 7.5195
+32/73 [============>.................] - ETA: 7s - rpn_cls: 6.1820 - rpn_regr: 0.1567 - final_cls: 0.6933 - final_regr: 0.4778 - loss: 7.5098
+33/73 [============>.................] - ETA: 7s - rpn_cls: 6.1734 - rpn_regr: 0.1570 - final_cls: 0.6932 - final_regr: 0.4779 - loss: 7.5016
+34/73 [============>.................] - ETA: 7s - rpn_cls: 6.1602 - rpn_regr: 0.1572 - final_cls: 0.6932 - final_regr: 0.4780 - loss: 7.4886
+35/73 [=============>................] - ETA: 6s - rpn_cls: 6.1490 - rpn_regr: 0.1574 - final_cls: 0.6931 - final_regr: 0.4779 - loss: 7.4775
+36/73 [=============>................] - ETA: 6s - rpn_cls: 6.1340 - rpn_regr: 0.1578 - final_cls: 0.6931 - final_regr: 0.4778 - loss: 7.4627
+37/73 [==============>...............] - ETA: 6s - rpn_cls: 6.1229 - rpn_regr: 0.1580 - final_cls: 0.6930 - final_regr: 0.4779 - loss: 7.4518
+38/73 [==============>...............] - ETA: 6s - rpn_cls: 6.1107 - rpn_regr: 0.1581 - final_cls: 0.6929 - final_regr: 0.4780 - loss: 7.4398
+39/73 [===============>..............] - ETA: 6s - rpn_cls: 6.0955 - rpn_regr: 0.1582 - final_cls: 0.6928 - final_regr: 0.4781 - loss: 7.4247
+40/73 [===============>..............] - ETA: 5s - rpn_cls: 6.0815 - rpn_regr: 0.1583 - final_cls: 0.6927 - final_regr: 0.4784 - loss: 7.4110
+41/73 [===============>..............] - ETA: 5s - rpn_cls: 6.0658 - rpn_regr: 0.1584 - final_cls: 0.6926 - final_regr: 0.4786 - loss: 7.3955
+42/73 [================>.............] - ETA: 5s - rpn_cls: 6.0515 - rpn_regr: 0.1584 - final_cls: 0.6925 - final_regr: 0.4790 - loss: 7.3815
+43/73 [================>.............] - ETA: 5s - rpn_cls: 6.0416 - rpn_regr: 0.1585 - final_cls: 0.6924 - final_regr: 0.4792 - loss: 7.3716
+44/73 [=================>............] - ETA: 5s - rpn_cls: 6.0311 - rpn_regr: 0.1585 - final_cls: 0.6924 - final_regr: 0.4796 - loss: 7.3616
+45/73 [=================>............] - ETA: 5s - rpn_cls: 6.0184 - rpn_regr: 0.1587 - final_cls: 0.6923 - final_regr: 0.4800 - loss: 7.3493
+46/73 [=================>............] - ETA: 4s - rpn_cls: 6.0060 - rpn_regr: 0.1588 - final_cls: 0.6922 - final_regr: 0.4802 - loss: 7.3373
+47/73 [==================>...........] - ETA: 4s - rpn_cls: 5.9967 - rpn_regr: 0.1589 - final_cls: 0.6921 - final_regr: 0.4804 - loss: 7.3281
+48/73 [==================>...........] - ETA: 4s - rpn_cls: 5.9853 - rpn_regr: 0.1591 - final_cls: 0.6920 - final_regr: 0.4806 - loss: 7.3170
+49/73 [===================>..........] - ETA: 4s - rpn_cls: 5.9761 - rpn_regr: 0.1592 - final_cls: 0.6919 - final_regr: 0.4809 - loss: 7.3081
+50/73 [===================>..........] - ETA: 4s - rpn_cls: 5.9653 - rpn_regr: 0.1594 - final_cls: 0.6918 - final_regr: 0.4811 - loss: 7.2976
+51/73 [===================>..........] - ETA: 4s - rpn_cls: 5.9530 - rpn_regr: 0.1595 - final_cls: 0.6917 - final_regr: 0.4814 - loss: 7.2856
+52/73 [====================>.........] - ETA: 3s - rpn_cls: 5.9401 - rpn_regr: 0.1595 - final_cls: 0.6916 - final_regr: 0.4816 - loss: 7.2728
+53/73 [====================>.........] - ETA: 3s - rpn_cls: 5.9272 - rpn_regr: 0.1597 - final_cls: 0.6915 - final_regr: 0.4817 - loss: 7.2601
+54/73 [=====================>........] - ETA: 3s - rpn_cls: 5.9140 - rpn_regr: 0.1598 - final_cls: 0.6914 - final_regr: 0.4818 - loss: 7.2469
+55/73 [=====================>........] - ETA: 3s - rpn_cls: 5.9006 - rpn_regr: 0.1598 - final_cls: 0.6913 - final_regr: 0.4818 - loss: 7.2335
+56/73 [======================>.......] - ETA: 3s - rpn_cls: 5.8877 - rpn_regr: 0.1599 - final_cls: 0.6912 - final_regr: 0.4818 - loss: 7.2205
+57/73 [======================>.......] - ETA: 3s - rpn_cls: 5.8755 - rpn_regr: 0.1599 - final_cls: 0.6911 - final_regr: 0.4819 - loss: 7.2084
+58/73 [======================>.......] - ETA: 2s - rpn_cls: 5.8635 - rpn_regr: 0.1599 - final_cls: 0.6909 - final_regr: 0.4819 - loss: 7.1963
+59/73 [=======================>......] - ETA: 2s - rpn_cls: 5.8505 - rpn_regr: 0.1600 - final_cls: 0.6908 - final_regr: 0.4819 - loss: 7.1832
+60/73 [=======================>......] - ETA: 2s - rpn_cls: 5.8378 - rpn_regr: 0.1600 - final_cls: 0.6907 - final_regr: 0.4819 - loss: 7.1704
+61/73 [========================>.....] - ETA: 2s - rpn_cls: 5.8242 - rpn_regr: 0.1600 - final_cls: 0.6906 - final_regr: 0.4820 - loss: 7.1568
+62/73 [========================>.....] - ETA: 2s - rpn_cls: 5.8104 - rpn_regr: 0.1599 - final_cls: 0.6905 - final_regr: 0.4820 - loss: 7.1429
+63/73 [========================>.....] - ETA: 1s - rpn_cls: 5.7958 - rpn_regr: 0.1599 - final_cls: 0.6904 - final_regr: 0.4821 - loss: 7.1282
+64/73 [=========================>....] - ETA: 1s - rpn_cls: 5.7810 - rpn_regr: 0.1598 - final_cls: 0.6903 - final_regr: 0.4822 - loss: 7.1133
+65/73 [=========================>....] - ETA: 1s - rpn_cls: 5.7665 - rpn_regr: 0.1597 - final_cls: 0.6902 - final_regr: 0.4823 - loss: 7.0987
+66/73 [==========================>...] - ETA: 1s - rpn_cls: 5.7520 - rpn_regr: 0.1596 - final_cls: 0.6900 - final_regr: 0.4823 - loss: 7.0839
+67/73 [==========================>...] - ETA: 1s - rpn_cls: 5.7382 - rpn_regr: 0.1595 - final_cls: 0.6899 - final_regr: 0.4823 - loss: 7.0699
+68/73 [==========================>...] - ETA: 0s - rpn_cls: 5.7239 - rpn_regr: 0.1594 - final_cls: 0.6898 - final_regr: 0.4823 - loss: 7.0555
+69/73 [===========================>..] - ETA: 0s - rpn_cls: 5.7091 - rpn_regr: 0.1594 - final_cls: 0.6896 - final_regr: 0.4823 - loss: 7.0404
+70/73 [===========================>..] - ETA: 0s - rpn_cls: 5.6963 - rpn_regr: 0.1593 - final_cls: 0.6895 - final_regr: 0.4822 - loss: 7.0273
+71/73 [============================>.] - ETA: 0s - rpn_cls: 5.6834 - rpn_regr: 0.1592 - final_cls: 0.6894 - final_regr: 0.4821 - loss: 7.0141
+72/73 [============================>.] - ETA: 0s - rpn_cls: 5.6710 - rpn_regr: 0.1591 - final_cls: 0.6892 - final_regr: 0.4820 - loss: 7.0014
+73/73 [==============================] - 14s 187ms/step - rpn_cls: 5.6588 - rpn_regr: 0.1591 - final_cls: 0.6891 - final_regr: 0.4819 - loss: 6.9887
+Mean number of bounding boxes from RPN overlapping ground truth boxes: 9.73972602739726
+Classifier accuracy for bounding boxes from RPN: 0.6095890410958904
+Loss RPN classifier: 4.774913626846664
+Loss RPN regression: 0.15376288132512406
+Loss Detector classifier: 0.6785215114893979
+Loss Detector regression: 0.469871106315149
+Total loss: 6.077069125976336
+Elapsed time: 13.626594543457031
+Start of the validation phase
+
+ 1/24 [>.............................] - ETA: 5:15 - rpn_cls_val: 1.1925 - rpn_regr_val: 0.1744 - final_cls_val: 0.5685 - final_regr_val: 0.5735 - loss_val: 2.5089
+ 2/24 [=>............................] - ETA: 2:31 - rpn_cls_val: 1.1590 - rpn_regr_val: 0.1822 - final_cls_val: 0.5834 - final_regr_val: 0.6096 - loss_val: 2.5342
+ 3/24 [==>...........................] - ETA: 1:37 - rpn_cls_val: 1.3873 - rpn_regr_val: 0.1693 - final_cls_val: 0.5920 - final_regr_val: 0.5951 - loss_val: 2.7437
+ 4/24 [====>.........................] - ETA: 1:09 - rpn_cls_val: 1.6158 - rpn_regr_val: 0.1717 - final_cls_val: 0.5994 - final_regr_val: 0.5760 - loss_val: 2.9629
+ 5/24 [=====>........................] - ETA: 53s - rpn_cls_val: 1.7623 - rpn_regr_val: 0.1677 - final_cls_val: 0.6055 - final_regr_val: 0.5545 - loss_val: 3.0900 
+ 6/24 [======>.......................] - ETA: 42s - rpn_cls_val: 1.7948 - rpn_regr_val: 0.1632 - final_cls_val: 0.6077 - final_regr_val: 0.5373 - loss_val: 3.1030
+ 7/24 [=======>......................] - ETA: 34s - rpn_cls_val: 1.8152 - rpn_regr_val: 0.1585 - final_cls_val: 0.6089 - final_regr_val: 0.5246 - loss_val: 3.1072
+ 8/24 [=========>....................] - ETA: 28s - rpn_cls_val: 1.8993 - rpn_regr_val: 0.1565 - final_cls_val: 0.6093 - final_regr_val: 0.5140 - loss_val: 3.1792
+ 9/24 [==========>...................] - ETA: 23s - rpn_cls_val: 2.0232 - rpn_regr_val: 0.1547 - final_cls_val: 0.6110 - final_regr_val: 0.5066 - loss_val: 3.2956
+10/24 [===========>..................] - ETA: 20s - rpn_cls_val: 2.0922 - rpn_regr_val: 0.1532 - final_cls_val: 0.6119 - final_regr_val: 0.5003 - loss_val: 3.3575
+11/24 [============>.................] - ETA: 17s - rpn_cls_val: 2.1384 - rpn_regr_val: 0.1518 - final_cls_val: 0.6125 - final_regr_val: 0.4951 - loss_val: 3.3978
+12/24 [==============>...............] - ETA: 14s - rpn_cls_val: 2.2056 - rpn_regr_val: 0.1498 - final_cls_val: 0.6133 - final_regr_val: 0.4913 - loss_val: 3.4600
+13/24 [===============>..............] - ETA: 12s - rpn_cls_val: 2.2789 - rpn_regr_val: 0.1483 - final_cls_val: 0.6143 - final_regr_val: 0.4866 - loss_val: 3.5281
+14/24 [================>.............] - ETA: 10s - rpn_cls_val: 2.3257 - rpn_regr_val: 0.1469 - final_cls_val: 0.6153 - final_regr_val: 0.4826 - loss_val: 3.5705
+15/24 [=================>............] - ETA: 8s - rpn_cls_val: 2.3532 - rpn_regr_val: 0.1468 - final_cls_val: 0.6160 - final_regr_val: 0.4795 - loss_val: 3.5955 
+16/24 [===================>..........] - ETA: 7s - rpn_cls_val: 2.3917 - rpn_regr_val: 0.1468 - final_cls_val: 0.6164 - final_regr_val: 0.4777 - loss_val: 3.6326
+17/24 [====================>.........] - ETA: 6s - rpn_cls_val: 2.4281 - rpn_regr_val: 0.1464 - final_cls_val: 0.6170 - final_regr_val: 0.4763 - loss_val: 3.6677
+18/24 [=====================>........] - ETA: 5s - rpn_cls_val: 2.4620 - rpn_regr_val: 0.1474 - final_cls_val: 0.6174 - final_regr_val: 0.4755 - loss_val: 3.7023
+19/24 [======================>.......] - ETA: 3s - rpn_cls_val: 2.5017 - rpn_regr_val: 0.1480 - final_cls_val: 0.6177 - final_regr_val: 0.4745 - loss_val: 3.7419
+20/24 [========================>.....] - ETA: 3s - rpn_cls_val: 2.5306 - rpn_regr_val: 0.1487 - final_cls_val: 0.6180 - final_regr_val: 0.4740 - loss_val: 3.7712
+21/24 [=========================>....] - ETA: 2s - rpn_cls_val: 2.5583 - rpn_regr_val: 0.1493 - final_cls_val: 0.6181 - final_regr_val: 0.4733 - loss_val: 3.7990
+22/24 [==========================>...] - ETA: 1s - rpn_cls_val: 2.5774 - rpn_regr_val: 0.1497 - final_cls_val: 0.6182 - final_regr_val: 0.4726 - loss_val: 3.8179
+23/24 [===========================>..] - ETA: 0s - rpn_cls_val: 2.5917 - rpn_regr_val: 0.1503 - final_cls_val: 0.6183 - final_regr_val: 0.4719 - loss_val: 3.8321
+24/24 [==============================] - 16s 650ms/step - rpn_cls_val: 2.5996 - rpn_regr_val: 0.1509 - final_cls_val: 0.6185 - final_regr_val: 0.4714 - loss_val: 3.8404
+End of the validation phase
+Validation classifier accuracy for bounding boxes from RPN: 0.6770833333333334
+Validation loss RPN classifier: 2.78337809094946
+Validation loss RPN regression: 0.16493826530252895
+Validation loss Detector classifier: 0.6219934125741323
+Validation loss Detector regression: 0.4599297158420086
+Total validation loss: 4.0302394846681295
+Total validation loss decreased from inf to 4.0302394846681295
+Epoch 2/2
+
+ 1/73 [..............................] - ETA: 12s - rpn_cls: 0.2341 - rpn_regr: 0.4915 - final_cls: 0.7555 - final_regr: 0.7021 - loss: 2.1832
+ 2/73 [..............................] - ETA: 12s - rpn_cls: 0.2289 - rpn_regr: 0.3876 - final_cls: 0.7303 - final_regr: 0.6769 - loss: 2.0236
+ 3/73 [>.............................] - ETA: 12s - rpn_cls: 0.6432 - rpn_regr: 0.3753 - final_cls: 0.6987 - final_regr: 0.6771 - loss: 2.3943
+ 4/73 [>.............................] - ETA: 12s - rpn_cls: 0.7954 - rpn_regr: 0.3633 - final_cls: 0.6824 - final_regr: 0.6685 - loss: 2.5096
+ 5/73 [=>............................] - ETA: 12s - rpn_cls: 0.8366 - rpn_regr: 0.3561 - final_cls: 0.6679 - final_regr: 0.6589 - loss: 2.5195
+ 6/73 [=>............................] - ETA: 12s - rpn_cls: 0.8896 - rpn_regr: 0.3507 - final_cls: 0.6565 - final_regr: 0.6487 - loss: 2.5455
+ 7/73 [=>............................] - ETA: 11s - rpn_cls: 0.9527 - rpn_regr: 0.3422 - final_cls: 0.6476 - final_regr: 0.6355 - loss: 2.5780
+ 8/73 [==>...........................] - ETA: 11s - rpn_cls: 0.9792 - rpn_regr: 0.3365 - final_cls: 0.6400 - final_regr: 0.6242 - loss: 2.5799
+ 9/73 [==>...........................] - ETA: 11s - rpn_cls: 1.0646 - rpn_regr: 0.3323 - final_cls: 0.6363 - final_regr: 0.6155 - loss: 2.6487
+10/73 [===>..........................] - ETA: 11s - rpn_cls: 1.1339 - rpn_regr: 0.3285 - final_cls: 0.6325 - final_regr: 0.6079 - loss: 2.7028
+11/73 [===>..........................] - ETA: 11s - rpn_cls: 1.1971 - rpn_regr: 0.3239 - final_cls: 0.6291 - final_regr: 0.6027 - loss: 2.7528
+12/73 [===>..........................] - ETA: 10s - rpn_cls: 1.2371 - rpn_regr: 0.3201 - final_cls: 0.6255 - final_regr: 0.5986 - loss: 2.7813
+13/73 [====>.........................] - ETA: 10s - rpn_cls: 1.2899 - rpn_regr: 0.3160 - final_cls: 0.6226 - final_regr: 0.5949 - loss: 2.8234
+14/73 [====>.........................] - ETA: 10s - rpn_cls: 1.3365 - rpn_regr: 0.3119 - final_cls: 0.6193 - final_regr: 0.5911 - loss: 2.8588
+15/73 [=====>........................] - ETA: 10s - rpn_cls: 1.3967 - rpn_regr: 0.3081 - final_cls: 0.6165 - final_regr: 0.5863 - loss: 2.9077
+16/73 [=====>........................] - ETA: 10s - rpn_cls: 1.4479 - rpn_regr: 0.3043 - final_cls: 0.6132 - final_regr: 0.5808 - loss: 2.9462
+17/73 [=====>........................] - ETA: 9s - rpn_cls: 1.4854 - rpn_regr: 0.3013 - final_cls: 0.6104 - final_regr: 0.5760 - loss: 2.9732 
+18/73 [======>.......................] - ETA: 9s - rpn_cls: 1.5406 - rpn_regr: 0.2985 - final_cls: 0.6087 - final_regr: 0.5703 - loss: 3.0181
+19/73 [======>.......................] - ETA: 11s - rpn_cls: 1.5865 - rpn_regr: 0.2973 - final_cls: 0.6067 - final_regr: 0.5651 - loss: 3.0556
+20/73 [=======>......................] - ETA: 10s - rpn_cls: 1.6309 - rpn_regr: 0.2958 - final_cls: 0.6047 - final_regr: 0.5608 - loss: 3.0923
+21/73 [=======>......................] - ETA: 11s - rpn_cls: 1.6916 - rpn_regr: 0.2940 - final_cls: 0.6026 - final_regr: 0.5558 - loss: 3.1440
+22/73 [========>.....................] - ETA: 10s - rpn_cls: 1.7499 - rpn_regr: 0.2921 - final_cls: 0.6004 - final_regr: 0.5515 - loss: 3.1940
+23/73 [========>.....................] - ETA: 10s - rpn_cls: 1.8033 - rpn_regr: 0.2907 - final_cls: 0.5994 - final_regr: 0.5473 - loss: 3.2407
+24/73 [========>.....................] - ETA: 10s - rpn_cls: 1.8481 - rpn_regr: 0.2892 - final_cls: 0.5982 - final_regr: 0.5432 - loss: 3.2787
+25/73 [=========>....................] - ETA: 9s - rpn_cls: 1.8892 - rpn_regr: 0.2881 - final_cls: 0.5972 - final_regr: 0.5394 - loss: 3.3139 
+26/73 [=========>....................] - ETA: 9s - rpn_cls: 1.9229 - rpn_regr: 0.2878 - final_cls: 0.5962 - final_regr: 0.5359 - loss: 3.3429
+27/73 [==========>...................] - ETA: 9s - rpn_cls: 1.9590 - rpn_regr: 0.2873 - final_cls: 0.5951 - final_regr: 0.5326 - loss: 3.3739
+28/73 [==========>...................] - ETA: 9s - rpn_cls: 1.9892 - rpn_regr: 0.2867 - final_cls: 0.5944 - final_regr: 0.5292 - loss: 3.3995
+29/73 [==========>...................] - ETA: 8s - rpn_cls: 2.0141 - rpn_regr: 0.2863 - final_cls: 0.5941 - final_regr: 0.5262 - loss: 3.4207
+30/73 [===========>..................] - ETA: 8s - rpn_cls: 2.0384 - rpn_regr: 0.2858 - final_cls: 0.5937 - final_regr: 0.5232 - loss: 3.4412
+31/73 [===========>..................] - ETA: 8s - rpn_cls: 2.0651 - rpn_regr: 0.2855 - final_cls: 0.5931 - final_regr: 0.5205 - loss: 3.4641
+32/73 [============>.................] - ETA: 8s - rpn_cls: 2.0933 - rpn_regr: 0.2850 - final_cls: 0.5925 - final_regr: 0.5178 - loss: 3.4887
+33/73 [============>.................] - ETA: 7s - rpn_cls: 2.1202 - rpn_regr: 0.2845 - final_cls: 0.5917 - final_regr: 0.5154 - loss: 3.5117
+34/73 [============>.................] - ETA: 7s - rpn_cls: 2.1429 - rpn_regr: 0.2841 - final_cls: 0.5909 - final_regr: 0.5130 - loss: 3.5309
+35/73 [=============>................] - ETA: 7s - rpn_cls: 2.1636 - rpn_regr: 0.2839 - final_cls: 0.5906 - final_regr: 0.5108 - loss: 3.5489
+36/73 [=============>................] - ETA: 7s - rpn_cls: 2.1808 - rpn_regr: 0.2837 - final_cls: 0.5904 - final_regr: 0.5090 - loss: 3.5638
+37/73 [==============>...............] - ETA: 7s - rpn_cls: 2.1981 - rpn_regr: 0.2834 - final_cls: 0.5902 - final_regr: 0.5072 - loss: 3.5789
+38/73 [==============>...............] - ETA: 6s - rpn_cls: 2.2149 - rpn_regr: 0.2829 - final_cls: 0.5900 - final_regr: 0.5055 - loss: 3.5933
+39/73 [===============>..............] - ETA: 6s - rpn_cls: 2.2290 - rpn_regr: 0.2825 - final_cls: 0.5896 - final_regr: 0.5037 - loss: 3.6047
+40/73 [===============>..............] - ETA: 6s - rpn_cls: 2.2445 - rpn_regr: 0.2819 - final_cls: 0.5891 - final_regr: 0.5017 - loss: 3.6173
+41/73 [===============>..............] - ETA: 6s - rpn_cls: 2.2587 - rpn_regr: 0.2814 - final_cls: 0.5887 - final_regr: 0.4998 - loss: 3.6286
+42/73 [================>.............] - ETA: 6s - rpn_cls: 2.2718 - rpn_regr: 0.2808 - final_cls: 0.5886 - final_regr: 0.4982 - loss: 3.6395
+43/73 [================>.............] - ETA: 5s - rpn_cls: 2.2866 - rpn_regr: 0.2802 - final_cls: 0.5883 - final_regr: 0.4965 - loss: 3.6516
+44/73 [=================>............] - ETA: 5s - rpn_cls: 2.2998 - rpn_regr: 0.2797 - final_cls: 0.5880 - final_regr: 0.4948 - loss: 3.6622
+45/73 [=================>............] - ETA: 5s - rpn_cls: 2.3143 - rpn_regr: 0.2792 - final_cls: 0.5876 - final_regr: 0.4930 - loss: 3.6741
+46/73 [=================>............] - ETA: 5s - rpn_cls: 2.3267 - rpn_regr: 0.2786 - final_cls: 0.5873 - final_regr: 0.4913 - loss: 3.6840
+47/73 [==================>...........] - ETA: 5s - rpn_cls: 2.3373 - rpn_regr: 0.2781 - final_cls: 0.5870 - final_regr: 0.4897 - loss: 3.6920
+48/73 [==================>...........] - ETA: 4s - rpn_cls: 2.3462 - rpn_regr: 0.2776 - final_cls: 0.5866 - final_regr: 0.4882 - loss: 3.6987
+49/73 [===================>..........] - ETA: 4s - rpn_cls: 2.3536 - rpn_regr: 0.2771 - final_cls: 0.5862 - final_regr: 0.4868 - loss: 3.7038
+50/73 [===================>..........] - ETA: 4s - rpn_cls: 2.3623 - rpn_regr: 0.2766 - final_cls: 0.5858 - final_regr: 0.4855 - loss: 3.7102
+51/73 [===================>..........] - ETA: 4s - rpn_cls: 2.3696 - rpn_regr: 0.2760 - final_cls: 0.5855 - final_regr: 0.4841 - loss: 3.7152
+52/73 [====================>.........] - ETA: 4s - rpn_cls: 2.3766 - rpn_regr: 0.2756 - final_cls: 0.5854 - final_regr: 0.4828 - loss: 3.7204
+53/73 [====================>.........] - ETA: 3s - rpn_cls: 2.3847 - rpn_regr: 0.2752 - final_cls: 0.5852 - final_regr: 0.4816 - loss: 3.7267
+54/73 [=====================>........] - ETA: 3s - rpn_cls: 2.3919 - rpn_regr: 0.2747 - final_cls: 0.5851 - final_regr: 0.4804 - loss: 3.7321
+55/73 [=====================>........] - ETA: 3s - rpn_cls: 2.3986 - rpn_regr: 0.2742 - final_cls: 0.5849 - final_regr: 0.4792 - loss: 3.7370
+56/73 [======================>.......] - ETA: 3s - rpn_cls: 2.4055 - rpn_regr: 0.2738 - final_cls: 0.5850 - final_regr: 0.4781 - loss: 3.7423
+57/73 [======================>.......] - ETA: 3s - rpn_cls: 2.4112 - rpn_regr: 0.2734 - final_cls: 0.5850 - final_regr: 0.4769 - loss: 3.7465
+58/73 [======================>.......] - ETA: 2s - rpn_cls: 2.4172 - rpn_regr: 0.2729 - final_cls: 0.5851 - final_regr: 0.4759 - loss: 3.7510
+59/73 [=======================>......] - ETA: 2s - rpn_cls: 2.4221 - rpn_regr: 0.2725 - final_cls: 0.5851 - final_regr: 0.4748 - loss: 3.7545
+60/73 [=======================>......] - ETA: 2s - rpn_cls: 2.4267 - rpn_regr: 0.2720 - final_cls: 0.5852 - final_regr: 0.4737 - loss: 3.7576
+61/73 [========================>.....] - ETA: 2s - rpn_cls: 2.4316 - rpn_regr: 0.2715 - final_cls: 0.5852 - final_regr: 0.4727 - loss: 3.7610
+62/73 [========================>.....] - ETA: 2s - rpn_cls: 2.4362 - rpn_regr: 0.2709 - final_cls: 0.5852 - final_regr: 0.4718 - loss: 3.7641
+63/73 [========================>.....] - ETA: 1s - rpn_cls: 2.4401 - rpn_regr: 0.2704 - final_cls: 0.5851 - final_regr: 0.4708 - loss: 3.7664
+64/73 [=========================>....] - ETA: 1s - rpn_cls: 2.4436 - rpn_regr: 0.2699 - final_cls: 0.5850 - final_regr: 0.4699 - loss: 3.7683
+65/73 [=========================>....] - ETA: 1s - rpn_cls: 2.4463 - rpn_regr: 0.2693 - final_cls: 0.5849 - final_regr: 0.4691 - loss: 3.7695
+66/73 [==========================>...] - ETA: 1s - rpn_cls: 2.4488 - rpn_regr: 0.2687 - final_cls: 0.5847 - final_regr: 0.4682 - loss: 3.7705
+67/73 [==========================>...] - ETA: 1s - rpn_cls: 2.4507 - rpn_regr: 0.2681 - final_cls: 0.5845 - final_regr: 0.4675 - loss: 3.7708
+68/73 [==========================>...] - ETA: 0s - rpn_cls: 2.4519 - rpn_regr: 0.2675 - final_cls: 0.5844 - final_regr: 0.4667 - loss: 3.7705
+69/73 [===========================>..] - ETA: 0s - rpn_cls: 2.4526 - rpn_regr: 0.2671 - final_cls: 0.5842 - final_regr: 0.4660 - loss: 3.7698
+70/73 [===========================>..] - ETA: 0s - rpn_cls: 2.4540 - rpn_regr: 0.2667 - final_cls: 0.5839 - final_regr: 0.4651 - loss: 3.7698
+71/73 [============================>.] - ETA: 0s - rpn_cls: 2.4550 - rpn_regr: 0.2663 - final_cls: 0.5838 - final_regr: 0.4643 - loss: 3.7694
+72/73 [============================>.] - ETA: 0s - rpn_cls: 2.4559 - rpn_regr: 0.2658 - final_cls: 0.5837 - final_regr: 0.4635 - loss: 3.7689
+73/73 [==============================] - 14s 192ms/step - rpn_cls: 2.4564 - rpn_regr: 0.2654 - final_cls: 0.5837 - final_regr: 0.4627 - loss: 3.7683
+Mean number of bounding boxes from RPN overlapping ground truth boxes: 10.643835616438356
+Classifier accuracy for bounding boxes from RPN: 0.75
+Loss RPN classifier: 2.4975507023593884
+Loss RPN regression: 0.23733290815598343
+Loss Detector classifier: 0.5781475362712389
+Loss Detector regression: 0.4056925320462005
+Total loss: 3.7187236788328115
+Elapsed time: 13.988943099975586
+Start of the validation phase
+
+ 1/24 [>.............................] - ETA: 5:23 - rpn_cls_val: 2.5798 - rpn_regr_val: 0.0655 - final_cls_val: 0.4705 - final_regr_val: 0.3651 - loss_val: 3.4810
+ 2/24 [=>............................] - ETA: 2:37 - rpn_cls_val: 1.9415 - rpn_regr_val: 0.1735 - final_cls_val: 0.5823 - final_regr_val: 0.3259 - loss_val: 3.0232
+ 3/24 [==>...........................] - ETA: 1:40 - rpn_cls_val: 2.2129 - rpn_regr_val: 0.1834 - final_cls_val: 0.6151 - final_regr_val: 0.3195 - loss_val: 3.3308
+ 4/24 [====>.........................] - ETA: 1:12 - rpn_cls_val: 2.1763 - rpn_regr_val: 0.2123 - final_cls_val: 0.6208 - final_regr_val: 0.3358 - loss_val: 3.3453
+ 5/24 [=====>........................] - ETA: 55s - rpn_cls_val: 2.1488 - rpn_regr_val: 0.2187 - final_cls_val: 0.6255 - final_regr_val: 0.3472 - loss_val: 3.3402 
+ 6/24 [======>.......................] - ETA: 43s - rpn_cls_val: 2.0739 - rpn_regr_val: 0.2189 - final_cls_val: 0.6245 - final_regr_val: 0.3476 - loss_val: 3.2648
+ 7/24 [=======>......................] - ETA: 35s - rpn_cls_val: 2.0350 - rpn_regr_val: 0.2156 - final_cls_val: 0.6205 - final_regr_val: 0.3519 - loss_val: 3.2230
+ 8/24 [=========>....................] - ETA: 29s - rpn_cls_val: 2.1706 - rpn_regr_val: 0.2169 - final_cls_val: 0.6136 - final_regr_val: 0.3492 - loss_val: 3.3503
+ 9/24 [==========>...................] - ETA: 24s - rpn_cls_val: 2.2970 - rpn_regr_val: 0.2168 - final_cls_val: 0.6040 - final_regr_val: 0.3502 - loss_val: 3.4679
+10/24 [===========>..................] - ETA: 20s - rpn_cls_val: 2.4002 - rpn_regr_val: 0.2146 - final_cls_val: 0.5950 - final_regr_val: 0.3501 - loss_val: 3.5598
+11/24 [============>.................] - ETA: 17s - rpn_cls_val: 2.4693 - rpn_regr_val: 0.2125 - final_cls_val: 0.5888 - final_regr_val: 0.3501 - loss_val: 3.6207
+12/24 [==============>...............] - ETA: 15s - rpn_cls_val: 2.5490 - rpn_regr_val: 0.2099 - final_cls_val: 0.5826 - final_regr_val: 0.3476 - loss_val: 3.6892
+13/24 [===============>..............] - ETA: 12s - rpn_cls_val: 2.6096 - rpn_regr_val: 0.2078 - final_cls_val: 0.5768 - final_regr_val: 0.3469 - loss_val: 3.7411
+14/24 [================>.............] - ETA: 10s - rpn_cls_val: 2.6446 - rpn_regr_val: 0.2066 - final_cls_val: 0.5717 - final_regr_val: 0.3471 - loss_val: 3.7699
+15/24 [=================>............] - ETA: 9s - rpn_cls_val: 2.6896 - rpn_regr_val: 0.2055 - final_cls_val: 0.5664 - final_regr_val: 0.3468 - loss_val: 3.8083 
+16/24 [===================>..........] - ETA: 7s - rpn_cls_val: 2.7410 - rpn_regr_val: 0.2044 - final_cls_val: 0.5629 - final_regr_val: 0.3471 - loss_val: 3.8554
+17/24 [====================>.........] - ETA: 6s - rpn_cls_val: 2.7743 - rpn_regr_val: 0.2029 - final_cls_val: 0.5608 - final_regr_val: 0.3475 - loss_val: 3.8854
+18/24 [=====================>........] - ETA: 5s - rpn_cls_val: 2.7937 - rpn_regr_val: 0.2016 - final_cls_val: 0.5583 - final_regr_val: 0.3478 - loss_val: 3.9013
+19/24 [======================>.......] - ETA: 4s - rpn_cls_val: 2.8024 - rpn_regr_val: 0.2001 - final_cls_val: 0.5562 - final_regr_val: 0.3487 - loss_val: 3.9073
+20/24 [========================>.....] - ETA: 3s - rpn_cls_val: 2.8028 - rpn_regr_val: 0.1990 - final_cls_val: 0.5534 - final_regr_val: 0.3490 - loss_val: 3.9042
+21/24 [=========================>....] - ETA: 2s - rpn_cls_val: 2.7991 - rpn_regr_val: 0.1980 - final_cls_val: 0.5531 - final_regr_val: 0.3499 - loss_val: 3.9001
+22/24 [==========================>...] - ETA: 1s - rpn_cls_val: 2.7901 - rpn_regr_val: 0.1967 - final_cls_val: 0.5523 - final_regr_val: 0.3510 - loss_val: 3.8902
+23/24 [===========================>..] - ETA: 0s - rpn_cls_val: 2.7832 - rpn_regr_val: 0.1957 - final_cls_val: 0.5515 - final_regr_val: 0.3524 - loss_val: 3.8828
+24/24 [==============================] - 16s 671ms/step - rpn_cls_val: 2.7723 - rpn_regr_val: 0.1947 - final_cls_val: 0.5510 - final_regr_val: 0.3537 - loss_val: 3.8717
+End of the validation phase
+Validation classifier accuracy for bounding boxes from RPN: 0.78125
+Validation loss RPN classifier: 2.5213738837938293
+Validation loss RPN regression: 0.17078213506223014
+Validation loss Detector classifier: 0.5397868994623423
+Validation loss Detector regression: 0.38494989400108653
+Total validation loss: 3.6168928123194886
+Total validation loss decreased from 4.0302394846681295 to 3.6168928123194886
+=== Fold 4/4 ===
+Epoch 1/2
+
+ 1/73 [..............................] - ETA: 13s - rpn_cls: 8.7429 - rpn_regr: 0.2565 - final_cls: 0.6931 - final_regr: 0.6287 - loss: 10.3213
+ 2/73 [..............................] - ETA: 12s - rpn_cls: 8.9367 - rpn_regr: 0.2201 - final_cls: 0.6927 - final_regr: 0.6639 - loss: 10.5134
+ 3/73 [>.............................] - ETA: 12s - rpn_cls: 9.1305 - rpn_regr: 0.1923 - final_cls: 0.6923 - final_regr: 0.6456 - loss: 10.6607
+ 4/73 [>.............................] - ETA: 12s - rpn_cls: 9.2599 - rpn_regr: 0.1882 - final_cls: 0.6919 - final_regr: 0.6415 - loss: 10.7814
+ 5/73 [=>............................] - ETA: 12s - rpn_cls: 9.3058 - rpn_regr: 0.1854 - final_cls: 0.6917 - final_regr: 0.6509 - loss: 10.8338
+ 6/73 [=>............................] - ETA: 12s - rpn_cls: 9.3093 - rpn_regr: 0.1801 - final_cls: 0.6916 - final_regr: 0.6531 - loss: 10.8341
+ 7/73 [=>............................] - ETA: 12s - rpn_cls: 9.3672 - rpn_regr: 0.1738 - final_cls: 0.6916 - final_regr: 0.6538 - loss: 10.8863
+ 8/73 [==>...........................] - ETA: 11s - rpn_cls: 9.3581 - rpn_regr: 0.1721 - final_cls: 0.6914 - final_regr: 0.6511 - loss: 10.8728
+ 9/73 [==>...........................] - ETA: 11s - rpn_cls: 9.3938 - rpn_regr: 0.1711 - final_cls: 0.6913 - final_regr: 0.6495 - loss: 10.9057
+10/73 [===>..........................] - ETA: 11s - rpn_cls: 9.4135 - rpn_regr: 0.1697 - final_cls: 0.6912 - final_regr: 0.6455 - loss: 10.9198
+11/73 [===>..........................] - ETA: 11s - rpn_cls: 9.4396 - rpn_regr: 0.1678 - final_cls: 0.6910 - final_regr: 0.6401 - loss: 10.9385
+12/73 [===>..........................] - ETA: 10s - rpn_cls: 9.3939 - rpn_regr: 0.1664 - final_cls: 0.6909 - final_regr: 0.6347 - loss: 10.8859
+13/73 [====>.........................] - ETA: 10s - rpn_cls: 9.3204 - rpn_regr: 0.1654 - final_cls: 0.6908 - final_regr: 0.6282 - loss: 10.8049
+14/73 [====>.........................] - ETA: 10s - rpn_cls: 9.2603 - rpn_regr: 0.1640 - final_cls: 0.6908 - final_regr: 0.6218 - loss: 10.7368
+15/73 [=====>........................] - ETA: 10s - rpn_cls: 9.1986 - rpn_regr: 0.1631 - final_cls: 0.6908 - final_regr: 0.6155 - loss: 10.6680
+16/73 [=====>........................] - ETA: 10s - rpn_cls: 9.1440 - rpn_regr: 0.1619 - final_cls: 0.6909 - final_regr: 0.6096 - loss: 10.6064
+17/73 [=====>........................] - ETA: 9s - rpn_cls: 9.1131 - rpn_regr: 0.1619 - final_cls: 0.6909 - final_regr: 0.6051 - loss: 10.5710 
+18/73 [======>.......................] - ETA: 9s - rpn_cls: 9.0786 - rpn_regr: 0.1614 - final_cls: 0.6912 - final_regr: 0.5995 - loss: 10.5307
+19/73 [======>.......................] - ETA: 9s - rpn_cls: 9.0490 - rpn_regr: 0.1609 - final_cls: 0.6915 - final_regr: 0.5941 - loss: 10.4955
+20/73 [=======>......................] - ETA: 9s - rpn_cls: 9.0284 - rpn_regr: 0.1601 - final_cls: 0.6917 - final_regr: 0.5897 - loss: 10.4698
+21/73 [=======>......................] - ETA: 9s - rpn_cls: 9.0061 - rpn_regr: 0.1593 - final_cls: 0.6920 - final_regr: 0.5845 - loss: 10.4420
+22/73 [========>.....................] - ETA: 8s - rpn_cls: 8.9820 - rpn_regr: 0.1587 - final_cls: 0.6922 - final_regr: 0.5801 - loss: 10.4130
+23/73 [========>.....................] - ETA: 8s - rpn_cls: 8.9575 - rpn_regr: 0.1583 - final_cls: 0.6925 - final_regr: 0.5756 - loss: 10.3838
+24/73 [========>.....................] - ETA: 8s - rpn_cls: 8.9318 - rpn_regr: 0.1580 - final_cls: 0.6926 - final_regr: 0.5714 - loss: 10.3539
+25/73 [=========>....................] - ETA: 8s - rpn_cls: 8.9043 - rpn_regr: 0.1578 - final_cls: 0.6928 - final_regr: 0.5676 - loss: 10.3225
+26/73 [=========>....................] - ETA: 8s - rpn_cls: 8.8667 - rpn_regr: 0.1575 - final_cls: 0.6930 - final_regr: 0.5639 - loss: 10.2811
+27/73 [==========>...................] - ETA: 8s - rpn_cls: 8.8232 - rpn_regr: 0.1572 - final_cls: 0.6932 - final_regr: 0.5604 - loss: 10.2340
+28/73 [==========>...................] - ETA: 8s - rpn_cls: 8.7735 - rpn_regr: 0.1572 - final_cls: 0.6933 - final_regr: 0.5570 - loss: 10.1810
+29/73 [==========>...................] - ETA: 7s - rpn_cls: 8.7263 - rpn_regr: 0.1574 - final_cls: 0.6934 - final_regr: 0.5543 - loss: 10.1314
+30/73 [===========>..................] - ETA: 7s - rpn_cls: 8.6816 - rpn_regr: 0.1575 - final_cls: 0.6935 - final_regr: 0.5515 - loss: 10.0841
+31/73 [===========>..................] - ETA: 7s - rpn_cls: 8.6388 - rpn_regr: 0.1576 - final_cls: 0.6936 - final_regr: 0.5488 - loss: 10.0389
+32/73 [============>.................] - ETA: 7s - rpn_cls: 8.5977 - rpn_regr: 0.1578 - final_cls: 0.6937 - final_regr: 0.5460 - loss: 9.9952 
+33/73 [============>.................] - ETA: 7s - rpn_cls: 8.5583 - rpn_regr: 0.1579 - final_cls: 0.6938 - final_regr: 0.5438 - loss: 9.9538
+34/73 [============>.................] - ETA: 6s - rpn_cls: 8.5203 - rpn_regr: 0.1580 - final_cls: 0.6939 - final_regr: 0.5418 - loss: 9.9141
+35/73 [=============>................] - ETA: 6s - rpn_cls: 8.4865 - rpn_regr: 0.1582 - final_cls: 0.6939 - final_regr: 0.5397 - loss: 9.8784
+36/73 [=============>................] - ETA: 6s - rpn_cls: 8.4492 - rpn_regr: 0.1585 - final_cls: 0.6940 - final_regr: 0.5378 - loss: 9.8395
+37/73 [==============>...............] - ETA: 6s - rpn_cls: 8.4142 - rpn_regr: 0.1586 - final_cls: 0.6941 - final_regr: 0.5361 - loss: 9.8029
+38/73 [==============>...............] - ETA: 6s - rpn_cls: 8.3798 - rpn_regr: 0.1587 - final_cls: 0.6941 - final_regr: 0.5344 - loss: 9.7670
+39/73 [===============>..............] - ETA: 6s - rpn_cls: 8.3430 - rpn_regr: 0.1588 - final_cls: 0.6942 - final_regr: 0.5327 - loss: 9.7286
+40/73 [===============>..............] - ETA: 5s - rpn_cls: 8.3081 - rpn_regr: 0.1588 - final_cls: 0.6942 - final_regr: 0.5308 - loss: 9.6919
+41/73 [===============>..............] - ETA: 5s - rpn_cls: 8.2711 - rpn_regr: 0.1589 - final_cls: 0.6942 - final_regr: 0.5290 - loss: 9.6531
+42/73 [================>.............] - ETA: 5s - rpn_cls: 8.2338 - rpn_regr: 0.1588 - final_cls: 0.6942 - final_regr: 0.5272 - loss: 9.6140
+43/73 [================>.............] - ETA: 5s - rpn_cls: 8.1985 - rpn_regr: 0.1588 - final_cls: 0.6942 - final_regr: 0.5252 - loss: 9.5768
+44/73 [=================>............] - ETA: 5s - rpn_cls: 8.1638 - rpn_regr: 0.1588 - final_cls: 0.6941 - final_regr: 0.5236 - loss: 9.5404
+45/73 [=================>............] - ETA: 4s - rpn_cls: 8.1306 - rpn_regr: 0.1589 - final_cls: 0.6941 - final_regr: 0.5219 - loss: 9.5055
+46/73 [=================>............] - ETA: 4s - rpn_cls: 8.0970 - rpn_regr: 0.1589 - final_cls: 0.6941 - final_regr: 0.5204 - loss: 9.4704
+47/73 [==================>...........] - ETA: 4s - rpn_cls: 8.0635 - rpn_regr: 0.1590 - final_cls: 0.6941 - final_regr: 0.5191 - loss: 9.4356
+48/73 [==================>...........] - ETA: 4s - rpn_cls: 8.0286 - rpn_regr: 0.1591 - final_cls: 0.6940 - final_regr: 0.5178 - loss: 9.3995
+49/73 [===================>..........] - ETA: 4s - rpn_cls: 7.9979 - rpn_regr: 0.1591 - final_cls: 0.6940 - final_regr: 0.5168 - loss: 9.3678
+50/73 [===================>..........] - ETA: 4s - rpn_cls: 7.9660 - rpn_regr: 0.1592 - final_cls: 0.6939 - final_regr: 0.5158 - loss: 9.3348
+51/73 [===================>..........] - ETA: 3s - rpn_cls: 7.9348 - rpn_regr: 0.1591 - final_cls: 0.6939 - final_regr: 0.5148 - loss: 9.3025
+52/73 [====================>.........] - ETA: 3s - rpn_cls: 7.9025 - rpn_regr: 0.1591 - final_cls: 0.6938 - final_regr: 0.5138 - loss: 9.2692
+53/73 [====================>.........] - ETA: 3s - rpn_cls: 7.8695 - rpn_regr: 0.1591 - final_cls: 0.6938 - final_regr: 0.5128 - loss: 9.2352
+54/73 [=====================>........] - ETA: 3s - rpn_cls: 7.8363 - rpn_regr: 0.1590 - final_cls: 0.6937 - final_regr: 0.5119 - loss: 9.2010
+55/73 [=====================>........] - ETA: 3s - rpn_cls: 7.8050 - rpn_regr: 0.1590 - final_cls: 0.6936 - final_regr: 0.5110 - loss: 9.1687
+56/73 [======================>.......] - ETA: 2s - rpn_cls: 7.7746 - rpn_regr: 0.1589 - final_cls: 0.6936 - final_regr: 0.5102 - loss: 9.1373
+57/73 [======================>.......] - ETA: 2s - rpn_cls: 7.7452 - rpn_regr: 0.1588 - final_cls: 0.6935 - final_regr: 0.5093 - loss: 9.1069
+58/73 [======================>.......] - ETA: 2s - rpn_cls: 7.7157 - rpn_regr: 0.1588 - final_cls: 0.6935 - final_regr: 0.5084 - loss: 9.0764
+59/73 [=======================>......] - ETA: 2s - rpn_cls: 7.6876 - rpn_regr: 0.1587 - final_cls: 0.6934 - final_regr: 0.5075 - loss: 9.0472
+60/73 [=======================>......] - ETA: 2s - rpn_cls: 7.6595 - rpn_regr: 0.1585 - final_cls: 0.6934 - final_regr: 0.5067 - loss: 9.0181
+61/73 [========================>.....] - ETA: 2s - rpn_cls: 7.6338 - rpn_regr: 0.1583 - final_cls: 0.6933 - final_regr: 0.5058 - loss: 8.9913
+62/73 [========================>.....] - ETA: 1s - rpn_cls: 7.6082 - rpn_regr: 0.1582 - final_cls: 0.6933 - final_regr: 0.5048 - loss: 8.9645
+63/73 [========================>.....] - ETA: 1s - rpn_cls: 7.5844 - rpn_regr: 0.1580 - final_cls: 0.6932 - final_regr: 0.5039 - loss: 8.9395
+64/73 [=========================>....] - ETA: 1s - rpn_cls: 7.5599 - rpn_regr: 0.1578 - final_cls: 0.6931 - final_regr: 0.5031 - loss: 8.9140
+65/73 [=========================>....] - ETA: 1s - rpn_cls: 7.5377 - rpn_regr: 0.1577 - final_cls: 0.6931 - final_regr: 0.5024 - loss: 8.8908
+66/73 [==========================>...] - ETA: 1s - rpn_cls: 7.5165 - rpn_regr: 0.1575 - final_cls: 0.6930 - final_regr: 0.5018 - loss: 8.8688
+67/73 [==========================>...] - ETA: 1s - rpn_cls: 7.4953 - rpn_regr: 0.1574 - final_cls: 0.6929 - final_regr: 0.5012 - loss: 8.8468
+68/73 [==========================>...] - ETA: 0s - rpn_cls: 7.4750 - rpn_regr: 0.1572 - final_cls: 0.6929 - final_regr: 0.5006 - loss: 8.8256
+69/73 [===========================>..] - ETA: 0s - rpn_cls: 7.4539 - rpn_regr: 0.1570 - final_cls: 0.6928 - final_regr: 0.5000 - loss: 8.8038
+70/73 [===========================>..] - ETA: 0s - rpn_cls: 7.4326 - rpn_regr: 0.1569 - final_cls: 0.6928 - final_regr: 0.4994 - loss: 8.7817
+71/73 [============================>.] - ETA: 0s - rpn_cls: 7.4110 - rpn_regr: 0.1567 - final_cls: 0.6927 - final_regr: 0.4988 - loss: 8.7592
+72/73 [============================>.] - ETA: 0s - rpn_cls: 7.3896 - rpn_regr: 0.1565 - final_cls: 0.6926 - final_regr: 0.4982 - loss: 8.7369
+73/73 [==============================] - 13s 175ms/step - rpn_cls: 7.3681 - rpn_regr: 0.1563 - final_cls: 0.6926 - final_regr: 0.4976 - loss: 8.7146
+Mean number of bounding boxes from RPN overlapping ground truth boxes: 8.945205479452055
+Classifier accuracy for bounding boxes from RPN: 0.5582191780821918
+Loss RPN classifier: 5.821955133920159
+Loss RPN regression: 0.14291579313321065
+Loss Detector classifier: 0.6880541558135046
+Loss Detector regression: 0.45258560572585016
+Total loss: 7.105510688592725
+Elapsed time: 12.804786205291748
+Start of the validation phase
+
+ 1/24 [>.............................] - ETA: 4:56 - rpn_cls_val: 6.5628 - rpn_regr_val: 0.0258 - final_cls_val: 0.6390 - final_regr_val: 0.0000e+00 - loss_val: 7.2276
+ 2/24 [=>............................] - ETA: 2:22 - rpn_cls_val: 4.9273 - rpn_regr_val: 0.0506 - final_cls_val: 0.6531 - final_regr_val: 0.1744 - loss_val: 5.8053    
+ 3/24 [==>...........................] - ETA: 1:31 - rpn_cls_val: 4.2914 - rpn_regr_val: 0.0553 - final_cls_val: 0.6586 - final_regr_val: 0.2298 - loss_val: 5.2351
+ 4/24 [====>.........................] - ETA: 1:05 - rpn_cls_val: 4.1995 - rpn_regr_val: 0.0667 - final_cls_val: 0.6601 - final_regr_val: 0.2650 - loss_val: 5.1914
+ 5/24 [=====>........................] - ETA: 50s - rpn_cls_val: 4.0864 - rpn_regr_val: 0.0749 - final_cls_val: 0.6608 - final_regr_val: 0.2905 - loss_val: 5.1126 
+ 6/24 [======>.......................] - ETA: 40s - rpn_cls_val: 3.9449 - rpn_regr_val: 0.0789 - final_cls_val: 0.6616 - final_regr_val: 0.3037 - loss_val: 4.9891
+ 7/24 [=======>......................] - ETA: 32s - rpn_cls_val: 3.8164 - rpn_regr_val: 0.0816 - final_cls_val: 0.6622 - final_regr_val: 0.3116 - loss_val: 4.8718
+ 8/24 [=========>....................] - ETA: 27s - rpn_cls_val: 3.7530 - rpn_regr_val: 0.0861 - final_cls_val: 0.6630 - final_regr_val: 0.3208 - loss_val: 4.8229
+ 9/24 [==========>...................] - ETA: 22s - rpn_cls_val: 3.7068 - rpn_regr_val: 0.0887 - final_cls_val: 0.6636 - final_regr_val: 0.3291 - loss_val: 4.7882
+10/24 [===========>..................] - ETA: 19s - rpn_cls_val: 3.6364 - rpn_regr_val: 0.0917 - final_cls_val: 0.6637 - final_regr_val: 0.3374 - loss_val: 4.7292
+11/24 [============>.................] - ETA: 16s - rpn_cls_val: 3.5776 - rpn_regr_val: 0.0935 - final_cls_val: 0.6641 - final_regr_val: 0.3438 - loss_val: 4.6790
+12/24 [==============>...............] - ETA: 13s - rpn_cls_val: 3.5199 - rpn_regr_val: 0.0949 - final_cls_val: 0.6646 - final_regr_val: 0.3503 - loss_val: 4.6297
+13/24 [===============>..............] - ETA: 11s - rpn_cls_val: 3.4705 - rpn_regr_val: 0.0959 - final_cls_val: 0.6649 - final_regr_val: 0.3550 - loss_val: 4.5862
+14/24 [================>.............] - ETA: 10s - rpn_cls_val: 3.4382 - rpn_regr_val: 0.0970 - final_cls_val: 0.6650 - final_regr_val: 0.3590 - loss_val: 4.5592
+15/24 [=================>............] - ETA: 8s - rpn_cls_val: 3.4024 - rpn_regr_val: 0.0977 - final_cls_val: 0.6653 - final_regr_val: 0.3617 - loss_val: 4.5271 
+16/24 [===================>..........] - ETA: 7s - rpn_cls_val: 3.3849 - rpn_regr_val: 0.0980 - final_cls_val: 0.6655 - final_regr_val: 0.3641 - loss_val: 4.5126
+17/24 [====================>.........] - ETA: 5s - rpn_cls_val: 3.3621 - rpn_regr_val: 0.0984 - final_cls_val: 0.6657 - final_regr_val: 0.3669 - loss_val: 4.4931
+18/24 [=====================>........] - ETA: 4s - rpn_cls_val: 3.3325 - rpn_regr_val: 0.0987 - final_cls_val: 0.6659 - final_regr_val: 0.3695 - loss_val: 4.4666
+19/24 [======================>.......] - ETA: 3s - rpn_cls_val: 3.3133 - rpn_regr_val: 0.0995 - final_cls_val: 0.6661 - final_regr_val: 0.3722 - loss_val: 4.4512
+20/24 [========================>.....] - ETA: 2s - rpn_cls_val: 3.2895 - rpn_regr_val: 0.1007 - final_cls_val: 0.6662 - final_regr_val: 0.3745 - loss_val: 4.4310
+21/24 [=========================>....] - ETA: 2s - rpn_cls_val: 3.2764 - rpn_regr_val: 0.1018 - final_cls_val: 0.6664 - final_regr_val: 0.3756 - loss_val: 4.4201
+22/24 [==========================>...] - ETA: 1s - rpn_cls_val: 3.2645 - rpn_regr_val: 0.1028 - final_cls_val: 0.6665 - final_regr_val: 0.3767 - loss_val: 4.4105
+23/24 [===========================>..] - ETA: 0s - rpn_cls_val: 3.2552 - rpn_regr_val: 0.1036 - final_cls_val: 0.6666 - final_regr_val: 0.3778 - loss_val: 4.4033
+24/24 [==============================] - 15s 619ms/step - rpn_cls_val: 3.2461 - rpn_regr_val: 0.1044 - final_cls_val: 0.6668 - final_regr_val: 0.3792 - loss_val: 4.3966
+End of the validation phase
+Validation classifier accuracy for bounding boxes from RPN: 0.6770833333333334
+Validation loss RPN classifier: 3.036269061174721
+Validation loss RPN regression: 0.12195523944683373
+Validation loss Detector classifier: 0.671741838256518
+Validation loss Detector regression: 0.4110573896517356
+Total validation loss: 4.241023528529809
+Total validation loss decreased from inf to 4.241023528529809
+Epoch 2/2
+
+ 1/73 [..............................] - ETA: 12s - rpn_cls: 6.4138 - rpn_regr: 0.3128 - final_cls: 0.6524 - final_regr: 0.7129 - loss: 8.0918
+ 2/73 [..............................] - ETA: 12s - rpn_cls: 6.4246 - rpn_regr: 0.2505 - final_cls: 0.6497 - final_regr: 0.6390 - loss: 7.9638
+ 3/73 [>.............................] - ETA: 12s - rpn_cls: 5.9963 - rpn_regr: 0.2191 - final_cls: 0.6491 - final_regr: 0.6119 - loss: 7.4764
+ 4/73 [>.............................] - ETA: 12s - rpn_cls: 5.8551 - rpn_regr: 0.2096 - final_cls: 0.6480 - final_regr: 0.5947 - loss: 7.3074
+ 5/73 [=>............................] - ETA: 12s - rpn_cls: 5.5533 - rpn_regr: 0.2061 - final_cls: 0.6494 - final_regr: 0.5788 - loss: 6.9876
+ 6/73 [=>............................] - ETA: 12s - rpn_cls: 5.2400 - rpn_regr: 0.2011 - final_cls: 0.6504 - final_regr: 0.5653 - loss: 6.6568
+ 7/73 [=>............................] - ETA: 11s - rpn_cls: 4.9805 - rpn_regr: 0.1949 - final_cls: 0.6516 - final_regr: 0.5572 - loss: 6.3841
+ 8/73 [==>...........................] - ETA: 11s - rpn_cls: 4.8300 - rpn_regr: 0.1923 - final_cls: 0.6525 - final_regr: 0.5512 - loss: 6.2259
+ 9/73 [==>...........................] - ETA: 11s - rpn_cls: 4.6663 - rpn_regr: 0.1906 - final_cls: 0.6538 - final_regr: 0.5464 - loss: 6.0571
+10/73 [===>..........................] - ETA: 11s - rpn_cls: 4.5584 - rpn_regr: 0.1889 - final_cls: 0.6543 - final_regr: 0.5404 - loss: 5.9420
+11/73 [===>..........................] - ETA: 11s - rpn_cls: 4.4557 - rpn_regr: 0.1867 - final_cls: 0.6539 - final_regr: 0.5349 - loss: 5.8312
+12/73 [===>..........................] - ETA: 10s - rpn_cls: 4.3464 - rpn_regr: 0.1846 - final_cls: 0.6532 - final_regr: 0.5318 - loss: 5.7161
+13/73 [====>.........................] - ETA: 10s - rpn_cls: 4.2498 - rpn_regr: 0.1825 - final_cls: 0.6527 - final_regr: 0.5290 - loss: 5.6141
+14/73 [====>.........................] - ETA: 10s - rpn_cls: 4.1707 - rpn_regr: 0.1803 - final_cls: 0.6524 - final_regr: 0.5264 - loss: 5.5298
+15/73 [=====>........................] - ETA: 10s - rpn_cls: 4.1448 - rpn_regr: 0.1783 - final_cls: 0.6518 - final_regr: 0.5255 - loss: 5.5003
+16/73 [=====>........................] - ETA: 10s - rpn_cls: 4.1146 - rpn_regr: 0.1760 - final_cls: 0.6508 - final_regr: 0.5242 - loss: 5.4656
+17/73 [=====>........................] - ETA: 9s - rpn_cls: 4.0753 - rpn_regr: 0.1751 - final_cls: 0.6502 - final_regr: 0.5228 - loss: 5.4234 
+18/73 [======>.......................] - ETA: 9s - rpn_cls: 4.0489 - rpn_regr: 0.1748 - final_cls: 0.6503 - final_regr: 0.5200 - loss: 5.3940
+19/73 [======>.......................] - ETA: 9s - rpn_cls: 4.0291 - rpn_regr: 0.1743 - final_cls: 0.6500 - final_regr: 0.5168 - loss: 5.3702
+20/73 [=======>......................] - ETA: 9s - rpn_cls: 4.0113 - rpn_regr: 0.1736 - final_cls: 0.6495 - final_regr: 0.5138 - loss: 5.3482
+21/73 [=======>......................] - ETA: 9s - rpn_cls: 4.0014 - rpn_regr: 0.1726 - final_cls: 0.6492 - final_regr: 0.5104 - loss: 5.3336
+22/73 [========>.....................] - ETA: 8s - rpn_cls: 3.9845 - rpn_regr: 0.1718 - final_cls: 0.6489 - final_regr: 0.5074 - loss: 5.3126
+23/73 [========>.....................] - ETA: 8s - rpn_cls: 3.9639 - rpn_regr: 0.1715 - final_cls: 0.6488 - final_regr: 0.5046 - loss: 5.2888
+24/73 [========>.....................] - ETA: 8s - rpn_cls: 3.9389 - rpn_regr: 0.1711 - final_cls: 0.6486 - final_regr: 0.5018 - loss: 5.2605
+25/73 [=========>....................] - ETA: 8s - rpn_cls: 3.9136 - rpn_regr: 0.1707 - final_cls: 0.6483 - final_regr: 0.4991 - loss: 5.2316
+26/73 [=========>....................] - ETA: 8s - rpn_cls: 3.8854 - rpn_regr: 0.1703 - final_cls: 0.6480 - final_regr: 0.4965 - loss: 5.2002
+27/73 [==========>...................] - ETA: 8s - rpn_cls: 3.8550 - rpn_regr: 0.1697 - final_cls: 0.6475 - final_regr: 0.4941 - loss: 5.1663
+28/73 [==========>...................] - ETA: 7s - rpn_cls: 3.8228 - rpn_regr: 0.1693 - final_cls: 0.6471 - final_regr: 0.4921 - loss: 5.1314
+29/73 [==========>...................] - ETA: 7s - rpn_cls: 3.7973 - rpn_regr: 0.1692 - final_cls: 0.6467 - final_regr: 0.4904 - loss: 5.1036
+30/73 [===========>..................] - ETA: 7s - rpn_cls: 3.7746 - rpn_regr: 0.1690 - final_cls: 0.6461 - final_regr: 0.4888 - loss: 5.0785
+31/73 [===========>..................] - ETA: 7s - rpn_cls: 3.7501 - rpn_regr: 0.1688 - final_cls: 0.6458 - final_regr: 0.4875 - loss: 5.0522
+32/73 [============>.................] - ETA: 7s - rpn_cls: 3.7364 - rpn_regr: 0.1685 - final_cls: 0.6457 - final_regr: 0.4858 - loss: 5.0364
+33/73 [============>.................] - ETA: 7s - rpn_cls: 3.7216 - rpn_regr: 0.1682 - final_cls: 0.6455 - final_regr: 0.4841 - loss: 5.0195
+34/73 [============>.................] - ETA: 6s - rpn_cls: 3.7049 - rpn_regr: 0.1679 - final_cls: 0.6454 - final_regr: 0.4824 - loss: 5.0008
+35/73 [=============>................] - ETA: 6s - rpn_cls: 3.6911 - rpn_regr: 0.1680 - final_cls: 0.6452 - final_regr: 0.4809 - loss: 4.9851
+36/73 [=============>................] - ETA: 6s - rpn_cls: 3.6755 - rpn_regr: 0.1681 - final_cls: 0.6451 - final_regr: 0.4795 - loss: 4.9682
+37/73 [==============>...............] - ETA: 6s - rpn_cls: 3.6607 - rpn_regr: 0.1681 - final_cls: 0.6450 - final_regr: 0.4780 - loss: 4.9519
+38/73 [==============>...............] - ETA: 6s - rpn_cls: 3.6445 - rpn_regr: 0.1681 - final_cls: 0.6448 - final_regr: 0.4767 - loss: 4.9341
+39/73 [===============>..............] - ETA: 6s - rpn_cls: 3.6313 - rpn_regr: 0.1681 - final_cls: 0.6445 - final_regr: 0.4754 - loss: 4.9193
+40/73 [===============>..............] - ETA: 5s - rpn_cls: 3.6207 - rpn_regr: 0.1682 - final_cls: 0.6442 - final_regr: 0.4738 - loss: 4.9069
+41/73 [===============>..............] - ETA: 5s - rpn_cls: 3.6094 - rpn_regr: 0.1687 - final_cls: 0.6439 - final_regr: 0.4726 - loss: 4.8945
+42/73 [================>.............] - ETA: 5s - rpn_cls: 3.5985 - rpn_regr: 0.1691 - final_cls: 0.6435 - final_regr: 0.4715 - loss: 4.8826
+43/73 [================>.............] - ETA: 5s - rpn_cls: 3.5900 - rpn_regr: 0.1696 - final_cls: 0.6430 - final_regr: 0.4701 - loss: 4.8728
+44/73 [=================>............] - ETA: 5s - rpn_cls: 3.5818 - rpn_regr: 0.1702 - final_cls: 0.6428 - final_regr: 0.4689 - loss: 4.8637
+45/73 [=================>............] - ETA: 4s - rpn_cls: 3.5757 - rpn_regr: 0.1707 - final_cls: 0.6425 - final_regr: 0.4676 - loss: 4.8565
+46/73 [=================>............] - ETA: 4s - rpn_cls: 3.5712 - rpn_regr: 0.1712 - final_cls: 0.6420 - final_regr: 0.4664 - loss: 4.8508
+47/73 [==================>...........] - ETA: 4s - rpn_cls: 3.5654 - rpn_regr: 0.1717 - final_cls: 0.6415 - final_regr: 0.4654 - loss: 4.8440
+48/73 [==================>...........] - ETA: 4s - rpn_cls: 3.5584 - rpn_regr: 0.1722 - final_cls: 0.6410 - final_regr: 0.4645 - loss: 4.8361
+49/73 [===================>..........] - ETA: 4s - rpn_cls: 3.5532 - rpn_regr: 0.1727 - final_cls: 0.6405 - final_regr: 0.4637 - loss: 4.8301
+50/73 [===================>..........] - ETA: 4s - rpn_cls: 3.5469 - rpn_regr: 0.1732 - final_cls: 0.6400 - final_regr: 0.4630 - loss: 4.8231
+51/73 [===================>..........] - ETA: 3s - rpn_cls: 3.5407 - rpn_regr: 0.1737 - final_cls: 0.6395 - final_regr: 0.4622 - loss: 4.8162
+52/73 [====================>.........] - ETA: 3s - rpn_cls: 3.5349 - rpn_regr: 0.1741 - final_cls: 0.6391 - final_regr: 0.4615 - loss: 4.8096
+53/73 [====================>.........] - ETA: 3s - rpn_cls: 3.5295 - rpn_regr: 0.1745 - final_cls: 0.6388 - final_regr: 0.4608 - loss: 4.8037
+54/73 [=====================>........] - ETA: 3s - rpn_cls: 3.5245 - rpn_regr: 0.1749 - final_cls: 0.6385 - final_regr: 0.4602 - loss: 4.7981
+55/73 [=====================>........] - ETA: 3s - rpn_cls: 3.5185 - rpn_regr: 0.1752 - final_cls: 0.6382 - final_regr: 0.4596 - loss: 4.7915
+56/73 [======================>.......] - ETA: 3s - rpn_cls: 3.5118 - rpn_regr: 0.1754 - final_cls: 0.6378 - final_regr: 0.4590 - loss: 4.7841
+57/73 [======================>.......] - ETA: 2s - rpn_cls: 3.5082 - rpn_regr: 0.1757 - final_cls: 0.6375 - final_regr: 0.4584 - loss: 4.7799
+58/73 [======================>.......] - ETA: 2s - rpn_cls: 3.5038 - rpn_regr: 0.1759 - final_cls: 0.6372 - final_regr: 0.4579 - loss: 4.7749
+59/73 [=======================>......] - ETA: 2s - rpn_cls: 3.4988 - rpn_regr: 0.1762 - final_cls: 0.6369 - final_regr: 0.4573 - loss: 4.7692
+60/73 [=======================>......] - ETA: 2s - rpn_cls: 3.4939 - rpn_regr: 0.1764 - final_cls: 0.6366 - final_regr: 0.4567 - loss: 4.7636
+61/73 [========================>.....] - ETA: 2s - rpn_cls: 3.4902 - rpn_regr: 0.1766 - final_cls: 0.6363 - final_regr: 0.4560 - loss: 4.7591
+62/73 [========================>.....] - ETA: 1s - rpn_cls: 3.4867 - rpn_regr: 0.1767 - final_cls: 0.6360 - final_regr: 0.4555 - loss: 4.7548
+63/73 [========================>.....] - ETA: 1s - rpn_cls: 3.4825 - rpn_regr: 0.1768 - final_cls: 0.6357 - final_regr: 0.4549 - loss: 4.7499
+64/73 [=========================>....] - ETA: 1s - rpn_cls: 3.4793 - rpn_regr: 0.1769 - final_cls: 0.6354 - final_regr: 0.4544 - loss: 4.7460
+65/73 [=========================>....] - ETA: 1s - rpn_cls: 3.4754 - rpn_regr: 0.1770 - final_cls: 0.6350 - final_regr: 0.4540 - loss: 4.7414
+66/73 [==========================>...] - ETA: 1s - rpn_cls: 3.4711 - rpn_regr: 0.1771 - final_cls: 0.6347 - final_regr: 0.4536 - loss: 4.7364
+67/73 [==========================>...] - ETA: 1s - rpn_cls: 3.4662 - rpn_regr: 0.1771 - final_cls: 0.6343 - final_regr: 0.4531 - loss: 4.7307
+68/73 [==========================>...] - ETA: 0s - rpn_cls: 3.4615 - rpn_regr: 0.1772 - final_cls: 0.6339 - final_regr: 0.4526 - loss: 4.7252
+69/73 [===========================>..] - ETA: 0s - rpn_cls: 3.4562 - rpn_regr: 0.1772 - final_cls: 0.6335 - final_regr: 0.4521 - loss: 4.7190
+70/73 [===========================>..] - ETA: 0s - rpn_cls: 3.4506 - rpn_regr: 0.1772 - final_cls: 0.6331 - final_regr: 0.4516 - loss: 4.7125
+71/73 [============================>.] - ETA: 0s - rpn_cls: 3.4447 - rpn_regr: 0.1772 - final_cls: 0.6327 - final_regr: 0.4510 - loss: 4.7056
+72/73 [============================>.] - ETA: 0s - rpn_cls: 3.4387 - rpn_regr: 0.1772 - final_cls: 0.6322 - final_regr: 0.4505 - loss: 4.6986
+73/73 [==============================] - 13s 177ms/step - rpn_cls: 3.4328 - rpn_regr: 0.1772 - final_cls: 0.6318 - final_regr: 0.4499 - loss: 4.6917
+Mean number of bounding boxes from RPN overlapping ground truth boxes: 11.027397260273972
+Classifier accuracy for bounding boxes from RPN: 0.7054794520547946
+Loss RPN classifier: 3.006127691312801
+Loss RPN regression: 0.17479597631688804
+Loss Detector classifier: 0.6014424942127646
+Loss Detector regression: 0.41196863577790455
+Total loss: 4.194334797620359
+Elapsed time: 12.917599201202393
+Start of the validation phase
+
+ 1/24 [>.............................] - ETA: 4:59 - rpn_cls_val: 6.5616 - rpn_regr_val: 0.7859 - final_cls_val: 0.4914 - final_regr_val: 0.3063 - loss_val: 8.1453
+ 2/24 [=>............................] - ETA: 2:24 - rpn_cls_val: 4.9213 - rpn_regr_val: 0.6271 - final_cls_val: 0.4847 - final_regr_val: 0.4193 - loss_val: 6.4523
+ 3/24 [==>...........................] - ETA: 1:32 - rpn_cls_val: 4.2199 - rpn_regr_val: 0.5271 - final_cls_val: 0.4755 - final_regr_val: 0.4142 - loss_val: 5.6367
+ 4/24 [====>.........................] - ETA: 1:06 - rpn_cls_val: 4.1080 - rpn_regr_val: 0.4676 - final_cls_val: 0.4860 - final_regr_val: 0.4008 - loss_val: 5.4624
+ 5/24 [=====>........................] - ETA: 50s - rpn_cls_val: 4.1235 - rpn_regr_val: 0.4268 - final_cls_val: 0.4913 - final_regr_val: 0.3968 - loss_val: 5.4384 
+ 6/24 [======>.......................] - ETA: 40s - rpn_cls_val: 4.0874 - rpn_regr_val: 0.3945 - final_cls_val: 0.4899 - final_regr_val: 0.3906 - loss_val: 5.3624
+ 7/24 [=======>......................] - ETA: 32s - rpn_cls_val: 4.0216 - rpn_regr_val: 0.3677 - final_cls_val: 0.4891 - final_regr_val: 0.3809 - loss_val: 5.2593
+ 8/24 [=========>....................] - ETA: 27s - rpn_cls_val: 3.9940 - rpn_regr_val: 0.3483 - final_cls_val: 0.4895 - final_regr_val: 0.3764 - loss_val: 5.2082
+ 9/24 [==========>...................] - ETA: 22s - rpn_cls_val: 3.9490 - rpn_regr_val: 0.3313 - final_cls_val: 0.4887 - final_regr_val: 0.3755 - loss_val: 5.1445
+10/24 [===========>..................] - ETA: 19s - rpn_cls_val: 3.8771 - rpn_regr_val: 0.3181 - final_cls_val: 0.4870 - final_regr_val: 0.3737 - loss_val: 5.0559
+11/24 [============>.................] - ETA: 16s - rpn_cls_val: 3.8026 - rpn_regr_val: 0.3061 - final_cls_val: 0.4864 - final_regr_val: 0.3707 - loss_val: 4.9657
+12/24 [==============>...............] - ETA: 13s - rpn_cls_val: 3.7447 - rpn_regr_val: 0.2953 - final_cls_val: 0.4865 - final_regr_val: 0.3696 - loss_val: 4.8962
+13/24 [===============>..............] - ETA: 11s - rpn_cls_val: 3.6773 - rpn_regr_val: 0.2857 - final_cls_val: 0.4881 - final_regr_val: 0.3700 - loss_val: 4.8211
+14/24 [================>.............] - ETA: 10s - rpn_cls_val: 3.6050 - rpn_regr_val: 0.2772 - final_cls_val: 0.4889 - final_regr_val: 0.3700 - loss_val: 4.7411
+15/24 [=================>............] - ETA: 8s - rpn_cls_val: 3.5469 - rpn_regr_val: 0.2693 - final_cls_val: 0.4897 - final_regr_val: 0.3695 - loss_val: 4.6754 
+16/24 [===================>..........] - ETA: 7s - rpn_cls_val: 3.4854 - rpn_regr_val: 0.2624 - final_cls_val: 0.4895 - final_regr_val: 0.3692 - loss_val: 4.6064
+17/24 [====================>.........] - ETA: 5s - rpn_cls_val: 3.4405 - rpn_regr_val: 0.2558 - final_cls_val: 0.4886 - final_regr_val: 0.3693 - loss_val: 4.5542
+18/24 [=====================>........] - ETA: 4s - rpn_cls_val: 3.4120 - rpn_regr_val: 0.2498 - final_cls_val: 0.4873 - final_regr_val: 0.3687 - loss_val: 4.5177
+19/24 [======================>.......] - ETA: 3s - rpn_cls_val: 3.3784 - rpn_regr_val: 0.2445 - final_cls_val: 0.4860 - final_regr_val: 0.3683 - loss_val: 4.4771
+20/24 [========================>.....] - ETA: 2s - rpn_cls_val: 3.3572 - rpn_regr_val: 0.2413 - final_cls_val: 0.4844 - final_regr_val: 0.3678 - loss_val: 4.4507
+21/24 [=========================>....] - ETA: 2s - rpn_cls_val: 3.3462 - rpn_regr_val: 0.2390 - final_cls_val: 0.4831 - final_regr_val: 0.3665 - loss_val: 4.4349
+22/24 [==========================>...] - ETA: 1s - rpn_cls_val: 3.3360 - rpn_regr_val: 0.2369 - final_cls_val: 0.4818 - final_regr_val: 0.3655 - loss_val: 4.4202
+23/24 [===========================>..] - ETA: 0s - rpn_cls_val: 3.3275 - rpn_regr_val: 0.2346 - final_cls_val: 0.4809 - final_regr_val: 0.3647 - loss_val: 4.4077
+24/24 [==============================] - 15s 621ms/step - rpn_cls_val: 3.3186 - rpn_regr_val: 0.2329 - final_cls_val: 0.4804 - final_regr_val: 0.3636 - loss_val: 4.3954
+End of the validation phase
+Validation classifier accuracy for bounding boxes from RPN: 0.8125
+Validation loss RPN classifier: 3.1118925682991745
+Validation loss RPN regression: 0.19267479004338384
+Validation loss Detector classifier: 0.4696768932044506
+Validation loss Detector regression: 0.33845433437575895
+Total validation loss: 4.112698585922768
+Total validation loss decreased from 4.241023528529809 to 4.112698585922768
+=== Best epoch: 2 ===
+Epoch 1/2
+
+ 1/97 [..............................] - ETA: 15s - rpn_cls: 10.4469 - rpn_regr: 0.0912 - final_cls: 0.6931 - final_regr: 0.4709 - loss: 11.7022
+ 2/97 [..............................] - ETA: 15s - rpn_cls: 10.0766 - rpn_regr: 0.0970 - final_cls: 0.6930 - final_regr: 0.4593 - loss: 11.3259
+ 3/97 [..............................] - ETA: 15s - rpn_cls: 9.8781 - rpn_regr: 0.0923 - final_cls: 0.6924 - final_regr: 0.4403 - loss: 11.1031 
+ 4/97 [>.............................] - ETA: 16s - rpn_cls: 9.6126 - rpn_regr: 0.0925 - final_cls: 0.6919 - final_regr: 0.4341 - loss: 10.8310
+ 5/97 [>.............................] - ETA: 16s - rpn_cls: 9.3492 - rpn_regr: 0.0895 - final_cls: 0.6930 - final_regr: 0.4137 - loss: 10.5454
+ 6/97 [>.............................] - ETA: 15s - rpn_cls: 9.0281 - rpn_regr: 0.0893 - final_cls: 0.6936 - final_regr: 0.3979 - loss: 10.2090
+ 7/97 [=>............................] - ETA: 15s - rpn_cls: 8.8355 - rpn_regr: 0.0888 - final_cls: 0.6941 - final_regr: 0.3887 - loss: 10.0071
+ 8/97 [=>............................] - ETA: 15s - rpn_cls: 8.6657 - rpn_regr: 0.0885 - final_cls: 0.6944 - final_regr: 0.3823 - loss: 9.8309 
+ 9/97 [=>............................] - ETA: 15s - rpn_cls: 8.5456 - rpn_regr: 0.0875 - final_cls: 0.6946 - final_regr: 0.3821 - loss: 9.7098
+10/97 [==>...........................] - ETA: 15s - rpn_cls: 8.4863 - rpn_regr: 0.0872 - final_cls: 0.6947 - final_regr: 0.3846 - loss: 9.6528
+11/97 [==>...........................] - ETA: 14s - rpn_cls: 8.4245 - rpn_regr: 0.0883 - final_cls: 0.6947 - final_regr: 0.3862 - loss: 9.5937
+12/97 [==>...........................] - ETA: 14s - rpn_cls: 8.3314 - rpn_regr: 0.0899 - final_cls: 0.6947 - final_regr: 0.3881 - loss: 9.5042
+13/97 [===>..........................] - ETA: 14s - rpn_cls: 8.2861 - rpn_regr: 0.0909 - final_cls: 0.6948 - final_regr: 0.3873 - loss: 9.4591
+14/97 [===>..........................] - ETA: 14s - rpn_cls: 8.2429 - rpn_regr: 0.0914 - final_cls: 0.6948 - final_regr: 0.3868 - loss: 9.4159
+15/97 [===>..........................] - ETA: 14s - rpn_cls: 8.1967 - rpn_regr: 0.0923 - final_cls: 0.6948 - final_regr: 0.3870 - loss: 9.3708
+16/97 [===>..........................] - ETA: 14s - rpn_cls: 8.1523 - rpn_regr: 0.0937 - final_cls: 0.6947 - final_regr: 0.3857 - loss: 9.3264
+17/97 [====>.........................] - ETA: 13s - rpn_cls: 8.1071 - rpn_regr: 0.0951 - final_cls: 0.6946 - final_regr: 0.3853 - loss: 9.2821
+18/97 [====>.........................] - ETA: 13s - rpn_cls: 8.0442 - rpn_regr: 0.0972 - final_cls: 0.6946 - final_regr: 0.3852 - loss: 9.2212
+19/97 [====>.........................] - ETA: 13s - rpn_cls: 7.9691 - rpn_regr: 0.0990 - final_cls: 0.6946 - final_regr: 0.3851 - loss: 9.1477
+20/97 [=====>........................] - ETA: 13s - rpn_cls: 7.9105 - rpn_regr: 0.1005 - final_cls: 0.6945 - final_regr: 0.3855 - loss: 9.0910
+21/97 [=====>........................] - ETA: 13s - rpn_cls: 7.8420 - rpn_regr: 0.1020 - final_cls: 0.6946 - final_regr: 0.3865 - loss: 9.0251
+22/97 [=====>........................] - ETA: 13s - rpn_cls: 7.7795 - rpn_regr: 0.1034 - final_cls: 0.6945 - final_regr: 0.3865 - loss: 8.9640
+23/97 [======>.......................] - ETA: 12s - rpn_cls: 7.7168 - rpn_regr: 0.1047 - final_cls: 0.6944 - final_regr: 0.3868 - loss: 8.9026
+24/97 [======>.......................] - ETA: 12s - rpn_cls: 7.6554 - rpn_regr: 0.1056 - final_cls: 0.6944 - final_regr: 0.3869 - loss: 8.8424
+25/97 [======>.......................] - ETA: 12s - rpn_cls: 7.5890 - rpn_regr: 0.1067 - final_cls: 0.6944 - final_regr: 0.3874 - loss: 8.7775
+26/97 [=======>......................] - ETA: 12s - rpn_cls: 7.5363 - rpn_regr: 0.1077 - final_cls: 0.6944 - final_regr: 0.3881 - loss: 8.7265
+27/97 [=======>......................] - ETA: 12s - rpn_cls: 7.4789 - rpn_regr: 0.1087 - final_cls: 0.6944 - final_regr: 0.3889 - loss: 8.6709
+28/97 [=======>......................] - ETA: 12s - rpn_cls: 7.4335 - rpn_regr: 0.1096 - final_cls: 0.6944 - final_regr: 0.3895 - loss: 8.6270
+29/97 [=======>......................] - ETA: 11s - rpn_cls: 7.3917 - rpn_regr: 0.1107 - final_cls: 0.6944 - final_regr: 0.3902 - loss: 8.5870
+30/97 [========>.....................] - ETA: 11s - rpn_cls: 7.3530 - rpn_regr: 0.1116 - final_cls: 0.6944 - final_regr: 0.3915 - loss: 8.5505
+31/97 [========>.....................] - ETA: 11s - rpn_cls: 7.3103 - rpn_regr: 0.1124 - final_cls: 0.6945 - final_regr: 0.3927 - loss: 8.5098
+32/97 [========>.....................] - ETA: 11s - rpn_cls: 7.2679 - rpn_regr: 0.1132 - final_cls: 0.6945 - final_regr: 0.3938 - loss: 8.4694
+33/97 [=========>....................] - ETA: 11s - rpn_cls: 7.2276 - rpn_regr: 0.1138 - final_cls: 0.6945 - final_regr: 0.3950 - loss: 8.4309
+34/97 [=========>....................] - ETA: 10s - rpn_cls: 7.1900 - rpn_regr: 0.1144 - final_cls: 0.6944 - final_regr: 0.3957 - loss: 8.3945
+35/97 [=========>....................] - ETA: 10s - rpn_cls: 7.1548 - rpn_regr: 0.1150 - final_cls: 0.6944 - final_regr: 0.3964 - loss: 8.3605
+36/97 [==========>...................] - ETA: 10s - rpn_cls: 7.1169 - rpn_regr: 0.1155 - final_cls: 0.6943 - final_regr: 0.3970 - loss: 8.3237
+37/97 [==========>...................] - ETA: 10s - rpn_cls: 7.0813 - rpn_regr: 0.1160 - final_cls: 0.6942 - final_regr: 0.3975 - loss: 8.2890
+38/97 [==========>...................] - ETA: 10s - rpn_cls: 7.0481 - rpn_regr: 0.1164 - final_cls: 0.6942 - final_regr: 0.3983 - loss: 8.2569
+39/97 [===========>..................] - ETA: 10s - rpn_cls: 7.0161 - rpn_regr: 0.1168 - final_cls: 0.6941 - final_regr: 0.3990 - loss: 8.2260
+40/97 [===========>..................] - ETA: 9s - rpn_cls: 6.9895 - rpn_regr: 0.1172 - final_cls: 0.6940 - final_regr: 0.3998 - loss: 8.2004 
+41/97 [===========>..................] - ETA: 9s - rpn_cls: 6.9640 - rpn_regr: 0.1175 - final_cls: 0.6939 - final_regr: 0.4007 - loss: 8.1760
+42/97 [===========>..................] - ETA: 9s - rpn_cls: 6.9404 - rpn_regr: 0.1177 - final_cls: 0.6938 - final_regr: 0.4015 - loss: 8.1534
+43/97 [============>.................] - ETA: 9s - rpn_cls: 6.9197 - rpn_regr: 0.1178 - final_cls: 0.6937 - final_regr: 0.4023 - loss: 8.1335
+44/97 [============>.................] - ETA: 9s - rpn_cls: 6.8968 - rpn_regr: 0.1180 - final_cls: 0.6936 - final_regr: 0.4029 - loss: 8.1112
+45/97 [============>.................] - ETA: 8s - rpn_cls: 6.8727 - rpn_regr: 0.1183 - final_cls: 0.6935 - final_regr: 0.4034 - loss: 8.0879
+46/97 [=============>................] - ETA: 8s - rpn_cls: 6.8527 - rpn_regr: 0.1187 - final_cls: 0.6934 - final_regr: 0.4036 - loss: 8.0684
+47/97 [=============>................] - ETA: 8s - rpn_cls: 6.8320 - rpn_regr: 0.1190 - final_cls: 0.6932 - final_regr: 0.4039 - loss: 8.0483
+48/97 [=============>................] - ETA: 8s - rpn_cls: 6.8108 - rpn_regr: 0.1193 - final_cls: 0.6931 - final_regr: 0.4043 - loss: 8.0276
+49/97 [==============>...............] - ETA: 8s - rpn_cls: 6.7920 - rpn_regr: 0.1196 - final_cls: 0.6930 - final_regr: 0.4046 - loss: 8.0093
+50/97 [==============>...............] - ETA: 8s - rpn_cls: 6.7729 - rpn_regr: 0.1199 - final_cls: 0.6929 - final_regr: 0.4050 - loss: 7.9907
+51/97 [==============>...............] - ETA: 8s - rpn_cls: 6.7527 - rpn_regr: 0.1202 - final_cls: 0.6928 - final_regr: 0.4054 - loss: 7.9710
+52/97 [===============>..............] - ETA: 7s - rpn_cls: 6.7344 - rpn_regr: 0.1204 - final_cls: 0.6926 - final_regr: 0.4057 - loss: 7.9531
+53/97 [===============>..............] - ETA: 7s - rpn_cls: 6.7147 - rpn_regr: 0.1206 - final_cls: 0.6925 - final_regr: 0.4060 - loss: 7.9338
+54/97 [===============>..............] - ETA: 7s - rpn_cls: 6.6961 - rpn_regr: 0.1208 - final_cls: 0.6924 - final_regr: 0.4062 - loss: 7.9155
+55/97 [================>.............] - ETA: 7s - rpn_cls: 6.6771 - rpn_regr: 0.1209 - final_cls: 0.6922 - final_regr: 0.4064 - loss: 7.8967
+56/97 [================>.............] - ETA: 7s - rpn_cls: 6.6574 - rpn_regr: 0.1211 - final_cls: 0.6921 - final_regr: 0.4066 - loss: 7.8771
+57/97 [================>.............] - ETA: 7s - rpn_cls: 6.6385 - rpn_regr: 0.1212 - final_cls: 0.6920 - final_regr: 0.4068 - loss: 7.8585
+58/97 [================>.............] - ETA: 6s - rpn_cls: 6.6206 - rpn_regr: 0.1213 - final_cls: 0.6918 - final_regr: 0.4070 - loss: 7.8408
+59/97 [=================>............] - ETA: 6s - rpn_cls: 6.6038 - rpn_regr: 0.1215 - final_cls: 0.6917 - final_regr: 0.4072 - loss: 7.8241
+60/97 [=================>............] - ETA: 6s - rpn_cls: 6.5879 - rpn_regr: 0.1217 - final_cls: 0.6915 - final_regr: 0.4074 - loss: 7.8085
+61/97 [=================>............] - ETA: 6s - rpn_cls: 6.5710 - rpn_regr: 0.1219 - final_cls: 0.6913 - final_regr: 0.4076 - loss: 7.7918
+62/97 [==================>...........] - ETA: 6s - rpn_cls: 6.5533 - rpn_regr: 0.1220 - final_cls: 0.6911 - final_regr: 0.4077 - loss: 7.7741
+63/97 [==================>...........] - ETA: 5s - rpn_cls: 6.5347 - rpn_regr: 0.1221 - final_cls: 0.6909 - final_regr: 0.4080 - loss: 7.7557
+64/97 [==================>...........] - ETA: 5s - rpn_cls: 6.5164 - rpn_regr: 0.1222 - final_cls: 0.6907 - final_regr: 0.4082 - loss: 7.7375
+65/97 [===================>..........] - ETA: 5s - rpn_cls: 6.4973 - rpn_regr: 0.1224 - final_cls: 0.6905 - final_regr: 0.4085 - loss: 7.7187
+66/97 [===================>..........] - ETA: 5s - rpn_cls: 6.4786 - rpn_regr: 0.1226 - final_cls: 0.6903 - final_regr: 0.4087 - loss: 7.7002
+67/97 [===================>..........] - ETA: 5s - rpn_cls: 6.4608 - rpn_regr: 0.1227 - final_cls: 0.6901 - final_regr: 0.4088 - loss: 7.6824
+68/97 [====================>.........] - ETA: 5s - rpn_cls: 6.4424 - rpn_regr: 0.1229 - final_cls: 0.6899 - final_regr: 0.4090 - loss: 7.6641
+69/97 [====================>.........] - ETA: 4s - rpn_cls: 6.4234 - rpn_regr: 0.1230 - final_cls: 0.6897 - final_regr: 0.4091 - loss: 7.6452
+70/97 [====================>.........] - ETA: 4s - rpn_cls: 6.4039 - rpn_regr: 0.1232 - final_cls: 0.6895 - final_regr: 0.4094 - loss: 7.6259
+71/97 [====================>.........] - ETA: 4s - rpn_cls: 6.3842 - rpn_regr: 0.1233 - final_cls: 0.6893 - final_regr: 0.4096 - loss: 7.6064
+72/97 [=====================>........] - ETA: 4s - rpn_cls: 6.3646 - rpn_regr: 0.1235 - final_cls: 0.6891 - final_regr: 0.4098 - loss: 7.5869
+73/97 [=====================>........] - ETA: 4s - rpn_cls: 6.3446 - rpn_regr: 0.1236 - final_cls: 0.6889 - final_regr: 0.4099 - loss: 7.5670
+74/97 [=====================>........] - ETA: 4s - rpn_cls: 6.3243 - rpn_regr: 0.1237 - final_cls: 0.6886 - final_regr: 0.4100 - loss: 7.5466
+75/97 [======================>.......] - ETA: 3s - rpn_cls: 6.3036 - rpn_regr: 0.1238 - final_cls: 0.6884 - final_regr: 0.4101 - loss: 7.5259
+76/97 [======================>.......] - ETA: 3s - rpn_cls: 6.2837 - rpn_regr: 0.1239 - final_cls: 0.6881 - final_regr: 0.4102 - loss: 7.5059
+77/97 [======================>.......] - ETA: 3s - rpn_cls: 6.2649 - rpn_regr: 0.1240 - final_cls: 0.6878 - final_regr: 0.4102 - loss: 7.4869
+78/97 [=======================>......] - ETA: 3s - rpn_cls: 6.2479 - rpn_regr: 0.1241 - final_cls: 0.6875 - final_regr: 0.4102 - loss: 7.4697
+79/97 [=======================>......] - ETA: 3s - rpn_cls: 6.2305 - rpn_regr: 0.1243 - final_cls: 0.6873 - final_regr: 0.4102 - loss: 7.4522
+80/97 [=======================>......] - ETA: 2s - rpn_cls: 6.2146 - rpn_regr: 0.1244 - final_cls: 0.6870 - final_regr: 0.4102 - loss: 7.4361
+81/97 [========================>.....] - ETA: 2s - rpn_cls: 6.1983 - rpn_regr: 0.1246 - final_cls: 0.6867 - final_regr: 0.4101 - loss: 7.4197
+82/97 [========================>.....] - ETA: 2s - rpn_cls: 6.1822 - rpn_regr: 0.1247 - final_cls: 0.6864 - final_regr: 0.4101 - loss: 7.4035
+83/97 [========================>.....] - ETA: 2s - rpn_cls: 6.1664 - rpn_regr: 0.1249 - final_cls: 0.6861 - final_regr: 0.4100 - loss: 7.3874
+84/97 [========================>.....] - ETA: 2s - rpn_cls: 6.1502 - rpn_regr: 0.1251 - final_cls: 0.6858 - final_regr: 0.4100 - loss: 7.3711
+85/97 [=========================>....] - ETA: 2s - rpn_cls: 6.1347 - rpn_regr: 0.1253 - final_cls: 0.6856 - final_regr: 0.4099 - loss: 7.3555
+86/97 [=========================>....] - ETA: 1s - rpn_cls: 6.1198 - rpn_regr: 0.1255 - final_cls: 0.6853 - final_regr: 0.4098 - loss: 7.3404
+87/97 [=========================>....] - ETA: 1s - rpn_cls: 6.1048 - rpn_regr: 0.1256 - final_cls: 0.6850 - final_regr: 0.4098 - loss: 7.3252
+88/97 [==========================>...] - ETA: 1s - rpn_cls: 6.0902 - rpn_regr: 0.1258 - final_cls: 0.6847 - final_regr: 0.4098 - loss: 7.3106
+89/97 [==========================>...] - ETA: 1s - rpn_cls: 6.0760 - rpn_regr: 0.1260 - final_cls: 0.6845 - final_regr: 0.4097 - loss: 7.2962
+90/97 [==========================>...] - ETA: 1s - rpn_cls: 6.0623 - rpn_regr: 0.1262 - final_cls: 0.6842 - final_regr: 0.4096 - loss: 7.2823
+91/97 [===========================>..] - ETA: 1s - rpn_cls: 6.0490 - rpn_regr: 0.1263 - final_cls: 0.6839 - final_regr: 0.4096 - loss: 7.2689
+92/97 [===========================>..] - ETA: 0s - rpn_cls: 6.0354 - rpn_regr: 0.1265 - final_cls: 0.6837 - final_regr: 0.4096 - loss: 7.2551
+93/97 [===========================>..] - ETA: 0s - rpn_cls: 6.0215 - rpn_regr: 0.1267 - final_cls: 0.6834 - final_regr: 0.4096 - loss: 7.2412
+94/97 [============================>.] - ETA: 0s - rpn_cls: 6.0075 - rpn_regr: 0.1268 - final_cls: 0.6831 - final_regr: 0.4096 - loss: 7.2270
+95/97 [============================>.] - ETA: 0s - rpn_cls: 5.9935 - rpn_regr: 0.1270 - final_cls: 0.6828 - final_regr: 0.4096 - loss: 7.2129
+96/97 [============================>.] - ETA: 0s - rpn_cls: 5.9798 - rpn_regr: 0.1272 - final_cls: 0.6825 - final_regr: 0.4097 - loss: 7.1992
+97/97 [==============================] - 17s 176ms/step - rpn_cls: 5.9662 - rpn_regr: 0.1273 - final_cls: 0.6822 - final_regr: 0.4097 - loss: 7.1855
+Mean number of bounding boxes from RPN overlapping ground truth boxes: 9.907216494845361
+Classifier accuracy for bounding boxes from RPN: 0.6675257731958762
+Loss RPN classifier: 4.660052932090743
+Loss RPN regression: 0.1415940545038464
+Loss Detector classifier: 0.6539132518252146
+Loss Detector regression: 0.4120477301251028
+Total loss: 5.867607968544906
+Elapsed time: 17.061498880386353
+Epoch 2/2
+
+ 1/97 [..............................] - ETA: 14s - rpn_cls: 1.5985e-12 - rpn_regr: 0.1514 - final_cls: 0.5920 - final_regr: 0.4610 - loss: 1.2044
+ 2/97 [..............................] - ETA: 16s - rpn_cls: 0.5641 - rpn_regr: 0.1310 - final_cls: 0.5349 - final_regr: 0.4849 - loss: 1.7148    
+ 3/97 [..............................] - ETA: 15s - rpn_cls: 1.0394 - rpn_regr: 0.1279 - final_cls: 0.5214 - final_regr: 0.4634 - loss: 2.1520
+ 4/97 [>.............................] - ETA: 15s - rpn_cls: 1.2626 - rpn_regr: 0.1203 - final_cls: 0.5202 - final_regr: 0.4510 - loss: 2.3541
+ 5/97 [>.............................] - ETA: 15s - rpn_cls: 1.5125 - rpn_regr: 0.1201 - final_cls: 0.5192 - final_regr: 0.4355 - loss: 2.5873
+ 6/97 [>.............................] - ETA: 15s - rpn_cls: 1.7879 - rpn_regr: 0.1211 - final_cls: 0.5244 - final_regr: 0.4178 - loss: 2.8512
+ 7/97 [=>............................] - ETA: 15s - rpn_cls: 1.9954 - rpn_regr: 0.1201 - final_cls: 0.5246 - final_regr: 0.4050 - loss: 3.0451
+ 8/97 [=>............................] - ETA: 15s - rpn_cls: 2.2005 - rpn_regr: 0.1211 - final_cls: 0.5242 - final_regr: 0.3971 - loss: 3.2429
+ 9/97 [=>............................] - ETA: 15s - rpn_cls: 2.3152 - rpn_regr: 0.1237 - final_cls: 0.5233 - final_regr: 0.3902 - loss: 3.3524
+10/97 [==>...........................] - ETA: 15s - rpn_cls: 2.3753 - rpn_regr: 0.1256 - final_cls: 0.5235 - final_regr: 0.3875 - loss: 3.4118
+11/97 [==>...........................] - ETA: 15s - rpn_cls: 2.4015 - rpn_regr: 0.1263 - final_cls: 0.5237 - final_regr: 0.3904 - loss: 3.4418
+12/97 [==>...........................] - ETA: 14s - rpn_cls: 2.4493 - rpn_regr: 0.1279 - final_cls: 0.5215 - final_regr: 0.3941 - loss: 3.4928
+13/97 [===>..........................] - ETA: 14s - rpn_cls: 2.5121 - rpn_regr: 0.1296 - final_cls: 0.5183 - final_regr: 0.3968 - loss: 3.5568
+14/97 [===>..........................] - ETA: 14s - rpn_cls: 2.5620 - rpn_regr: 0.1307 - final_cls: 0.5157 - final_regr: 0.3983 - loss: 3.6066
+15/97 [===>..........................] - ETA: 14s - rpn_cls: 2.6061 - rpn_regr: 0.1318 - final_cls: 0.5135 - final_regr: 0.3986 - loss: 3.6501
+16/97 [===>..........................] - ETA: 14s - rpn_cls: 2.6326 - rpn_regr: 0.1329 - final_cls: 0.5111 - final_regr: 0.3987 - loss: 3.6754
+17/97 [====>.........................] - ETA: 13s - rpn_cls: 2.6455 - rpn_regr: 0.1354 - final_cls: 0.5083 - final_regr: 0.3989 - loss: 3.6881
+18/97 [====>.........................] - ETA: 13s - rpn_cls: 2.6677 - rpn_regr: 0.1373 - final_cls: 0.5058 - final_regr: 0.3995 - loss: 3.7104
+19/97 [====>.........................] - ETA: 13s - rpn_cls: 2.6792 - rpn_regr: 0.1392 - final_cls: 0.5027 - final_regr: 0.4001 - loss: 3.7211
+20/97 [=====>........................] - ETA: 13s - rpn_cls: 2.6822 - rpn_regr: 0.1406 - final_cls: 0.5002 - final_regr: 0.4006 - loss: 3.7236
+21/97 [=====>........................] - ETA: 13s - rpn_cls: 2.6830 - rpn_regr: 0.1424 - final_cls: 0.4978 - final_regr: 0.4012 - loss: 3.7243
+22/97 [=====>........................] - ETA: 12s - rpn_cls: 2.6830 - rpn_regr: 0.1439 - final_cls: 0.4968 - final_regr: 0.4027 - loss: 3.7263
+23/97 [======>.......................] - ETA: 12s - rpn_cls: 2.6806 - rpn_regr: 0.1452 - final_cls: 0.4957 - final_regr: 0.4043 - loss: 3.7257
+24/97 [======>.......................] - ETA: 12s - rpn_cls: 2.6746 - rpn_regr: 0.1476 - final_cls: 0.4944 - final_regr: 0.4053 - loss: 3.7219
+25/97 [======>.......................] - ETA: 12s - rpn_cls: 2.6711 - rpn_regr: 0.1495 - final_cls: 0.4936 - final_regr: 0.4058 - loss: 3.7201
+26/97 [=======>......................] - ETA: 12s - rpn_cls: 2.6640 - rpn_regr: 0.1513 - final_cls: 0.4926 - final_regr: 0.4062 - loss: 3.7142
+27/97 [=======>......................] - ETA: 12s - rpn_cls: 2.6629 - rpn_regr: 0.1527 - final_cls: 0.4918 - final_regr: 0.4067 - loss: 3.7141
+28/97 [=======>......................] - ETA: 12s - rpn_cls: 2.6623 - rpn_regr: 0.1540 - final_cls: 0.4909 - final_regr: 0.4069 - loss: 3.7141
+29/97 [=======>......................] - ETA: 11s - rpn_cls: 2.6609 - rpn_regr: 0.1554 - final_cls: 0.4904 - final_regr: 0.4069 - loss: 3.7136
+30/97 [========>.....................] - ETA: 11s - rpn_cls: 2.6577 - rpn_regr: 0.1570 - final_cls: 0.4900 - final_regr: 0.4072 - loss: 3.7120
+31/97 [========>.....................] - ETA: 11s - rpn_cls: 2.6521 - rpn_regr: 0.1587 - final_cls: 0.4900 - final_regr: 0.4079 - loss: 3.7087
+32/97 [========>.....................] - ETA: 11s - rpn_cls: 2.6463 - rpn_regr: 0.1602 - final_cls: 0.4899 - final_regr: 0.4085 - loss: 3.7049
+33/97 [=========>....................] - ETA: 11s - rpn_cls: 2.6475 - rpn_regr: 0.1614 - final_cls: 0.4897 - final_regr: 0.4087 - loss: 3.7073
+34/97 [=========>....................] - ETA: 10s - rpn_cls: 2.6468 - rpn_regr: 0.1627 - final_cls: 0.4896 - final_regr: 0.4091 - loss: 3.7082
+35/97 [=========>....................] - ETA: 10s - rpn_cls: 2.6440 - rpn_regr: 0.1638 - final_cls: 0.4897 - final_regr: 0.4095 - loss: 3.7071
+36/97 [==========>...................] - ETA: 10s - rpn_cls: 2.6402 - rpn_regr: 0.1648 - final_cls: 0.4898 - final_regr: 0.4098 - loss: 3.7046
+37/97 [==========>...................] - ETA: 10s - rpn_cls: 2.6371 - rpn_regr: 0.1656 - final_cls: 0.4896 - final_regr: 0.4099 - loss: 3.7022
+38/97 [==========>...................] - ETA: 10s - rpn_cls: 2.6359 - rpn_regr: 0.1664 - final_cls: 0.4896 - final_regr: 0.4098 - loss: 3.7017
+39/97 [===========>..................] - ETA: 10s - rpn_cls: 2.6351 - rpn_regr: 0.1670 - final_cls: 0.4899 - final_regr: 0.4097 - loss: 3.7017
+40/97 [===========>..................] - ETA: 9s - rpn_cls: 2.6327 - rpn_regr: 0.1676 - final_cls: 0.4906 - final_regr: 0.4095 - loss: 3.7004 
+41/97 [===========>..................] - ETA: 9s - rpn_cls: 2.6289 - rpn_regr: 0.1682 - final_cls: 0.4912 - final_regr: 0.4091 - loss: 3.6974
+42/97 [===========>..................] - ETA: 9s - rpn_cls: 2.6284 - rpn_regr: 0.1687 - final_cls: 0.4917 - final_regr: 0.4089 - loss: 3.6978
+43/97 [============>.................] - ETA: 9s - rpn_cls: 2.6274 - rpn_regr: 0.1691 - final_cls: 0.4921 - final_regr: 0.4088 - loss: 3.6974
+44/97 [============>.................] - ETA: 9s - rpn_cls: 2.6251 - rpn_regr: 0.1695 - final_cls: 0.4927 - final_regr: 0.4085 - loss: 3.6958
+45/97 [============>.................] - ETA: 9s - rpn_cls: 2.6233 - rpn_regr: 0.1699 - final_cls: 0.4932 - final_regr: 0.4085 - loss: 3.6950
+46/97 [=============>................] - ETA: 8s - rpn_cls: 2.6215 - rpn_regr: 0.1703 - final_cls: 0.4937 - final_regr: 0.4084 - loss: 3.6939
+47/97 [=============>................] - ETA: 8s - rpn_cls: 2.6187 - rpn_regr: 0.1707 - final_cls: 0.4942 - final_regr: 0.4082 - loss: 3.6917
+48/97 [=============>................] - ETA: 8s - rpn_cls: 2.6176 - rpn_regr: 0.1710 - final_cls: 0.4947 - final_regr: 0.4079 - loss: 3.6911
+49/97 [==============>...............] - ETA: 8s - rpn_cls: 2.6155 - rpn_regr: 0.1713 - final_cls: 0.4953 - final_regr: 0.4077 - loss: 3.6897
+50/97 [==============>...............] - ETA: 8s - rpn_cls: 2.6132 - rpn_regr: 0.1715 - final_cls: 0.4958 - final_regr: 0.4075 - loss: 3.6880
+51/97 [==============>...............] - ETA: 7s - rpn_cls: 2.6120 - rpn_regr: 0.1717 - final_cls: 0.4963 - final_regr: 0.4074 - loss: 3.6874
+52/97 [===============>..............] - ETA: 7s - rpn_cls: 2.6099 - rpn_regr: 0.1718 - final_cls: 0.4967 - final_regr: 0.4072 - loss: 3.6856
+53/97 [===============>..............] - ETA: 7s - rpn_cls: 2.6079 - rpn_regr: 0.1719 - final_cls: 0.4970 - final_regr: 0.4070 - loss: 3.6837
+54/97 [===============>..............] - ETA: 7s - rpn_cls: 2.6068 - rpn_regr: 0.1719 - final_cls: 0.4973 - final_regr: 0.4067 - loss: 3.6827
+55/97 [================>.............] - ETA: 7s - rpn_cls: 2.6070 - rpn_regr: 0.1721 - final_cls: 0.4977 - final_regr: 0.4065 - loss: 3.6832
+56/97 [================>.............] - ETA: 7s - rpn_cls: 2.6068 - rpn_regr: 0.1722 - final_cls: 0.4981 - final_regr: 0.4062 - loss: 3.6833
+57/97 [================>.............] - ETA: 6s - rpn_cls: 2.6059 - rpn_regr: 0.1723 - final_cls: 0.4984 - final_regr: 0.4059 - loss: 3.6825
+58/97 [================>.............] - ETA: 6s - rpn_cls: 2.6061 - rpn_regr: 0.1726 - final_cls: 0.4986 - final_regr: 0.4056 - loss: 3.6830
+59/97 [=================>............] - ETA: 6s - rpn_cls: 2.6094 - rpn_regr: 0.1729 - final_cls: 0.4989 - final_regr: 0.4053 - loss: 3.6865
+60/97 [=================>............] - ETA: 6s - rpn_cls: 2.6119 - rpn_regr: 0.1733 - final_cls: 0.4992 - final_regr: 0.4050 - loss: 3.6894
+61/97 [=================>............] - ETA: 6s - rpn_cls: 2.6142 - rpn_regr: 0.1737 - final_cls: 0.4996 - final_regr: 0.4047 - loss: 3.6923
+62/97 [==================>...........] - ETA: 6s - rpn_cls: 2.6170 - rpn_regr: 0.1741 - final_cls: 0.5000 - final_regr: 0.4044 - loss: 3.6955
+63/97 [==================>...........] - ETA: 5s - rpn_cls: 2.6195 - rpn_regr: 0.1744 - final_cls: 0.5003 - final_regr: 0.4041 - loss: 3.6983
+64/97 [==================>...........] - ETA: 5s - rpn_cls: 2.6212 - rpn_regr: 0.1748 - final_cls: 0.5005 - final_regr: 0.4039 - loss: 3.7003
+65/97 [===================>..........] - ETA: 5s - rpn_cls: 2.6227 - rpn_regr: 0.1751 - final_cls: 0.5006 - final_regr: 0.4036 - loss: 3.7020
+66/97 [===================>..........] - ETA: 5s - rpn_cls: 2.6251 - rpn_regr: 0.1754 - final_cls: 0.5007 - final_regr: 0.4033 - loss: 3.7044
+67/97 [===================>..........] - ETA: 5s - rpn_cls: 2.6268 - rpn_regr: 0.1756 - final_cls: 0.5009 - final_regr: 0.4029 - loss: 3.7062
+68/97 [====================>.........] - ETA: 5s - rpn_cls: 2.6282 - rpn_regr: 0.1758 - final_cls: 0.5011 - final_regr: 0.4026 - loss: 3.7077
+69/97 [====================>.........] - ETA: 4s - rpn_cls: 2.6303 - rpn_regr: 0.1760 - final_cls: 0.5013 - final_regr: 0.4022 - loss: 3.7099
+70/97 [====================>.........] - ETA: 4s - rpn_cls: 2.6318 - rpn_regr: 0.1762 - final_cls: 0.5015 - final_regr: 0.4018 - loss: 3.7114
+71/97 [====================>.........] - ETA: 4s - rpn_cls: 2.6331 - rpn_regr: 0.1763 - final_cls: 0.5017 - final_regr: 0.4014 - loss: 3.7126
+72/97 [=====================>........] - ETA: 4s - rpn_cls: 2.6350 - rpn_regr: 0.1764 - final_cls: 0.5019 - final_regr: 0.4010 - loss: 3.7143
+73/97 [=====================>........] - ETA: 4s - rpn_cls: 2.6364 - rpn_regr: 0.1765 - final_cls: 0.5020 - final_regr: 0.4006 - loss: 3.7156
+74/97 [=====================>........] - ETA: 4s - rpn_cls: 2.6374 - rpn_regr: 0.1766 - final_cls: 0.5021 - final_regr: 0.4001 - loss: 3.7162
+75/97 [======================>.......] - ETA: 3s - rpn_cls: 2.6378 - rpn_regr: 0.1767 - final_cls: 0.5021 - final_regr: 0.3997 - loss: 3.7163
+76/97 [======================>.......] - ETA: 3s - rpn_cls: 2.6377 - rpn_regr: 0.1768 - final_cls: 0.5021 - final_regr: 0.3993 - loss: 3.7160
+77/97 [======================>.......] - ETA: 3s - rpn_cls: 2.6377 - rpn_regr: 0.1769 - final_cls: 0.5021 - final_regr: 0.3989 - loss: 3.7155
+78/97 [=======================>......] - ETA: 3s - rpn_cls: 2.6372 - rpn_regr: 0.1770 - final_cls: 0.5020 - final_regr: 0.3985 - loss: 3.7147
+79/97 [=======================>......] - ETA: 3s - rpn_cls: 2.6368 - rpn_regr: 0.1770 - final_cls: 0.5020 - final_regr: 0.3981 - loss: 3.7138
+80/97 [=======================>......] - ETA: 2s - rpn_cls: 2.6364 - rpn_regr: 0.1772 - final_cls: 0.5019 - final_regr: 0.3977 - loss: 3.7131
+81/97 [========================>.....] - ETA: 2s - rpn_cls: 2.6356 - rpn_regr: 0.1773 - final_cls: 0.5017 - final_regr: 0.3972 - loss: 3.7119
+82/97 [========================>.....] - ETA: 2s - rpn_cls: 2.6345 - rpn_regr: 0.1775 - final_cls: 0.5016 - final_regr: 0.3968 - loss: 3.7103
+83/97 [========================>.....] - ETA: 2s - rpn_cls: 2.6333 - rpn_regr: 0.1776 - final_cls: 0.5014 - final_regr: 0.3963 - loss: 3.7087
+84/97 [========================>.....] - ETA: 2s - rpn_cls: 2.6327 - rpn_regr: 0.1777 - final_cls: 0.5013 - final_regr: 0.3958 - loss: 3.7076
+85/97 [=========================>....] - ETA: 2s - rpn_cls: 2.6320 - rpn_regr: 0.1780 - final_cls: 0.5011 - final_regr: 0.3954 - loss: 3.7065
+86/97 [=========================>....] - ETA: 1s - rpn_cls: 2.6313 - rpn_regr: 0.1783 - final_cls: 0.5009 - final_regr: 0.3949 - loss: 3.7054
+87/97 [=========================>....] - ETA: 1s - rpn_cls: 2.6312 - rpn_regr: 0.1786 - final_cls: 0.5007 - final_regr: 0.3945 - loss: 3.7050
+88/97 [==========================>...] - ETA: 1s - rpn_cls: 2.6308 - rpn_regr: 0.1788 - final_cls: 0.5004 - final_regr: 0.3941 - loss: 3.7041
+89/97 [==========================>...] - ETA: 1s - rpn_cls: 2.6300 - rpn_regr: 0.1791 - final_cls: 0.5002 - final_regr: 0.3937 - loss: 3.7030
+90/97 [==========================>...] - ETA: 1s - rpn_cls: 2.6292 - rpn_regr: 0.1793 - final_cls: 0.5000 - final_regr: 0.3933 - loss: 3.7019
+91/97 [===========================>..] - ETA: 1s - rpn_cls: 2.6290 - rpn_regr: 0.1795 - final_cls: 0.4998 - final_regr: 0.3929 - loss: 3.7012
+92/97 [===========================>..] - ETA: 0s - rpn_cls: 2.6284 - rpn_regr: 0.1797 - final_cls: 0.4997 - final_regr: 0.3925 - loss: 3.7003
+93/97 [===========================>..] - ETA: 0s - rpn_cls: 2.6288 - rpn_regr: 0.1798 - final_cls: 0.4997 - final_regr: 0.3921 - loss: 3.7004
+94/97 [============================>.] - ETA: 0s - rpn_cls: 2.6296 - rpn_regr: 0.1801 - final_cls: 0.4997 - final_regr: 0.3917 - loss: 3.7010
+95/97 [============================>.] - ETA: 0s - rpn_cls: 2.6305 - rpn_regr: 0.1803 - final_cls: 0.4996 - final_regr: 0.3914 - loss: 3.7018
+96/97 [============================>.] - ETA: 0s - rpn_cls: 2.6312 - rpn_regr: 0.1805 - final_cls: 0.4996 - final_regr: 0.3910 - loss: 3.7023
+97/97 [==============================] - 17s 174ms/step - rpn_cls: 2.6315 - rpn_regr: 0.1807 - final_cls: 0.4996 - final_regr: 0.3907 - loss: 3.7025
+Using TensorFlow backend.
+/home/vbeyraghi/Faster_RCNN_for_Open_Images_Dataset_Keras/recorder.py:30: RuntimeWarning: More than 20 figures have been opened. Figures created through the pyplot interface (`matplotlib.pyplot.figure`) are retained until explicitly closed and may consume too much memory. (To control this warning, see the rcParam `figure.max_open_warning`).
+  plt.figure(figsize=(15, 5))
+Mean number of bounding boxes from RPN overlapping ground truth boxes: 9.845360824742269
+Classifier accuracy for bounding boxes from RPN: 0.7860824742268041
+Loss RPN classifier: 2.6636624133068496
+Loss RPN regression: 0.1987986828382943
+Loss Detector classifier: 0.49694576410135044
+Loss Detector regression: 0.3613833771999349
+Total loss: 3.7207902374464292
+Elapsed time: 16.85887384414673
+Training complete, exiting.
