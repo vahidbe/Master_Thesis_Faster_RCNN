@@ -13,7 +13,7 @@ def train_model(train_imgs, num_epochs, record_filepath):
         start_time = time.time()
         progbar = generic_utils.Progbar(len(train_imgs))
         print('Epoch {}/{}'.format(epoch_num + 1, num_epochs))
-        data_gen_train = get_anchor_gt(random.shuffle(train_imgs), C, get_img_output_length,
+        data_gen_train = get_anchor_gt(train_imgs, C, get_img_output_length,
                                        mode='train')  # TODO: tester mode:'augmentation'
 
         for iter_num in range(len(train_imgs)):
@@ -116,7 +116,7 @@ def val_model(train_imgs, val_imgs, param, paramNames, record_path):
         rpn_accuracy_for_epoch = []
         print('Epoch {}/{}'.format(epoch_num + 1, num_epochs))
         # TODO: tester mode:'augmentation'
-        data_gen_train = get_anchor_gt(random.shuffle(train_imgs), C, get_img_output_length, mode='train')
+        data_gen_train = get_anchor_gt(train_imgs, C, get_img_output_length, mode='train')
 
         for iter_num in range(len(train_imgs)):
             try:
@@ -193,7 +193,7 @@ def val_model(train_imgs, val_imgs, param, paramNames, record_path):
             print('Elapsed time: {}'.format(elapsed_time))
 
         print('Start of the validation phase')
-        data_gen_val = get_anchor_gt(random.shuffle(val_imgs), C, get_img_output_length, mode='train')
+        data_gen_val = get_anchor_gt(val_imgs, C, get_img_output_length, mode='train')
 
         for iter_num_val in range(len(val_imgs)):
             try:
@@ -513,6 +513,7 @@ if __name__ == "__main__":
             idx = 0
             for train_index, val_index in kf.split(all_imgs):
                 print("=== Fold {}/{} ===".format(idx + 1, n_splits))
+                # TODO: shuffle images before each epoch?
                 train_imgs, val_imgs = np.array(all_imgs)[train_index], np.array(all_imgs)[val_index]
                 curr_loss_val, best_loss_val, best_epoch = val_model(train_imgs, val_imgs, param, paramNames,
                                                                      os.path.join(record_path, "Validation - "
