@@ -357,12 +357,18 @@ def initialize_model():
 
     classifier = classifier_layer(shared_layers, roi_input, C.num_rois, nb_classes=len(classes_count))
 
-    base_model_rpn = Model(img_input, rpn[:2])
-    base_model_classifier = Model([img_input, roi_input], classifier)
+    model_rpn = Model(img_input, rpn[:2])
+    model_classifier = Model([img_input, roi_input], classifier)
 
     # This is a model that holds both the RPN and the classifier, used to load/save weights for the models
-    base_model_all = Model([img_input, roi_input], rpn[:2] + classifier)
+    model_all = Model([img_input, roi_input], rpn[:2] + classifier)
 
+    return model_all, model_rpn, model_classifier
+
+
+def load_weights(model_all, model_rpn, model_classifier):
+
+    num_anchors = len(C.anchor_box_scales) * len(C.anchor_box_ratios)  # 9
     try:
         print('Loading weights from {}'.format(C.base_net_weights))
         model_rpn.load_weights(C.base_net_weights, by_name=True)
@@ -373,24 +379,24 @@ def initialize_model():
 
     optimizer = Adam(lr=1e-5)
     optimizer_classifier = Adam(lr=1e-5)
-    base_model_rpn.compile(optimizer=optimizer, loss=[rpn_loss_cls(num_anchors), rpn_loss_regr(num_anchors)])
-    base_model_classifier.compile(optimizer=optimizer_classifier,
+    model_rpn.compile(optimizer=optimizer, loss=[rpn_loss_cls(num_anchors), rpn_loss_regr(num_anchors)])
+    model_classifier.compile(optimizer=optimizer_classifier,
                                   loss=[class_loss_cls, class_loss_regr(len(classes_count) - 1)],
                                   metrics={'dense_class_{}'.format(len(classes_count)): 'accuracy'})
-    base_model_all.compile(optimizer='sgd', loss='mae')
-
-    return base_model_all, base_model_rpn, base_model_classifier
-
-
-def clone_model():
-    model_all = base_model_all.clone_model()
-    model_rpn = base_model_rpn.clone_model()
-    model_classifier = base_model_classifier.clone_model()
+    model_all.compile(optimizer='sgd', loss='mae')
 
     return model_all, model_rpn, model_classifier
 
 
-def delete_clone():
+def clone_models(base_model_all, base_model_rpn, base_model_classifier):
+    model_all = clone_model(base_model_all)
+    model_rpn = clone_model(base_model_rpn)
+    model_classifier = clone_model(base_model_classifier)
+    load_weights(model_all, model_rpn, model_classifier)
+    return model_all, model_rpn, model_classifier
+
+
+def delete_clones(model_all, model_rpn, model_classifier):
     del model_all, model_rpn, model_classifier
 
 
@@ -526,7 +532,7 @@ if __name__ == "__main__":
             idx = 0
             for train_index, val_index in kf.split(all_imgs):
                 print("=== Fold {}/{} ===".format(idx + 1, n_splits))
-                model_all, model_rpn, model_classifier = clone_model()
+                model_all, model_rpn, model_classifier = clone_models(base_model_all, base_model_rpn, base_model_classifier)
                 train_imgs, val_imgs = np.array(all_imgs)[train_index], np.array(all_imgs)[val_index]
                 curr_loss_val, best_loss_val, best_epoch = val_model(train_imgs, val_imgs, param, paramNames,
                                                                      os.path.join(record_path, "Validation - "
@@ -534,13 +540,15 @@ if __name__ == "__main__":
                                                                                   + str(list(param))
                                                                                   + " - split "
                                                                                   + str(idx)))
+
                 model_all.save_weights(os.path.join(record_path, "Validation"
                                                     + " ".join(paramNames) + " - "
                                                     + str(list(param))
                                                     + " - split "
                                                     + str(idx)
                                                     + ".hdf5"))
-                delete_clone()
+
+                delete_clones(model_all, model_rpn, model_classifier)
 
                 if best_loss_val < best_fold_loss:
                     val_loss = best_fold_loss
@@ -558,7 +566,7 @@ if __name__ == "__main__":
         best_num_epochs = args.num_epochs
 
     print("=== Best epoch: {} ===".format(best_epoch))
-    model_all, model_rpn, model_classifier = clone_model()
+    model_all, model_rpn, model_classifier = clone_models(base_model_all, base_model_rpn, base_model_classifier)
     train_model(all_imgs, math.ceil(best_num_epochs), os.path.join(C.record_path, "Training"))
 
     print('Training complete, exiting.')

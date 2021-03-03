@@ -28,6 +28,7 @@ from keras.utils.data_utils import get_file
 from keras.objectives import categorical_crossentropy
 
 from keras.models import Model
+from keras.models import clone_model
 from keras.utils import generic_utils
 from keras.engine import Layer, InputSpec
 from keras import initializers, regularizers
