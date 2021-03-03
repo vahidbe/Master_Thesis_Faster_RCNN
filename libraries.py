@@ -88,6 +88,7 @@ class Config:
         self.class_mapping = None
 
         self.model_path = None
+        self.temp_model_path = None
 
 
 def get_data(input_path, data_path):

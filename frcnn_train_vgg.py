@@ -90,14 +90,15 @@ def train_model(train_imgs, num_epochs, record_filepath):
             print('Total loss: {}'.format(curr_loss))
             print('Elapsed time: {}'.format(elapsed_time))
 
-        model_all.save_weights("temp_" + C.model_path)
+        model_all.save_weights(C.temp_model_path + str(epoch_num) + ".hdf5")
         recorder.add_new_entry(class_acc, loss_rpn_cls, loss_rpn_regr, loss_class_cls, loss_class_regr,
                                curr_loss, elapsed_time)
 
     # recorder.show_graphs()
     recorder.save_graphs()
     model_all.save_weights(C.model_path)
-    os.remove("temp_" + C.model_path)
+    for epoch_num in range(num_epochs):
+        os.remove(C.temp_model_path + str(epoch_num) + ".hdf5")
 
 
 def val_model(train_imgs, val_imgs, param, paramNames, record_path):
@@ -439,6 +440,7 @@ if __name__ == "__main__":
     if not os.path.exists(record_path):
         os.mkdir(record_path)
     output_weight_path = "./model/{}.hdf5".format(args.model_name)
+    output_temp_weight_path = "./model/temp_{}".format(args.model_name)
     base_weight_path = args.weights
     config_output_filename = "./config/{}.pickle".format(args.model_name)
 
@@ -450,6 +452,7 @@ if __name__ == "__main__":
 
     C.record_path = record_path
     C.model_path = output_weight_path
+    C.temp_model_path = output_temp_weight_path
     C.num_rois = num_rois
 
     C.base_net_weights = base_weight_path
