@@ -536,7 +536,6 @@ if __name__ == "__main__":
     else:
         best_num_epochs = args.num_epochs
 
-    del model_all, model_rpn, model_classifier
     model_all, model_rpn, model_classifier = initialize_model()
     train_model(all_imgs, int(best_num_epochs), os.path.join(C.record_path, "Training"))
 
