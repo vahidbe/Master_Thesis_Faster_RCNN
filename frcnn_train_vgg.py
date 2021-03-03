@@ -49,7 +49,11 @@ def train_model(train_imgs, num_epochs, record_filepath):
                                [('rpn_cls', np.mean(losses[:iter_num + 1, 0])),
                                 ('rpn_regr', np.mean(losses[:iter_num + 1, 1])),
                                 ('final_cls', np.mean(losses[:iter_num + 1, 2])),
-                                ('final_regr', np.mean(losses[:iter_num + 1, 3]))])
+                                ('final_regr', np.mean(losses[:iter_num + 1, 3])),
+                                ('loss', np.mean(losses[:iter_num + 1, 0])
+                                 + np.mean(losses[:iter_num + 1, 1])
+                                 + np.mean(losses[:iter_num + 1, 2])
+                                 + np.mean(losses[:iter_num + 1, 3]))])
 
             except Exception as e:
                 print('Exception: {}'.format(e))
@@ -86,14 +90,14 @@ def train_model(train_imgs, num_epochs, record_filepath):
             print('Total loss: {}'.format(curr_loss))
             print('Elapsed time: {}'.format(elapsed_time))
 
-        model_all.save_weights(C.model_path + "_temp")
+        model_all.save_weights("temp_" + C.model_path)
         recorder.add_new_entry(class_acc, loss_rpn_cls, loss_rpn_regr, loss_class_cls, loss_class_regr,
                                curr_loss, elapsed_time)
 
     # recorder.show_graphs()
     recorder.save_graphs()
     model_all.save_weights(C.model_path)
-    os.remove(C.model_path + "_temp")
+    os.remove("temp_" + C.model_path)
 
 
 def val_model(train_imgs, val_imgs, param, paramNames, record_path):
@@ -242,8 +246,7 @@ def val_model(train_imgs, val_imgs, param, paramNames, record_path):
         curr_loss_val = loss_rpn_cls_val + loss_rpn_regr_val + loss_class_cls_val + loss_class_regr_val
 
         if C.verbose:
-            print('Validation classifier accuracy for bounding boxes from RPN: {}'.format(
-                class_acc_val))
+            print('Validation classifier accuracy for bounding boxes from RPN: {}'.format(class_acc_val))
             print('Validation loss RPN classifier: {}'.format(loss_rpn_cls_val))
             print('Validation loss RPN regression: {}'.format(loss_rpn_regr_val))
             print('Validation loss Detector classifier: {}'.format(loss_class_cls_val))
@@ -302,6 +305,7 @@ def rpn_to_class(X, img_data, rpn_accuracy_rpn_monitor, rpn_accuracy_for_epoch):
     else:
         pos_samples = []
 
+    # TODO: do something with these measurements
     rpn_accuracy_rpn_monitor.append(len(pos_samples))
     rpn_accuracy_for_epoch.append((len(pos_samples)))
 
@@ -341,6 +345,9 @@ def rpn_to_class(X, img_data, rpn_accuracy_rpn_monitor, rpn_accuracy_for_epoch):
 
 def initialize_model():
     # TODO: maybe we need to simply reload the pretrained vgg weights and call this method only once
+
+    img_input = Input(shape=(None, None, 3))
+    roi_input = Input(shape=(None, 4))
     shared_layers = nn_base(img_input, trainable=True)
 
     # Define the RPN, built on the base layers
@@ -475,11 +482,6 @@ if __name__ == "__main__":
     random.shuffle(all_imgs)
 
     print('Num train samples (images) {}'.format(len(all_imgs)))
-
-    input_shape_img = (None, None, 3)
-
-    img_input = Input(shape=input_shape_img)
-    roi_input = Input(shape=(None, 4))
 
     import itertools as it
 
