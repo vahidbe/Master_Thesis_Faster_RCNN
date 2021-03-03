@@ -111,7 +111,7 @@ def draw_box_on_images():
     #
     # classes = {}
 
-    bbox_threshold = 0.5
+    bbox_threshold = 0.7
 
     # for idx, img_name in enumerate(imgs_path):
     length = len(test_imgs)
