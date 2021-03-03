@@ -392,11 +392,6 @@ def clone_models():
     load_weights(model_all, model_rpn, model_classifier)
 
 
-def delete_clones():
-    global model_all, model_rpn, model_classifier
-    del model_all, model_rpn, model_classifier
-
-
 if __name__ == "__main__":
 
     import argparse
@@ -519,7 +514,6 @@ if __name__ == "__main__":
 
     best_num_epochs = 0
 
-    global model_all, model_rpn, model_classifier
     initialize_model()
     if args.validation:
         for param in combinations:
@@ -531,6 +525,7 @@ if __name__ == "__main__":
             idx = 0
             for train_index, val_index in kf.split(all_imgs):
                 print("=== Fold {}/{} ===".format(idx + 1, n_splits))
+                global model_all, model_rpn, model_classifier
                 clone_models()
                 train_imgs, val_imgs = np.array(all_imgs)[train_index], np.array(all_imgs)[val_index]
                 curr_loss_val, best_loss_val, best_epoch = val_model(train_imgs, val_imgs, param, paramNames,
@@ -547,7 +542,7 @@ if __name__ == "__main__":
                                                     + str(idx)
                                                     + ".hdf5"))
 
-                delete_clones()
+                del model_all, model_rpn, model_classifier
 
                 if best_loss_val < best_fold_loss:
                     val_loss = best_fold_loss
