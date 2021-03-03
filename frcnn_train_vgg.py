@@ -381,8 +381,8 @@ def initialize_model():
 
 
 def reset_weights():
-    model_rpn.set_weights(base_weights)
-    model_classifier.set_weights(base_weights)
+    model_rpn.set_weights(base_weights_rpn)
+    model_classifier.set_weights(base_weights_classifier)
 
 
 if __name__ == "__main__":
@@ -508,7 +508,8 @@ if __name__ == "__main__":
     best_num_epochs = 0
 
     model_all, model_rpn, model_classifier = initialize_model()
-    base_weights = model_all.get_weights()
+    base_weights_rpn = model_rpn.get_weights()
+    base_weights_classifier = model_classifier.get_weights()
     if args.validation:
         for param in combinations:
             random.shuffle(all_imgs)
@@ -520,7 +521,6 @@ if __name__ == "__main__":
             for train_index, val_index in kf.split(all_imgs):
                 print("=== Fold {}/{} ===".format(idx + 1, n_splits))
                 train_imgs, val_imgs = np.array(all_imgs)[train_index], np.array(all_imgs)[val_index]
-                reset_weights()
                 curr_loss_val, best_loss_val, best_epoch = val_model(train_imgs, val_imgs, param, paramNames,
                                                                      os.path.join(record_path, "Validation - "
                                                                                   + " ".join(paramNames) + " - "
@@ -534,6 +534,7 @@ if __name__ == "__main__":
                                                     + " - split "
                                                     + str(idx)
                                                     + ".hdf5"))
+                reset_weights()
 
 
                 if best_loss_val < best_fold_loss:
@@ -552,7 +553,6 @@ if __name__ == "__main__":
         best_num_epochs = args.num_epochs
 
     print("=== Best epoch: {} ===".format(best_epoch))
-    clone_models()
     train_model(all_imgs, math.ceil(best_num_epochs), os.path.join(C.record_path, "Training"))
 
     print('Training complete, exiting.')
