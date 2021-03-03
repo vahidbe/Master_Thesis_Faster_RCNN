@@ -347,6 +347,8 @@ def rpn_to_class(X, img_data, rpn_accuracy_rpn_monitor, rpn_accuracy_for_epoch):
 def initialize_model():
     # TODO: maybe we need to simply reload the pretrained vgg weights and call this method only once
 
+    global base_model_all, base_model_rpn, base_model_classifier
+
     img_input = Input(shape=(None, None, 3))
     roi_input = Input(shape=(None, 4))
     shared_layers = nn_base(img_input, trainable=True)
@@ -357,46 +359,41 @@ def initialize_model():
 
     classifier = classifier_layer(shared_layers, roi_input, C.num_rois, nb_classes=len(classes_count))
 
-    model_rpn = Model(img_input, rpn[:2])
-    model_classifier = Model([img_input, roi_input], classifier)
+    base_model_rpn = Model(img_input, rpn[:2])
+    base_model_classifier = Model([img_input, roi_input], classifier)
 
     # This is a model that holds both the RPN and the classifier, used to load/save weights for the models
-    model_all = Model([img_input, roi_input], rpn[:2] + classifier)
+    base_model_all = Model([img_input, roi_input], rpn[:2] + classifier)
+    load_weights(base_model_all, base_model_rpn, base_model_classifier)
 
-    return model_all, model_rpn, model_classifier
 
-
-def load_weights(model_all, model_rpn, model_classifier):
-
+def load_weights(model_all_to_load, model_rpn_to_load, model_classifier_to_load):
     num_anchors = len(C.anchor_box_scales) * len(C.anchor_box_ratios)  # 9
     try:
         print('Loading weights from {}'.format(C.base_net_weights))
-        model_rpn.load_weights(C.base_net_weights, by_name=True)
-        model_classifier.load_weights(C.base_net_weights, by_name=True)
+        model_rpn_to_load.load_weights(C.base_net_weights, by_name=True)
+        model_classifier_to_load.load_weights(C.base_net_weights, by_name=True)
     except:
         print('Could not load pretrained model weights. Weights can be found in the keras application folder \
             https://github.com/fchollet/keras/tree/master/keras/applications')
 
-    optimizer = Adam(lr=1e-5)
-    optimizer_classifier = Adam(lr=1e-5)
-    model_rpn.compile(optimizer=optimizer, loss=[rpn_loss_cls(num_anchors), rpn_loss_regr(num_anchors)])
-    model_classifier.compile(optimizer=optimizer_classifier,
-                                  loss=[class_loss_cls, class_loss_regr(len(classes_count) - 1)],
-                                  metrics={'dense_class_{}'.format(len(classes_count)): 'accuracy'})
-    model_all.compile(optimizer='sgd', loss='mae')
-
-    return model_all, model_rpn, model_classifier
+    model_rpn_to_load.compile(optimizer=Adam(lr=1e-5), loss=[rpn_loss_cls(num_anchors), rpn_loss_regr(num_anchors)])
+    model_classifier_to_load.compile(optimizer=Adam(lr=1e-5),
+                             loss=[class_loss_cls, class_loss_regr(len(classes_count) - 1)],
+                             metrics={'dense_class_{}'.format(len(classes_count)): 'accuracy'})
+    model_all_to_load.compile(optimizer='sgd', loss='mae')
 
 
-def clone_models(base_model_all, base_model_rpn, base_model_classifier):
+def clone_models():
+    global model_all, model_rpn, model_classifier
     model_all = clone_model(base_model_all)
     model_rpn = clone_model(base_model_rpn)
     model_classifier = clone_model(base_model_classifier)
     load_weights(model_all, model_rpn, model_classifier)
-    return model_all, model_rpn, model_classifier
 
 
-def delete_clones(model_all, model_rpn, model_classifier):
+def delete_clones():
+    global model_all, model_rpn, model_classifier
     del model_all, model_rpn, model_classifier
 
 
@@ -521,7 +518,9 @@ if __name__ == "__main__":
     best_epoch = -1
 
     best_num_epochs = 0
-    base_model_all, base_model_rpn, base_model_classifier = initialize_model()
+
+    global model_all, model_rpn, model_classifier
+    initialize_model()
     if args.validation:
         for param in combinations:
             random.shuffle(all_imgs)
@@ -532,7 +531,7 @@ if __name__ == "__main__":
             idx = 0
             for train_index, val_index in kf.split(all_imgs):
                 print("=== Fold {}/{} ===".format(idx + 1, n_splits))
-                model_all, model_rpn, model_classifier = clone_models(base_model_all, base_model_rpn, base_model_classifier)
+                clone_models()
                 train_imgs, val_imgs = np.array(all_imgs)[train_index], np.array(all_imgs)[val_index]
                 curr_loss_val, best_loss_val, best_epoch = val_model(train_imgs, val_imgs, param, paramNames,
                                                                      os.path.join(record_path, "Validation - "
@@ -548,7 +547,7 @@ if __name__ == "__main__":
                                                     + str(idx)
                                                     + ".hdf5"))
 
-                delete_clones(model_all, model_rpn, model_classifier)
+                delete_clones()
 
                 if best_loss_val < best_fold_loss:
                     val_loss = best_fold_loss
@@ -566,7 +565,7 @@ if __name__ == "__main__":
         best_num_epochs = args.num_epochs
 
     print("=== Best epoch: {} ===".format(best_epoch))
-    model_all, model_rpn, model_classifier = clone_models(base_model_all, base_model_rpn, base_model_classifier)
+    clone_models()
     train_model(all_imgs, math.ceil(best_num_epochs), os.path.join(C.record_path, "Training"))
 
     print('Training complete, exiting.')
