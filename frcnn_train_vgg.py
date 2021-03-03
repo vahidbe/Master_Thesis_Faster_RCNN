@@ -502,7 +502,6 @@ if __name__ == "__main__":
     best_loss = np.inf
     best_epoch = -1
 
-    model_all, model_rpn, model_classifier = initialize_model()
     best_num_epochs = 0
     if args.validation:
         for param in combinations:
@@ -515,25 +514,33 @@ if __name__ == "__main__":
             for train_index, val_index in kf.split(all_imgs):
                 print("=== Fold {}/{} ===".format(idx + 1, n_splits))
                 train_imgs, val_imgs = np.array(all_imgs)[train_index], np.array(all_imgs)[val_index]
+                model_all, model_rpn, model_classifier = initialize_model()
                 curr_loss_val, best_loss_val, best_epoch = val_model(train_imgs, val_imgs, param, paramNames,
                                                                      os.path.join(record_path, "Validation - "
                                                                                   + " ".join(paramNames) + " - "
                                                                                   + str(list(param))
                                                                                   + " - split "
                                                                                   + str(idx)))
+                model_all.save_weights(os.path.join(record_path, "Validation"
+                                                    + " ".join(paramNames) + " - "
+                                                    + str(list(param))
+                                                    + " - split "
+                                                    + str(idx)
+                                                    + ".hdf5"))
+                del model_all, model_rpn, model_classifier
 
                 if best_loss_val < best_fold_loss:
                     val_loss = best_fold_loss
                 losses[idx] = best_loss_val
                 best_epoch_list[idx] = best_epoch
                 idx += 1
-            curr_loss = np.mean(
-                losses)  # On regarde la mean car on peut avoir un training set qui match parfaitement au validation set
+            curr_loss = np.mean(losses)
+            # On regarde la mean car on peut avoir un training set qui match parfaitement au validation set
             # mais les autres folds sont à chier. Du coup on doit bien observer la moyenne
             if curr_loss < best_loss:
                 best_loss = curr_loss
                 best_num_epochs = np.mean(best_epoch_list)
-            del model_all, model_rpn, model_classifier
+
     else:
         best_num_epochs = args.num_epochs
 
