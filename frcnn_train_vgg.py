@@ -13,6 +13,7 @@ def train_model(train_imgs, num_epochs, record_filepath):
         start_time = time.time()
         progbar = generic_utils.Progbar(len(train_imgs))
         print('Epoch {}/{}'.format(epoch_num + 1, num_epochs))
+        random.shuffle(train_imgs)
         data_gen_train = get_anchor_gt(train_imgs, C, get_img_output_length,
                                        mode='train')  # TODO: tester mode:'augmentation'
 
@@ -513,7 +514,6 @@ if __name__ == "__main__":
             idx = 0
             for train_index, val_index in kf.split(all_imgs):
                 print("=== Fold {}/{} ===".format(idx + 1, n_splits))
-                # TODO: shuffle images before each epoch?
                 train_imgs, val_imgs = np.array(all_imgs)[train_index], np.array(all_imgs)[val_index]
                 curr_loss_val, best_loss_val, best_epoch = val_model(train_imgs, val_imgs, param, paramNames,
                                                                      os.path.join(record_path, "Validation - "
