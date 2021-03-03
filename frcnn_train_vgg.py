@@ -501,8 +501,8 @@ if __name__ == "__main__":
     best_loss = np.inf
     best_epoch = -1
 
+    model_all, model_rpn, model_classifier = None, None, None
     best_num_epochs = 0
-
     if args.validation:
         for param in combinations:
             random.shuffle(all_imgs)
