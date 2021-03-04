@@ -438,14 +438,14 @@ if __name__ == "__main__":
     num_epochs = int(args.num_epochs)
     n_splits = int(args.validation_splits)
 
-    validation_record_path = "./logs/{}".format(args.model_name)
+    validation_record_path = "./logs/{}.csv".format(args.model_name)
     last_validation_code = args.validation_code
     if last_validation_code is not None:
         start_from_last_step = True
         validation_record_df = pd.read_csv(validation_record_path)
     else:
         start_from_last_step = False
-        validation_record_df = pd.DataFrame(columns=['validation_code', 'curr_loss', 'best_loss', 'best_epoch'])
+        validation_record_df = pd.DataFrame(columns=['validation_code', 'curr_loss', 'best_loss', 'best_epoch', 'images'])
 
     train_path = args.annotations  # Training data (annotation file)
     data_path = args.dataset
@@ -529,8 +529,12 @@ if __name__ == "__main__":
     model_all, model_rpn, model_classifier = initialize_model()
     base_weights_rpn = model_rpn.get_weights()
     base_weights_classifier = model_classifier.get_weights()
-    random.shuffle(all_imgs)
-    print(all_imgs)
+
+    if start_from_last_step:
+        last_row = validation_record_df.tail(1)
+        all_imgs = last_row['images']
+    else:
+        random.shuffle(all_imgs)
     if args.validation:
         for param in combinations:
             kf = KFold(n_splits=n_splits)
@@ -552,7 +556,10 @@ if __name__ == "__main__":
                     else:
                         start_from_last_step = False
                         for index, values in validation_record_df.iterrows():
-                            losses[index] = values["curr_loss"]
+                            i = 0
+                            if values['validation_code'] is last_validation_code:
+                                losses[i] = values["curr_loss"]
+                                i += 1
 
                         last_row = validation_record_df.tail(1)
                         best_loss = last_row["best_loss"]
