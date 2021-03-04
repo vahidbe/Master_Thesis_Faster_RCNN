@@ -1,5 +1,6 @@
 from libraries import *
 from recorder import Recorder
+import pandas as pd
 from sklearn.model_selection import KFold
 
 
@@ -373,8 +374,8 @@ def initialize_model():
 
     base_model_rpn.compile(optimizer=Adam(lr=1e-5), loss=[rpn_loss_cls(num_anchors), rpn_loss_regr(num_anchors)])
     base_model_classifier.compile(optimizer=Adam(lr=1e-5),
-                             loss=[class_loss_cls, class_loss_regr(len(classes_count) - 1)],
-                             metrics={'dense_class_{}'.format(len(classes_count)): 'accuracy'})
+                                  loss=[class_loss_cls, class_loss_regr(len(classes_count) - 1)],
+                                  metrics={'dense_class_{}'.format(len(classes_count)): 'accuracy'})
     base_model_all.compile(optimizer='sgd', loss='mae')
 
     return base_model_all, base_model_rpn, base_model_classifier
@@ -407,6 +408,10 @@ if __name__ == "__main__":
     parser.add_argument('--validation_splits', required=False,
                         metavar="Integer", default=4,
                         help='Number of splits for the validation if --validation has been set to true')
+    parser.add_argument('--validation_code', required=False,
+                        metavar="Validation code from last validation step", default=None,
+                        help='Validation code from last validation step to provide if starting from where the '
+                             'validation was left off')
     parser.add_argument('--num_epochs', required=False,
                         metavar="Integer", default=10,
                         help='Number of epochs for the training if --validation has been set to False\n'
@@ -426,12 +431,21 @@ if __name__ == "__main__":
         config.gpu_options.per_process_gpu_memory_fraction = 0.9
         session = tf.compat.v1.InteractiveSession(config=config)
     else:
-        print("False:{}".format(use_gpu))
+        os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
         config = tf.compat.v1.ConfigProto(device_count={'GPU': 0})
         session = tf.compat.v1.InteractiveSession(config=config)
 
     num_epochs = int(args.num_epochs)
     n_splits = int(args.validation_splits)
+
+    validation_record_path = "./logs/{}".format(args.model_name)
+    last_validation_code = args.validation_code
+    if last_validation_code is not None:
+        start_from_last_step = True
+        validation_record_df = pd.read_csv(validation_record_path)
+    else:
+        start_from_last_step = False
+        validation_record_df = pd.DataFrame(columns=['validation_code', 'curr_loss', 'best_loss', 'best_epoch'])
 
     train_path = args.annotations  # Training data (annotation file)
     data_path = args.dataset
@@ -515,9 +529,10 @@ if __name__ == "__main__":
     model_all, model_rpn, model_classifier = initialize_model()
     base_weights_rpn = model_rpn.get_weights()
     base_weights_classifier = model_classifier.get_weights()
+    random.shuffle(all_imgs)
+    print(all_imgs)
     if args.validation:
         for param in combinations:
-            random.shuffle(all_imgs)
             kf = KFold(n_splits=n_splits)
             losses = np.zeros(n_splits)
             best_epoch_list = np.zeros(n_splits)
@@ -525,27 +540,46 @@ if __name__ == "__main__":
             idx = 0
             for train_index, val_index in kf.split(all_imgs):
                 print("=== Fold {}/{} ===".format(idx + 1, n_splits))
+                validation_code = "Validation - "\
+                                  + " ".join(paramNames) + " - "\
+                                  + str(list(param))\
+                                  + " - split "\
+                                  + str(idx)
+
+                if start_from_last_step:
+                    if last_validation_code is not validation_code:
+                        continue
+                    else:
+                        start_from_last_step = False
+                        for index, values in validation_record_df.iterrows():
+                            losses[index] = values["curr_loss"]
+
+                        last_row = validation_record_df.tail(1)
+                        best_loss = last_row["best_loss"]
+                        best_epoch = last_row["best_epoch"]
+
+                print("Validation step code: {}".format(validation_code))
                 train_imgs, val_imgs = np.array(all_imgs)[train_index], np.array(all_imgs)[val_index]
                 curr_loss_val, best_loss_val, best_epoch = val_model(train_imgs, val_imgs, param, paramNames,
-                                                                     os.path.join(record_path, "Validation - "
-                                                                                  + " ".join(paramNames) + " - "
-                                                                                  + str(list(param))
-                                                                                  + " - split "
-                                                                                  + str(idx)))
+                                                                     os.path.join(record_path, validation_code))
 
-                model_all.save_weights(os.path.join(record_path, "Validation"
-                                                    + " ".join(paramNames) + " - "
-                                                    + str(list(param))
-                                                    + " - split "
-                                                    + str(idx)
-                                                    + ".hdf5"))
+                new_row = {'validation_code': validation_code,
+                           'curr_loss': curr_loss_val,
+                           'best_loss': best_loss_val,
+                           'best_epoch': best_epoch}
+
+                validation_record_df = validation_record_df.append(new_row, ignore_index=True)
+                validation_record_df.to_csv(validation_record_path, index=0)
+
+                model_all.save_weights(os.path.join(record_path, validation_code + ".hdf5"))
                 reset_weights()
-
 
                 if best_loss_val < best_fold_loss:
                     val_loss = best_fold_loss
                 losses[idx] = best_loss_val
                 best_epoch_list[idx] = best_epoch
+
+
                 idx += 1
             curr_loss = np.mean(losses)
             # On regarde la mean car on peut avoir un training set qui match parfaitement au validation set

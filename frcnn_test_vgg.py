@@ -399,7 +399,7 @@ if __name__ == "__main__":
         config.gpu_options.per_process_gpu_memory_fraction = 0.9
         session = tf.compat.v1.InteractiveSession(config=config)
     else:
-        print("False:{}".format(use_gpu))
+        os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
         config = tf.compat.v1.ConfigProto(device_count={'GPU': 0})
         session = tf.compat.v1.InteractiveSession(config=config)
 
