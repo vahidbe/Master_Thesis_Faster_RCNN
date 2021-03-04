@@ -533,6 +533,8 @@ if __name__ == "__main__":
     if start_from_last_step:
         last_row = validation_record_df.tail(1)
         all_imgs = last_row['images']
+        print(all_imgs)
+        print(type(all_imgs))
     else:
         random.shuffle(all_imgs)
     if args.validation:
