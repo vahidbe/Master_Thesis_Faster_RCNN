@@ -419,7 +419,7 @@ if __name__ == "__main__":
     parser.add_argument('--weights', required=False, default='./model/vgg16_weights_tf_dim_ordering_tf_kernels.h5',
                         metavar="/path/to/base/weights.h5",
                         help="Path to base weights .h5 file")
-    parser.add_argument('--use_gpu', required=False, default=True,
+    parser.add_argument('--use_gpu', required=False, default="True",
                         metavar="True/False",
                         help="True if you want to run the training on a gpu, False otherwise")
     args = parser.parse_args()
