@@ -2,6 +2,7 @@ from libraries import *
 from recorder import Recorder
 import pandas as pd
 from sklearn.model_selection import KFold
+import ast
 
 
 def train_model(train_imgs, num_epochs, record_filepath):
@@ -530,11 +531,12 @@ if __name__ == "__main__":
     base_weights_rpn = model_rpn.get_weights()
     base_weights_classifier = model_classifier.get_weights()
 
+    # print(all_imgs)
+    # print()
     if start_from_last_step:
         last_row = validation_record_df.tail(1)
-        all_imgs = last_row['images']
-        print(all_imgs)
-        print(type(all_imgs))
+        all_imgs = ast.literal_eval(last_row['images'].tolist()[0])
+        # print(all_imgs)
     else:
         random.shuffle(all_imgs)
     if args.validation:
@@ -553,7 +555,8 @@ if __name__ == "__main__":
                                   + str(idx)
 
                 if start_from_last_step:
-                    if last_validation_code is not validation_code:
+                    if not last_validation_code == validation_code:
+                        idx += 1
                         continue
                     else:
                         start_from_last_step = False
@@ -575,7 +578,8 @@ if __name__ == "__main__":
                 new_row = {'validation_code': validation_code,
                            'curr_loss': curr_loss_val,
                            'best_loss': best_loss_val,
-                           'best_epoch': best_epoch}
+                           'best_epoch': best_epoch,
+                           'images': all_imgs}
 
                 validation_record_df = validation_record_df.append(new_row, ignore_index=True)
                 validation_record_df.to_csv(validation_record_path, index=0)
