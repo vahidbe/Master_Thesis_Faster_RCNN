@@ -560,7 +560,7 @@ if __name__ == "__main__":
                     start_from_last_step = False
                     continue
 
-            print("Validation step code: {}".format(validation_code))
+            print("=== Validation step code: {}".format(validation_code))
             curr_loss_val, best_loss_val, best_epoch = val_model(train_imgs, val_imgs,
                                                                  params, paramNames,
                                                                  record_path, validation_code)
@@ -577,8 +577,8 @@ if __name__ == "__main__":
 
             if best_loss_val < best_loss:
                 best_loss = best_loss_val
-                for param, paramName in params, paramNames:
-                    best_values[paramName] = param
+                for i in range(len(params)):
+                    best_values[list(paramNames)[i]] = params[i]
 
         print("=== Best values:")
         for key in best_values.keys():
