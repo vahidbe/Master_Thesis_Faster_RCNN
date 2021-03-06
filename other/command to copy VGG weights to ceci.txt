@@ -1,0 +1,1 @@
+scp -i "C:\Users\User\.ssh\id_rsa_ceci" "F:\Documents\Projects\FasterRCNN\model\vgg16_weights_tf_dim_ordering_tf_kernels.h5" beyraghi@gwceci.cism.ucl.ac.be:~/Faster_RCNN_for_Open_Images_Dataset_Keras/model
