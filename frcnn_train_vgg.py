@@ -556,7 +556,6 @@ if __name__ == "__main__":
 
     best_loss = float('inf')
     best_values = {}
-    weight_to_load = False
     if args.validation:
         for params in combinations:
 
@@ -569,14 +568,11 @@ if __name__ == "__main__":
                     continue
                 else:
                     start_from_last_step = False
-                    if not last_epoch == 0:
-                        weight_to_load = True
                     continue
 
-            if weight_to_load:
+            if not last_epoch == 0:
                 model_rpn.load_weights(os.path.join(record_path, validation_code + ".hdf5"))
                 model_classifier.load_weights(os.path.join(record_path, validation_code + ".hdf5"))
-                weight_to_load = False
 
             print("=== Validation step code: {}".format(validation_code))
             curr_loss_val, best_loss_val, best_epoch = val_model(train_imgs, val_imgs,
