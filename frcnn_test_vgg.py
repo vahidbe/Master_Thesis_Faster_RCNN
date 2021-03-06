@@ -100,7 +100,18 @@ def init_models():
 def draw_box_on_images():
     class_to_color = {class_mapping[v]: np.random.randint(0, 255, 3) for v in class_mapping}
 
-    test_imgs = os.listdir(data_test_path)
+    if from_csv:
+        imgs_record_df = pd.read_csv(imgs_record_path)
+        last_row = imgs_record_df.tail(1)
+        test_imgs_temp = ast.literal_eval(last_row['train'].tolist()[0])
+        test_imgs = []
+        for img_dict in test_imgs_temp:
+            test_imgs.append(img_dict['filepath'])
+    else:
+        test_imgs_temp = os.listdir(data_test_path)
+        test_imgs = []
+        for img_name in test_imgs_temp:
+            test_imgs.append(os.path.join(data_test_path, img_name))
 
     # imgs_path = []
     # for i in range(10):
@@ -116,13 +127,12 @@ def draw_box_on_images():
     # for idx, img_name in enumerate(imgs_path):
     length = len(test_imgs)
     print(length)
-    for idx, img_name in enumerate(test_imgs):
+    for idx, filepath in enumerate(test_imgs):
         print("Progression : " + str(idx + 1) + "/" + str(length))
-        if not img_name.lower().endswith(('.bmp', '.jpeg', '.jpg', '.png', '.tif', '.tiff')):
+        if not filepath.lower().endswith(('.bmp', '.jpeg', '.jpg', '.png', '.tif', '.tiff')):
             continue
-        print(img_name)
+        print(filepath)
         st = time.time()
-        filepath = os.path.join(data_test_path, img_name)
 
         img = cv2.imread(filepath)
 
@@ -230,7 +240,12 @@ def draw_box_on_images():
 
 
 def accuracy():
-    test_imgs, _, _ = get_data(test_path, data_test_path)
+    if from_csv:
+        imgs_record_df = pd.read_csv(imgs_record_path)
+        last_row = imgs_record_df.tail(1)
+        test_imgs = ast.literal_eval(last_row['train'].tolist()[0])
+    else:
+        test_imgs, _, _ = get_data(test_path, data_test_path)
 
     T = {}
     P = {}
@@ -379,8 +394,11 @@ if __name__ == "__main__":
                         metavar="name_of_your_model", default='model',
                         help='Name of the model being tested')
     parser.add_argument('--dataset', required=False,
-                        metavar="/path/to/insects/test/dataset/", default='./data_test',
+                        metavar="/path/to/insects/test/dataset/", default='./data',
                         help='Directory of the Insects test dataset')
+    parser.add_argument('--from_csv', required=False, default='True',
+                        metavar="True/False",
+                        help='True if loading test images from csv file')
     parser.add_argument('--annotations', required=False, default='./data/data_annotations.txt',
                         metavar="/path/to/insects/dataset/annotations/file.txt",
                         help='Annotation file for the provided dataset')
@@ -393,6 +411,8 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     use_gpu = eval(args.use_gpu)
+    from_csv = eval(args.from_csv)
+
     if use_gpu is True:
         config = tf.compat.v1.ConfigProto()
         config.gpu_options.allow_growth = True
@@ -405,6 +425,8 @@ if __name__ == "__main__":
 
     test_path = args.annotations  # Test data (annotation file)
     data_test_path = args.dataset
+
+    imgs_record_path = "./logs/{} - imgs.csv".format(args.model_name)
 
     output_results_filename = "./results/{}".format(args.model_name)
     if not os.path.exists(output_results_filename):
