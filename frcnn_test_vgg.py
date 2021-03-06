@@ -103,7 +103,7 @@ def draw_box_on_images():
     if from_csv:
         imgs_record_df = pd.read_csv(imgs_record_path)
         last_row = imgs_record_df.tail(1)
-        test_imgs_temp = ast.literal_eval(last_row['train'].tolist()[0])
+        test_imgs_temp = ast.literal_eval(last_row['test'].tolist()[0])
         test_imgs = []
         for img_dict in test_imgs_temp:
             test_imgs.append(img_dict['filepath'])
@@ -412,6 +412,7 @@ if __name__ == "__main__":
 
     use_gpu = eval(args.use_gpu)
     from_csv = eval(args.from_csv)
+    show_images = eval(args.show_images)
 
     if use_gpu is True:
         config = tf.compat.v1.ConfigProto()
@@ -448,6 +449,6 @@ if __name__ == "__main__":
 
     # record_df = plot_some_graphs(C)
     model_rpn, class_mapping, model_classifier_only = init_models()
-    if args.show_images:
+    if show_images:
         draw_box_on_images()
     accuracy()
