@@ -395,8 +395,8 @@ def reset_weights():
 def split_imgs(imgs, val_split, test_split):
     train_split = 1 - val_split - test_split
     recalc_val_split = val_split / (val_split + test_split)
-    train_list, temp = imgs[:math.floor(len(imgs) * train_split)], imgs[math.ceil((len(imgs) * (train_split))):]
-    val_list, test_list = temp[:math.floor(len(temp) * recalc_val_split)], temp[math.ceil(len(temp) * recalc_val_split):]
+    train_list, temp = imgs[:int(len(imgs) * train_split)], imgs[int((len(imgs) * (train_split))):]
+    val_list, test_list = temp[:int(len(temp) * recalc_val_split)], temp[int(len(temp) * recalc_val_split):]
     print("Train set size: {}\nVal set size: {}\nTest set size: {}\nTotal dataset size: {}".format(len(train_list), len(val_list), len(test_list), len(imgs)))
     return train_list, val_list, test_list
 
