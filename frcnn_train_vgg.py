@@ -103,6 +103,7 @@ def train_model(train_imgs, num_epochs, record_filepath):
 
 
 def val_model(train_imgs, val_imgs, param, paramNames, record_path, validation_code):
+    global start_epoch
     recorder = Recorder(os.path.join(record_path, validation_code), has_validation=True)
     losses = np.zeros((len(train_imgs), 5))
     losses_val = np.zeros((len(val_imgs), 5))
@@ -111,6 +112,10 @@ def val_model(train_imgs, val_imgs, param, paramNames, record_path, validation_c
     best_epoch = -1
 
     for epoch_num in range(num_epochs):
+        if (not start_epoch == 0) and (not epoch_num == start_epoch):
+            continue
+        else:
+            start_epoch = 0
         start_time = time.time()
         progbar = generic_utils.Progbar(len(train_imgs))
         progbar_val = generic_utils.Progbar(len(val_imgs))
@@ -423,6 +428,10 @@ if __name__ == "__main__":
                         metavar="Validation code from last validation step", default=None,
                         help='Validation code from last validation step to provide if starting from where the '
                              'validation was left off')
+    parser.add_argument('--start_from_epoch', required=False,
+                        metavar="Epoch number (starting from 0) of where to restart the validation", default=0,
+                        help='Epoch to start from if starting from where the '
+                             'validation was left off')
     parser.add_argument('--num_epochs', required=False,
                         metavar="Integer", default=10,
                         help='Number of epochs for the training if --validation has been set to False\n'
@@ -450,9 +459,11 @@ if __name__ == "__main__":
 
     validation_record_path = "./logs/{}.csv".format(args.model_name)
     imgs_record_path = "./logs/{} - imgs.csv".format(args.model_name)
+    start_epoch = 0
     last_validation_code = args.validation_code
     if last_validation_code is not None:
         start_from_last_step = True
+        start_epoch = int(args.start_from_epoch)
         validation_record_df = pd.read_csv(validation_record_path)
         imgs_record_df = pd.read_csv(imgs_record_path)
     else:
@@ -545,6 +556,7 @@ if __name__ == "__main__":
 
     best_loss = float('inf')
     best_values = {}
+    weight_to_load = False
     if args.validation:
         for params in combinations:
 
@@ -557,7 +569,14 @@ if __name__ == "__main__":
                     continue
                 else:
                     start_from_last_step = False
+                    if not start_epoch == 0:
+                        weight_to_load = True
                     continue
+
+            if weight_to_load:
+                model_rpn.load_weights(os.path.join(record_path, validation_code + ".hdf5"))
+                model_classifier.load_weights(os.path.join(record_path, validation_code + ".hdf5"))
+                weight_to_load = False
 
             print("=== Validation step code: {}".format(validation_code))
             curr_loss_val, best_loss_val, best_epoch = val_model(train_imgs, val_imgs,
