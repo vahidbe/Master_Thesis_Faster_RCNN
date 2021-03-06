@@ -459,11 +459,11 @@ if __name__ == "__main__":
 
     validation_record_path = "./logs/{}.csv".format(args.model_name)
     imgs_record_path = "./logs/{} - imgs.csv".format(args.model_name)
-    last_epoch = 0
+
+    last_epoch = int(args.start_from_epoch)
     last_validation_code = args.validation_code
     if last_validation_code is not None:
         start_from_last_step = True
-        last_epoch = int(args.start_from_epoch)
         validation_record_df = pd.read_csv(validation_record_path)
         imgs_record_df = pd.read_csv(imgs_record_path)
     else:
@@ -528,7 +528,6 @@ if __name__ == "__main__":
             config_output_filename))
 
     random.seed(1)
-    random.shuffle(all_imgs)
 
     print('Num train samples (images) {}'.format(len(all_imgs)))
 
