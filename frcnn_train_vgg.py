@@ -357,6 +357,7 @@ def initialize_model():
     img_input = Input(shape=(None, None, 3))
     roi_input = Input(shape=(None, 4))
     shared_layers = nn_base(img_input, trainable=True)
+    num_anchors = len(C.anchor_box_scales) * len(C.anchor_box_ratios)  # 9
 
     # Define the RPN, built on the base layers
     rpn = rpn_layer(shared_layers, num_anchors)
