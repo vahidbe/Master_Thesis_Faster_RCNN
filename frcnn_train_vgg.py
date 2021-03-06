@@ -359,7 +359,6 @@ def initialize_model():
     shared_layers = nn_base(img_input, trainable=True)
 
     # Define the RPN, built on the base layers
-    num_anchors = len(C.anchor_box_scales) * len(C.anchor_box_ratios)  # 9
     rpn = rpn_layer(shared_layers, num_anchors)
 
     classifier = classifier_layer(shared_layers, roi_input, C.num_rois, nb_classes=len(classes_count))
@@ -369,22 +368,23 @@ def initialize_model():
 
     # This is a model that holds both the RPN and the classifier, used to load/save weights for the models
     base_model_all = Model([img_input, roi_input], rpn[:2] + classifier)
+    return base_model_all, base_model_rpn, base_model_classifier
 
+
+def load_weights(weights_path):
+    num_anchors = len(C.anchor_box_scales) * len(C.anchor_box_ratios)  # 9
     try:
         print('Loading weights from {}'.format(C.base_net_weights))
-        base_model_rpn.load_weights(C.base_net_weights, by_name=True)
-        base_model_classifier.load_weights(C.base_net_weights, by_name=True)
+        model_rpn.load_weights(weights_path, by_name=True)
+        model_classifier.load_weights(weights_path, by_name=True)
     except:
-        print('Could not load pretrained model weights. Weights can be found in the keras application folder \
-            https://github.com/fchollet/keras/tree/master/keras/applications')
+        print('Error loading weights.')
 
-    base_model_rpn.compile(optimizer=Adam(lr=1e-5), loss=[rpn_loss_cls(num_anchors), rpn_loss_regr(num_anchors)])
-    base_model_classifier.compile(optimizer=Adam(lr=1e-5),
+    model_rpn.compile(optimizer=Adam(lr=1e-5), loss=[rpn_loss_cls(num_anchors), rpn_loss_regr(num_anchors)])
+    model_classifier.compile(optimizer=Adam(lr=1e-5),
                                   loss=[class_loss_cls, class_loss_regr(len(classes_count) - 1)],
                                   metrics={'dense_class_{}'.format(len(classes_count)): 'accuracy'})
-    base_model_all.compile(optimizer='sgd', loss='mae')
-
-    return base_model_all, base_model_rpn, base_model_classifier
+    model_all.compile(optimizer='sgd', loss='mae')
 
 
 def reset_weights():
@@ -570,8 +570,9 @@ if __name__ == "__main__":
                     continue
 
             if not last_epoch == 0:
-                model_rpn.load_weights(os.path.join(record_path, validation_code + ".hdf5"))
-                model_classifier.load_weights(os.path.join(record_path, validation_code + ".hdf5"))
+                load_weights(os.path.join(record_path, validation_code + ".hdf5"))
+            else:
+                load_weights(C.base_net_weights)
 
             print("=== Validation step code: {}".format(validation_code))
             curr_loss_val, best_loss_val, best_epoch = val_model(train_imgs, val_imgs,
