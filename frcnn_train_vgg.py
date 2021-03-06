@@ -103,7 +103,7 @@ def train_model(train_imgs, num_epochs, record_filepath):
 
 
 def val_model(train_imgs, val_imgs, param, paramNames, record_path, validation_code):
-    global start_epoch
+    global last_epoch
     recorder = Recorder(os.path.join(record_path, validation_code), has_validation=True)
     losses = np.zeros((len(train_imgs), 5))
     losses_val = np.zeros((len(val_imgs), 5))
@@ -112,10 +112,10 @@ def val_model(train_imgs, val_imgs, param, paramNames, record_path, validation_c
     best_epoch = -1
 
     for epoch_num in range(num_epochs):
-        if (not start_epoch == 0) and (not epoch_num == start_epoch):
+        if (not last_epoch == 0) and (not epoch_num == last_epoch):
             continue
         else:
-            start_epoch = 0
+            last_epoch = 0
         start_time = time.time()
         progbar = generic_utils.Progbar(len(train_imgs))
         progbar_val = generic_utils.Progbar(len(val_imgs))
@@ -395,9 +395,8 @@ def reset_weights():
 def split_imgs(imgs, val_split, test_split):
     train_split = 1 - val_split - test_split
     recalc_val_split = val_split / (val_split + test_split)
-    recalc_test_split = test_split / (val_split + test_split)
-    train_list, temp = imgs[:int(len(imgs) * train_split)], imgs[int(len(imgs) * (val_split + test_split)):]
-    val_list, test_list = temp[:int(len(temp) * recalc_val_split)], temp[int(len(temp) * recalc_test_split):]
+    train_list, temp = imgs[:int(len(imgs) * train_split)], imgs[int(len(imgs) * (val_split + test_split))+1:]
+    val_list, test_list = temp[:int(len(temp) * recalc_val_split)], temp[int(len(temp) * recalc_val_split)+1:]
     return train_list, val_list, test_list
 
 
@@ -459,11 +458,11 @@ if __name__ == "__main__":
 
     validation_record_path = "./logs/{}.csv".format(args.model_name)
     imgs_record_path = "./logs/{} - imgs.csv".format(args.model_name)
-    start_epoch = 0
+    last_epoch = 0
     last_validation_code = args.validation_code
     if last_validation_code is not None:
         start_from_last_step = True
-        start_epoch = int(args.start_from_epoch)
+        last_epoch = int(args.start_from_epoch)
         validation_record_df = pd.read_csv(validation_record_path)
         imgs_record_df = pd.read_csv(imgs_record_path)
     else:
@@ -569,7 +568,7 @@ if __name__ == "__main__":
                     continue
                 else:
                     start_from_last_step = False
-                    if not start_epoch == 0:
+                    if not last_epoch == 0:
                         weight_to_load = True
                     continue
 
