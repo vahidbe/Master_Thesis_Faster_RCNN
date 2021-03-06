@@ -243,7 +243,7 @@ def accuracy():
     if from_csv:
         imgs_record_df = pd.read_csv(imgs_record_path)
         last_row = imgs_record_df.tail(1)
-        test_imgs = ast.literal_eval(last_row['train'].tolist()[0])
+        test_imgs = ast.literal_eval(last_row['test'].tolist()[0])
     else:
         test_imgs, _, _ = get_data(test_path, data_test_path)
 
@@ -428,9 +428,9 @@ if __name__ == "__main__":
 
     imgs_record_path = "./logs/{} - imgs.csv".format(args.model_name)
 
-    output_results_filename = "./results/{}".format(args.model_name)
-    if not os.path.exists(output_results_filename):
-        os.mkdir(output_results_filename)
+    # output_results_filename = "./results/{}".format(args.model_name)
+    # if not os.path.exists(output_results_filename):
+    #     os.mkdir(output_results_filename)
     # TODO: output results of accuracy in file
     # TODO: parametrer le programme pour afficher les images ou calculer les metrics
 

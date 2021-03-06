@@ -539,10 +539,10 @@ if __name__ == "__main__":
         test_imgs = ast.literal_eval(last_row['test'].tolist()[0])
     else:
         random.shuffle(all_imgs)
-        new_row = {'images': all_imgs}
+        train_imgs, val_imgs, test_imgs = split_imgs(all_imgs, VALIDATION_SPLIT, TESTING_SPLIT)
+        new_row = {'train': train_imgs, 'val': val_imgs, 'test': test_imgs}
         imgs_record_df = imgs_record_df.append(new_row, ignore_index=True)
         imgs_record_df.to_csv(imgs_record_path, index=0)
-        train_imgs, val_imgs, test_imgs = split_imgs(all_imgs, VALIDATION_SPLIT, TESTING_SPLIT)
 
     best_loss = float('inf')
     best_values = {}
