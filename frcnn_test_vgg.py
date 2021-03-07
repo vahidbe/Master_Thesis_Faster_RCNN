@@ -241,6 +241,7 @@ def draw_box_on_images():
 
 
 def plot_precision_recall(precision, recall, thresholds, class_name):
+    plt.figure()
     plt.plot(recall, precision, lw=2)
     plt.title('[' + class_name + ']' + ' Precision - Recall curve')
     plt.xlabel('Recall')
@@ -250,12 +251,24 @@ def plot_precision_recall(precision, recall, thresholds, class_name):
     plt.savefig("./other/graphs/{}_prec-rec_{}".format(args.model_name, str(class_name)))
     # plt.show()
 
-    plt.plot(thresholds, lw=2)
-    plt.title('[' + class_name + ']' + ' Evolution of thresholds for prediction and recall')
-    plt.ylabel('Threshold')
-    plt.ylim([0.0, 1.0])
-    plt.savefig("./other/graphs/{}_threshold_{}".format(args.model_name, str(class_name)))
+    # plt.plot(thresholds, lw=2)
+    # plt.title('[' + class_name + ']' + ' Evolution of thresholds for prediction and recall')
+    # plt.ylabel('Threshold')
+    # plt.ylim([0.0, 1.0])
+    # plt.savefig("./other/graphs/{}_threshold_{}".format(args.model_name, str(class_name)))
     # plt.show()
+
+
+def plot_roc(fpr, tpr, class_name):
+    plt.figure()
+    plt.plot(fpr, tpr, lw=2)
+    plt.title('[' + class_name + ']' + 'ROC')
+    plt.xlabel('Recall')
+    plt.ylabel('Precision')
+    plt.xlim([0.0, 1.0])
+    plt.ylim([0.0, 1.0])
+    plt.savefig("./other/graphs/{}_roc_{}".format(args.model_name, str(class_name)))
+
 
 def accuracy():
     if from_csv:
@@ -376,7 +389,7 @@ def accuracy():
 
     print()
     print('mean average precision:', np.nanmean(np.array(mAPs)))
-    print('mean Area Under the Receiver Operating Characteristic Curve:', np.nanmean(np.array(mROC_AUCs)))
+    # print('mean Area Under the Receiver Operating Characteristic Curve:', np.nanmean(np.array(mROC_AUCs)))
 
     mAP = [mAP for mAP in mAPs if str(mAP) != 'nan']
     # mROC_AUC = [mROC_AUC for mROC_AUC in mROC_AUCs if str(mROC_AUC) != 'nan']
@@ -391,9 +404,8 @@ def accuracy():
         plot_precision_recall(precision, recall, thresholds, key)
         fpr, tpr, thresholds = roc_curve(T[key], P[key])
         roc_auc = auc(fpr, tpr)
-        display = RocCurveDisplay(fpr=fpr, tpr=tpr, roc_auc=roc_auc)
-        display.plot()
-        plt.savefig("./other/graphs/{}_ROC_{}".format(args.model_name, str(key)))
+        print("ROC AUC for {} = {}".format(str(key), str(roc_auc)))
+        plot_roc(fpr, tpr, key)
 
 
 
