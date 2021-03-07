@@ -17,7 +17,7 @@ import pandas as pd
 import os
 import ast
 
-from sklearn.metrics import average_precision_score, recall_score, accuracy_score, precision_recall_fscore_support, precision_recall_curve
+from sklearn.metrics import average_precision_score, recall_score, accuracy_score, precision_recall_fscore_support, precision_recall_curve, roc_auc_score, RocCurveDisplay, roc_curve, auc
 
 from keras import backend as K
 from keras.optimizers import Adam, SGD, RMSprop

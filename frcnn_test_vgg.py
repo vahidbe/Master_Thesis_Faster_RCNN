@@ -247,13 +247,15 @@ def plot_precision_recall(precision, recall, thresholds, class_name):
     plt.ylabel('Precision')
     plt.xlim([0.0, 1.0])
     plt.ylim([0.0, 1.0])
-    plt.show()
+    plt.savefig("./other/graphs/{}_prec-rec_{}".format(args.model_name, str(class_name)))
+    # plt.show()
 
     plt.plot(thresholds, lw=2)
     plt.title('[' + class_name + ']' + ' Evolution of thresholds for prediction and recall')
     plt.ylabel('Threshold')
     plt.ylim([0.0, 1.0])
-    plt.show()
+    plt.savefig("./other/graphs/{}_threshold_{}".format(args.model_name, str(class_name)))
+    # plt.show()
 
 def accuracy():
     if from_csv:
@@ -266,6 +268,7 @@ def accuracy():
     T = {}
     P = {}
     mAPs = []
+    mROC_AUCs = []
     for idx, img_data in enumerate(test_imgs):
         print('{}/{}'.format(idx, len(test_imgs)))
         st = time.time()
@@ -358,23 +361,41 @@ def accuracy():
             T[key].extend(t[key]) #C'est cumulatif, on garde les prédictions des images précédemment considérées dans le test
             P[key].extend(p[key])
         all_aps = []
+        all_roc_aucs = []
         for key in T.keys():
             ap = average_precision_score(T[key], P[key])
+            # roc_auc = roc_auc_score(T[key], P[key])
             print('{} AP: {}'.format(key, ap))
+            # print('{} ROC AUC: {}'.format(key, roc_auc))
             all_aps.append(ap)
+            # all_roc_aucs.append(roc_auc)
         print('mAP = {}'.format(np.mean(np.array(all_aps)))) #Mean on all classes
+        # print('mROC_AUC = {}'.format(np.mean(np.array(all_roc_aucs)))) #Mean on all classes
         mAPs.append(np.mean(np.array(all_aps)))
+        # mROC_AUCs.append(np.mean(np.array(all_roc_aucs)))
 
     print()
     print('mean average precision:', np.nanmean(np.array(mAPs)))
+    print('mean Area Under the Receiver Operating Characteristic Curve:', np.nanmean(np.array(mROC_AUCs)))
 
     mAP = [mAP for mAP in mAPs if str(mAP) != 'nan']
+    # mROC_AUC = [mROC_AUC for mROC_AUC in mROC_AUCs if str(mROC_AUC) != 'nan']
     mean_average_prec = np.nanmean(np.array(mAP))
+    # mean_roc_auc = np.nanmean(np.array(mROC_AUC))
     print('The mean average precision is %0.3f' % (mean_average_prec))
+    # print('The mean Area Under the Receiver Operating Characteristic Curve is %0.3f' % (mean_roc_auc))
 
     for key in T.keys():
+        print(key)
         precision, recall, thresholds = precision_recall_curve(T[key], P[key])
         plot_precision_recall(precision, recall, thresholds, key)
+        fpr, tpr, thresholds = roc_curve(T[key], P[key])
+        roc_auc = auc(fpr, tpr)
+        display = RocCurveDisplay(fpr=fpr, tpr=tpr, roc_auc=roc_auc)
+        display.plot()
+        plt.savefig("./other/graphs/{}_ROC_{}".format(args.model_name, str(key)))
+
+
 
     # record_df.loc[len(record_df)-1, 'mAP'] = mean_average_prec
     # record_df.to_csv(C.record_path, index=0)
