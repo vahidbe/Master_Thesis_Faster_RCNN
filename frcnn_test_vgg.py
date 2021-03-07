@@ -1,6 +1,7 @@
 from libraries import *
 
 
+
 # def plot_some_graphs(C):
 #     # Load the records
 #     record_df = pd.read_csv(C.record_path)
@@ -100,7 +101,18 @@ def init_models():
 def draw_box_on_images():
     class_to_color = {class_mapping[v]: np.random.randint(0, 255, 3) for v in class_mapping}
 
-    test_imgs = os.listdir(data_test_path)
+    if from_csv:
+        imgs_record_df = pd.read_csv(imgs_record_path)
+        last_row = imgs_record_df.tail(1)
+        test_imgs_temp = ast.literal_eval(last_row['test'].tolist()[0])
+        test_imgs = []
+        for img_dict in test_imgs_temp:
+            test_imgs.append(img_dict['filepath'])
+    else:
+        test_imgs_temp = os.listdir(data_test_path)
+        test_imgs = []
+        for img_name in test_imgs_temp:
+            test_imgs.append(os.path.join(data_test_path, img_name))
 
     # imgs_path = []
     # for i in range(10):
@@ -116,13 +128,12 @@ def draw_box_on_images():
     # for idx, img_name in enumerate(imgs_path):
     length = len(test_imgs)
     print(length)
-    for idx, img_name in enumerate(test_imgs):
+    for idx, filepath in enumerate(test_imgs):
         print("Progression : " + str(idx + 1) + "/" + str(length))
-        if not img_name.lower().endswith(('.bmp', '.jpeg', '.jpg', '.png', '.tif', '.tiff')):
+        if not filepath.lower().endswith(('.bmp', '.jpeg', '.jpg', '.png', '.tif', '.tiff')):
             continue
-        print(img_name)
+        print(filepath)
         st = time.time()
-        filepath = os.path.join(data_test_path, img_name)
 
         img = cv2.imread(filepath)
 
@@ -229,14 +240,32 @@ def draw_box_on_images():
         print(class_mapping)
 
 
+def plot_precision_recall(precision, recall, thresholds, class_name):
+    plt.plot(recall, precision, lw=2)
+    plt.title('[' + class_name + ']' + ' Precision - Recall curve')
+    plt.xlabel('Recall')
+    plt.ylabel('Precision')
+    plt.xlim([0.0, 1.0])
+    plt.ylim([0.0, 1.0])
+    plt.show()
+
+    plt.plot(thresholds, lw=2)
+    plt.title('[' + class_name + ']' + ' Evolution of thresholds for prediction and recall')
+    plt.ylabel('Threshold')
+    plt.ylim([0.0, 1.0])
+    plt.show()
+
 def accuracy():
-    test_imgs, _, _ = get_data(test_path, data_test_path)
+    if from_csv:
+        imgs_record_df = pd.read_csv(imgs_record_path)
+        last_row = imgs_record_df.tail(1)
+        test_imgs = ast.literal_eval(last_row['test'].tolist()[0])
+    else:
+        test_imgs, _, _ = get_data(test_path, data_test_path)
 
     T = {}
     P = {}
     mAPs = []
-    mRecalls = []
-    mAccs = []
     for idx, img_data in enumerate(test_imgs):
         print('{}/{}'.format(idx, len(test_imgs)))
         st = time.time()
@@ -321,47 +350,31 @@ def accuracy():
                 all_dets.append(det)
 
         print('Elapsed time = {}'.format(time.time() - st))
-        t, p = get_map(all_dets, img_data['bboxes'], (fx, fy))
+        t, p = get_map(all_dets, img_data['bboxes'], (fx, fy)) #p contient les proba de prédiction des classes
         for key in t.keys():
             if key not in T:
                 T[key] = []
                 P[key] = []
-            T[key].extend(t[key])
+            T[key].extend(t[key]) #C'est cumulatif, on garde les prédictions des images précédemment considérées dans le test
             P[key].extend(p[key])
         all_aps = []
-        all_recalls = []
-        all_accs = []
         for key in T.keys():
             ap = average_precision_score(T[key], P[key])
-            recall = recall_score(T[key], [round(num) for num in P[key]])
-            acc = accuracy_score(T[key], [round(num) for num in P[key]])
             print('{} AP: {}'.format(key, ap))
-            print('{} Recall: {}'.format(key, recall))
-            print('{} Acc: {}'.format(key, acc))
             all_aps.append(ap)
-            all_recalls.append(recall)
-            all_accs.append(acc)
-        print('mAP = {}'.format(np.mean(np.array(all_aps))))
-        print('mRecall = {}'.format(np.mean(np.array(all_recalls))))
-        print('mAcc = {}'.format(np.mean(np.array(all_accs))))
+        print('mAP = {}'.format(np.mean(np.array(all_aps)))) #Mean on all classes
         mAPs.append(np.mean(np.array(all_aps)))
-        mRecalls.append(np.mean(np.array(all_recalls)))
-        mAccs.append(np.mean(np.array(all_accs)))
 
     print()
     print('mean average precision:', np.nanmean(np.array(mAPs)))
-    print('mean average recall:', np.nanmean(np.array(mRecalls)))
-    print('mean average accuracy:', np.nanmean(np.array(mAccs)))
 
     mAP = [mAP for mAP in mAPs if str(mAP) != 'nan']
-    mRecall = [mRecall for mRecall in mRecalls if str(mRecall) != 'nan']
-    mAcc = [mAcc for mAcc in mAccs if str(mAcc) != 'nan']
-    mean_average_prec = round(np.nanmean(np.array(mAP)), 3)
-    mean_average_recall = round(np.nanmean(np.array(mRecall)), 3)
-    mean_average_acc = round(np.nanmean(np.array(mAcc)), 3)
+    mean_average_prec = np.nanmean(np.array(mAP))
     print('The mean average precision is %0.3f' % (mean_average_prec))
-    print('The mean average recall is %0.3f' % (mean_average_recall))
-    print('The mean average accuracy is %0.3f' % (mean_average_acc))
+
+    for key in T.keys():
+        precision, recall, thresholds = precision_recall_curve(T[key], P[key])
+        plot_precision_recall(precision, recall, thresholds, key)
 
     # record_df.loc[len(record_df)-1, 'mAP'] = mean_average_prec
     # record_df.to_csv(C.record_path, index=0)
@@ -379,8 +392,11 @@ if __name__ == "__main__":
                         metavar="name_of_your_model", default='model',
                         help='Name of the model being tested')
     parser.add_argument('--dataset', required=False,
-                        metavar="/path/to/insects/test/dataset/", default='./data_test',
+                        metavar="/path/to/insects/test/dataset/", default='./data',
                         help='Directory of the Insects test dataset')
+    parser.add_argument('--from_csv', required=False, default='True',
+                        metavar="True/False",
+                        help='True if loading test images from csv file')
     parser.add_argument('--annotations', required=False, default='./data/data_annotations.txt',
                         metavar="/path/to/insects/dataset/annotations/file.txt",
                         help='Annotation file for the provided dataset')
@@ -393,6 +409,9 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     use_gpu = eval(args.use_gpu)
+    from_csv = eval(args.from_csv)
+    show_images = eval(args.show_images)
+
     if use_gpu is True:
         config = tf.compat.v1.ConfigProto()
         config.gpu_options.allow_growth = True
@@ -406,9 +425,11 @@ if __name__ == "__main__":
     test_path = args.annotations  # Test data (annotation file)
     data_test_path = args.dataset
 
-    output_results_filename = "./results/{}".format(args.model_name)
-    if not os.path.exists(output_results_filename):
-        os.mkdir(output_results_filename)
+    imgs_record_path = "./logs/{} - imgs.csv".format(args.model_name)
+
+    # output_results_filename = "./results/{}".format(args.model_name)
+    # if not os.path.exists(output_results_filename):
+    #     os.mkdir(output_results_filename)
     # TODO: output results of accuracy in file
     # TODO: parametrer le programme pour afficher les images ou calculer les metrics
 
@@ -426,6 +447,6 @@ if __name__ == "__main__":
 
     # record_df = plot_some_graphs(C)
     model_rpn, class_mapping, model_classifier_only = init_models()
-    if args.show_images:
+    if show_images:
         draw_box_on_images()
     accuracy()
