@@ -1,6 +1,7 @@
 from libraries import *
 
 
+
 # def plot_some_graphs(C):
 #     # Load the records
 #     record_df = pd.read_csv(C.record_path)
@@ -239,6 +240,21 @@ def draw_box_on_images():
         print(class_mapping)
 
 
+def plot_precision_recall(precision, recall, thresholds, class_name):
+    plt.plot(recall, precision, lw=2)
+    plt.title('[' + class_name + ']' + ' Precision - Recall curve')
+    plt.xlabel('Recall')
+    plt.ylabel('Precision')
+    plt.xlim([0.0, 1.0])
+    plt.ylim([0.0, 1.0])
+    plt.show()
+
+    plt.plot(thresholds, lw=2)
+    plt.title('[' + class_name + ']' + ' Evolution of thresholds for prediction and recall')
+    plt.ylabel('Threshold')
+    plt.ylim([0.0, 1.0])
+    plt.show()
+
 def accuracy():
     if from_csv:
         imgs_record_df = pd.read_csv(imgs_record_path)
@@ -250,8 +266,6 @@ def accuracy():
     T = {}
     P = {}
     mAPs = []
-    mRecalls = []
-    mAccs = []
     for idx, img_data in enumerate(test_imgs):
         print('{}/{}'.format(idx, len(test_imgs)))
         st = time.time()
@@ -336,47 +350,31 @@ def accuracy():
                 all_dets.append(det)
 
         print('Elapsed time = {}'.format(time.time() - st))
-        t, p = get_map(all_dets, img_data['bboxes'], (fx, fy))
+        t, p = get_map(all_dets, img_data['bboxes'], (fx, fy)) #p contient les proba de prédiction des classes
         for key in t.keys():
             if key not in T:
                 T[key] = []
                 P[key] = []
-            T[key].extend(t[key])
+            T[key].extend(t[key]) #C'est cumulatif, on garde les prédictions des images précédemment considérées dans le test
             P[key].extend(p[key])
         all_aps = []
-        all_recalls = []
-        all_accs = []
         for key in T.keys():
             ap = average_precision_score(T[key], P[key])
-            recall = recall_score(T[key], [round(num) for num in P[key]])
-            acc = accuracy_score(T[key], [round(num) for num in P[key]])
             print('{} AP: {}'.format(key, ap))
-            print('{} Recall: {}'.format(key, recall))
-            print('{} Acc: {}'.format(key, acc))
             all_aps.append(ap)
-            all_recalls.append(recall)
-            all_accs.append(acc)
-        print('mAP = {}'.format(np.mean(np.array(all_aps))))
-        print('mRecall = {}'.format(np.mean(np.array(all_recalls))))
-        print('mAcc = {}'.format(np.mean(np.array(all_accs))))
+        print('mAP = {}'.format(np.mean(np.array(all_aps)))) #Mean on all classes
         mAPs.append(np.mean(np.array(all_aps)))
-        mRecalls.append(np.mean(np.array(all_recalls)))
-        mAccs.append(np.mean(np.array(all_accs)))
 
     print()
     print('mean average precision:', np.nanmean(np.array(mAPs)))
-    print('mean average recall:', np.nanmean(np.array(mRecalls)))
-    print('mean average accuracy:', np.nanmean(np.array(mAccs)))
 
     mAP = [mAP for mAP in mAPs if str(mAP) != 'nan']
-    mRecall = [mRecall for mRecall in mRecalls if str(mRecall) != 'nan']
-    mAcc = [mAcc for mAcc in mAccs if str(mAcc) != 'nan']
-    mean_average_prec = round(np.nanmean(np.array(mAP)), 3)
-    mean_average_recall = round(np.nanmean(np.array(mRecall)), 3)
-    mean_average_acc = round(np.nanmean(np.array(mAcc)), 3)
+    mean_average_prec = np.nanmean(np.array(mAP))
     print('The mean average precision is %0.3f' % (mean_average_prec))
-    print('The mean average recall is %0.3f' % (mean_average_recall))
-    print('The mean average accuracy is %0.3f' % (mean_average_acc))
+
+    for key in T.keys():
+        precision, recall, thresholds = precision_recall_curve(T[key], P[key])
+        plot_precision_recall(precision, recall, thresholds, key)
 
     # record_df.loc[len(record_df)-1, 'mAP'] = mean_average_prec
     # record_df.to_csv(C.record_path, index=0)
