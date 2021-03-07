@@ -26,7 +26,7 @@ def display_histogram(hist, title, type):
     plt.yticks(fontsize=15)
     plt.ylabel('Frequency', fontsize=15)
     plt.title(title, fontsize=15)
-    plt.show()
+    plt.savefig(os.path.join('./other/histograms', title))
 
 def get_box_image_ratio(input_path, data_path):
 
@@ -43,6 +43,20 @@ def get_box_image_ratio(input_path, data_path):
     ratio_width_height["boudon_des_arbres"] = []
     ratio_width_height["anthophore_plumeuse"] = []
     ratio_width_height["bourdon_des_jardins"] = []
+
+    rgb_intensity = {}
+
+    rgb_intensity["abeille_mellifere"] = []
+    rgb_intensity["boudon_des_arbres"] = []
+    rgb_intensity["anthophore_plumeuse"] = []
+    rgb_intensity["bourdon_des_jardins"] = []
+
+    gray_intensity = {}
+
+    gray_intensity["abeille_mellifere"] = []
+    gray_intensity["boudon_des_arbres"] = []
+    gray_intensity["anthophore_plumeuse"] = []
+    gray_intensity["bourdon_des_jardins"] = []
 
     i = 1
 
@@ -64,23 +78,28 @@ def get_box_image_ratio(input_path, data_path):
 
             thepath = os.path.join(data_path, filename)
             im = cv2.imread(thepath)
+            im_gray = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
+            mean_rgb_intensity = np.mean(im)
+            mean_gray_intensity = np.mean(im_gray)
             h, w, c = im.shape
             surface = h * w
             ratio_surface[class_name].append(box_surface/surface)
             ratio_width_height[class_name].append(wbox/hbox)
+            rgb_intensity[class_name].append(mean_rgb_intensity)
+            gray_intensity[class_name].append(mean_gray_intensity)
 
-    return ratio_surface, ratio_width_height
+    return ratio_surface, ratio_width_height, rgb_intensity, gray_intensity
 
 
 if __name__ == '__main__':
-    train_path = './data/valid_data_annotations.txt'  # Training data (annotation file)
+    train_path = './data/data_annotations.txt'  # Training data (annotation file)
     data_path = './data'
 
     test_path = './data_test/data_annotations.txt'  # Training data (annotation file)
     data_test_path = './data_test'
 
-    ratio_surface, ratio_width_height = get_box_image_ratio(train_path, data_path)
-    ratio_surface_test, ratio_width_height_test = get_box_image_ratio(test_path, data_test_path)
+    ratio_surface, ratio_width_height, rgb_intensity, gray_intensity = get_box_image_ratio(train_path, data_path)
+    ratio_surface_test, ratio_width_height_test, rgb_intensity_test, gray_intensity_test = get_box_image_ratio(test_path, data_test_path)
 
 
     for class_name in ratio_surface.keys():
@@ -94,4 +113,16 @@ if __name__ == '__main__':
 
     for class_name in ratio_width_height_test.keys():
         display_histogram(ratio_width_height_test[class_name], '[Test] Ratio width on height : ' + class_name, type='test')
+
+    for class_name in rgb_intensity.keys():
+        display_histogram(rgb_intensity[class_name], '[Train] RGB Intensity : ' + class_name, type='train')
+
+    for class_name in rgb_intensity_test.keys():
+        display_histogram(rgb_intensity_test[class_name], '[Test] RGB Intensity : ' + class_name, type='test')
+
+    for class_name in gray_intensity.keys():
+        display_histogram(gray_intensity[class_name], '[Train] Gray Intensity : ' + class_name, type='train')
+
+    for class_name in gray_intensity_test.keys():
+        display_histogram(gray_intensity_test[class_name], '[Test] Gray Intensity : ' + class_name, type='test')
 
