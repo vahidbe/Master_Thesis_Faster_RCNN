@@ -1,0 +1,67 @@
+2021-03-07 21:52:08.221585: I tensorflow/core/platform/profile_utils/cpu_utils.cc:102] CPU Frequency: 3800000000 Hz
+2021-03-07 21:52:08.222768: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55ad15e4f320 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2021-03-07 21:52:08.222791: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+2021-03-07 21:52:08.224630: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcuda.so.1
+2021-03-07 21:52:08.887444: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55ad15e42a90 initialized for platform CUDA (this does not guarantee that XLA will be used). Devices:
+2021-03-07 21:52:08.887480: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): GeForce RTX 2080 SUPER, Compute Capability 7.5
+2021-03-07 21:52:08.887962: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1558] Found device 0 with properties: 
+pciBusID: 0000:65:00.0 name: GeForce RTX 2080 SUPER computeCapability: 7.5
+coreClock: 1.845GHz coreCount: 48 deviceMemorySize: 7.79GiB deviceMemoryBandwidth: 462.00GiB/s
+2021-03-07 21:52:08.888189: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.2
+2021-03-07 21:52:08.889510: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10
+2021-03-07 21:52:08.890784: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10
+2021-03-07 21:52:08.891162: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10
+2021-03-07 21:52:08.892639: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10
+2021-03-07 21:52:08.893401: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10
+2021-03-07 21:52:08.896178: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
+2021-03-07 21:52:08.896809: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1700] Adding visible gpu devices: 0
+2021-03-07 21:52:08.896849: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.2
+2021-03-07 21:52:08.897724: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1099] Device interconnect StreamExecutor with strength 1 edge matrix:
+2021-03-07 21:52:08.897733: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1105]      0 
+2021-03-07 21:52:08.897736: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1118] 0:   N 
+2021-03-07 21:52:08.898332: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1244] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 7184 MB memory) -> physical GPU (device: 0, name: GeForce RTX 2080 SUPER, pci bus id: 0000:65:00.0, compute capability: 7.5)
+2021-03-07 21:52:08.904207: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1558] Found device 0 with properties: 
+pciBusID: 0000:65:00.0 name: GeForce RTX 2080 SUPER computeCapability: 7.5
+coreClock: 1.845GHz coreCount: 48 deviceMemorySize: 7.79GiB deviceMemoryBandwidth: 462.00GiB/s
+2021-03-07 21:52:08.904244: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.2
+2021-03-07 21:52:08.904254: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10
+2021-03-07 21:52:08.904261: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10
+2021-03-07 21:52:08.904269: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10
+2021-03-07 21:52:08.904276: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10
+2021-03-07 21:52:08.904294: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10
+2021-03-07 21:52:08.904302: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
+2021-03-07 21:52:08.904822: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1700] Adding visible gpu devices: 0
+2021-03-07 21:52:08.905471: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1558] Found device 0 with properties: 
+pciBusID: 0000:65:00.0 name: GeForce RTX 2080 SUPER computeCapability: 7.5
+coreClock: 1.845GHz coreCount: 48 deviceMemorySize: 7.79GiB deviceMemoryBandwidth: 462.00GiB/s
+2021-03-07 21:52:08.905500: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.2
+2021-03-07 21:52:08.905509: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10
+2021-03-07 21:52:08.905517: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10
+2021-03-07 21:52:08.905525: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10
+2021-03-07 21:52:08.905533: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10
+2021-03-07 21:52:08.905541: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10
+2021-03-07 21:52:08.905549: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
+2021-03-07 21:52:08.906103: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1700] Adding visible gpu devices: 0
+2021-03-07 21:52:08.906121: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1099] Device interconnect StreamExecutor with strength 1 edge matrix:
+2021-03-07 21:52:08.906125: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1105]      0 
+2021-03-07 21:52:08.906128: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1118] 0:   N 
+2021-03-07 21:52:08.906682: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1244] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 7184 MB memory) -> physical GPU (device: 0, name: GeForce RTX 2080 SUPER, pci bus id: 0000:65:00.0, compute capability: 7.5)
+Using TensorFlow backend.
+Loading weights from ./model/model6000_val_epoch.hdf5
+Traceback (most recent call last):
+  File "frcnn_test_vgg.py", line 470, in <module>
+    model_rpn, class_mapping, model_classifier_only = init_models()
+  File "frcnn_test_vgg.py", line 88, in init_models
+    model_rpn.load_weights(C.model_path, by_name=True)
+  File "/home/vbeyraghi/.local/lib/python3.6/site-packages/keras/engine/saving.py", line 492, in load_wrapper
+    return load_function(*args, **kwargs)
+  File "/home/vbeyraghi/.local/lib/python3.6/site-packages/keras/engine/network.py", line 1221, in load_weights
+    with h5py.File(filepath, mode='r') as f:
+  File "/usr/local/lib64/python3.6/site-packages/h5py/_hl/files.py", line 408, in __init__
+    swmr=swmr)
+  File "/usr/local/lib64/python3.6/site-packages/h5py/_hl/files.py", line 173, in make_fid
+    fid = h5f.open(name, flags, fapl=fapl)
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "h5py/h5f.pyx", line 88, in h5py.h5f.open
+OSError: Unable to open file (unable to open file: name = './model/model6000_val_epoch.hdf5', errno = 2, error message = 'No such file or directory', flags = 0, o_flags = 0)
