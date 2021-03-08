@@ -530,8 +530,6 @@ if __name__ == "__main__":
         train_imgs = ast.literal_eval(last_row['train'].tolist()[0])
         val_imgs = ast.literal_eval(last_row['val'].tolist()[0])
         test_imgs = ast.literal_eval(last_row['test'].tolist()[0])
-        last_row = validation_record_df.tail(1)
-        best_loss = last_row['best_loss']
     else:
         random.shuffle(all_imgs)
         train_imgs, val_imgs, test_imgs = split_imgs(all_imgs, VALIDATION_SPLIT, TESTING_SPLIT)
@@ -555,6 +553,8 @@ if __name__ == "__main__":
                     continue
 
             if not last_epoch == 0:
+                last_row = validation_record_df.tail(1)
+                best_loss = last_row['best_loss']
                 load_weights(os.path.join(record_path, validation_code + ".hdf5"))
             else:
                 load_weights(C.base_net_weights)
