@@ -449,6 +449,9 @@ if __name__ == "__main__":
 
     last_epoch = int(args.start_from_epoch)
     last_validation_code = args.validation_code
+
+    print(validation_record_path)
+
     if last_validation_code is not None:
         start_from_last_step = True
         imgs_record_df = pd.read_csv(imgs_record_path)
@@ -457,8 +460,10 @@ if __name__ == "__main__":
         start_from_last_step = False
         imgs_record_df = pd.DataFrame(columns=['train', 'val', 'test'])
         if last_epoch == 0:
+            imgs_record_df = pd.read_csv(imgs_record_path)
             validation_record_df = pd.read_csv(validation_record_path)
         else:
+            imgs_record_df = pd.DataFrame(columns=['train', 'val', 'test'])
             validation_record_df = pd.DataFrame(columns=['validation_code', 'curr_loss', 'best_loss', 'best_epoch'])
 
     train_path = args.annotations  # Training data (annotation file)
@@ -560,11 +565,13 @@ if __name__ == "__main__":
 
             if not last_epoch == 0:
                 last_row = validation_record_df.tail(1)
+                print(last_row)
                 best_loss = last_row['best_loss']
                 load_weights(os.path.join(record_path, validation_code + ".hdf5"))
             else:
                 load_weights(C.base_net_weights)
 
+            print("Best loss: {}".format(best_loss))
             print("=== Validation step code: {}".format(validation_code))
             curr_loss_val, best_loss_val, best_epoch = val_model(train_imgs, val_imgs,
                                                                  params, paramNames,
