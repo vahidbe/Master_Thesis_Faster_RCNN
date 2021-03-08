@@ -451,7 +451,7 @@ if __name__ == "__main__":
         imgs_record_df = pd.read_csv(imgs_record_path)
     else:
         start_from_last_step = False
-        if not last_epoch == 0:
+        if last_epoch == 0:
             validation_record_df = pd.read_csv(validation_record_path)
         else:
             validation_record_df = pd.DataFrame(columns=['validation_code', 'curr_loss', 'best_loss', 'best_epoch'])
