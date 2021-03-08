@@ -235,7 +235,7 @@ def draw_box_on_images():
         plt.figure(figsize=(10, 10))
         plt.grid()
         plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
-        plt.savefig('/other/box_figure/{}.jpg'.format(str(idx)))
+        plt.savefig('other/box_figure/{}.jpg'.format(str(idx)))
 
         print(class_mapping)
 

@@ -1,0 +1,331 @@
+2021-03-08 17:12:09.120580: I tensorflow/core/platform/profile_utils/cpu_utils.cc:102] CPU Frequency: 3800000000 Hz
+2021-03-08 17:12:09.121626: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55b20699d9e0 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2021-03-08 17:12:09.121642: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+2021-03-08 17:12:09.123537: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcuda.so.1
+2021-03-08 17:12:09.798765: E tensorflow/stream_executor/cuda/cuda_driver.cc:313] failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+2021-03-08 17:12:09.798794: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:169] retrieving CUDA diagnostic information for host: gotham
+2021-03-08 17:12:09.798799: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:176] hostname: gotham
+2021-03-08 17:12:09.798899: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:200] libcuda reported version is: 440.33.1
+2021-03-08 17:12:09.798915: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:204] kernel reported version is: 440.33.1
+2021-03-08 17:12:09.798919: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:310] kernel version seems to match DSO: 440.33.1
+Loading weights from ./model/model6000_val_epoch.hdf5
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+63
+Progression : 1/63
+captured_insects/20210222_200508.jpg
+Elapsed time = 1.763878583908081
+[]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 2/63
+captured_insects/20210222_200511.jpg
+Elapsed time = 1.5736439228057861
+[('anthophore_plumeuse', 82.29047060012817)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 3/63
+captured_insects/20210222_200518.jpg
+Elapsed time = 1.5404326915740967
+[('boudon_des_arbres', 85.69294214248657)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 4/63
+captured_insects/20210222_200535.jpg
+Elapsed time = 1.5501413345336914
+[('boudon_des_arbres', 84.4707190990448)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 5/63
+captured_insects/20210222_200539.jpg
+Elapsed time = 1.5461997985839844
+[('anthophore_plumeuse', 90.96205234527588)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 6/63
+captured_insects/20210222_200542.jpg
+Elapsed time = 1.563370943069458
+[('boudon_des_arbres', 83.37574601173401)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 7/63
+captured_insects/20210222_200546.jpg
+Elapsed time = 1.5584914684295654
+[('boudon_des_arbres', 86.99374198913574)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 8/63
+captured_insects/20210222_200552.jpg
+Elapsed time = 1.5621724128723145
+[('boudon_des_arbres', 80.56354522705078)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 9/63
+captured_insects/20210222_200611.jpg
+Elapsed time = 1.535278081893921
+[('anthophore_plumeuse', 94.63813900947571)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 10/63
+captured_insects/20210222_200616.jpg
+Elapsed time = 1.557997226715088
+[('anthophore_plumeuse', 94.7577178478241)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 11/63
+captured_insects/20210222_200626.jpg
+Elapsed time = 1.5407156944274902
+[('anthophore_plumeuse', 83.50295424461365)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 12/63
+captured_insects/20210222_200641.jpg
+Elapsed time = 1.5587399005889893
+[]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 13/63
+captured_insects/20210222_200648.jpg
+Elapsed time = 1.5425026416778564
+[('anthophore_plumeuse', 79.94527220726013)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 14/63
+captured_insects/20210222_200651.jpg
+Elapsed time = 1.5655004978179932
+[('boudon_des_arbres', 73.60098361968994)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 15/63
+captured_insects/20210222_200702.jpg
+Elapsed time = 1.5354082584381104
+[('anthophore_plumeuse', 95.84676027297974)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 16/63
+captured_insects/20210222_200705.jpg
+Elapsed time = 1.5557763576507568
+[('anthophore_plumeuse', 74.94916319847107)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 17/63
+captured_insects/20210222_200716.jpg
+Elapsed time = 1.558957815170288
+[('anthophore_plumeuse', 72.21447825431824)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 18/63
+captured_insects/20210222_200720.jpg
+Elapsed time = 1.576566457748413
+[('boudon_des_arbres', 75.85353255271912)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 19/63
+captured_insects/20210222_200722.jpg
+Elapsed time = 1.5603890419006348
+[('anthophore_plumeuse', 90.12667536735535)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 20/63
+captured_insects/20210223_133433.jpg
+Elapsed time = 1.5362298488616943
+[('boudon_des_arbres', 97.41875529289246)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 21/63
+captured_insects/20210223_133435.jpg
+Elapsed time = 1.531294822692871
+[('boudon_des_arbres', 96.32853865623474)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 22/63
+captured_insects/20210223_133441.jpg
+Elapsed time = 1.6005263328552246
+[]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 23/63
+captured_insects/20210223_133457.jpg
+Elapsed time = 1.6318330764770508
+[('boudon_des_arbres', 94.5549726486206)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 24/63
+captured_insects/20210223_133501.jpg
+Elapsed time = 1.672374963760376
+[]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 25/63
+captured_insects/20210223_133503.jpg
+Elapsed time = 1.6460745334625244
+[('anthophore_plumeuse', 73.18602204322815)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 26/63
+captured_insects/20210223_133532.jpg
+Elapsed time = 1.6542418003082275
+[('boudon_des_arbres', 94.86492872238159)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 27/63
+captured_insects/20210223_133537.jpg
+Elapsed time = 1.64404296875
+[('boudon_des_arbres', 93.39852333068848)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 28/63
+captured_insects/20210223_133541.jpg
+Elapsed time = 1.659501075744629
+[('boudon_des_arbres', 94.38770413398743)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 29/63
+captured_insects/20210223_133546.jpg
+Elapsed time = 1.701390027999878
+[('boudon_des_arbres', 93.42765808105469)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 30/63
+captured_insects/20210223_133551.jpg
+Elapsed time = 1.7495827674865723
+[('boudon_des_arbres', 92.68694519996643)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 31/63
+captured_insects/20210223_133556.jpg
+Elapsed time = 1.7134547233581543
+[('boudon_des_arbres', 96.69910669326782)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 32/63
+captured_insects/20210223_133600.jpg
+Elapsed time = 1.8441028594970703
+[('boudon_des_arbres', 97.0565140247345)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 33/63
+captured_insects/20210223_133603.jpg
+Elapsed time = 1.8844809532165527
+[('boudon_des_arbres', 97.2990334033966)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 34/63
+captured_insects/20210223_133607.jpg
+Elapsed time = 1.9136524200439453
+[('boudon_des_arbres', 98.43170642852783)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}Using TensorFlow backend.
+frcnn_test_vgg.py:235: RuntimeWarning: More than 20 figures have been opened. Figures created through the pyplot interface (`matplotlib.pyplot.figure`) are retained until explicitly closed and may consume too much memory. (To control this warning, see the rcParam `figure.max_open_warning`).
+  plt.figure(figsize=(10, 10))
+
+Progression : 35/63
+captured_insects/bumblebee1.jpg
+Elapsed time = 1.8099431991577148
+[('boudon_des_arbres', 94.4076657295227)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 36/63
+captured_insects/bumblebee10.jpg
+Elapsed time = 1.7970006465911865
+[]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 37/63
+captured_insects/bumblebee11.jpg
+Elapsed time = 1.7622792720794678
+[('boudon_des_arbres', 94.94962096214294)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 38/63
+captured_insects/bumblebee12.jpg
+Elapsed time = 1.8339121341705322
+[]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 39/63
+captured_insects/bumblebee13.jpg
+Elapsed time = 1.7381491661071777
+[('boudon_des_arbres', 76.71538591384888)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 40/63
+captured_insects/bumblebee14.jpg
+Elapsed time = 1.7621440887451172
+[]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 41/63
+captured_insects/bumblebee15.jpg
+Elapsed time = 1.8037402629852295
+[('boudon_des_arbres', 91.59839153289795)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 42/63
+captured_insects/bumblebee16.jpg
+Elapsed time = 1.7487907409667969
+[('boudon_des_arbres', 96.87625765800476)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 43/63
+captured_insects/bumblebee2.jpg
+Elapsed time = 1.7589797973632812
+[]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 44/63
+captured_insects/bumblebee3.jpg
+Elapsed time = 1.7589638233184814
+[('boudon_des_arbres', 94.10920143127441)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 45/63
+captured_insects/bumblebee4.jpg
+Elapsed time = 1.7676935195922852
+[]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 46/63
+captured_insects/bumblebee5.jpg
+Elapsed time = 1.8614342212677002
+[]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 47/63
+captured_insects/bumblebee6.jpg
+Elapsed time = 1.7574479579925537
+[('boudon_des_arbres', 80.2183449268341)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 48/63
+captured_insects/bumblebee7.jpg
+Elapsed time = 1.76837158203125
+[('boudon_des_arbres', 70.12548446655273)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 49/63
+captured_insects/bumblebee8.jpg
+Elapsed time = 1.830336093902588
+[]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 50/63
+captured_insects/bumblebee9.jpg
+Elapsed time = 1.7984375953674316
+[]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 51/63
+captured_insects/margot_bee1.jpg
+Elapsed time = 1.7368865013122559
+[('boudon_des_arbres', 96.37665748596191)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 52/63
+captured_insects/margot_bee2.jpg
+Elapsed time = 1.741159200668335
+[('bourdon_des_jardins', 87.95457482337952), ('boudon_des_arbres', 72.94557094573975)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 53/63
+captured_insects/margot_bee3.jpg
+Elapsed time = 1.744274616241455
+[('boudon_des_arbres', 80.92975616455078), ('bourdon_des_jardins', 77.14747786521912)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 54/63
+captured_insects/margot_bee4.jpg
+Elapsed time = 1.7447705268859863
+[('bourdon_des_jardins', 82.89878964424133)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 55/63
+captured_insects/margot_bee5.jpg
+Elapsed time = 1.752497911453247
+[('boudon_des_arbres', 87.89275288581848), ('bourdon_des_jardins', 86.99142932891846)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 56/63
+captured_insects/margot_bee6.jpg
+Elapsed time = 1.9284918308258057
+[('boudon_des_arbres', 94.4047212600708)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 57/63
+captured_insects/margot_bumblebee.jpg
+Elapsed time = 1.7680730819702148
+[('bourdon_des_jardins', 97.59825468063354)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 58/63
+captured_insects/margot_bumblebee1.jpg
+Elapsed time = 1.7735168933868408
+[('anthophore_plumeuse', 87.83488273620605), ('boudon_des_arbres', 83.62541794776917)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 59/63
+captured_insects/margot_bumblebee2.jpg
+Elapsed time = 1.8397088050842285
+[('bourdon_des_jardins', 97.0479667186737)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 60/63
+captured_insects/margot_bumblebee3.jpg
+Elapsed time = 1.782726764678955
+[]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 61/63
+captured_insects/margot_bumblebee4.jpg
+Elapsed time = 1.7731142044067383
+[('bourdon_des_jardins', 81.70071840286255), ('boudon_des_arbres', 81.04405403137207)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 62/63
+captured_insects/margot_bumblebee5.jpg
+Elapsed time = 1.7664706707000732
+[('bourdon_des_jardins', 93.47023963928223), ('boudon_des_arbres', 79.97487187385559)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+Progression : 63/63
+captured_insects/margot_bumblebee6.jpg
+Elapsed time = 1.8570668697357178
+[('bourdon_des_jardins', 98.40306043624878)]
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
