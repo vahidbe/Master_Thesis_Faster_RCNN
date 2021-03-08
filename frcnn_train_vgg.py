@@ -61,12 +61,6 @@ def train_model(train_imgs, num_epochs, record_filepath):
                 print('Exception: {}'.format(e))
                 continue
 
-        # TODO: Comprendre si train_on_batch
-        #   modifie les weights et que save_weights ne fait que les save dans un fichier du PC (dans ce
-        #   cas il va falloir faire en sorte de repartir du best_weights à chaque fois si la loss n'était
-        #   pas meilleure à la fin de l'epoch) ou si train_on_batch ne modifie les weights qu'au moment
-        #   ou on appelle save_weights (et dans ce cas ce serait bizarre de faire un predict juste après
-        #   vu que le predict ne se fera pas sur les nouveaux poids)
         loss_rpn_cls = np.mean(losses[:, 0])
         loss_rpn_regr = np.mean(losses[:, 1])
         loss_class_cls = np.mean(losses[:, 2])
@@ -168,12 +162,6 @@ def val_model(train_imgs, val_imgs, param, paramNames, record_path, validation_c
                 print('Exception: {}'.format(e))
                 continue
 
-        # TODO: Comprendre si train_on_batch
-        #   modifie les weights et que save_weights ne fait que les save dans un fichier du PC (dans ce
-        #   cas il va falloir faire en sorte de repartir du best_weights à chaque fois si la loss n'était
-        #   pas meilleure à la fin de l'epoch) ou si train_on_batch ne modifie les weights qu'au moment
-        #   ou on appelle save_weights (et dans ce cas ce serait bizarre de faire un predict juste après
-        #   vu que le predict ne se fera pas sur les nouveaux poids)
         loss_rpn_cls = np.mean(losses[:, 0])
         loss_rpn_regr = np.mean(losses[:, 1])
         loss_class_cls = np.mean(losses[:, 2])
@@ -535,11 +523,15 @@ if __name__ == "__main__":
 
     model_all, model_rpn, model_classifier = initialize_model()
 
+    best_loss = float('inf')
+    
     if start_from_last_step:
         last_row = imgs_record_df.tail(1)
         train_imgs = ast.literal_eval(last_row['train'].tolist()[0])
         val_imgs = ast.literal_eval(last_row['val'].tolist()[0])
         test_imgs = ast.literal_eval(last_row['test'].tolist()[0])
+        last_row = validation_record_df.tail(1)
+        best_loss = last_row['best_loss']
     else:
         random.shuffle(all_imgs)
         train_imgs, val_imgs, test_imgs = split_imgs(all_imgs, VALIDATION_SPLIT, TESTING_SPLIT)
@@ -547,7 +539,6 @@ if __name__ == "__main__":
         imgs_record_df = imgs_record_df.append(new_row, ignore_index=True)
         imgs_record_df.to_csv(imgs_record_path, index=0)
 
-    best_loss = float('inf')
     best_values = {}
     if args.validation:
         for params in combinations:
