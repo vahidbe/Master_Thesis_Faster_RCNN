@@ -448,11 +448,13 @@ if __name__ == "__main__":
     last_validation_code = args.validation_code
     if last_validation_code is not None:
         start_from_last_step = True
-        validation_record_df = pd.read_csv(validation_record_path)
         imgs_record_df = pd.read_csv(imgs_record_path)
     else:
         start_from_last_step = False
-        validation_record_df = pd.DataFrame(columns=['validation_code', 'curr_loss', 'best_loss', 'best_epoch'])
+        if not last_epoch == 0:
+            validation_record_df = pd.read_csv(validation_record_path)
+        else:
+            validation_record_df = pd.DataFrame(columns=['validation_code', 'curr_loss', 'best_loss', 'best_epoch'])
         imgs_record_df = pd.DataFrame(columns=['train', 'val', 'test'])
 
     train_path = args.annotations  # Training data (annotation file)
@@ -522,8 +524,6 @@ if __name__ == "__main__":
     combinations = it.product(*(param[Name] for Name in paramNames))
 
     model_all, model_rpn, model_classifier = initialize_model()
-
-    best_loss = float('inf')
     
     if start_from_last_step:
         last_row = imgs_record_df.tail(1)
@@ -540,6 +540,8 @@ if __name__ == "__main__":
     best_values = {}
     if args.validation:
         for params in combinations:
+
+            best_loss = float('inf')
 
             validation_code = "Validation - " \
                               + " ".join(paramNames) + " - " \
