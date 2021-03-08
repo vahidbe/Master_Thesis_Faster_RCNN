@@ -256,6 +256,9 @@ def val_model(train_imgs, val_imgs, param, paramNames, record_path, validation_c
             best_epoch = epoch_num + 1
             model_all.save_weights(os.path.join(record_path, validation_code + ".hdf5"))
 
+        record_df = validation_record_df.append(new_row, ignore_index=True)
+        record_df.to_csv(validation_record_path, index=0)
+
         recorder.add_new_entry_with_validation(class_acc, loss_rpn_cls, loss_rpn_regr, loss_class_cls,
                                                loss_class_regr, curr_loss, elapsed_time, class_acc_val,
                                                loss_rpn_cls_val, loss_rpn_regr_val, loss_class_cls_val,
@@ -446,14 +449,22 @@ if __name__ == "__main__":
 
     last_epoch = int(args.start_from_epoch)
     last_validation_code = args.validation_code
+
+    print(validation_record_path)
+
     if last_validation_code is not None:
         start_from_last_step = True
-        validation_record_df = pd.read_csv(validation_record_path)
         imgs_record_df = pd.read_csv(imgs_record_path)
+        validation_record_df = pd.DataFrame(columns=['validation_code', 'curr_loss', 'best_loss', 'best_epoch'])
     else:
         start_from_last_step = False
-        validation_record_df = pd.DataFrame(columns=['validation_code', 'curr_loss', 'best_loss', 'best_epoch'])
         imgs_record_df = pd.DataFrame(columns=['train', 'val', 'test'])
+        if last_epoch == 0:
+            imgs_record_df = pd.read_csv(imgs_record_path)
+            validation_record_df = pd.read_csv(validation_record_path)
+        else:
+            imgs_record_df = pd.DataFrame(columns=['train', 'val', 'test'])
+            validation_record_df = pd.DataFrame(columns=['validation_code', 'curr_loss', 'best_loss', 'best_epoch'])
 
     train_path = args.annotations  # Training data (annotation file)
     data_path = args.dataset
@@ -522,16 +533,12 @@ if __name__ == "__main__":
     combinations = it.product(*(param[Name] for Name in paramNames))
 
     model_all, model_rpn, model_classifier = initialize_model()
-
-    best_loss = float('inf')
     
-    if start_from_last_step:
+    if start_from_last_step or not last_epoch == 0:
         last_row = imgs_record_df.tail(1)
         train_imgs = ast.literal_eval(last_row['train'].tolist()[0])
         val_imgs = ast.literal_eval(last_row['val'].tolist()[0])
         test_imgs = ast.literal_eval(last_row['test'].tolist()[0])
-        last_row = validation_record_df.tail(1)
-        best_loss = last_row['best_loss']
     else:
         random.shuffle(all_imgs)
         train_imgs, val_imgs, test_imgs = split_imgs(all_imgs, VALIDATION_SPLIT, TESTING_SPLIT)
@@ -542,6 +549,8 @@ if __name__ == "__main__":
     best_values = {}
     if args.validation:
         for params in combinations:
+
+            best_loss = float('inf')
 
             validation_code = "Validation - " \
                               + " ".join(paramNames) + " - " \
@@ -555,10 +564,14 @@ if __name__ == "__main__":
                     continue
 
             if not last_epoch == 0:
+                last_row = validation_record_df.tail(1)
+                print(last_row)
+                best_loss = last_row['best_loss']
                 load_weights(os.path.join(record_path, validation_code + ".hdf5"))
             else:
                 load_weights(C.base_net_weights)
 
+            print("Best loss: {}".format(best_loss))
             print("=== Validation step code: {}".format(validation_code))
             curr_loss_val, best_loss_val, best_epoch = val_model(train_imgs, val_imgs,
                                                                  params, paramNames,
@@ -568,9 +581,6 @@ if __name__ == "__main__":
                        'curr_loss': curr_loss_val,
                        'best_loss': best_loss_val,
                        'best_epoch': best_epoch}
-
-            validation_record_df = validation_record_df.append(new_row, ignore_index=True)
-            validation_record_df.to_csv(validation_record_path, index=0)
 
             if best_loss_val < best_loss:
                 best_loss = best_loss_val
