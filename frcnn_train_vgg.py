@@ -109,6 +109,9 @@ def val_model(train_imgs, val_imgs, param, paramNames, record_path, validation_c
         if (not last_epoch == 0) and (not epoch_num == last_epoch):
             continue
         else:
+            if not last_epoch == 0:
+                last_row = validation_record_df.tail(1)
+                best_loss_val = list(last_row['best_loss'])[-1]
             last_epoch = 0
         start_time = time.time()
         progbar = generic_utils.Progbar(len(train_imgs))
@@ -255,6 +258,11 @@ def val_model(train_imgs, val_imgs, param, paramNames, record_path, validation_c
             best_loss_val = curr_loss_val
             best_epoch = epoch_num + 1
             model_all.save_weights(os.path.join(record_path, validation_code + ".hdf5"))
+
+        new_row = {'validation_code': validation_code,
+                       'curr_loss': curr_loss_val,
+                       'best_loss': best_loss_val,
+                       'best_epoch': best_epoch}
 
         record_df = validation_record_df.append(new_row, ignore_index=True)
         record_df.to_csv(validation_record_path, index=0)
@@ -448,18 +456,15 @@ if __name__ == "__main__":
     imgs_record_path = "./logs/{} - imgs.csv".format(args.model_name)
 
     last_epoch = int(args.start_from_epoch)
-    last_validation_code = args.validation_code
-
-    print(validation_record_path)
+    last_validation_code = args.validation_code 
 
     if last_validation_code is not None:
         start_from_last_step = True
-        imgs_record_df = pd.read_csv(imgs_record_path)
-        validation_record_df = pd.DataFrame(columns=['validation_code', 'curr_loss', 'best_loss', 'best_epoch'])
+        imgs_record_df = pd.read_csv(imgs_record_path)       
+        validation_record_df = pd.read_csv(validation_record_path)
     else:
         start_from_last_step = False
-        imgs_record_df = pd.DataFrame(columns=['train', 'val', 'test'])
-        if last_epoch == 0:
+        if not last_epoch == 0:
             imgs_record_df = pd.read_csv(imgs_record_path)
             validation_record_df = pd.read_csv(validation_record_path)
         else:
@@ -564,9 +569,6 @@ if __name__ == "__main__":
                     continue
 
             if not last_epoch == 0:
-                last_row = validation_record_df.tail(1)
-                print(last_row)
-                best_loss = last_row['best_loss']
                 load_weights(os.path.join(record_path, validation_code + ".hdf5"))
             else:
                 load_weights(C.base_net_weights)
@@ -576,11 +578,6 @@ if __name__ == "__main__":
             curr_loss_val, best_loss_val, best_epoch = val_model(train_imgs, val_imgs,
                                                                  params, paramNames,
                                                                  record_path, validation_code)
-
-            new_row = {'validation_code': validation_code,
-                       'curr_loss': curr_loss_val,
-                       'best_loss': best_loss_val,
-                       'best_epoch': best_epoch}
 
             if best_loss_val < best_loss:
                 best_loss = best_loss_val
