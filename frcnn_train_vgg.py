@@ -256,6 +256,9 @@ def val_model(train_imgs, val_imgs, param, paramNames, record_path, validation_c
             best_epoch = epoch_num + 1
             model_all.save_weights(os.path.join(record_path, validation_code + ".hdf5"))
 
+        record_df = validation_record_df.append(new_row, ignore_index=True)
+        record_df.to_csv(validation_record_path, index=0)
+
         recorder.add_new_entry_with_validation(class_acc, loss_rpn_cls, loss_rpn_regr, loss_class_cls,
                                                loss_class_regr, curr_loss, elapsed_time, class_acc_val,
                                                loss_rpn_cls_val, loss_rpn_regr_val, loss_class_cls_val,
@@ -449,13 +452,14 @@ if __name__ == "__main__":
     if last_validation_code is not None:
         start_from_last_step = True
         imgs_record_df = pd.read_csv(imgs_record_path)
+        validation_record_df = pd.DataFrame(columns=['validation_code', 'curr_loss', 'best_loss', 'best_epoch'])
     else:
         start_from_last_step = False
+        imgs_record_df = pd.DataFrame(columns=['train', 'val', 'test'])
         if last_epoch == 0:
             validation_record_df = pd.read_csv(validation_record_path)
         else:
             validation_record_df = pd.DataFrame(columns=['validation_code', 'curr_loss', 'best_loss', 'best_epoch'])
-        imgs_record_df = pd.DataFrame(columns=['train', 'val', 'test'])
 
     train_path = args.annotations  # Training data (annotation file)
     data_path = args.dataset
@@ -525,7 +529,7 @@ if __name__ == "__main__":
 
     model_all, model_rpn, model_classifier = initialize_model()
     
-    if start_from_last_step:
+    if start_from_last_step or not last_epoch == 0:
         last_row = imgs_record_df.tail(1)
         train_imgs = ast.literal_eval(last_row['train'].tolist()[0])
         val_imgs = ast.literal_eval(last_row['val'].tolist()[0])
@@ -570,9 +574,6 @@ if __name__ == "__main__":
                        'curr_loss': curr_loss_val,
                        'best_loss': best_loss_val,
                        'best_epoch': best_epoch}
-
-            validation_record_df = validation_record_df.append(new_row, ignore_index=True)
-            validation_record_df.to_csv(validation_record_path, index=0)
 
             if best_loss_val < best_loss:
                 best_loss = best_loss_val
