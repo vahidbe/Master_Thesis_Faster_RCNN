@@ -235,7 +235,7 @@ def draw_box_on_images():
         plt.figure(figsize=(10, 10))
         plt.grid()
         plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
-        plt.show()
+        plt.savefig('/other/box_figure/{}.jpg'.format(str(idx)))
 
         print(class_mapping)
 
@@ -436,6 +436,9 @@ if __name__ == "__main__":
     parser.add_argument('--show_images', required=False, default=False,
                         metavar="True/False",
                         help="True if you want to show the images after detection, False otherwise")
+    parser.add_argument('--compute_accuracy', required=False, default=True,
+                        metavar="True/False",
+                        help="True if you want to compute the different 'accuracy' metrics, False otherwise")
     parser.add_argument('--use_gpu', required=False, default="True",
                         metavar="True/False",
                         help="True if you want to run the training on a gpu, False otherwise")
@@ -444,6 +447,7 @@ if __name__ == "__main__":
     use_gpu = eval(args.use_gpu)
     from_csv = eval(args.from_csv)
     show_images = eval(args.show_images)
+    compute_accuracy = eval(args.compute_accuracy)
 
     if use_gpu is True:
         config = tf.compat.v1.ConfigProto()
@@ -482,4 +486,5 @@ if __name__ == "__main__":
     model_rpn, class_mapping, model_classifier_only = init_models()
     if show_images:
         draw_box_on_images()
-    accuracy()
+    if compute_accuracy:
+        accuracy()
