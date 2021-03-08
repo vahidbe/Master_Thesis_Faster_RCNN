@@ -375,7 +375,7 @@ def initialize_model():
 def load_weights(weights_path):
     num_anchors = len(C.anchor_box_scales) * len(C.anchor_box_ratios)  # 9
     try:
-        print('Loading weights from {}'.format(C.base_net_weights))
+        print('Loading weights from {}'.format(weights_path))
         model_rpn.load_weights(weights_path, by_name=True)
         model_classifier.load_weights(weights_path, by_name=True)
     except:
@@ -386,11 +386,6 @@ def load_weights(weights_path):
                                   loss=[class_loss_cls, class_loss_regr(len(classes_count) - 1)],
                                   metrics={'dense_class_{}'.format(len(classes_count)): 'accuracy'})
     model_all.compile(optimizer='sgd', loss='mae')
-
-
-def reset_weights():
-    model_rpn.set_weights(base_weights_rpn)
-    model_classifier.set_weights(base_weights_classifier)
 
 
 def split_imgs(imgs, val_split, test_split):
@@ -534,13 +529,11 @@ if __name__ == "__main__":
 
     import itertools as it
 
-    param = {'param': [0]}
+    param = {'param': [0,1]}
     paramNames = param.keys()
     combinations = it.product(*(param[Name] for Name in paramNames))
 
     model_all, model_rpn, model_classifier = initialize_model()
-    base_weights_rpn = model_rpn.get_weights()
-    base_weights_classifier = model_classifier.get_weights()
 
     if start_from_last_step:
         last_row = imgs_record_df.tail(1)
@@ -587,8 +580,6 @@ if __name__ == "__main__":
 
             validation_record_df = validation_record_df.append(new_row, ignore_index=True)
             validation_record_df.to_csv(validation_record_path, index=0)
-
-            reset_weights()
 
             if best_loss_val < best_loss:
                 best_loss = best_loss_val
