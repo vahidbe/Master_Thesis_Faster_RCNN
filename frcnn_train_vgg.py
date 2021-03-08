@@ -378,8 +378,8 @@ def load_weights(weights_path):
         print('Loading weights from {}'.format(weights_path))
         model_rpn.load_weights(weights_path, by_name=True)
         model_classifier.load_weights(weights_path, by_name=True)
-    except:
-        print('Error loading weights.')
+    except Exception as e:
+        print('Exception: {}'.format(e))
 
     model_rpn.compile(optimizer=Adam(lr=1e-5), loss=[rpn_loss_cls(num_anchors), rpn_loss_regr(num_anchors)])
     model_classifier.compile(optimizer=Adam(lr=1e-5),
