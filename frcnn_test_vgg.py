@@ -1,65 +1,6 @@
 from libraries import *
 
 
-
-# def plot_some_graphs(C):
-#     # Load the records
-#     record_df = pd.read_csv(C.record_path)
-#
-#     r_epochs = len(record_df)
-#
-#     plt.figure(figsize=(15, 5))
-#     plt.subplot(1, 2, 1)
-#     plt.plot(np.arange(0, r_epochs), record_df['mean_overlapping_bboxes'], 'r')
-#     plt.title('mean_overlapping_bboxes')
-#
-#     plt.subplot(1, 2, 2)
-#     plt.plot(np.arange(0, r_epochs), record_df['class_acc'], 'r')
-#     plt.title('class_acc')
-#
-#     plt.show()
-#
-#     plt.figure(figsize=(15, 5))
-#
-#     plt.subplot(1, 2, 1)
-#     plt.plot(np.arange(0, r_epochs), record_df['loss_rpn_cls'], 'r')
-#     plt.title('loss_rpn_cls')
-#
-#     plt.subplot(1, 2, 2)
-#     plt.plot(np.arange(0, r_epochs), record_df['loss_rpn_regr'], 'r')
-#     plt.title('loss_rpn_regr')
-#     plt.show()
-#     plt.figure(figsize=(15, 5))
-#     plt.subplot(1, 2, 1)
-#     plt.plot(np.arange(0, r_epochs), record_df['loss_class_cls'], 'r')
-#     plt.title('loss_class_cls')
-#
-#     plt.subplot(1, 2, 2)
-#     plt.plot(np.arange(0, r_epochs), record_df['loss_class_regr'], 'r')
-#     plt.title('loss_class_regr')
-#     plt.show()
-#     plt.figure(figsize=(15, 5))
-#     plt.subplot(1, 2, 1)
-#     plt.plot(np.arange(0, r_epochs), record_df['curr_loss_classifier'], 'r')
-#     plt.title('total_loss_classifer')
-#
-#     plt.subplot(1, 2, 2)
-#     plt.plot(np.arange(0, r_epochs), record_df['elapsed_time'], 'r')
-#     plt.title('elapsed_time')
-#     plt.figure(figsize=(15, 5))
-#     plt.subplot(1, 2, 1)
-#     plt.plot(np.arange(0, r_epochs), record_df['curr_loss_rpn'], 'r')
-#     plt.title('total_loss_rpn')
-#
-#     plt.subplot(1, 2, 2)
-#     plt.plot(np.arange(0, r_epochs), record_df['elapsed_time'], 'r')
-#     plt.title('elapsed_time')
-#
-#     plt.show()
-#
-#     return record_df
-
-
 def init_models():
     num_features = 512
 
