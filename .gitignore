@@ -8,3 +8,4 @@
 *.h5
 *.hdf5
 *.pyc
+/resources/api-keys
