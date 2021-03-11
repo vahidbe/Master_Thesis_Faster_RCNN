@@ -1,5 +1,5 @@
 from real_time_libraries import *
-
+from detection import *
 
 if __name__ == "__main__":
     import argparse
@@ -47,29 +47,19 @@ if __name__ == "__main__":
 
     C.model_path = "./model/{}.hdf5".format(args.model_name)  # UPDATE WEIGHTS PATH HERE !!!!!!!!
 
-    # record_df = plot_some_graphs(C)
-    print("[INFO] loading model...")
-    model_rpn, class_mapping, model_classifier_only = init_models(C)
-    class_to_color = {class_mapping[v]: np.random.randint(0, 255, 3) for v in class_mapping}
 
     bbox_threshold = float(args.bbox_threshold)
+    output_results_filename = "./results/{}".format(args.model_name)
+    if not os.path.exists(output_results_filename):
+        os.mkdir(output_results_filename)
+    record_path = os.path.join(output_results_filename,
+                               "detections_{}.csv".format(args.model_name, get_timestamp()))
 
     if demo:
-        run_demo(model_rpn, model_classifier_only, C, class_mapping, bbox_threshold, class_to_color)
+        run_demo(C, bbox_threshold)
     else:
-        output_results_filename = "./results/{}".format(args.model_name)
-        if not os.path.exists(output_results_filename):
-            os.mkdir(output_results_filename)
-        record_path = os.path.join(output_results_filename,
-                                   "detections_{}.csv".format(args.model_name, get_timestamp()))
-        fieldnames = ['date', 'class', 'probability', 'x1', 'y1', 'x2', 'y2']
-        detections_iterator = get_detections(model_rpn, model_classifier_only, C, class_mapping, bbox_threshold, class_to_color)
-        while True:
-            try:
-                detection, probability, ((x1, y1), (x2, y2)) = next(detections_iterator)
-                with open(record_path, 'a', newline='') as f:
-                    writer = csv.DictWriter(f, fieldnames=fieldnames)
-                    writer.writerow({'date': get_timestamp(), 'class': detection, 'probability': round(probability, 3),
-                                     'x1': round(x1, 3), 'y1': round(y1, 3), 'x2': round(x2, 3), 'y2': round(y2, 3)})
-            except StopIteration:
-                exit(0)
+        frame_queue = Queue()
+        p1 = Process(target=get_imgs, args=(1, 0.1, 5000, frame_queue))
+        p2 = Process(target=detection_proc, args=(bbox_threshold, C, record_path, frame_queue))
+        p1.start()
+        p2.start()

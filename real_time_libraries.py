@@ -1,6 +1,7 @@
 import imutils
 
 from libraries import *
+import imutils
 from imutils.video import VideoStream
 from imutils.video import FPS
 from datetime import datetime
@@ -8,6 +9,7 @@ from picamera.array import PiRGBArray
 from picamera import PiCamera
 import time
 import cv2
+from multiprocessing import Process, Queue
 
 
 def init_models(C):
@@ -169,35 +171,6 @@ def get_detections(model_rpn, model_classifier_only, C, class_mapping, bbox_thre
     except KeyboardInterrupt:
         print("[INFO] ending video stream...")
         vs.stop()
-
-def run_demo(model_rpn, model_classifier_only, C, class_mapping, bbox_threshold, class_to_color):
-    # initialize the video stream, allow the camera sensor to warmup,
-    # and initialize the FPS counter
-    print("[INFO] starting video stream...")
-    vs = VideoStream(src=0).start()
-    time.sleep(1.0)
-    fps = FPS().start()
-    while True:
-        img = vs.read()
-        imutils.resize(img, width=400)
-
-        detect(img, model_rpn, model_classifier_only, C, class_mapping, bbox_threshold, class_to_color)
-        cv2.imshow("Frame", img)
-
-        key = cv2.waitKey(1000) & 0xFF
-        # if the `q` key was pressed, break from the loop
-        if key == ord("q"):
-            break
-        # update the FPS counter
-        fps.update()
-
-    fps.stop()
-    print("[INFO] elapsed time: {:.2f}".format(fps.elapsed()))
-    print("[INFO] approx. FPS: {:.2f}".format(fps.fps()))
-    # do a bit of cleanup
-    cv2.destroyAllWindows()
-    print("[INFO] ending video stream...")
-    vs.stop()
 
 
 def get_timestamp():
