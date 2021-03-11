@@ -4,7 +4,10 @@ from libraries import *
 from imutils.video import VideoStream
 from imutils.video import FPS
 from datetime import datetime
-from time import sleep
+from picamera.array import PiRGBArray
+from picamera import PiCamera
+import time
+import cv2
 
 
 def init_models(C):
@@ -46,6 +49,7 @@ def init_models(C):
 
 
 def detect(img, model_rpn, model_classifier_only, C, class_mapping, bbox_threshold, class_to_color):
+    print("Starting detection")
     st = time.time()
     X, ratio = format_img(img, C)
 
@@ -138,6 +142,7 @@ def detect(img, model_rpn, model_classifier_only, C, class_mapping, bbox_thresho
             cv2.rectangle(img, (textOrg[0] - 5, textOrg[1] + baseLine - 5),
                           (textOrg[0] + retval[0] + 5, textOrg[1] - retval[1] - 5), (255, 255, 255), -1)
             cv2.putText(img, textLabel, textOrg, cv2.FONT_HERSHEY_DUPLEX, 1, (0, 0, 0), 1)
+            cv2.putText(img,"A", (10, 10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0))
 
     if C.verbose:
         print(all_dets)
@@ -165,7 +170,6 @@ def get_detections(model_rpn, model_classifier_only, C, class_mapping, bbox_thre
         print("[INFO] ending video stream...")
         vs.stop()
 
-
 def run_demo(model_rpn, model_classifier_only, C, class_mapping, bbox_threshold, class_to_color):
     # initialize the video stream, allow the camera sensor to warmup,
     # and initialize the FPS counter
@@ -180,7 +184,7 @@ def run_demo(model_rpn, model_classifier_only, C, class_mapping, bbox_threshold,
         detect(img, model_rpn, model_classifier_only, C, class_mapping, bbox_threshold, class_to_color)
         cv2.imshow("Frame", img)
 
-        key = cv2.waitKey(1) & 0xFF
+        key = cv2.waitKey(1000) & 0xFF
         # if the `q` key was pressed, break from the loop
         if key == ord("q"):
             break
