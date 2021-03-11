@@ -145,7 +145,7 @@ def detect(img, model_rpn, model_classifier_only, C, class_mapping, bbox_thresho
             cv2.putText(img,"A", (10, 10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0))
 
     if C.verbose:
-        print(all_dets[:1])
+        print(all_dets)
         print('Elapsed time = {}'.format(time.time() - st))
 
     return all_dets
@@ -201,4 +201,4 @@ def run_demo(model_rpn, model_classifier_only, C, class_mapping, bbox_threshold,
 
 
 def get_timestamp():
-    return datetime.now().strftime("%d-%m-%Y_%H:%M:%S")
+    return datetime.now().strftime("%d-%m-%Y_%H-%M-%S")
