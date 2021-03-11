@@ -4,6 +4,7 @@ from libraries import *
 from imutils.video import VideoStream
 from imutils.video import FPS
 from datetime import datetime
+from time import sleep
 
 
 def init_models(C):
@@ -139,7 +140,7 @@ def detect(img, model_rpn, model_classifier_only, C, class_mapping, bbox_thresho
             cv2.putText(img, textLabel, textOrg, cv2.FONT_HERSHEY_DUPLEX, 1, (0, 0, 0), 1)
 
     if C.verbose:
-        print(all_dets[:1])
+        print(all_dets)
         print('Elapsed time = {}'.format(time.time() - st))
 
     return all_dets
@@ -196,4 +197,4 @@ def run_demo(model_rpn, model_classifier_only, C, class_mapping, bbox_threshold,
 
 
 def get_timestamp():
-    return datetime.now().strftime("%d-%m-%Y_%H:%M:%S")
+    return datetime.now().strftime("%d-%m-%Y_%H-%M-%S")
