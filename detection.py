@@ -3,6 +3,13 @@ import csv
 
 
 def get_imgs(fps, alpha, min_area, queue):
+    print("waiting for flag")
+    flag = queue.get(block=True, timeout=None)
+    if flag == "ready":
+        print("Models ready: detection can start")
+    else:
+        print("Error loading models: aborted")
+        return
 
     vs = VideoStream(src=0).start()
     time.sleep(2.0)
@@ -94,6 +101,7 @@ def detection_proc(bbox_threshold, C, record_path, frame_queue):
     print("[INFO] loading model...")
     model_rpn, class_mapping, model_classifier_only = init_models(C)
     print("done loading model")
+    frame_queue.put("ready")
     class_to_color = {class_mapping[v]: np.random.randint(0, 255, 3) for v in class_mapping}
     fieldnames = ['date', 'class', 'probability', 'x1', 'y1', 'x2', 'y2']
     while True:
