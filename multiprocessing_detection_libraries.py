@@ -2,9 +2,9 @@ from real_time_libraries import *
 import csv
 
 
-def get_imgs(fps, alpha, min_area, queue):
+def get_imgs(fps, alpha, min_area, frame_queue, flag_queue):
     print("waiting for flag")
-    flag = queue.get(block=True, timeout=None)
+    flag = flag_queue.get(block=True, timeout=None)
     if flag == "ready":
         print("Models ready: detection can start")
     else:
@@ -53,7 +53,7 @@ def get_imgs(fps, alpha, min_area, queue):
             if cv2.contourArea(c) < min_area:
                 continue
             print("*** Movement detected ***")
-            queue.put(frame)
+            frame_queue.put(frame)
             break
         cv2.imshow("image", frame)
         key = cv2.waitKey(1) & 0xFF
@@ -97,11 +97,11 @@ def run_demo(C, bbox_threshold):
     vs.stop()
 
 
-def detection_proc(bbox_threshold, C, record_path, frame_queue):
+def detection(bbox_threshold, C, record_path, frame_queue, flag_queue):
     print("[INFO] loading model...")
     model_rpn, class_mapping, model_classifier_only = init_models(C)
     print("done loading model")
-    frame_queue.put("ready")
+    flag_queue.put("ready")
     class_to_color = {class_mapping[v]: np.random.randint(0, 255, 3) for v in class_mapping}
     fieldnames = ['date', 'class', 'probability', 'x1', 'y1', 'x2', 'y2']
     while True:
@@ -111,10 +111,10 @@ def detection_proc(bbox_threshold, C, record_path, frame_queue):
         print("image found")
         all_dets = detect(img, model_rpn, model_classifier_only, C, class_mapping, bbox_threshold, class_to_color)
         if not len(all_dets) == 0:
-            for detection, probability, ((x1, y1), (x2, y2)) in all_dets:
+            for detected_class, probability, ((x1, y1), (x2, y2)) in all_dets:
                 with open(record_path, 'a', newline='') as f:
                     writer = csv.DictWriter(f, fieldnames=fieldnames)
-                    writer.writerow({'date': get_timestamp(), 'class': detection, 'probability': round(probability, 3),
+                    writer.writerow({'date': get_timestamp(), 'class': detected_class, 'probability': round(probability, 3),
                                      'x1': round(x1, 3), 'y1': round(y1, 3), 'x2': round(x2, 3), 'y2': round(y2, 3)})
 
         cv2.imshow("image", img)

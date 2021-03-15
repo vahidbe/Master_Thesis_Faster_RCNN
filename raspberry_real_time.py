@@ -1,5 +1,5 @@
 from real_time_libraries import *
-from detection import *
+from multiprocessing_detection_libraries import *
 
 if __name__ == "__main__":
     import argparse
@@ -59,7 +59,18 @@ if __name__ == "__main__":
         run_demo(C, bbox_threshold)
     else:
         frame_queue = Queue()
-        p1 = Process(target=get_imgs, args=(1, 0.3, 5000, frame_queue))
-        p2 = Process(target=detection_proc, args=(bbox_threshold, C, record_path, frame_queue))
-        p1.start()
-        p2.start()
+        flag_queue = Queue()
+        p_detection = Process(target=get_imgs, args=(1, 0.3, 5000, frame_queue, flag_queue))
+        p_processing = Process(target=detection, args=(bbox_threshold, C, record_path, frame_queue, flag_queue))
+        p_detection.start()
+        p_processing.start()
+        try:
+            p_detection.join()
+            p_processing.join()
+        except KeyboardInterrupt:
+            print("Stopping subprocesses")
+            p_detection.terminate()
+            p_processing.terminate()
+            print("Exiting")
+
+
