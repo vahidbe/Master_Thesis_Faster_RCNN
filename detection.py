@@ -14,7 +14,7 @@ def get_imgs(fps, alpha, min_area, queue):
         # grab the current frame and initialize the occupied/unoccupied
         # text
         frame = vs.read()
-        text = "Unoccupied"
+      
         # if the frame could not be grabbed, then we have reached the end
         # of the video
         if frame is None:
@@ -45,12 +45,16 @@ def get_imgs(fps, alpha, min_area, queue):
             # if the contour is too small, ignore it
             if cv2.contourArea(c) < min_area:
                 continue
+            print("*** Movement detected ***")
             queue.put(frame)
-            # cv2.imshow("image", queue.get())
-            # key = cv2.waitKey(1) & 0xFF
-            # # if the `q` key is pressed, break from the lop
-            # if key == ord("q"):
-            #     break
+            break
+        cv2.imshow("image", frame)
+        key = cv2.waitKey(1) & 0xFF
+        # if the `q` key is pressed, break from the lop
+        if key == ord("q"):
+            break
+
+    cv2.destroyAllWindows()
 
 
 def run_demo(C, bbox_threshold):
@@ -89,12 +93,14 @@ def run_demo(C, bbox_threshold):
 def detection_proc(bbox_threshold, C, record_path, frame_queue):
     print("[INFO] loading model...")
     model_rpn, class_mapping, model_classifier_only = init_models(C)
+    print("done loading model")
     class_to_color = {class_mapping[v]: np.random.randint(0, 255, 3) for v in class_mapping}
     fieldnames = ['date', 'class', 'probability', 'x1', 'y1', 'x2', 'y2']
     while True:
         time.sleep(1)
+        print("waiting for image")
         img = frame_queue.get(block=True, timeout=None)
-
+        print("image found")
         all_dets = detect(img, model_rpn, model_classifier_only, C, class_mapping, bbox_threshold, class_to_color)
         if not len(all_dets) == 0:
             for detection, probability, ((x1, y1), (x2, y2)) in all_dets:
@@ -104,7 +110,9 @@ def detection_proc(bbox_threshold, C, record_path, frame_queue):
                                      'x1': round(x1, 3), 'y1': round(y1, 3), 'x2': round(x2, 3), 'y2': round(y2, 3)})
 
         cv2.imshow("image", img)
-        key = cv2.waitKey(1) & 0xFF
+        key = cv2.waitKey(1000) & 0xFF
         # if the `q` key is pressed, break from the lop
         if key == ord("q"):
             break
+
+    cv2.destroyAllWindows()

@@ -59,7 +59,7 @@ if __name__ == "__main__":
         run_demo(C, bbox_threshold)
     else:
         frame_queue = Queue()
-        p1 = Process(target=get_imgs, args=(1, 0.1, 5000, frame_queue))
+        p1 = Process(target=get_imgs, args=(1, 0.3, 5000, frame_queue))
         p2 = Process(target=detection_proc, args=(bbox_threshold, C, record_path, frame_queue))
         p1.start()
         p2.start()
