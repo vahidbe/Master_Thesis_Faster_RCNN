@@ -49,11 +49,10 @@ if __name__ == "__main__":
 
 
     bbox_threshold = float(args.bbox_threshold)
-    output_results_filename = "./results/{}_{}".format(args.model_name, get_timestamp())
+    output_results_filename = "./results/{}".format(args.model_name)
     if not os.path.exists(output_results_filename):
         os.mkdir(output_results_filename)
-    record_path = os.path.join(output_results_filename,
-                               "detections_{}.csv".format(args.model_name, get_timestamp()))
+    record_path = os.path.join(output_results_filename, "raw_{}.csv".format(get_timestamp()))
 
     if demo:
         run_demo(C, bbox_threshold)

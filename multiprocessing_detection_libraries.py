@@ -17,11 +17,11 @@ def get_imgs(fps, alpha, min_area, frame_queue, flag_queue):
     avg = None
     # loop over the frames of the video
     while True:
-        time.sleep(round(1/fps))
+        time.sleep(round(1 / fps))
         # grab the current frame and initialize the occupied/unoccupied
         # text
         frame = vs.read()
-      
+
         # if the frame could not be grabbed, then we have reached the end
         # of the video
         if frame is None:
@@ -103,7 +103,8 @@ def detection(bbox_threshold, C, record_path, frame_queue, flag_queue):
     print("done loading model")
     flag_queue.put("ready")
     class_to_color = {class_mapping[v]: np.random.randint(0, 255, 3) for v in class_mapping}
-    fieldnames = ['date', 'class', 'probability', 'x1', 'y1', 'x2', 'y2']
+    fieldnames = ['date', 'class', 'probability', 'x1', 'y1', 'x2', 'y2', 'temperature',
+                  'pressure', 'wind', 'rain', 'weather description']
     while True:
         time.sleep(1)
         print("waiting for image")
@@ -114,8 +115,11 @@ def detection(bbox_threshold, C, record_path, frame_queue, flag_queue):
             for detected_class, probability, ((x1, y1), (x2, y2)) in all_dets:
                 with open(record_path, 'a', newline='') as f:
                     writer = csv.DictWriter(f, fieldnames=fieldnames)
-                    writer.writerow({'date': get_timestamp(), 'class': detected_class, 'probability': round(probability, 3),
-                                     'x1': round(x1, 3), 'y1': round(y1, 3), 'x2': round(x2, 3), 'y2': round(y2, 3)})
+                    writer.writerow(
+                        {'date': get_timestamp(), 'class': detected_class, 'probability': round(probability, 3),
+                         'x1': x1, 'y1': y1, 'x2': x2, 'y2': y2, 'temperature': 'empty',
+                         'pressure': 'empty', 'wind': 'empty', 'rain': 'empty',
+                         'weather description': 'empty'})
 
         cv2.imshow("image", img)
         key = cv2.waitKey(1000) & 0xFF
