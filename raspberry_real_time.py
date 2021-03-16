@@ -1,5 +1,5 @@
+from detection_libraries import *
 from real_time_libraries import *
-from multiprocessing_detection_libraries import *
 
 if __name__ == "__main__":
     import argparse
@@ -60,7 +60,7 @@ if __name__ == "__main__":
         frame_queue = Queue()
         flag_queue = Queue()
         p_detection = Process(target=get_imgs, args=(1, 0.3, 5000, frame_queue, flag_queue))
-        p_processing = Process(target=detection, args=(bbox_threshold, C, record_path, frame_queue, flag_queue))
+        p_processing = Process(target=run_detection, args=(bbox_threshold, C, record_path, frame_queue, flag_queue))
         p_detection.start()
         p_processing.start()
         try:
