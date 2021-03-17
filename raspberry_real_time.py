@@ -1,5 +1,6 @@
 from detection_libraries import *
 from real_time_libraries import *
+from multiprocessing import Process, Queue
 
 if __name__ == "__main__":
     import argparse

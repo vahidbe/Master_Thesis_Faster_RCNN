@@ -7,7 +7,6 @@ from datetime import datetime
 import cv2
 from picamera.array import PiRGBArray
 from picamera import PiCamera
-from multiprocessing import Process, Queue
 
 
 def get_imgs(fps, alpha, min_area, frame_queue, flag_queue):
@@ -61,7 +60,7 @@ def get_imgs(fps, alpha, min_area, frame_queue, flag_queue):
             if cv2.contourArea(c) < min_area:
                 continue
             print("*** Movement detected ***")
-            frame_queue.put(frame)
+            frame_queue.put((get_timestamp(), frame))
             break
         cv2.imshow("image", frame)
         key = cv2.waitKey(1) & 0xFF
@@ -122,7 +121,7 @@ def run_detection(bbox_threshold, C, record_path, frame_queue, flag_queue):
     while True:
         time.sleep(1)
         print("waiting for image")
-        img = frame_queue.get(block=True, timeout=None)
+        timestamp, img = frame_queue.get(block=True, timeout=None)
         print("image found")
         all_dets = detect(img, model_rpn, model_classifier_only, C, class_mapping, bbox_threshold, class_to_color)
         if not len(all_dets) == 0:
@@ -130,7 +129,7 @@ def run_detection(bbox_threshold, C, record_path, frame_queue, flag_queue):
                 with open(record_path, 'a', newline='') as f:
                     writer = csv.DictWriter(f, fieldnames=fieldnames)
                     writer.writerow(
-                        {'date': get_timestamp(), 'class': detected_class, 'probability': round(probability, 3),
+                        {'date': timestamp, 'class': detected_class, 'probability': round(probability, 3),
                          'x1': x1, 'y1': y1, 'x2': x2, 'y2': y2, 'temperature': 'empty',
                          'pressure': 'empty', 'wind': 'empty', 'rain': 'empty',
                          'weather description': 'empty'})
