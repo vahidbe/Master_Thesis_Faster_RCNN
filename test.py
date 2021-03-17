@@ -10,15 +10,17 @@ def f2(name):
 
 if __name__ == '__main__':
 
-    p2 = Process(target=f2, args=('bob',))
-    p1 = Process(target=f1, args=('bob',))
+    # p2 = Process(target=f2, args=('bob',))
+    p1 = None
+
     # p2.start()
     flag = True
     while True:
         if flag:
-            p1.start()
             flag = False
-        if p1.is_alive():
-            print("A")
-        else:
+        if p1 is not None and not p1.is_alive():
+            p1 = Process(target=f1, args=('bob',))
+            p1.start()
             print("D")
+        else:
+            print("A")

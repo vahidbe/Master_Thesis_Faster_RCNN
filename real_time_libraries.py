@@ -68,7 +68,7 @@ def run_detection(fps, alpha, min_area, frame_queue, flag_queue):
     from multiprocessing import Process
 
     kit = MotorKit(i2c=board.I2C())
-    p_trap = Process(target=trap_insect, args=(kit, 3, 3))
+    p_trap = None
 
 
     print("waiting for flag")
@@ -121,7 +121,8 @@ def run_detection(fps, alpha, min_area, frame_queue, flag_queue):
             if cv2.contourArea(c) < min_area:
                 continue
             print("[INFO] detection_proc - *** Movement detected ***")
-            if not p_trap.is_alive():
+            if p_trap is not None and not p_trap.is_alive():
+                p_trap = Process(target=trap_insect, args=(kit, 3, 3))
                 p_trap.start()
             frame_queue.put((get_timestamp(), frame))
             break
