@@ -1,12 +1,12 @@
-import csv
-import imutils
-import time
-from imutils.video import VideoStream
-from imutils.video import FPS
-from datetime import datetime
-import cv2
-from picamera.array import PiRGBArray
-from picamera import PiCamera
+#import csv
+#import imutils
+#import time
+#from imutils.video import VideoStream
+#from imutils.video import FPS
+#from datetime import datetime
+#import cv2
+#from picamera.array import PiRGBArray
+#from picamera import PiCamera
 
 
 def init_session(use_gpu):
@@ -25,6 +25,14 @@ def init_session(use_gpu):
 
 
 def run_detection(fps, alpha, min_area, frame_queue, flag_queue):
+    import imutils
+    import time
+    from imutils.video import VideoStream
+    from imutils.video import FPS
+    import cv2
+    from picamera.array import PiRGBArray
+    from picamera import PiCamera
+
     print("waiting for flag")
     flag = flag_queue.get(block=True, timeout=None)
     if flag == "ready":
@@ -90,6 +98,14 @@ def run_demo(C, bbox_threshold):
     import numpy as np
     from detection_libraries import init_models
     from detection_libraries import detect
+    import imutils
+    import time
+    from imutils.video import VideoStream
+    from imutils.video import FPS
+    import cv2
+    from picamera.array import PiRGBArray
+    from picamera import PiCamera
+
     print("[INFO] loading model...")
     model_rpn, class_mapping, model_classifier_only = init_models(C)
     class_to_color = {class_mapping[v]: np.random.randint(0, 255, 3) for v in class_mapping}
@@ -128,6 +144,9 @@ def run_processing(bbox_threshold, C, record_path, use_gpu, frame_queue, flag_qu
     import numpy as np
     from detection_libraries import init_models
     from detection_libraries import detect
+    import csv
+    import time
+    #import cv2
 
     init_session(use_gpu)
     print("[INFO] processing_proc - loading model...")
@@ -153,14 +172,16 @@ def run_processing(bbox_threshold, C, record_path, use_gpu, frame_queue, flag_qu
                          'pressure': 'empty', 'wind': 'empty', 'rain': 'empty',
                          'weather description': 'empty'})
 
-        cv2.imshow("image", img)
-        key = cv2.waitKey(1000) & 0xFF
+        #cv2.imshow("detection", img)
+        #key = cv2.waitKey(1000) & 0xFF
         # if the `q` key is pressed, break from the lop
-        if key == ord("q"):
-            break
+        #if key == ord("q"):
+        #    break
 
-    cv2.destroyAllWindows()
+    #cv2.destroyAllWindows()
 
 
 def get_timestamp():
+    from datetime import datetime
+    
     return datetime.now().strftime("%d-%m-%Y_%H-%M-%S")
