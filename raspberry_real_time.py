@@ -1,4 +1,6 @@
-from detection_libraries import *
+# from detection_libraries import *
+import os
+import pickle
 from real_time_libraries import *
 from multiprocessing import Process, Queue
 
@@ -26,16 +28,6 @@ if __name__ == "__main__":
     use_gpu = eval(args.use_gpu)
     demo = eval(args.demo)
 
-    if use_gpu is True:
-        config = tf.compat.v1.ConfigProto()
-        config.gpu_options.allow_growth = True
-        config.gpu_options.per_process_gpu_memory_fraction = 0.9
-        session = tf.compat.v1.InteractiveSession(config=config)
-    else:
-        os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
-        config = tf.compat.v1.ConfigProto(device_count={'GPU': 0})
-        session = tf.compat.v1.InteractiveSession(config=config)
-
     config_output_filename = "./config/{}.pickle".format(args.model_name)
 
     with open(config_output_filename, 'rb') as f_in:
@@ -60,8 +52,8 @@ if __name__ == "__main__":
     else:
         frame_queue = Queue()
         flag_queue = Queue()
-        p_detection = Process(target=get_imgs, args=(1, 0.3, 5000, frame_queue, flag_queue))
-        p_processing = Process(target=run_detection, args=(bbox_threshold, C, record_path, frame_queue, flag_queue))
+        p_detection = Process(target=run_detection, args=(1, 0.3, 5000, frame_queue, flag_queue))
+        p_processing = Process(target=run_processing, args=(bbox_threshold, C, record_path, use_gpu, frame_queue, flag_queue))
         p_detection.start()
         p_processing.start()
         try:

@@ -9,13 +9,28 @@ from picamera.array import PiRGBArray
 from picamera import PiCamera
 
 
-def get_imgs(fps, alpha, min_area, frame_queue, flag_queue):
+def init_session(use_gpu):
+    from detection_libraries import tf
+    from detection_libraries import os
+
+    if use_gpu is True:
+        config = tf.compat.v1.ConfigProto()
+        config.gpu_options.allow_growth = True
+        config.gpu_options.per_process_gpu_memory_fraction = 0.9
+        session = tf.compat.v1.InteractiveSession(config=config)
+    else:
+        os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+        config = tf.compat.v1.ConfigProto(device_count={'GPU': 0})
+        session = tf.compat.v1.InteractiveSession(config=config)
+
+
+def run_detection(fps, alpha, min_area, frame_queue, flag_queue):
     print("waiting for flag")
     flag = flag_queue.get(block=True, timeout=None)
     if flag == "ready":
-        print("Models ready: detection can start")
+        print("[INFO] detection_proc - Models ready: detection can start")
     else:
-        print("Error loading models: aborted")
+        print("[INFO] detection_proc - Error loading models: aborted")
         return
 
     vs = VideoStream(src=0).start()
@@ -39,7 +54,7 @@ def get_imgs(fps, alpha, min_area, frame_queue, flag_queue):
         gray = cv2.GaussianBlur(gray, (21, 21), 0)
         # if the first frame is None, initialize it
         if avg is None:
-            print("[INFO] starting background model...")
+            print("[INFO] detection_proc - starting background model...")
             avg = gray.copy().astype("float")
             continue
         # accumulate the weighted average between the current frame and
@@ -59,7 +74,7 @@ def get_imgs(fps, alpha, min_area, frame_queue, flag_queue):
             # if the contour is too small, ignore it
             if cv2.contourArea(c) < min_area:
                 continue
-            print("*** Movement detected ***")
+            print("[INFO] detection_proc - *** Movement detected ***")
             frame_queue.put((get_timestamp(), frame))
             break
         cv2.imshow("image", frame)
@@ -107,13 +122,17 @@ def run_demo(C, bbox_threshold):
     vs.stop()
 
 
-def run_detection(bbox_threshold, C, record_path, frame_queue, flag_queue):
+def run_processing(bbox_threshold, C, record_path, use_gpu, frame_queue, flag_queue):
+
+    print("[INFO] processing_proc - initializing session...")
     import numpy as np
     from detection_libraries import init_models
     from detection_libraries import detect
-    print("[INFO] loading model...")
+
+    init_session(use_gpu)
+    print("[INFO] processing_proc - loading model...")
     model_rpn, class_mapping, model_classifier_only = init_models(C)
-    print("done loading model")
+    print("[INFO] processing_proc - done loading model")
     flag_queue.put("ready")
     class_to_color = {class_mapping[v]: np.random.randint(0, 255, 3) for v in class_mapping}
     fieldnames = ['date', 'class', 'probability', 'x1', 'y1', 'x2', 'y2', 'temperature',
