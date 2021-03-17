@@ -8,6 +8,35 @@
 #from picamera.array import PiRGBArray
 #from picamera import PiCamera
 
+def close_trap(kit):
+    import time
+    import board
+    from adafruit_motorkit import MotorKit
+    from adafruit_motor import stepper
+
+    for i in range(50):
+        kit.stepper1.onestep(direction=stepper.FORWARD)
+        time.sleep(0.01)
+
+def open_trap(kit):
+    import time
+    import board
+    from adafruit_motorkit import MotorKit
+    from adafruit_motor import stepper
+
+    for i in range(50):
+        kit.stepper1.onestep(direction=stepper.BACKWARD)
+        time.sleep(0.01)
+
+
+def trap_insect(kit, trap_duration, free_duration):
+    import time
+
+    close_trap(kit)
+    time.sleep(trap_duration)
+    open_trap(kit)
+    time.sleep(free_duration)
+
 
 def init_session(use_gpu):
     from detection_libraries import tf
@@ -32,6 +61,15 @@ def run_detection(fps, alpha, min_area, frame_queue, flag_queue):
     import cv2
     from picamera.array import PiRGBArray
     from picamera import PiCamera
+    import time
+    import board
+    from adafruit_motorkit import MotorKit
+    from adafruit_motor import stepper
+    from multiprocessing import Process
+
+    kit = MotorKit(i2c=board.I2C())
+    p_trap = Process(target=trap_insect, args=(kit, 3, 3))
+
 
     print("waiting for flag")
     flag = flag_queue.get(block=True, timeout=None)
@@ -83,6 +121,8 @@ def run_detection(fps, alpha, min_area, frame_queue, flag_queue):
             if cv2.contourArea(c) < min_area:
                 continue
             print("[INFO] detection_proc - *** Movement detected ***")
+            if not p_trap.is_alive():
+                p_trap.start()
             frame_queue.put((get_timestamp(), frame))
             break
         cv2.imshow("image", frame)
