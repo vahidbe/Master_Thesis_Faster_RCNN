@@ -17,7 +17,7 @@ def open_trap(kit):
 def trap_insect(duration, kit):
     close_trap(kit)
     time.sleep(duration)
-    open_trap(kit)
+   #open_trap(kit)
 
 if __name__ == '__main__':
     import time
