@@ -1,13 +1,3 @@
-#import csv
-#import imutils
-#import time
-#from imutils.video import VideoStream
-#from imutils.video import FPS
-#from datetime import datetime
-#import cv2
-#from picamera.array import PiRGBArray
-#from picamera import PiCamera
-
 def close_trap(kit):
     import time
     import board
@@ -55,9 +45,7 @@ def init_session(use_gpu):
 
 def run_detection(fps, alpha, min_area, frame_queue, flag_queue):
     import imutils
-    import time
     from imutils.video import VideoStream
-    from imutils.video import FPS
     import cv2
     from picamera.array import PiRGBArray
     from picamera import PiCamera
@@ -67,16 +55,16 @@ def run_detection(fps, alpha, min_area, frame_queue, flag_queue):
     from adafruit_motor import stepper
     from multiprocessing import Process
 
-    kit = MotorKit(i2c=board.I2C())
+    # kit = MotorKit(i2c=board.I2C())
     p_trap = None
 
 
     print("waiting for flag")
     flag = flag_queue.get(block=True, timeout=None)
     if flag == "ready":
-        print("[INFO] detection_proc - Models ready: detection can start")
+        print("[INFO] detection_proc - models ready: detection can start")
     else:
-        print("[INFO] detection_proc - Error loading models: aborted")
+        print("[INFO] detection_proc - error loading models: aborted")
         return
 
     vs = VideoStream(src=0).start()
@@ -144,8 +132,8 @@ def run_demo(C, bbox_threshold):
     from imutils.video import VideoStream
     from imutils.video import FPS
     import cv2
-    from picamera.array import PiRGBArray
-    from picamera import PiCamera
+    # from picamera.array import PiRGBArray
+    # from picamera import PiCamera
 
     print("[INFO] loading model...")
     model_rpn, class_mapping, model_classifier_only = init_models(C)
@@ -179,7 +167,7 @@ def run_demo(C, bbox_threshold):
     vs.stop()
 
 
-def run_processing(bbox_threshold, C, record_path, use_gpu, frame_queue, flag_queue):
+def run_processing(bbox_threshold, C, output_results_filename, use_gpu, frame_queue, flag_queue):
 
     print("[INFO] processing_proc - initializing session...")
     import numpy as np
@@ -187,7 +175,13 @@ def run_processing(bbox_threshold, C, record_path, use_gpu, frame_queue, flag_qu
     from detection_libraries import detect
     import csv
     import time
-    #import cv2
+    import cv2
+    import os
+
+    record_path = os.path.join(output_results_filename, "raw_detections_{}.csv".format(get_timestamp()))
+    images_output_dir = os.path.join(output_results_filename, "images_{}".format(get_timestamp()))
+    if not os.path.exists(images_output_dir):
+        os.mkdir(images_output_dir)
 
     init_session(use_gpu)
     print("[INFO] processing_proc - loading model...")
@@ -198,7 +192,9 @@ def run_processing(bbox_threshold, C, record_path, use_gpu, frame_queue, flag_qu
     fieldnames = ['date',
                   'class', 'probability',
                   'x1', 'y1', 'x2', 'y2',
-                  'temperature', 'humidity', 'pressure', 'wind', 'sun_exposure', 'rain', 'weather description', 'lat', 'lon']
+                  'temperature', 'humidity', 'pressure', 'wind', 'sun_exposure', 'rain', 'weather description',
+                  'lat', 'lon']
+    img_id = 0
     while True:
         time.sleep(1)
         print("waiting for image")
@@ -215,6 +211,8 @@ def run_processing(bbox_threshold, C, record_path, use_gpu, frame_queue, flag_qu
                          'pressure': 'empty', 'wind': 'empty', 'sun_exposure': 'empty', 'rain': 'empty',
                          'weather description': 'empty', 'lat': 'empty', 'lon': 'empty'})
 
+        cv2.imwrite(os.path.join(images_output_dir, "{}.jpg".format(img_id)), img)
+        img_id += 1
         #cv2.imshow("detection", img)
         #key = cv2.waitKey(1000) & 0xFF
         # if the `q` key is pressed, break from the lop

@@ -45,7 +45,6 @@ if __name__ == "__main__":
     output_results_filename = "./results/{}".format(args.model_name)
     if not os.path.exists(output_results_filename):
         os.mkdir(output_results_filename)
-    record_path = os.path.join(output_results_filename, "raw_{}.csv".format(get_timestamp()))
 
     if demo:
         run_demo(C, bbox_threshold)
@@ -53,7 +52,7 @@ if __name__ == "__main__":
         frame_queue = Queue()
         flag_queue = Queue()
         p_detection = Process(target=run_detection, args=(1, 0.3, 5000, frame_queue, flag_queue))
-        p_processing = Process(target=run_processing, args=(bbox_threshold, C, record_path, use_gpu, frame_queue, flag_queue))
+        p_processing = Process(target=run_processing, args=(bbox_threshold, C, output_results_filename, use_gpu, frame_queue, flag_queue))
         p_detection.start()
         p_processing.start()
         try:
