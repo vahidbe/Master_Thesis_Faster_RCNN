@@ -1,6 +1,6 @@
 import csv
 import os
-from weather_collector import WeatherCollectorOWM
+from weather_collector import WeatherCollectorOWM, WeatherCollectorMS
 import datetime
 
 
@@ -16,24 +16,28 @@ def update_meteorological_data(model_name, input_results_filename, lat=50.5251, 
     fieldnames = ['date',
                   'class', 'probability',
                   'x1', 'y1', 'x2', 'y2',
-                  'temperature', 'pressure', 'wind', 'rain', 'weather description']
+                  'temperature', 'humidity', 'pressure', 'wind', 'sun_exposure', 'rain', 'weather description',
+                  'lat', 'lon']
     with open(input_record_path, 'r', newline='') as fr:
         reader = csv.DictReader(fr, fieldnames=fieldnames)
 
-        weather_collector = WeatherCollectorOWM(lat, lon)
+        weather_collector = WeatherCollectorMS(lat, lon)
         row = next(reader)
         try:
             print("=== Parsing {}".format(input_results_filename))
             while True:
-                if row["temperature"] == "empty":
-                    dt = datetime.datetime.strptime(row["date"], '%d-%m-%Y_%H-%M-%S')
+                dt = datetime.datetime.strptime(row["date"], '%d-%m-%Y_%H-%M-%S')
 
-                    temperature, pressure, wind, rain, detailed_status = weather_collector.get_weather_data(dt)
-                    row["temperature"] = temperature
-                    row["pressure"] = pressure
-                    row["wind"] = wind
-                    row["rain"] = rain
-                    row["weather description"] = detailed_status
+                temperature, humidity, pressure, wind, sun_exposure, rain, detailed_status = weather_collector.get_weather_data(dt)
+                row["temperature"] = temperature
+                row["humidity"] = humidity
+                row["pressure"] = pressure
+                row["wind"] = wind
+                row["sun_exposure"] = sun_exposure
+                row["rain"] = rain
+                row["weather description"] = detailed_status
+                row["lat"] = lat
+                row["lon"] = lon
 
                 with open(output_record_path, 'a', newline='') as fw:
                     writer = csv.DictWriter(fw, fieldnames=fieldnames)
@@ -50,7 +54,7 @@ if __name__ == "__main__":
 
     # Parse command line arguments
     parser = argparse.ArgumentParser(
-        description='Add meteorological data from detection of the last 5 days.')
+        description='Add meteorological data from detection')
     parser.add_argument('--model_name', required=False,
                         metavar="name_of_your_model", default='model',
                         help='Name of the model that produced detection')

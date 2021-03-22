@@ -195,8 +195,10 @@ def run_processing(bbox_threshold, C, record_path, use_gpu, frame_queue, flag_qu
     print("[INFO] processing_proc - done loading model")
     flag_queue.put("ready")
     class_to_color = {class_mapping[v]: np.random.randint(0, 255, 3) for v in class_mapping}
-    fieldnames = ['date', 'class', 'probability', 'x1', 'y1', 'x2', 'y2', 'temperature',
-                  'pressure', 'wind', 'rain', 'weather description']
+    fieldnames = ['date',
+                  'class', 'probability',
+                  'x1', 'y1', 'x2', 'y2',
+                  'temperature', 'humidity', 'pressure', 'wind', 'sun_exposure', 'rain', 'weather description', 'lat', 'lon']
     while True:
         time.sleep(1)
         print("waiting for image")
@@ -209,9 +211,9 @@ def run_processing(bbox_threshold, C, record_path, use_gpu, frame_queue, flag_qu
                     writer = csv.DictWriter(f, fieldnames=fieldnames)
                     writer.writerow(
                         {'date': timestamp, 'class': detected_class, 'probability': round(probability, 3),
-                         'x1': x1, 'y1': y1, 'x2': x2, 'y2': y2, 'temperature': 'empty',
-                         'pressure': 'empty', 'wind': 'empty', 'rain': 'empty',
-                         'weather description': 'empty'})
+                         'x1': x1, 'y1': y1, 'x2': x2, 'y2': y2, 'temperature': 'empty', 'humidity': 'empty',
+                         'pressure': 'empty', 'wind': 'empty', 'sun_exposure': 'empty', 'rain': 'empty',
+                         'weather description': 'empty', 'lat': 'empty', 'lon': 'empty'})
 
         #cv2.imshow("detection", img)
         #key = cv2.waitKey(1000) & 0xFF
