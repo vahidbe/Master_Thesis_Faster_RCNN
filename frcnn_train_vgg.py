@@ -505,6 +505,8 @@ if __name__ == "__main__":
 
     C.base_net_weights = base_weight_path
 
+    C.im_size = 100
+    
     st = time.time()
     all_imgs, classes_count, class_mapping = get_data(train_path, data_path)
     print()
