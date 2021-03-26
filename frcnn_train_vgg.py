@@ -104,6 +104,8 @@ def val_model(train_imgs, val_imgs, param, paramNames, record_path, validation_c
             C.preprocessing_method = param[i]
         elif paramNames[i] == "brightness_jitter":
             C.use_brightness_jitter = param[i]
+        elif paramNames[i] == "gamma_corection":
+            C.gamma_correction = param[i]
         else:
             # TODO
             pass
@@ -560,7 +562,8 @@ if __name__ == "__main__":
 
     param = {
         'preprocessing_method': [None, BoxFilter((2,2), True), BoxFilter((3,3), True), EqualizeHist()],
-        'brightness_jitter': [True, False]
+        'brightness_jitter': [True, False],
+        'gamma_corection': [True, False]
     }
 
     paramNames = list(param.keys())
