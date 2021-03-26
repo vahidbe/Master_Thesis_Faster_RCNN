@@ -114,13 +114,13 @@ def run_detection(fps, alpha, min_area, frame_queue, flag_queue):
                 p_trap.start()
             frame_queue.put((get_timestamp(), frame))
             break
-        cv2.imshow("image", frame)
-        key = cv2.waitKey(1) & 0xFF
-        # if the `q` key is pressed, break from the lop
-        if key == ord("q"):
-            break
-
-    cv2.destroyAllWindows()
+    #     cv2.imshow("image", frame)
+    #     key = cv2.waitKey(1) & 0xFF
+    #     # if the `q` key is pressed, break from the lop
+    #     if key == ord("q"):
+    #         break
+    #
+    # cv2.destroyAllWindows()
 
 
 def run_demo(C, bbox_threshold):
@@ -194,7 +194,7 @@ def run_processing(bbox_threshold, C, output_results_filename, use_gpu, frame_qu
                   'x1', 'y1', 'x2', 'y2',
                   'temperature', 'humidity', 'pressure', 'wind', 'sun_exposure', 'rain', 'weather description',
                   'lat', 'lon']
-    img_id = 0
+
     while True:
         time.sleep(1)
         print("waiting for image")
@@ -211,8 +211,7 @@ def run_processing(bbox_threshold, C, output_results_filename, use_gpu, frame_qu
                          'pressure': 'empty', 'wind': 'empty', 'sun_exposure': 'empty', 'rain': 'empty',
                          'weather description': 'empty', 'lat': 'empty', 'lon': 'empty'})
 
-        cv2.imwrite(os.path.join(images_output_dir, "{}.jpg".format(img_id)), img)
-        img_id += 1
+        cv2.imwrite(os.path.join(images_output_dir, "{}.jpg".format(timestamp)), img)
         #cv2.imshow("detection", img)
         #key = cv2.waitKey(1000) & 0xFF
         # if the `q` key is pressed, break from the lop
