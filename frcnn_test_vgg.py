@@ -374,10 +374,10 @@ if __name__ == "__main__":
     parser.add_argument('--annotations', required=False, default='./data/data_annotations.txt',
                         metavar="/path/to/insects/dataset/annotations/file.txt",
                         help='Annotation file for the provided dataset')
-    parser.add_argument('--show_images', required=False, default=False,
+    parser.add_argument('--show_images', required=False, default='False',
                         metavar="True/False",
                         help="True if you want to show the images after detection, False otherwise")
-    parser.add_argument('--compute_accuracy', required=False, default=True,
+    parser.add_argument('--compute_accuracy', required=False, default='True',
                         metavar="True/False",
                         help="True if you want to compute the different 'accuracy' metrics, False otherwise")
     parser.add_argument('--use_gpu', required=False, default="True",
