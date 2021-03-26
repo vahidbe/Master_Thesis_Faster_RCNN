@@ -16,7 +16,7 @@ def open_trap(kit):
 
     for i in range(50):
         kit.stepper1.onestep(direction=stepper.BACKWARD)
-        time.sleep(0.01)
+        time.sleep(0.1)
 
 
 def trap_insect(kit, trap_duration, free_duration):
@@ -55,7 +55,7 @@ def run_detection(fps, alpha, min_area, frame_queue, flag_queue):
     from adafruit_motor import stepper
     from multiprocessing import Process
 
-    # kit = MotorKit(i2c=board.I2C())
+    kit = MotorKit(i2c=board.I2C())
     p_trap = None
 
 
@@ -110,15 +110,15 @@ def run_detection(fps, alpha, min_area, frame_queue, flag_queue):
                 continue
             print("[INFO] detection_proc - *** Movement detected ***")
             if p_trap  is None or not p_trap.is_alive():
-                p_trap = Process(target=trap_insect, args=(kit, 3, 3))
+                p_trap = Process(target=trap_insect, args=(kit, 60, 30))
                 p_trap.start()
             frame_queue.put((get_timestamp(), frame))
             break
-        cv2.imshow("image", frame)
-        key = cv2.waitKey(1) & 0xFF
+        #cv2.imshow("image", frame)
+        #key = cv2.waitKey(1) & 0xFF
         # if the `q` key is pressed, break from the lop
-        if key == ord("q"):
-            break
+        #if key == ord("q"):
+        #    break
 
     cv2.destroyAllWindows()
 
