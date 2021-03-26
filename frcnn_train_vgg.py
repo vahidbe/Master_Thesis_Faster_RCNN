@@ -501,6 +501,8 @@ if __name__ == "__main__":
     C.temp_model_path = output_temp_weight_path
     C.num_rois = num_rois
 
+    C.im
+
     C.base_net_weights = base_weight_path
 
     C.im_size = 100
