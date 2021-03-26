@@ -1260,34 +1260,21 @@ def format_img_channels(img, C):
 
 
 def preprocess_img(img, C):
-    # old = img.copy()
     if C.preprocessing_method is None:
         pass
     elif C.preprocessing_method.name == "box_filter":
         img = cv2.boxFilter(img, -1, C.preprocessing_method.ksize, normalize=C.preprocessing_method.normalize)
     elif C.preprocessing_method.name == "equalize_hist":
+        img_yuv = cv2.cvtColor(img, cv2.COLOR_BGR2YUV)
 
-        r_image, g_image, b_image = cv2.split(img)
+        # equalize the histogram of the Y channel
+        img_yuv[:,:,0] = cv2.equalizeHist(img_yuv[:,:,0])
 
-        r_image_eq = cv2.equalizeHist(r_image)
-        g_image_eq = cv2.equalizeHist(g_image)
-        b_image_eq = cv2.equalizeHist(b_image)
-
-        img = cv2.merge((r_image_eq, g_image_eq, b_image_eq))
+        # convert the YUV image back to RGB format
+        img = cv2.cvtColor(img_yuv, cv2.COLOR_YUV2BGR)
     else:
         pass
-
-    # while True:
-    #     cv2.imshow("before", old)
-    #     key = cv2.waitKey(1) & 0xFF
-    #     if key == ord("q"):
-    #         break
-    #     cv2.imshow("after", img)
-    #     key = cv2.waitKey(1) & 0xFF
-    #     if key == ord("q"):
-    #         break
-
-    cv2.destroyAllWindows()
+    
     return img
 
 
