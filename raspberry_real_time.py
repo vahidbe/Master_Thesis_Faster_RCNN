@@ -20,6 +20,9 @@ if __name__ == "__main__":
     parser.add_argument('--demo', required=False, default="False",
                         metavar="True/False",
                         help="True if you want to run the demo, False otherwise")
+    parser.add_argument('--show_images', required=False, default="False",
+                        metavar="True/False",
+                        help="True if you want to see the images read by the camera")
     parser.add_argument('--use_gpu', required=False, default="True",
                         metavar="True/False",
                         help="True if you want to run the training on a gpu, False otherwise")
@@ -32,6 +35,8 @@ if __name__ == "__main__":
 
     with open(config_output_filename, 'rb') as f_in:
         C = pickle.load(f_in)
+
+    C.show_images = eval(args.show_images)
 
     # turn off any data augmentation at test time
     C.use_horizontal_flips = False

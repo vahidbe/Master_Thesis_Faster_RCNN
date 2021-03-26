@@ -43,7 +43,7 @@ def init_session(use_gpu):
         session = tf.compat.v1.InteractiveSession(config=config)
 
 
-def run_detection(fps, alpha, min_area, frame_queue, flag_queue):
+def run_detection(fps, alpha, min_area, C, frame_queue, flag_queue):
     import imutils
     from imutils.video import VideoStream
     import cv2
@@ -58,13 +58,12 @@ def run_detection(fps, alpha, min_area, frame_queue, flag_queue):
     # kit = MotorKit(i2c=board.I2C())
     p_trap = None
 
-
-    print("waiting for flag")
     flag = flag_queue.get(block=True, timeout=None)
     if flag == "ready":
-        print("[INFO] detection_proc - models ready: detection can start")
+        if C.verbose:
+            print("[INFO] detection_proc - models ready: detection can start")
     else:
-        print("[INFO] detection_proc - error loading models: aborted")
+        print("[ERROR] detection_proc - error loading models: aborted")
         return
 
     vs = VideoStream(src=0).start()
@@ -88,7 +87,8 @@ def run_detection(fps, alpha, min_area, frame_queue, flag_queue):
         gray = cv2.GaussianBlur(gray, (21, 21), 0)
         # if the first frame is None, initialize it
         if avg is None:
-            print("[INFO] detection_proc - starting background model...")
+            if C.verbose:
+                print("[INFO] detection_proc - starting background model...")
             avg = gray.copy().astype("float")
             continue
         # accumulate the weighted average between the current frame and
@@ -108,19 +108,22 @@ def run_detection(fps, alpha, min_area, frame_queue, flag_queue):
             # if the contour is too small, ignore it
             if cv2.contourArea(c) < min_area:
                 continue
-            print("[INFO] detection_proc - *** Movement detected ***")
+            if C.verbose:
+                print("[INFO] detection_proc - *** Movement detected ***")
             if p_trap  is None or not p_trap.is_alive():
                 p_trap = Process(target=trap_insect, args=(kit, 3, 3))
                 p_trap.start()
             frame_queue.put((get_timestamp(), frame))
             break
-    #     cv2.imshow("image", frame)
-    #     key = cv2.waitKey(1) & 0xFF
-    #     # if the `q` key is pressed, break from the lop
-    #     if key == ord("q"):
-    #         break
-    #
-    # cv2.destroyAllWindows()
+        if C.show_images:
+            cv2.imshow("image", frame)
+            key = cv2.waitKey(1) & 0xFF
+            # if the `q` key is pressed, break from the lop
+            if key == ord("q"):
+                break
+
+    if C.show_images:
+        cv2.destroyAllWindows()
 
 
 def run_demo(C, bbox_threshold):
@@ -184,9 +187,11 @@ def run_processing(bbox_threshold, C, output_results_filename, use_gpu, frame_qu
         os.mkdir(images_output_dir)
 
     init_session(use_gpu)
-    print("[INFO] processing_proc - loading model...")
+    if C.verbose:
+        print("[INFO] processing_proc - loading model...")
     model_rpn, class_mapping, model_classifier_only = init_models(C)
-    print("[INFO] processing_proc - done loading model")
+    if C.verbose:
+        print("[INFO] processing_proc - done loading model")
     flag_queue.put("ready")
     class_to_color = {class_mapping[v]: np.random.randint(0, 255, 3) for v in class_mapping}
     fieldnames = ['date',
@@ -197,9 +202,9 @@ def run_processing(bbox_threshold, C, output_results_filename, use_gpu, frame_qu
 
     while True:
         time.sleep(1)
-        print("waiting for image")
         timestamp, img = frame_queue.get(block=True, timeout=None)
-        print("image found")
+        if C.verbose:
+            print("[INFO] processing_proc - starting detection on a new image")
         all_dets = detect(img, model_rpn, model_classifier_only, C, class_mapping, bbox_threshold, class_to_color)
         if not len(all_dets) == 0:
             for detected_class, probability, ((x1, y1), (x2, y2)) in all_dets:
@@ -212,13 +217,15 @@ def run_processing(bbox_threshold, C, output_results_filename, use_gpu, frame_qu
                          'weather description': 'empty', 'lat': 'empty', 'lon': 'empty'})
 
         cv2.imwrite(os.path.join(images_output_dir, "{}.jpg".format(timestamp)), img)
-        #cv2.imshow("detection", img)
-        #key = cv2.waitKey(1000) & 0xFF
-        # if the `q` key is pressed, break from the lop
-        #if key == ord("q"):
-        #    break
+        if C.show_images:
+            cv2.imshow("detection", img)
+            key = cv2.waitKey(1000) & 0xFF
+            # if the `q` key is pressed, break from the lop
+            if key == ord("q"):
+               break
 
-    #cv2.destroyAllWindows()
+    if C.show_images:
+        cv2.destroyAllWindows()
 
 
 def get_timestamp():
