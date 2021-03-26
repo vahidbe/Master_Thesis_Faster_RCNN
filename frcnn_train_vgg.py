@@ -98,6 +98,18 @@ def train_model(train_imgs, num_epochs, record_filepath):
 
 def val_model(train_imgs, val_imgs, param, paramNames, record_path, validation_code):
     global last_epoch
+
+    for i in range(len(paramNames)):
+        if paramNames[i] == "preprocessing_method":
+            C.preprocessing_method = param[i]
+        elif paramNames[i] == "brightness_jitter":
+            C.use_brightness_jitter = param[i]
+        elif paramNames[i] == "gamma_corection":
+            C.gamma_correction = param[i]
+        else:
+            # TODO
+            pass
+
     recorder = Recorder(os.path.join(record_path, validation_code), has_validation=True)
     losses = np.zeros((len(train_imgs), 5))
     losses_val = np.zeros((len(val_imgs), 5))
@@ -396,6 +408,14 @@ def split_imgs(imgs, val_split, test_split):
     return train_list, val_list, test_list
 
 
+def get_validation_code(names, values):
+    values_str = []
+    for value in values:
+        values_str.append(str(value))
+
+    return "Validation - " + ", ".join(names) + " - " + ", ".join(values_str)
+
+
 if __name__ == "__main__":
 
     TESTING_SPLIT = 0.2
@@ -480,6 +500,7 @@ if __name__ == "__main__":
     horizontal_flips = True  # Augment with horizontal flips in training.
     vertical_flips = True  # Augment with vertical flips in training.
     rot_90 = True  # Augment with 90 degree rotations in training.
+    brightness_jitter = True  # Augment with brightness jitter in training.
 
     # Record data (used to save the losses, classification accuracy and mean average precision)
     record_path = "./logs/{}".format(args.model_name)
@@ -495,6 +516,7 @@ if __name__ == "__main__":
     C.use_horizontal_flips = horizontal_flips
     C.use_vertical_flips = vertical_flips
     C.rot_90 = rot_90
+    C.use_brightness_jitter = brightness_jitter
 
     C.record_path = record_path
     C.model_path = output_weight_path
@@ -503,7 +525,10 @@ if __name__ == "__main__":
 
     C.base_net_weights = base_weight_path
 
-    C.im_size = 100
+    C.im_size = 300
+
+    # C.im_size = 100
+    # C.anchor_box_scales = [16, 32, 64] #Values should be < im_size
     
     st = time.time()
     all_imgs, classes_count, class_mapping = get_data(train_path, data_path)
@@ -535,8 +560,13 @@ if __name__ == "__main__":
 
     import itertools as it
 
-    param = {'param': [0,1]}
-    paramNames = param.keys()
+    param = {
+        'preprocessing_method': [None, BoxFilter((2,2), True), BoxFilter((3,3), True), EqualizeHist()],
+        'brightness_jitter': [True, False],
+        'gamma_corection': [True, False]
+    }
+
+    paramNames = list(param.keys())
     combinations = it.product(*(param[Name] for Name in paramNames))
 
     model_all, model_rpn, model_classifier = initialize_model()
@@ -559,9 +589,7 @@ if __name__ == "__main__":
 
             best_loss = float('inf')
 
-            validation_code = "Validation - " \
-                              + " ".join(paramNames) + " - " \
-                              + str(list(params))
+            validation_code = get_validation_code(paramNames, list(params))
 
             if start_from_last_step:
                 if not last_validation_code == validation_code:

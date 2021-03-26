@@ -7,7 +7,6 @@ import pandas as pd
 import ast
 
 
-
 def display_histogram(hist, title, type):
     hist, bin_edges = np.histogram(hist)
     plt.figure(figsize=[10, 8])
@@ -30,8 +29,8 @@ def display_histogram(hist, title, type):
     plt.title(title, fontsize=15)
     plt.savefig(os.path.join('./other/histograms', title))
 
-def get_box_image_ratio(input_path, set):
 
+def get_box_image_ratio(input_path, set):
     global imgs_temp
     ratio_surface = {}
 
@@ -65,9 +64,9 @@ def get_box_image_ratio(input_path, set):
 
     imgs_record_df = pd.read_csv(input_path)
     last_row = imgs_record_df.tail(1)
-    if(set == 'train'):
+    if (set == 'train'):
         imgs_temp = ast.literal_eval(last_row['test'].tolist()[0])
-    elif(set == 'test'):
+    elif (set == 'test'):
         imgs_temp = ast.literal_eval(last_row['train'].tolist()[0])
 
     for img_dict in imgs_temp:
@@ -134,8 +133,8 @@ if __name__ == '__main__':
     csv_file = './logs/model6000_val_epoch - imgs.csv'
 
     ratio_surface, ratio_width_height, rgb_intensity, gray_intensity = get_box_image_ratio(csv_file, 'train')
-    ratio_surface_test, ratio_width_height_test, rgb_intensity_test, gray_intensity_test = get_box_image_ratio(csv_file, 'test')
-
+    ratio_surface_test, ratio_width_height_test, rgb_intensity_test, gray_intensity_test = get_box_image_ratio(csv_file,
+                                                                                                               'test')
 
     for class_name in ratio_surface.keys():
         display_histogram(ratio_surface[class_name], '[Train] Ratio box on image - ' + class_name, type='train')
@@ -147,7 +146,8 @@ if __name__ == '__main__':
         display_histogram(ratio_width_height[class_name], '[Train] Ratio width on height - ' + class_name, type='train')
 
     for class_name in ratio_width_height_test.keys():
-        display_histogram(ratio_width_height_test[class_name], '[Test] Ratio width on height - ' + class_name, type='test')
+        display_histogram(ratio_width_height_test[class_name], '[Test] Ratio width on height - ' + class_name,
+                          type='test')
 
     for class_name in rgb_intensity.keys():
         display_histogram(rgb_intensity[class_name], '[Train] RGB Intensity - ' + class_name, type='train')
@@ -160,4 +160,3 @@ if __name__ == '__main__':
 
     for class_name in gray_intensity_test.keys():
         display_histogram(gray_intensity_test[class_name], '[Test] Gray Intensity - ' + class_name, type='test')
-
