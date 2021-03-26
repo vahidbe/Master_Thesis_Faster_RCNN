@@ -100,14 +100,16 @@ def val_model(train_imgs, val_imgs, param, paramNames, record_path, validation_c
     global last_epoch
 
     for i in range(len(paramNames)):
-        if paramNames[i] == "preprocessing_method":
-            C.preprocessing_method = param[i]
+        if paramNames[i] == "box_filter_shape":
+            C.box_filter_shape = param[i]
+            C.box_filter = param[i] is not None
         elif paramNames[i] == "brightness_jitter":
             C.use_brightness_jitter = param[i]
-        elif paramNames[i] == "gamma_corection":
+        elif paramNames[i] == "gamma_correction":
             C.gamma_correction = param[i]
+        elif paramNames[i] == "histogram_equalization":
+            C.histogram_equalization = param[i]
         else:
-            # TODO
             pass
 
     recorder = Recorder(os.path.join(record_path, validation_code), has_validation=True)
@@ -561,9 +563,10 @@ if __name__ == "__main__":
     import itertools as it
 
     param = {
-        'preprocessing_method': [None, BoxFilter((2,2), True), BoxFilter((3,3), True), EqualizeHist()],
+        'histogram_equalization': [True, False],
+        'box_filter_shape': [(2,2), (3,3), None],
         'brightness_jitter': [True, False],
-        'gamma_corection': [True, False]
+        'gamma_correction': [True, False]
     }
 
     paramNames = list(param.keys())
