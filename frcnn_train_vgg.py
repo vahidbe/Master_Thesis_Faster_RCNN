@@ -535,7 +535,7 @@ if __name__ == "__main__":
 
     import itertools as it
 
-    param = {'param': [0,1]}
+    param = {'param': [0]}
     paramNames = param.keys()
     combinations = it.product(*(param[Name] for Name in paramNames))
 
