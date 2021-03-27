@@ -100,9 +100,8 @@ def val_model(train_imgs, val_imgs, param, paramNames, record_path, validation_c
     global last_epoch
 
     for i in range(len(paramNames)):
-        if paramNames[i] == "box_filter_shape":
-            C.box_filter_shape = param[i]
-            C.box_filter = param[i] is not None
+        if paramNames[i] == "noise_reduction":
+            C.noise_reduction = param[i]
         elif paramNames[i] == "brightness_jitter":
             C.use_brightness_jitter = param[i]
         elif paramNames[i] == "gamma_correction":
@@ -564,7 +563,7 @@ if __name__ == "__main__":
 
     param = {
         'histogram_equalization': [False, True],
-        'box_filter_shape': [None, (2,2)],
+        'noise_reduction': [None, "gaussian", "box_filter"],
         'brightness_jitter': [False, True],
         'gamma_correction': [False, True]
     }
