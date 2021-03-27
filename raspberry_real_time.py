@@ -56,7 +56,7 @@ if __name__ == "__main__":
     else:
         frame_queue = Queue()
         flag_queue = Queue()
-        p_detection = Process(target=run_detection, args=(1, 0.3, 5000, frame_queue, flag_queue))
+        p_detection = Process(target=run_detection, args=(1, 0.3, 5000, C, frame_queue, flag_queue))
         p_processing = Process(target=run_processing, args=(bbox_threshold, C, output_results_filename, use_gpu, frame_queue, flag_queue))
         p_detection.start()
         p_processing.start()
@@ -64,9 +64,10 @@ if __name__ == "__main__":
             p_detection.join()
             p_processing.join()
         except KeyboardInterrupt:
-            print("Stopping subprocesses")
+            print()
+            print("[INFO] Stopping subprocesses")
             p_detection.terminate()
             p_processing.terminate()
-            print("Exiting")
+            print("[INFO] Exiting")
 
 
