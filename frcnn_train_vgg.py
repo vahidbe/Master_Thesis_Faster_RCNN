@@ -564,7 +564,7 @@ if __name__ == "__main__":
 
     param = {
         'histogram_equalization': [False, True],
-        'box_filter_shape': [None, (2,2), (3,3)],
+        'box_filter_shape': [None, (2,2)],
         'brightness_jitter': [False, True],
         'gamma_correction': [False, True]
     }
