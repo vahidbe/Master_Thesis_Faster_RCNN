@@ -64,9 +64,10 @@ if __name__ == "__main__":
             p_detection.join()
             p_processing.join()
         except KeyboardInterrupt:
-            print("Stopping subprocesses")
+            print()
+            print("[INFO] Stopping subprocesses")
             p_detection.terminate()
             p_processing.terminate()
-            print("Exiting")
+            print("[INFO] Exiting")
 
 
