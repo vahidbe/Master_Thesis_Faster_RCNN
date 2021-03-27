@@ -563,10 +563,10 @@ if __name__ == "__main__":
     import itertools as it
 
     param = {
-        'histogram_equalization': [True, False],
-        'box_filter_shape': [(2,2), (3,3), None],
-        'brightness_jitter': [True, False],
-        'gamma_correction': [True, False]
+        'histogram_equalization': [False, True],
+        'box_filter_shape': [None, (2,2), (3,3)],
+        'brightness_jitter': [False, True],
+        'gamma_correction': [False, True]
     }
 
     paramNames = list(param.keys())
