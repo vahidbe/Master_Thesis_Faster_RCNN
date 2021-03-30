@@ -563,7 +563,7 @@ if __name__ == "__main__":
 
     param = {
         'histogram_equalization': [False, True],
-        'noise_reduction': [None, "gaussian", "box_filter"],
+        'noise_reduction': ["gaussian"],
         'brightness_jitter': [False, True],
         'gamma_correction': [False, True]
     }
@@ -586,10 +586,10 @@ if __name__ == "__main__":
         imgs_record_df.to_csv(imgs_record_path, index=0)
 
     best_values = {}
+    best_loss = float('inf')
+
     if args.validation:
         for params in combinations:
-
-            best_loss = float('inf')
 
             validation_code = get_validation_code(paramNames, list(params))
 

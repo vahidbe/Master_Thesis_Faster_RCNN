@@ -1,0 +1,2 @@
+validation_code,curr_loss,best_loss,best_epoch
+"Validation - histogram_equalization, noise_reduction, brightness_jitter, gamma_correction - True, box_filter, True, True",1.7609382255911257,1.328874670441311,31

@@ -1260,7 +1260,7 @@ def preprocess_img(img, C):
     elif C.noise_reduction == "box_filter":
         img = cv2.boxFilter(img, -1, C.noise_reduction_shape, normalize=True)
     elif C.noise_reduction == "gaussian":
-        img = cv2.GaussianBlur(img, C.noise_reduction_shape)
+        img = cv2.GaussianBlur(img,(7,7), 0)
 
     if C.histogram_equalization:
         img_yuv = cv2.cvtColor(img, cv2.COLOR_BGR2YUV)
