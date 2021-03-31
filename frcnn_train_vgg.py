@@ -126,7 +126,7 @@ def val_model(train_imgs, val_imgs, param, paramNames, record_path, validation_c
         rpn_accuracy_rpn_monitor = []
         rpn_accuracy_for_epoch = []
         print('Epoch {}/{}'.format(epoch_num + 1, num_epochs))
-        
+
         data_gen_train = get_anchor_gt(train_imgs, C, get_img_output_length, mode='train')
 
         for iter_num in range(len(train_imgs)):
@@ -380,11 +380,11 @@ def initialize_model():
     except Exception as e:
         print('Exception: {}'.format(e))
 
-    model_rpn.compile(optimizer=Adam(lr=1e-5), loss=[rpn_loss_cls(num_anchors), rpn_loss_regr(num_anchors)])
-    model_classifier.compile(optimizer=Adam(lr=1e-5),
+    base_model_rpn.compile(optimizer=Adam(lr=1e-5), loss=[rpn_loss_cls(num_anchors), rpn_loss_regr(num_anchors)])
+    base_model_classifier.compile(optimizer=Adam(lr=1e-5),
                                   loss=[class_loss_cls, class_loss_regr(len(classes_count) - 1)],
                                   metrics={'dense_class_{}'.format(len(classes_count)): 'accuracy'})
-    model_all.compile(optimizer='sgd', loss='mae')
+    base_model_all.compile(optimizer='sgd', loss='mae')
     return base_model_all, base_model_rpn, base_model_classifier
 
 
