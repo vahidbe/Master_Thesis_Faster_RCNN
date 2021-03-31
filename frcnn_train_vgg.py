@@ -119,20 +119,14 @@ def val_model(train_imgs, val_imgs, param, paramNames, record_path, validation_c
     best_epoch = -1
 
     for epoch_num in range(num_epochs):
-        if (not last_epoch == 0) and (not epoch_num == last_epoch):
-            continue
-        else:
-            if not last_epoch == 0:
-                last_row = validation_record_df.tail(1)
-                best_loss_val = list(last_row['best_loss'])[-1]
-            last_epoch = 0
+
         start_time = time.time()
         progbar = generic_utils.Progbar(len(train_imgs))
         progbar_val = generic_utils.Progbar(len(val_imgs))
         rpn_accuracy_rpn_monitor = []
         rpn_accuracy_for_epoch = []
         print('Epoch {}/{}'.format(epoch_num + 1, num_epochs))
-        # TODO: tester mode:'augmentation'
+        
         data_gen_train = get_anchor_gt(train_imgs, C, get_img_output_length, mode='train')
 
         for iter_num in range(len(train_imgs)):
@@ -364,8 +358,6 @@ def rpn_to_class(X, img_data, rpn_accuracy_rpn_monitor, rpn_accuracy_for_epoch):
 
 
 def initialize_model():
-    # TODO: maybe we need to simply reload the pretrained vgg weights and call this method only once
-
     img_input = Input(shape=(None, None, 3))
     roi_input = Input(shape=(None, 4))
     shared_layers = nn_base(img_input, trainable=True)
@@ -381,15 +373,10 @@ def initialize_model():
 
     # This is a model that holds both the RPN and the classifier, used to load/save weights for the models
     base_model_all = Model([img_input, roi_input], rpn[:2] + classifier)
-    return base_model_all, base_model_rpn, base_model_classifier
-
-
-def load_weights(weights_path):
-    num_anchors = len(C.anchor_box_scales) * len(C.anchor_box_ratios)  # 9
     try:
-        print('Loading weights from {}'.format(weights_path))
-        model_rpn.load_weights(weights_path, by_name=True)
-        model_classifier.load_weights(weights_path, by_name=True)
+        print('Loading weights from {}'.format(C.base_net_weights))
+        model_rpn.load_weights(C.base_net_weights, by_name=True)
+        model_classifier.load_weights(C.base_net_weights, by_name=True)
     except Exception as e:
         print('Exception: {}'.format(e))
 
@@ -398,6 +385,7 @@ def load_weights(weights_path):
                                   loss=[class_loss_cls, class_loss_regr(len(classes_count) - 1)],
                                   metrics={'dense_class_{}'.format(len(classes_count)): 'accuracy'})
     model_all.compile(optimizer='sgd', loss='mae')
+    return base_model_all, base_model_rpn, base_model_classifier
 
 
 def split_imgs(imgs, val_split, test_split):
@@ -444,10 +432,6 @@ if __name__ == "__main__":
                         metavar="Validation code from last validation step", default=None,
                         help='Validation code from last validation step to provide if starting from where the '
                              'validation was left off')
-    parser.add_argument('--start_from_epoch', required=False,
-                        metavar="Epoch number (starting from 0) of where to restart the validation", default=0,
-                        help='Epoch to start from if starting from where the '
-                             'validation was left off')
     parser.add_argument('--num_epochs', required=False,
                         metavar="Integer", default=10,
                         help='Number of epochs for the training if --validation has been set to False\n'
@@ -476,7 +460,6 @@ if __name__ == "__main__":
     validation_record_path = "./logs/{}.csv".format(args.model_name)
     imgs_record_path = "./logs/{} - imgs.csv".format(args.model_name)
 
-    last_epoch = int(args.start_from_epoch)
     last_validation_code = args.validation_code 
 
     if last_validation_code is not None:
@@ -485,12 +468,8 @@ if __name__ == "__main__":
         validation_record_df = pd.read_csv(validation_record_path)
     else:
         start_from_last_step = False
-        if not last_epoch == 0:
-            imgs_record_df = pd.read_csv(imgs_record_path)
-            validation_record_df = pd.read_csv(validation_record_path)
-        else:
-            imgs_record_df = pd.DataFrame(columns=['train', 'val', 'test'])
-            validation_record_df = pd.DataFrame(columns=['validation_code', 'curr_loss', 'best_loss', 'best_epoch'])
+        imgs_record_df = pd.DataFrame(columns=['train', 'val', 'test'])
+        validation_record_df = pd.DataFrame(columns=['validation_code', 'curr_loss', 'best_loss', 'best_epoch'])
 
     train_path = args.annotations  # Training data (annotation file)
     data_path = args.dataset
@@ -562,18 +541,17 @@ if __name__ == "__main__":
     import itertools as it
 
     param = {
-        'histogram_equalization': [False, True],
-        'noise_reduction': ["gaussian"],
-        'brightness_jitter': [False, True],
-        'gamma_correction': [False, True]
+        'test': [0, 1]
     }
 
     paramNames = list(param.keys())
     combinations = it.product(*(param[Name] for Name in paramNames))
 
     model_all, model_rpn, model_classifier = initialize_model()
+    initial_weights_rpn = model_rpn.get_weights()
+    initial_weights_classifier = model_classifier.get_weights()
     
-    if start_from_last_step or not last_epoch == 0:
+    if start_from_last_step:
         last_row = imgs_record_df.tail(1)
         train_imgs = ast.literal_eval(last_row['train'].tolist()[0])
         val_imgs = ast.literal_eval(last_row['val'].tolist()[0])
@@ -600,10 +578,8 @@ if __name__ == "__main__":
                     start_from_last_step = False
                     continue
 
-            if not last_epoch == 0:
-                load_weights(os.path.join(record_path, validation_code + ".hdf5"))
-            else:
-                load_weights(C.base_net_weights)
+            model_rpn.set_weights(initial_weights_rpn)
+            model_classifier.set_weights(initial_weights_classifier)
 
             print("Best loss: {}".format(best_loss))
             print("=== Validation step code: {}".format(validation_code))
