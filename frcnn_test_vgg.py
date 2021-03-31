@@ -288,7 +288,7 @@ def accuracy():
                     ty /= C.classifier_regr_std[1]
                     tw /= C.classifier_regr_std[2]
                     th /= C.classifier_regr_std[3]
-                    x, y, w, h = roi_helpers.apply_regr(x, y, w, h, tx, ty, tw, th)
+                    x, y, w, h = apply_regr(x, y, w, h, tx, ty, tw, th)
                 except:
                     pass
                 bboxes[cls_name].append([16 * x, 16 * y, 16 * (x + w), 16 * (y + h)])
