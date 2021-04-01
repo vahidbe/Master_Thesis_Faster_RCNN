@@ -82,8 +82,8 @@ def run_detection(fps, alpha, min_area, C, frame_queue, flag_queue):
         if frame is None:
             break
         # resize the frame, convert it to grayscale, and blur it
-        frame = imutils.resize(frame, width=500)
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        frame_gray = imutils.resize(frame, width=500)
+        gray = cv2.cvtColor(frame_gray, cv2.COLOR_BGR2GRAY)
         gray = cv2.GaussianBlur(gray, (21, 21), 0)
         # if the first frame is None, initialize it
         if avg is None:
