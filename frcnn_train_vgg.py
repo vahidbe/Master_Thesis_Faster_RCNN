@@ -104,6 +104,8 @@ def val_model(train_imgs, val_imgs, param, paramNames, record_path, validation_c
             C.noise_reduction = param[i]
         elif paramNames[i] == "brightness_jitter":
             C.use_brightness_jitter = param[i]
+        elif paramNames[i] == "brightness_jitter_bound":
+            C.brightness_jitter_bound = param[i]
         elif paramNames[i] == "gamma_correction":
             C.gamma_correction = param[i]
         elif paramNames[i] == "histogram_equalization":
@@ -541,10 +543,8 @@ if __name__ == "__main__":
     import itertools as it
 
     param = {
-        'histogram_equalization': [False],
-        'noise_reduction': [None, "gaussian", "box_filter"],
-        'brightness_jitter': [False, True],
-        'gamma_correction': [False, True]
+        'brightness_jitter': [True],
+        'brightness_jitter_bound': [0.1, 0.2, 0.3, 0.4]
     }
 
     paramNames = list(param.keys())

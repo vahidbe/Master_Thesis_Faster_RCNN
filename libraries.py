@@ -52,7 +52,7 @@ class Config:
         self.use_brightness_jitter = False
 
         # Maximum percentage of increase or decrease of the brightness during the augmentation
-        self.brightness_jitter_bound = 0.5
+        self.brightness_jitter_bound = 0.2
 
         # Anchor box scales
         # Note that if im_size is smaller, anchor_box_scales should be scaled
