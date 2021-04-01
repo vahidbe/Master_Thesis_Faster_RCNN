@@ -1,4 +1,0 @@
-1.jpg,201,146,748,572,abeille_mellifere
-2.jpg,106,94,633,459,abeille_mellifere
-3.jpg,99,120,548,621,abeille_mellifere
-4.jpg,42,56,358,386,abeille_mellifere
