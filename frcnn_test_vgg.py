@@ -64,7 +64,7 @@ def draw_box_on_images():
     #
     # classes = {}
 
-    bbox_threshold = 0.5
+    bbox_threshold = 0.7
 
     # for idx, img_name in enumerate(imgs_path):
     length = len(test_imgs)
@@ -120,6 +120,7 @@ def draw_box_on_images():
                 # Ignore 'bg' class
                 if np.max(P_cls[0, ii, :]) < bbox_threshold or np.argmax(P_cls[0, ii, :]) == (P_cls.shape[2] - 1):
                     continue
+
 
                 cls_name = class_mapping[np.argmax(P_cls[0, ii, :])]
 
