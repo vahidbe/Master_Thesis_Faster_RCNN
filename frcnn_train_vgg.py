@@ -110,6 +110,8 @@ def val_model(train_imgs, val_imgs, param, paramNames, record_path, validation_c
             C.gamma_correction = param[i]
         elif paramNames[i] == "histogram_equalization":
             C.histogram_equalization = param[i]
+        elif paramNames[i] == "gamma_value":
+            C.gamma_value = param[i]
         else:
             pass
 
@@ -544,11 +546,26 @@ if __name__ == "__main__":
 
     param = {
         'brightness_jitter': [True],
-        'brightness_jitter_bound': [0.1, 0.2, 0.3, 0.4]
+        'brightness_jitter_bound': [0.1, 0.2, 0.3, 0.4],
+        'gamma_correction':[True],
+        'gamma_value': np.linspace(1.0, 4.0, 7)
     }
 
     paramNames = list(param.keys())
-    combinations = it.product(*(param[Name] for Name in paramNames))
+    # combinations = it.product(*(param[Name] for Name in paramNames))
+    combinations = [
+        (True, 0.1, False, 1.0),
+        (True, 0.2, False, 1.0),
+        (True, 0.3, False, 1.0),
+        (True, 0.4, False, 1.0),
+        (False, 0.0, True, 1.0),
+        (False, 0.0, True, 1.5),
+        (False, 0.0, True, 2.0),
+        (False, 0.0, True, 2.5),
+        (False, 0.0, True, 3.0),
+        (False, 0.0, True, 3.5),
+        (False, 0.0, True, 4.0)
+    ]
 
     model_all, model_rpn, model_classifier = initialize_model()
     initial_weights_rpn = model_rpn.get_weights()

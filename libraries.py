@@ -93,6 +93,7 @@ class Config:
 
         self.histogram_equalization = False
         self.gamma_correction = False
+        self.gamma_value = 2.0
         
         self.noise_reduction = None
 
@@ -1272,7 +1273,7 @@ def preprocess_img(img, C):
         img = cv2.cvtColor(img_yuv, cv2.COLOR_YUV2BGR)
 
     if C.gamma_correction:
-        img = adjust_gamma(img, gamma=2.0)
+        img = adjust_gamma(img, gamma=C.gamma_value)
 
     # while True:
     #     cv2.imshow("before", old)
