@@ -93,7 +93,7 @@ class Config:
 
         self.histogram_equalization = False
         self.gamma_correction = False
-        self.gamma_value = 2.0
+        self.gamma_value = 3.5
         
         self.noise_reduction = None
 

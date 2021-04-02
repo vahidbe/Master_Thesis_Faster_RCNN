@@ -545,10 +545,8 @@ if __name__ == "__main__":
     import itertools as it
 
     param = {
-        'brightness_jitter': [True],
-        'brightness_jitter_bound': [0.1, 0.2, 0.3, 0.4],
-        'gamma_correction':[True],
-        'gamma_value': np.linspace(1.0, 4.0, 7)
+        'noise_reduction': [None, "box_filter"],
+        'gamma_correction': [True, False]
     }
 
     paramNames = list(param.keys())
