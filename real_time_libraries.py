@@ -45,7 +45,6 @@ def init_session(use_gpu):
 
 def run_detection(fps, alpha, min_area, C, frame_queue, flag_queue):
     import imutils
-    from imutils.video import VideoStream
     import cv2
     from picamera.array import PiRGBArray
     from picamera import PiCamera
@@ -61,34 +60,36 @@ def run_detection(fps, alpha, min_area, C, frame_queue, flag_queue):
     flag = flag_queue.get(block=True, timeout=None)
     if flag == "ready":
         if C.verbose:
-            print("[INFO] detection_proc - models ready: detection can start")
+            print("[INFO] detection_proc - models ready: detection can start", flush=True)
     else:
-        print("[ERROR] detection_proc - error loading models: aborted")
+        print("[ERROR] detection_proc - error loading models: aborted", flush=True)
         return
 
-    vs = VideoStream(src=0).start()
-    time.sleep(2.0)
+    cam = PiCamera()
+    cam.resolution = (4054, 3040)
+    cam.framerate = fps
+    stream = PiRGBArray(cam)
+    time.sleep(1.0)
     # initialize the first frame in the video stream
     avg = None
     # loop over the frames of the video
-    while True:
-        time.sleep(round(1 / fps))
-        # grab the current frame and initialize the occupied/unoccupied
-        # text
-        frame = vs.read()
+    for frame in cam.capture_continuous(stream, format="bgr", use_video_port=True):
 
+        frame = frame.array
+        stream.truncate(0)
+        
         # if the frame could not be grabbed, then we have reached the end
         # of the video
         if frame is None:
             break
         # resize the frame, convert it to grayscale, and blur it
-        frame_gray = imutils.resize(frame, width=500)
+        frame_gray = imutils.resize(frame.copy(), width=500)
         gray = cv2.cvtColor(frame_gray, cv2.COLOR_BGR2GRAY)
         gray = cv2.GaussianBlur(gray, (21, 21), 0)
         # if the first frame is None, initialize it
         if avg is None:
             if C.verbose:
-                print("[INFO] detection_proc - starting background model...")
+                print("[INFO] detection_proc - starting background model...", flush=True)
             avg = gray.copy().astype("float")
             continue
         # accumulate the weighted average between the current frame and
@@ -109,11 +110,11 @@ def run_detection(fps, alpha, min_area, C, frame_queue, flag_queue):
             if cv2.contourArea(c) < min_area:
                 continue
             if C.verbose:
-                print("[INFO] detection_proc - *** Movement detected ***")
+                print("[INFO] detection_proc - *** Movement detected ***", flush=True)
             if p_trap  is None or not p_trap.is_alive():
                 p_trap = Process(target=trap_insect, args=(kit, 60, 30))
                 p_trap.start()
-            frame_queue.put((get_timestamp(), frame))
+            frame_queue.put((get_timestamp(), frame.copy()))
             break
 
         if C.show_images:
@@ -122,7 +123,7 @@ def run_detection(fps, alpha, min_area, C, frame_queue, flag_queue):
             # if the `q` key is pressed, break from the lop
             if key == ord("q"):
                 break
-
+    
     if C.show_images:
         cv2.destroyAllWindows()
 
@@ -173,7 +174,7 @@ def run_demo(C, bbox_threshold):
 
 def run_processing(bbox_threshold, C, output_results_filename, use_gpu, frame_queue, flag_queue):
 
-    print("[INFO] processing_proc - initializing session...")
+    print("[INFO] processing_proc - initializing session...", flush=True)
     import numpy as np
     from detection_libraries import init_models
     from detection_libraries import detect
@@ -189,10 +190,10 @@ def run_processing(bbox_threshold, C, output_results_filename, use_gpu, frame_qu
 
     init_session(use_gpu)
     if C.verbose:
-        print("[INFO] processing_proc - loading model...")
+        print("[INFO] processing_proc - loading model...", flush=True)
     model_rpn, class_mapping, model_classifier_only = init_models(C)
     if C.verbose:
-        print("[INFO] processing_proc - done loading model")
+        print("[INFO] processing_proc - done loading model", flush=True)
     flag_queue.put("ready")
     class_to_color = {class_mapping[v]: np.random.randint(0, 255, 3) for v in class_mapping}
     fieldnames = ['date',
@@ -205,7 +206,8 @@ def run_processing(bbox_threshold, C, output_results_filename, use_gpu, frame_qu
         time.sleep(1)
         timestamp, img = frame_queue.get(block=True, timeout=None)
         if C.verbose:
-            print("[INFO] processing_proc - starting detection on a new image")
+            print("[INFO] processing_proc - starting detection on a new image", flush=True)
+            print("[INFO] processing_proc - number of frames waiting to be processed: {}".format(frame_queue.size()), flush=True)
         all_dets = detect(img.copy(), model_rpn, model_classifier_only, C, class_mapping, bbox_threshold, class_to_color)
         if not len(all_dets) == 0:
             for detected_class, probability, ((x1, y1), (x2, y2)) in all_dets:
