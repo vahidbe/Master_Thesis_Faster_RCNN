@@ -43,7 +43,7 @@ def init_session(use_gpu):
         session = tf.compat.v1.InteractiveSession(config=config)
 
 
-def run_detection(fps, alpha, min_area, C, frame_queue, flag_queue):
+def run_detection(fps, resolution, alpha, min_area, C, frame_queue, flag_queue):
     import imutils
     import cv2
     from picamera.array import PiRGBArray
@@ -66,18 +66,17 @@ def run_detection(fps, alpha, min_area, C, frame_queue, flag_queue):
         return
 
     cam = PiCamera()
-    cam.resolution = (4054, 3040)
-    cam.framerate = fps
+    cam.resolution = resolution
+    # cam.framerate = fps # not working for some reason instead we use sleep
     stream = PiRGBArray(cam)
     time.sleep(1.0)
     # initialize the first frame in the video stream
     avg = None
     # loop over the frames of the video
     for frame in cam.capture_continuous(stream, format="bgr", use_video_port=True):
-
+        time.sleep(1/fps)
         frame = frame.array
-        stream.truncate(0)
-        
+        stream.truncate(0) 
         # if the frame could not be grabbed, then we have reached the end
         # of the video
         if frame is None:
