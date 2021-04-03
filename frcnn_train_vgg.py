@@ -545,25 +545,14 @@ if __name__ == "__main__":
     import itertools as it
 
     param = {
-        'noise_reduction': [None, "box_filter"],
-        'gamma_correction': [True, False]
+        'histogram_equalization': [True, False],
+        'noise_reduction': [None, "box_filter", "gaussian"],
+        'gamma_correction': [True, False],
+        'brightness_jitter': [True, False]
     }
 
     paramNames = list(param.keys())
-    # combinations = it.product(*(param[Name] for Name in paramNames))
-    combinations = [
-        (True, 0.1, False, 1.0),
-        (True, 0.2, False, 1.0),
-        (True, 0.3, False, 1.0),
-        (True, 0.4, False, 1.0),
-        (False, 0.0, True, 1.0),
-        (False, 0.0, True, 1.5),
-        (False, 0.0, True, 2.0),
-        (False, 0.0, True, 2.5),
-        (False, 0.0, True, 3.0),
-        (False, 0.0, True, 3.5),
-        (False, 0.0, True, 4.0)
-    ]
+    combinations = it.product(*(param[Name] for Name in paramNames))
 
     model_all, model_rpn, model_classifier = initialize_model()
     initial_weights_rpn = model_rpn.get_weights()
