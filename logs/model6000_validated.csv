@@ -1,0 +1,2 @@
+validation_code,curr_loss,best_loss,best_epoch
+"Validation - noise_reduction, gamma_correction - box_filter, True",1.3596122115833484,1.3596122115833484,35
