@@ -33,10 +33,14 @@ if __name__ == "__main__":
     parser.add_argument('--fps', required=False, default=1,
                         metavar="integer",
                         help="Framerate of the camera")
+    parser.add_argument('--with_motor', required=False, default="False",
+                        metavar="True/False",
+                        help="True if there is a motor to action, False otherwise")
     args = parser.parse_args()
 
     use_gpu = eval(args.use_gpu)
     demo = eval(args.demo)
+    with_motor = eval(args.with_motor)
     resolution = literal_eval(args.resolution)
     fps = int(args.fps)
 
@@ -65,7 +69,7 @@ if __name__ == "__main__":
     else:
         frame_queue = Queue()
         flag_queue = Queue()
-        p_detection = Process(target=run_detection, args=(10, resolution, 0.3, 5000, C, frame_queue, flag_queue))
+        p_detection = Process(target=run_detection, args=(10, resolution, 0.3, 5000, with_motor, C, frame_queue, flag_queue))
         p_processing = Process(target=run_processing, args=(bbox_threshold, C, output_results_filename, use_gpu, frame_queue, flag_queue))
         p_detection.start()
         p_processing.start()
