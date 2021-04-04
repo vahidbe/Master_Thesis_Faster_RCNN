@@ -43,15 +43,16 @@ def init_session(use_gpu):
         session = tf.compat.v1.InteractiveSession(config=config)
 
 
-def run_detection(fps, resolution, alpha, min_area, C, frame_queue, flag_queue):
+def run_detection(fps, resolution, alpha, min_area, C, use_motor, frame_queue, flag_queue):
     import imutils
     import cv2
     from picamera.array import PiRGBArray
     from picamera import PiCamera
     import time
     import board
-    from adafruit_motorkit import MotorKit
-    from adafruit_motor import stepper
+    if use_motor:
+        from adafruit_motorkit import MotorKit
+        from adafruit_motor import stepper
     from multiprocessing import Process
 
     kit = MotorKit(i2c=board.I2C())
@@ -110,9 +111,10 @@ def run_detection(fps, resolution, alpha, min_area, C, frame_queue, flag_queue):
                 continue
             if C.verbose:
                 print("[INFO] detection_proc - *** Movement detected ***", flush=True)
-            if p_trap  is None or not p_trap.is_alive():
-                p_trap = Process(target=trap_insect, args=(kit, 60, 30))
-                p_trap.start()
+            if use_motor:
+                if p_trap is None or not p_trap.is_alive():
+                    p_trap = Process(target=trap_insect, args=(kit, 60, 30))
+                    p_trap.start()
             frame_queue.put((get_timestamp(), frame.copy()))
             break
 
