@@ -1,0 +1,575 @@
+PuTTY X11 proxy: unable to connect to forwarded X server: Network error: Connection refused
+Unable to init server: Could not connect: Connection refused
+PuTTY X11 proxy: unable to connect to forwarded X server: Network error: Connection refused
+Unable to init server: Could not connect: Connection refused
+
+(raspberry_real_time.py:13573): Gdk-CRITICAL **: 18:30:40.899: gdk_cursor_new_for_display: assertion 'GDK_IS_DISPLAY (display)' failed
+Using TensorFlow backend.
+[INFO] processing_proc - initializing session...
+[INFO] processing_proc - loading model...
+2021-03-31 18:30:59.091804: W tensorflow/core/framework/cpu_allocator_impl.cc:81] Allocation of 411041792 exceeds 10% of system memory.
+2021-03-31 18:30:59.896881: W tensorflow/core/framework/cpu_allocator_impl.cc:81] Allocation of 411041792 exceeds 10% of system memory.
+2021-03-31 18:31:00.382379: W tensorflow/core/framework/cpu_allocator_impl.cc:81] Allocation of 411041792 exceeds 10% of system memory.
+2021-03-31 18:31:07.719502: W tensorflow/core/framework/cpu_allocator_impl.cc:81] Allocation of 411041792 exceeds 10% of system memory.
+Loading weights from ./model/model_size-100.hdf5
+{0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
+[INFO] processing_proc - done loading model
+[INFO] detection_proc - models ready: detection can start
+[INFO] detection_proc - starting background model...
+[INFO] detection_proc - *** Movement detected ***
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 0
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+Starting detection
+[]
+Elapsed time = 22.49047875404358
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 45
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+Starting detection
+[]
+Elapsed time = 17.181724548339844
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 123
+Starting detection
+[]
+Elapsed time = 17.34041929244995
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 122
+Starting detection
+[('anthophore_plumeuse', 76.01282000541687, ((153, 76), (537, 383)))]
+Elapsed time = 17.09736680984497
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 121
+Starting detection
+[('anthophore_plumeuse', 71.31909132003784, ((153, 76), (537, 383)))]
+Elapsed time = 17.32417583465576
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 120
+Starting detection
+[('anthophore_plumeuse', 74.23799633979797, ((230, 76), (537, 383)))]
+Elapsed time = 17.198888540267944
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 119
+Starting detection
+[('anthophore_plumeuse', 71.85304164886475, ((230, 76), (614, 383)))]
+Elapsed time = 17.621676921844482
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 118
+Starting detection
+[]
+Elapsed time = 17.341070413589478
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 117
+Starting detection
+[]
+Elapsed time = 17.260472774505615
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 116
+Starting detection
+[]
+Elapsed time = 17.32493019104004
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 115
+Starting detection
+[]
+Elapsed time = 17.14873170852661
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 114
+Starting detection
+[]
+Elapsed time = 18.353560209274292
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 113
+Starting detection
+[('anthophore_plumeuse', 70.29551863670349, ((153, 76), (537, 383)))]
+Elapsed time = 17.53089475631714
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 112
+Starting detection
+[]
+Elapsed time = 17.39860224723816
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 111
+Starting detection
+[]
+Elapsed time = 18.26324152946472
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 110
+Starting detection
+[]
+Elapsed time = 18.140718936920166
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 109
+Starting detection
+[]
+Elapsed time = 18.223975896835327
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 108
+Starting detection
+[]
+Elapsed time = 17.5599467754364
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 107
+Starting detection
+[]
+Elapsed time = 17.13460350036621
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 106
+Starting detection
+[]
+Elapsed time = 17.995408296585083
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 105
+Starting detection
+[]
+Elapsed time = 16.659862518310547
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 104
+Starting detection
+[]
+Elapsed time = 18.639661073684692
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 103
+Starting detection
+[('anthophore_plumeuse', 72.64440059661865, ((230, 76), (614, 383)))]
+Elapsed time = 18.178438186645508
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 102
+Starting detection
+[('anthophore_plumeuse', 72.15522527694702, ((230, 76), (614, 383)))]
+Elapsed time = 18.438798904418945
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 101
+Starting detection
+[]
+Elapsed time = 17.097508430480957
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 100
+Starting detection
+[('anthophore_plumeuse', 76.86240077018738, ((230, 0), (614, 307)))]
+Elapsed time = 17.016485929489136
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 99
+Starting detection
+[]
+Elapsed time = 17.5014750957489
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 98
+Starting detection
+[]
+Elapsed time = 18.141868114471436
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 97
+Starting detection
+[]
+Elapsed time = 19.12947916984558
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 96
+Starting detection
+[]
+Elapsed time = 18.477583169937134
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 95
+Starting detection
+[('anthophore_plumeuse', 75.4483163356781, ((153, 0), (460, 307)))]
+Elapsed time = 16.997947931289673
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 94
+Starting detection
+[]
+Elapsed time = 16.869608402252197
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 93
+Starting detection
+[('anthophore_plumeuse', 74.1511344909668, ((153, 0), (460, 307)))]
+Elapsed time = 16.671569347381592
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 92
+Starting detection
+[('anthophore_plumeuse', 72.84380793571472, ((153, 0), (460, 307)))]
+Elapsed time = 16.912249326705933
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 91
+Starting detection
+[('anthophore_plumeuse', 74.38400387763977, ((153, 0), (460, 307)))]
+Elapsed time = 17.794875383377075
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 90
+Starting detection
+[('anthophore_plumeuse', 75.10031461715698, ((153, 0), (460, 307)))]
+Elapsed time = 18.637110471725464
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 89
+Starting detection
+[]
+Elapsed time = 17.929004669189453
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 88
+Starting detection
+[]
+Elapsed time = 18.563819646835327
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 87
+Starting detection
+[('anthophore_plumeuse', 77.02864408493042, ((153, 0), (460, 307)))]
+Elapsed time = 17.683624029159546
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 86
+Starting detection
+[('anthophore_plumeuse', 76.02318525314331, ((153, 76), (460, 307)))]
+Elapsed time = 19.03435492515564
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 85
+Starting detection
+[]
+Elapsed time = 19.444799423217773
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 84
+Starting detection
+[]
+Elapsed time = 16.61964774131775
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 83
+Starting detection
+[('anthophore_plumeuse', 83.26314091682434, ((153, 76), (537, 383)))]
+Elapsed time = 16.486419916152954
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 82
+Starting detection
+[('anthophore_plumeuse', 72.28178381919861, ((153, 76), (460, 307)))]
+Elapsed time = 18.05820322036743
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 81
+Starting detection
+[]
+Elapsed time = 18.886180639266968
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 80
+Starting detection
+[]
+Elapsed time = 17.68437910079956
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 79
+Starting detection
+[]
+Elapsed time = 18.054046630859375
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 78
+Starting detection
+[]
+Elapsed time = 16.837474822998047
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 77
+Starting detection
+[]
+Elapsed time = 17.416489124298096
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 76
+Starting detection
+[('anthophore_plumeuse', 78.98067235946655, ((230, 76), (614, 383)))]
+Elapsed time = 18.358168363571167
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 75
+Starting detection
+[('anthophore_plumeuse', 78.6522924900055, ((230, 76), (614, 383)))]
+Elapsed time = 16.751866102218628
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 74
+Starting detection
+[('anthophore_plumeuse', 70.63177824020386, ((153, 153), (537, 383)))]
+Elapsed time = 16.817270278930664
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 73
+Starting detection
+[]
+Elapsed time = 16.222683906555176
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 72
+Starting detection
+[]
+Elapsed time = 16.195725440979004
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 71
+Starting detection
+[]
+Elapsed time = 16.684478521347046
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 70
+Starting detection
+[]
+Elapsed time = 15.882436990737915
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 69
+Starting detection
+[]
+Elapsed time = 16.14623236656189
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 68
+Starting detection
+[]
+Elapsed time = 15.764275789260864
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 67
+Starting detection
+[]
+Elapsed time = 16.654427528381348
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 66
+Starting detection
+[]
+Elapsed time = 15.985737085342407
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 65
+Starting detection
+[]
+Elapsed time = 17.1345431804657
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 64
+Starting detection
+[]
+Elapsed time = 17.092981100082397
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 63
+Starting detection
+[]
+Elapsed time = 17.257372617721558
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 62
+Starting detection
+[]
+Elapsed time = 17.0726318359375
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 61
+Starting detection
+[]
+Elapsed time = 16.94294500350952
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 60
+Starting detection
+[]
+Elapsed time = 17.372243642807007
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 59
+Starting detection
+[('anthophore_plumeuse', 72.58821725845337, ((230, 76), (537, 383)))]
+Elapsed time = 18.358105897903442
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 58
+Starting detection
+[]
+Elapsed time = 19.18620491027832
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 57
+Starting detection
+[]
+Elapsed time = 16.941279411315918
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 56
+Starting detection
+[]
+Elapsed time = 16.535431385040283
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 55
+Starting detection
+[]
+Elapsed time = 17.478622913360596
+
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames still to be processed: 54
+Starting detection
+[]
+Elapsed time = 16.704968452453613

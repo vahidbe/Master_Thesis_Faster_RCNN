@@ -1,14 +1,11 @@
 # Default ignored files
 /shelf/
 /workspace.xml
-# Datasource local storage ignored files
-/../../../../../:\Documents\Projects\FasterRCNN\.idea/dataSources/
-/dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/
 /.idea
 /venv/
-*.csv
 *.h5
 *.hdf5
 *.pyc
+/resources/api-keys

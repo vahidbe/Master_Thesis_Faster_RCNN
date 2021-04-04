@@ -1,56 +1,6 @@
 from libraries import *
 
 
-def plot_some_graphs(C):
-    # Load the records
-    record_df = pd.read_csv(C.record_path)
-
-    r_epochs = len(record_df)
-
-    plt.figure(figsize=(15, 5))
-    plt.subplot(1, 2, 1)
-    plt.plot(np.arange(0, r_epochs), record_df['mean_overlapping_bboxes'], 'r')
-    plt.title('mean_overlapping_bboxes')
-
-    plt.subplot(1, 2, 2)
-    plt.plot(np.arange(0, r_epochs), record_df['class_acc'], 'r')
-    plt.title('class_acc')
-
-    plt.show()
-
-    plt.figure(figsize=(15, 5))
-
-    plt.subplot(1, 2, 1)
-    plt.plot(np.arange(0, r_epochs), record_df['loss_rpn_cls'], 'r')
-    plt.title('loss_rpn_cls')
-
-    plt.subplot(1, 2, 2)
-    plt.plot(np.arange(0, r_epochs), record_df['loss_rpn_regr'], 'r')
-    plt.title('loss_rpn_regr')
-    plt.show()
-    plt.figure(figsize=(15, 5))
-    plt.subplot(1, 2, 1)
-    plt.plot(np.arange(0, r_epochs), record_df['loss_class_cls'], 'r')
-    plt.title('loss_class_cls')
-
-    plt.subplot(1, 2, 2)
-    plt.plot(np.arange(0, r_epochs), record_df['loss_class_regr'], 'r')
-    plt.title('loss_class_regr')
-    plt.show()
-    plt.figure(figsize=(15, 5))
-    plt.subplot(1, 2, 1)
-    plt.plot(np.arange(0, r_epochs), record_df['curr_loss'], 'r')
-    plt.title('total_loss')
-
-    plt.subplot(1, 2, 2)
-    plt.plot(np.arange(0, r_epochs), record_df['elapsed_time'], 'r')
-    plt.title('elapsed_time')
-
-    plt.show()
-
-    return record_df
-
-
 def init_models():
     num_features = 512
 
@@ -92,7 +42,18 @@ def init_models():
 def draw_box_on_images():
     class_to_color = {class_mapping[v]: np.random.randint(0, 255, 3) for v in class_mapping}
 
-    test_imgs = os.listdir(test_base_path)
+    if from_csv:
+        imgs_record_df = pd.read_csv(imgs_record_path)
+        last_row = imgs_record_df.tail(1)
+        test_imgs_temp = ast.literal_eval(last_row['test'].tolist()[0])
+        test_imgs = []
+        for img_dict in test_imgs_temp:
+            test_imgs.append(img_dict['filepath'])
+    else:
+        test_imgs_temp = os.listdir(data_test_path)
+        test_imgs = []
+        for img_name in test_imgs_temp:
+            test_imgs.append(os.path.join(data_test_path, img_name))
 
     # imgs_path = []
     # for i in range(10):
@@ -106,15 +67,14 @@ def draw_box_on_images():
     bbox_threshold = 0.7
 
     # for idx, img_name in enumerate(imgs_path):
-    length = len(test_imgs) - 1
+    length = len(test_imgs)
     print(length)
-    for idx, img_name in enumerate(test_imgs):
+    for idx, filepath in enumerate(test_imgs):
         print("Progression : " + str(idx + 1) + "/" + str(length))
-        if not img_name.lower().endswith(('.bmp', '.jpeg', '.jpg', '.png', '.tif', '.tiff')):
+        if not filepath.lower().endswith(('.bmp', '.jpeg', '.jpg', '.png', '.tif', '.tiff')):
             continue
-        print(img_name)
+        print(filepath)
         st = time.time()
-        filepath = os.path.join(test_base_path, img_name)
 
         img = cv2.imread(filepath)
 
@@ -160,6 +120,7 @@ def draw_box_on_images():
                 # Ignore 'bg' class
                 if np.max(P_cls[0, ii, :]) < bbox_threshold or np.argmax(P_cls[0, ii, :]) == (P_cls.shape[2] - 1):
                     continue
+
 
                 cls_name = class_mapping[np.argmax(P_cls[0, ii, :])]
 
@@ -216,19 +177,53 @@ def draw_box_on_images():
         plt.figure(figsize=(10, 10))
         plt.grid()
         plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
-        plt.show()
+        plt.savefig('other/box_figure/{}.jpg'.format(str(idx)))
 
         print(class_mapping)
 
 
+def plot_precision_recall(precision, recall, thresholds, class_name):
+    plt.figure()
+    plt.plot(recall, precision, lw=2)
+    plt.title('[' + class_name + ']' + ' Precision - Recall curve')
+    plt.xlabel('Recall')
+    plt.ylabel('Precision')
+    plt.xlim([0.0, 1.0])
+    plt.ylim([0.0, 1.0])
+    plt.savefig("./other/graphs/{}_prec-rec_{}".format(args.model_name, str(class_name)))
+    # plt.show()
+
+    # plt.plot(thresholds, lw=2)
+    # plt.title('[' + class_name + ']' + ' Evolution of thresholds for prediction and recall')
+    # plt.ylabel('Threshold')
+    # plt.ylim([0.0, 1.0])
+    # plt.savefig("./other/graphs/{}_threshold_{}".format(args.model_name, str(class_name)))
+    # plt.show()
+
+
+def plot_roc(fpr, tpr, class_name):
+    plt.figure()
+    plt.plot(fpr, tpr, lw=2)
+    plt.title('[' + class_name + ']' + 'ROC')
+    plt.xlabel('Recall')
+    plt.ylabel('Precision')
+    plt.xlim([0.0, 1.0])
+    plt.ylim([0.0, 1.0])
+    plt.savefig("./other/graphs/{}_roc_{}".format(args.model_name, str(class_name)))
+
+
 def accuracy():
-    test_imgs, _, _ = get_data(test_path, data_test_path)
+    if from_csv:
+        imgs_record_df = pd.read_csv(imgs_record_path)
+        last_row = imgs_record_df.tail(1)
+        test_imgs = ast.literal_eval(last_row['test'].tolist()[0])
+    else:
+        test_imgs, _, _ = get_data(test_path, data_test_path)
 
     T = {}
     P = {}
     mAPs = []
-    mRecalls = []
-    mAccs = []
+    mROC_AUCs = []
     for idx, img_data in enumerate(test_imgs):
         print('{}/{}'.format(idx, len(test_imgs)))
         st = time.time()
@@ -294,7 +289,7 @@ def accuracy():
                     ty /= C.classifier_regr_std[1]
                     tw /= C.classifier_regr_std[2]
                     th /= C.classifier_regr_std[3]
-                    x, y, w, h = roi_helpers.apply_regr(x, y, w, h, tx, ty, tw, th)
+                    x, y, w, h = apply_regr(x, y, w, h, tx, ty, tw, th)
                 except:
                     pass
                 bboxes[cls_name].append([16 * x, 16 * y, 16 * (x + w), 16 * (y + h)])
@@ -313,47 +308,48 @@ def accuracy():
                 all_dets.append(det)
 
         print('Elapsed time = {}'.format(time.time() - st))
-        t, p = get_map(all_dets, img_data['bboxes'], (fx, fy))
+        t, p = get_map(all_dets, img_data['bboxes'], (fx, fy)) #p contient les proba de prédiction des classes
         for key in t.keys():
             if key not in T:
                 T[key] = []
                 P[key] = []
-            T[key].extend(t[key])
+            T[key].extend(t[key]) #C'est cumulatif, on garde les prédictions des images précédemment considérées dans le test
             P[key].extend(p[key])
         all_aps = []
-        all_recalls = []
-        all_accs = []
+        all_roc_aucs = []
         for key in T.keys():
             ap = average_precision_score(T[key], P[key])
-            recall = recall_score(T[key], [round(num) for num in P[key]])
-            acc = accuracy_score(T[key], [round(num) for num in P[key]])
+            # roc_auc = roc_auc_score(T[key], P[key])
             print('{} AP: {}'.format(key, ap))
-            print('{} Recall: {}'.format(key, recall))
-            print('{} Acc: {}'.format(key, acc))
+            # print('{} ROC AUC: {}'.format(key, roc_auc))
             all_aps.append(ap)
-            all_recalls.append(recall)
-            all_accs.append(acc)
-        print('mAP = {}'.format(np.mean(np.array(all_aps))))
-        print('mRecall = {}'.format(np.mean(np.array(all_recalls))))
-        print('mAcc = {}'.format(np.mean(np.array(all_accs))))
+            # all_roc_aucs.append(roc_auc)
+        print('mAP = {}'.format(np.mean(np.array(all_aps)))) #Mean on all classes
+        # print('mROC_AUC = {}'.format(np.mean(np.array(all_roc_aucs)))) #Mean on all classes
         mAPs.append(np.mean(np.array(all_aps)))
-        mRecalls.append(np.mean(np.array(all_recalls)))
-        mAccs.append(np.mean(np.array(all_accs)))
+        # mROC_AUCs.append(np.mean(np.array(all_roc_aucs)))
 
     print()
     print('mean average precision:', np.nanmean(np.array(mAPs)))
-    print('mean average recall:', np.nanmean(np.array(mRecalls)))
-    print('mean average accuracy:', np.nanmean(np.array(mAccs)))
+    # print('mean Area Under the Receiver Operating Characteristic Curve:', np.nanmean(np.array(mROC_AUCs)))
 
     mAP = [mAP for mAP in mAPs if str(mAP) != 'nan']
-    mRecall = [mRecall for mRecall in mRecalls if str(mRecall) != 'nan']
-    mAcc = [mAcc for mAcc in mAccs if str(mAcc) != 'nan']
-    mean_average_prec = round(np.nanmean(np.array(mAP)), 3)
-    mean_average_recall = round(np.nanmean(np.array(mRecall)), 3)
-    mean_average_acc = round(np.nanmean(np.array(mAcc)), 3)
-    print('After training %dk batches, the mean average precision is %0.3f' % (len(record_df), mean_average_prec))
-    print('After training %dk batches, the mean average recall is %0.3f' % (len(record_df), mean_average_recall))
-    print('After training %dk batches, the mean average accuracy is %0.3f' % (len(record_df), mean_average_acc))
+    # mROC_AUC = [mROC_AUC for mROC_AUC in mROC_AUCs if str(mROC_AUC) != 'nan']
+    mean_average_prec = np.nanmean(np.array(mAP))
+    # mean_roc_auc = np.nanmean(np.array(mROC_AUC))
+    print('The mean average precision is %0.3f' % (mean_average_prec))
+    # print('The mean Area Under the Receiver Operating Characteristic Curve is %0.3f' % (mean_roc_auc))
+
+    for key in T.keys():
+        print(key)
+        precision, recall, thresholds = precision_recall_curve(T[key], P[key])
+        plot_precision_recall(precision, recall, thresholds, key)
+        fpr, tpr, thresholds = roc_curve(T[key], P[key])
+        roc_auc = auc(fpr, tpr)
+        print("ROC AUC for {} = {}".format(str(key), str(roc_auc)))
+        plot_roc(fpr, tpr, key)
+
+
 
     # record_df.loc[len(record_df)-1, 'mAP'] = mean_average_prec
     # record_df.to_csv(C.record_path, index=0)
@@ -361,17 +357,62 @@ def accuracy():
 
 
 if __name__ == "__main__":
-    base_path = '.'
 
-    test_path = './data_test2/data_annotations.txt'  # Test data (annotation file)
-    data_test_path = './data_test2'
+    import argparse
 
-    test_base_path = './data_test2'  # Directory to save the test images
+    # Parse command line arguments
+    parser = argparse.ArgumentParser(
+        description='Use Faster R-CNN to detect insects.')
+    parser.add_argument('--model_name', required=False,
+                        metavar="name_of_your_model", default='model',
+                        help='Name of the model being tested')
+    parser.add_argument('--dataset', required=False,
+                        metavar="/path/to/insects/test/dataset/", default='./data',
+                        help='Directory of the Insects test dataset')
+    parser.add_argument('--from_csv', required=False, default='True',
+                        metavar="True/False",
+                        help='True if loading test images from csv file')
+    parser.add_argument('--annotations', required=False, default='./data/data_annotations.txt',
+                        metavar="/path/to/insects/dataset/annotations/file.txt",
+                        help='Annotation file for the provided dataset')
+    parser.add_argument('--show_images', required=False, default='False',
+                        metavar="True/False",
+                        help="True if you want to show the images after detection, False otherwise")
+    parser.add_argument('--compute_accuracy', required=False, default='True',
+                        metavar="True/False",
+                        help="True if you want to compute the different 'accuracy' metrics, False otherwise")
+    parser.add_argument('--use_gpu', required=False, default="True",
+                        metavar="True/False",
+                        help="True if you want to run the training on a gpu, False otherwise")
+    args = parser.parse_args()
 
-    output_results_filename = './results_test.txt' # TODO: output results of accuracy in file
+    use_gpu = eval(args.use_gpu)
+    from_csv = eval(args.from_csv)
+    show_images = eval(args.show_images)
+    compute_accuracy = eval(args.compute_accuracy)
+
+    if use_gpu is True:
+        config = tf.compat.v1.ConfigProto()
+        config.gpu_options.allow_growth = True
+        config.gpu_options.per_process_gpu_memory_fraction = 0.9
+        session = tf.compat.v1.InteractiveSession(config=config)
+    else:
+        os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+        config = tf.compat.v1.ConfigProto(device_count={'GPU': 0})
+        session = tf.compat.v1.InteractiveSession(config=config)
+
+    test_path = args.annotations  # Test data (annotation file)
+    data_test_path = args.dataset
+
+    imgs_record_path = "./logs/{} - imgs.csv".format(args.model_name)
+
+    # output_results_filename = "./results/{}".format(args.model_name)
+    # if not os.path.exists(output_results_filename):
+    #     os.mkdir(output_results_filename)
+    # TODO: output results of accuracy in file
     # TODO: parametrer le programme pour afficher les images ou calculer les metrics
 
-    config_output_filename = os.path.join(base_path, 'weights1500.pickle')
+    config_output_filename = "./config/{}.pickle".format(args.model_name)
 
     with open(config_output_filename, 'rb') as f_in:
         C = pickle.load(f_in)
@@ -381,9 +422,11 @@ if __name__ == "__main__":
     C.use_vertical_flips = False
     C.rot_90 = False
 
-    C.model_path = os.path.join(base_path, 'model/weights1500.hdf5') #UPDATE WEIGHTS PATH HERE !!!!!!!!
+    C.model_path = "./model/{}.hdf5".format(args.model_name)  # UPDATE WEIGHTS PATH HERE !!!!!!!!
 
-    record_df = plot_some_graphs(C)
+    # record_df = plot_some_graphs(C)
     model_rpn, class_mapping, model_classifier_only = init_models()
-    draw_box_on_images()
-    accuracy()
+    if show_images:
+        draw_box_on_images()
+    if compute_accuracy:
+        accuracy()

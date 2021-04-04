@@ -1,0 +1,17 @@
+When using this dataset please use the following citation and pay attention to the rights documented in rights.txt:
+Runnel V. My naturesounds - nature observations with sound recordings. PlutoF. Occurrence dataset https://doi.org/10.15468/hnheni accessed via GBIF.org on 2021-03-27.
+Botanic Garden and Botanical Museum Berlin (2019). BoBO - Botanic Garden and Botanical Museum Berlin Observations. Occurrence dataset https://doi.org/10.15468/9ll2gz accessed via GBIF.org on 2021-03-27.
+Soon V. University of Tartu Natural History Museum and Botanical Garden Zooloogical Collections. University of Tartu, Natural History Museum and Botanical Garden. Occurrence dataset https://doi.org/10.15468/6hfnux accessed via GBIF.org on 2021-03-27.
+Citizen Science - ALA Website (2021). ALA species sightings and OzAtlas. Occurrence dataset https://doi.org/10.15468/jayxmn accessed via GBIF.org on 2021-03-27.
+Natural History Museum (2021). Natural History Museum (London) Collection Specimens. Occurrence dataset https://doi.org/10.5519/0002965 accessed via GBIF.org on 2021-03-27.
+The International Barcode of Life Consortium (2016). International Barcode of Life project (iBOL). Occurrence dataset https://doi.org/10.15468/inygc6 accessed via GBIF.org on 2021-03-27.
+Questagame (2021). Earth Guardians Weekly Feed. Occurrence dataset https://doi.org/10.15468/slqqt8 accessed via GBIF.org on 2021-03-27.
+Estonian Naturalists’ Society. Estonian Naturalists’ Society. Occurrence dataset https://doi.org/10.15468/bmk3ab accessed via GBIF.org on 2021-03-27.
+Citizen Science Observation Dataset B, Tiago P (2020). Biodiversity4all Research-Grade Observations. BioDiversity4All. Occurrence dataset https://doi.org/10.15468/njmmp7 accessed via GBIF.org on 2021-03-27.
+Bakker F, Creuwels J (2021). Naturalis Biodiversity Center (NL) - Hymenoptera. Naturalis Biodiversity Center. Occurrence dataset https://doi.org/10.15468/jgywgc accessed via GBIF.org on 2021-03-27.
+Orrell T, Informatics Office (2021). NMNH Extant Specimen Records. Version 1.41. National Museum of Natural History, Smithsonian Institution. Occurrence dataset https://doi.org/10.15468/hnhrg3 accessed via GBIF.org on 2021-03-27.
+The Norwegian Biodiversity Information Centre ., Hoem S (2021). Norwegian Species Observation Service. Version 1.123. The Norwegian Biodiversity Information Centre (NBIC). Occurrence dataset https://doi.org/10.15468/zjbzel accessed via GBIF.org on 2021-03-27.
+Bentley A, Thomas J (2021). Snow Entomological Museum Collection. Version 26.48. University of Kansas Biodiversity Institute. Occurrence dataset https://doi.org/10.15468/fhntpy accessed via GBIF.org on 2021-03-27.
+Lennuk L. Estonian Museum of Natural History Department of Zoology. Estonian Museum of Natural History. Occurrence dataset https://doi.org/10.15468/98cxtc accessed via GBIF.org on 2021-03-27.
+de Vries H, Lemmens M. Observation.org, Nature data from around the World. Observation.org. Occurrence dataset https://doi.org/10.15468/5nilie accessed via GBIF.org on 2021-03-27.
+Ueda K (2021). iNaturalist Research-grade Observations. iNaturalist.org. Occurrence dataset https://doi.org/10.15468/ab3s5x accessed via GBIF.org on 2021-03-27.

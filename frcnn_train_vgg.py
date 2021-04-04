@@ -1,10 +1,482 @@
 from libraries import *
+from recorder import Recorder
+import pandas as pd
+from sklearn.model_selection import KFold, train_test_split
+
+
+def train_model(train_imgs, num_epochs, record_filepath):
+    recorder = Recorder(record_filepath)
+    losses = np.zeros((len(train_imgs), 5))
+    rpn_accuracy_rpn_monitor = []
+    rpn_accuracy_for_epoch = []
+
+    for epoch_num in range(num_epochs):
+        start_time = time.time()
+        progbar = generic_utils.Progbar(len(train_imgs))
+        print('Epoch {}/{}'.format(epoch_num + 1, num_epochs))
+        random.shuffle(train_imgs)
+        data_gen_train = get_anchor_gt(train_imgs, C, get_img_output_length,
+                                       mode='train')  # TODO: tester mode:'augmentation'
+
+        for iter_num in range(len(train_imgs)):
+            try:
+
+                # Generate X (x_img) and label Y ([y_rpn_cls, y_rpn_regr])
+                X, Y, img_data, _, _ = next(data_gen_train)
+
+                # Train rpn model and get loss value [_, loss_rpn_cls, loss_rpn_regr]
+                loss_rpn = model_rpn.train_on_batch(X, Y)
+                losses[iter_num, 0] = loss_rpn[1]
+                losses[iter_num, 1] = loss_rpn[2]
+
+                X2, Y1, Y2, sel_samples = rpn_to_class(X, img_data, rpn_accuracy_rpn_monitor, rpn_accuracy_for_epoch)
+
+                if X2 is None:
+                    continue
+
+                # training_data: [X, X2[:, sel_samples, :]]
+                # labels: [Y1[:, sel_samples, :], Y2[:, sel_samples, :]]
+                #  X                     => img_data resized image
+                #  X2[:, sel_samples, :] => num_rois (4 in here) bboxes which contains selected neg and pos
+                #  Y1[:, sel_samples, :] => one hot encode for num_rois bboxes which contains selected neg and pos
+                #  Y2[:, sel_samples, :] => labels and gt bboxes for num_rois bboxes which contains selected neg and pos
+                loss_class = model_classifier.train_on_batch([X, X2[:, sel_samples, :]],
+                                                             [Y1[:, sel_samples, :], Y2[:, sel_samples, :]])
+
+                losses[iter_num, 2] = loss_class[1]
+                losses[iter_num, 3] = loss_class[2]
+                losses[iter_num, 4] = loss_class[3]
+
+                progbar.update(iter_num + 1,
+                               [('rpn_cls', np.mean(losses[:iter_num + 1, 0])),
+                                ('rpn_regr', np.mean(losses[:iter_num + 1, 1])),
+                                ('final_cls', np.mean(losses[:iter_num + 1, 2])),
+                                ('final_regr', np.mean(losses[:iter_num + 1, 3])),
+                                ('loss', np.mean(losses[:iter_num + 1, 0])
+                                 + np.mean(losses[:iter_num + 1, 1])
+                                 + np.mean(losses[:iter_num + 1, 2])
+                                 + np.mean(losses[:iter_num + 1, 3]))])
+
+            except Exception as e:
+                print('Exception: {}'.format(e))
+                continue
+
+        loss_rpn_cls = np.mean(losses[:, 0])
+        loss_rpn_regr = np.mean(losses[:, 1])
+        loss_class_cls = np.mean(losses[:, 2])
+        loss_class_regr = np.mean(losses[:, 3])
+        class_acc = np.mean(losses[:, 4])
+
+        if len(rpn_accuracy_for_epoch) == 0:
+            mean_overlapping_bboxes = 0
+        else:
+            mean_overlapping_bboxes = float(sum(rpn_accuracy_for_epoch)) / len(rpn_accuracy_for_epoch)
+
+        curr_loss = loss_rpn_cls + loss_rpn_regr + loss_class_cls + loss_class_regr
+        elapsed_time = (time.time() - start_time)
+
+        if C.verbose:
+            print('Mean number of bounding boxes from RPN overlapping ground truth boxes: {}'.format(
+                mean_overlapping_bboxes))
+            print('Classifier accuracy for bounding boxes from RPN: {}'.format(class_acc))
+            print('Loss RPN classifier: {}'.format(loss_rpn_cls))
+            print('Loss RPN regression: {}'.format(loss_rpn_regr))
+            print('Loss Detector classifier: {}'.format(loss_class_cls))
+            print('Loss Detector regression: {}'.format(loss_class_regr))
+            print('Total loss: {}'.format(curr_loss))
+            print('Elapsed time: {}'.format(elapsed_time))
+
+        model_all.save_weights(C.temp_model_path)
+        recorder.add_new_entry(class_acc, loss_rpn_cls, loss_rpn_regr, loss_class_cls, loss_class_regr,
+                               curr_loss, elapsed_time)
+
+    # recorder.show_graphs()
+    recorder.save_graphs()
+    model_all.save_weights(C.model_path)
+    os.remove(C.temp_model_path)
+
+
+def val_model(train_imgs, val_imgs, param, paramNames, record_path, validation_code):
+    global last_epoch
+
+    for i in range(len(paramNames)):
+        if paramNames[i] == "noise_reduction":
+            C.noise_reduction = param[i]
+        elif paramNames[i] == "brightness_jitter":
+            C.use_brightness_jitter = param[i]
+        elif paramNames[i] == "brightness_jitter_bound":
+            C.brightness_jitter_bound = param[i]
+        elif paramNames[i] == "gamma_correction":
+            C.gamma_correction = param[i]
+        elif paramNames[i] == "histogram_equalization":
+            C.histogram_equalization = param[i]
+        elif paramNames[i] == "gamma_value":
+            C.gamma_value = param[i]
+        else:
+            pass
+
+    recorder = Recorder(os.path.join(record_path, validation_code), has_validation=True)
+    losses = np.zeros((len(train_imgs), 5))
+    losses_val = np.zeros((len(val_imgs), 5))
+    best_loss_val = float('inf')
+    curr_loss_val = float('inf')
+    best_epoch = -1
+
+    for epoch_num in range(num_epochs):
+
+        start_time = time.time()
+        progbar = generic_utils.Progbar(len(train_imgs))
+        progbar_val = generic_utils.Progbar(len(val_imgs))
+        rpn_accuracy_rpn_monitor = []
+        rpn_accuracy_for_epoch = []
+        print('Epoch {}/{}'.format(epoch_num + 1, num_epochs))
+
+        data_gen_train = get_anchor_gt(train_imgs, C, get_img_output_length, mode='train')
+
+        for iter_num in range(len(train_imgs)):
+            try:
+
+                # Generate X (x_img) and label Y ([y_rpn_cls, y_rpn_regr])
+                X, Y, img_data, _, _ = next(data_gen_train)
+
+                # Train rpn model and get loss value [_, loss_rpn_cls, loss_rpn_regr]
+                loss_rpn = model_rpn.train_on_batch(X, Y)
+                losses[iter_num, 0] = loss_rpn[1]
+                losses[iter_num, 1] = loss_rpn[2]
+
+                X2, Y1, Y2, sel_samples = rpn_to_class(X, img_data, rpn_accuracy_rpn_monitor, rpn_accuracy_for_epoch)
+
+                if X2 is None:
+                    continue
+
+                # training_data: [X, X2[:, sel_samples, :]]
+                # labels: [Y1[:, sel_samples, :], Y2[:, sel_samples, :]]
+                #  X                     => img_data resized image
+                #  X2[:, sel_samples, :] => num_rois (4 in here) bboxes which contains selected neg and pos
+                #  Y1[:, sel_samples, :] => one hot encode for num_rois bboxes which contains selected neg and pos
+                #  Y2[:, sel_samples, :] => labels and gt bboxes for num_rois bboxes which contains selected neg and pos
+                loss_class = model_classifier.train_on_batch([X, X2[:, sel_samples, :]],
+                                                             [Y1[:, sel_samples, :], Y2[:, sel_samples, :]])
+
+                losses[iter_num, 2] = loss_class[1]
+                losses[iter_num, 3] = loss_class[2]
+                losses[iter_num, 4] = loss_class[3]
+
+                progbar.update(iter_num + 1,
+                               [('rpn_cls', np.mean(losses[:iter_num + 1, 0])),
+                                ('rpn_regr', np.mean(losses[:iter_num + 1, 1])),
+                                ('final_cls', np.mean(losses[:iter_num + 1, 2])),
+                                ('final_regr', np.mean(losses[:iter_num + 1, 3])),
+                                ('loss', np.mean(losses[:iter_num + 1, 0])
+                                 + np.mean(losses[:iter_num + 1, 1])
+                                 + np.mean(losses[:iter_num + 1, 2])
+                                 + np.mean(losses[:iter_num + 1, 3]))])
+
+            except Exception as e:
+                print('Exception: {}'.format(e))
+                continue
+
+        loss_rpn_cls = np.mean(losses[:, 0])
+        loss_rpn_regr = np.mean(losses[:, 1])
+        loss_class_cls = np.mean(losses[:, 2])
+        loss_class_regr = np.mean(losses[:, 3])
+        class_acc = np.mean(losses[:, 4])
+
+        if len(rpn_accuracy_for_epoch) == 0:
+            mean_overlapping_bboxes = 0
+        else:
+            mean_overlapping_bboxes = float(sum(rpn_accuracy_for_epoch)) / len(rpn_accuracy_for_epoch)
+
+        curr_loss = loss_rpn_cls + loss_rpn_regr + loss_class_cls + loss_class_regr
+        elapsed_time = (time.time() - start_time)
+
+        if C.verbose:
+            print('Mean number of bounding boxes from RPN overlapping ground truth boxes: {}'.format(
+                mean_overlapping_bboxes))
+            print('Classifier accuracy for bounding boxes from RPN: {}'.format(class_acc))
+            print('Loss RPN classifier: {}'.format(loss_rpn_cls))
+            print('Loss RPN regression: {}'.format(loss_rpn_regr))
+            print('Loss Detector classifier: {}'.format(loss_class_cls))
+            print('Loss Detector regression: {}'.format(loss_class_regr))
+            print('Total loss: {}'.format(curr_loss))
+            print('Elapsed time: {}'.format(elapsed_time))
+
+        print('Start of the validation phase')
+        data_gen_val = get_anchor_gt(val_imgs, C, get_img_output_length, mode='train')
+
+        for iter_num_val in range(len(val_imgs)):
+            try:
+                # Generate X (x_img) and label Y ([y_rpn_cls, y_rpn_regr])
+                X_val, Y_val, img_data_val, _, _ = next(data_gen_val)
+                loss_rpn_val = model_rpn.test_on_batch(X_val, Y_val)
+                losses_val[iter_num_val, 0] = loss_rpn_val[1]
+                losses_val[iter_num_val, 1] = loss_rpn_val[2]
+
+                X2_val, Y1_val, Y2_val, sel_samples_val = rpn_to_class(X_val, img_data_val, [], [])
+
+                if X2_val is None:
+                    continue
+
+                # training_data: [X, X2[:, sel_samples, :]]
+                # labels: [Y1[:, sel_samples, :], Y2[:, sel_samples, :]]
+                #  X                     => img_data resized image
+                #  X2[:, sel_samples, :] => num_rois (4 in here) bboxes which contains selected neg and pos
+                #  Y1[:, sel_samples, :] => one hot encode for num_rois bboxes which contains selected neg and pos
+                #  Y2[:, sel_samples, :] => labels and gt bboxes for num_rois bboxes which contains selected neg and pos
+                loss_class_val = model_classifier.test_on_batch([X_val, X2_val[:, sel_samples_val, :]],
+                                                                [Y1_val[:, sel_samples_val, :],
+                                                                 Y2_val[:, sel_samples_val, :]])
+
+                losses_val[iter_num_val, 2] = loss_class_val[1]
+                losses_val[iter_num_val, 3] = loss_class_val[2]
+                losses_val[iter_num_val, 4] = loss_class_val[3]
+
+                progbar_val.update(iter_num_val + 1,
+                                   [('rpn_cls_val', np.mean(losses_val[:iter_num_val + 1, 0])),
+                                    ('rpn_regr_val', np.mean(losses_val[:iter_num_val + 1, 1])),
+                                    ('final_cls_val', np.mean(losses_val[:iter_num_val + 1, 2])),
+                                    ('final_regr_val', np.mean(losses_val[:iter_num_val + 1, 3])),
+                                    ('loss_val', np.mean(losses_val[:iter_num_val + 1, 0])
+                                     + np.mean(losses_val[:iter_num_val + 1, 1])
+                                     + np.mean(losses_val[:iter_num_val + 1, 2])
+                                     + np.mean(losses_val[:iter_num_val + 1, 3]))])
+
+            except Exception as e:
+                print('Exception: {}'.format(e))
+                continue
+
+        print('End of the validation phase')
+
+        loss_rpn_cls_val = np.mean(losses_val[:, 0])
+        loss_rpn_regr_val = np.mean(losses_val[:, 1])
+        loss_class_cls_val = np.mean(losses_val[:, 2])
+        loss_class_regr_val = np.mean(losses_val[:, 3])
+        class_acc_val = np.mean(losses_val[:, 4])
+        curr_loss_val = loss_rpn_cls_val + loss_rpn_regr_val + loss_class_cls_val + loss_class_regr_val
+
+        if C.verbose:
+            print('Validation classifier accuracy for bounding boxes from RPN: {}'.format(class_acc_val))
+            print('Validation loss RPN classifier: {}'.format(loss_rpn_cls_val))
+            print('Validation loss RPN regression: {}'.format(loss_rpn_regr_val))
+            print('Validation loss Detector classifier: {}'.format(loss_class_cls_val))
+            print('Validation loss Detector regression: {}'.format(loss_class_regr_val))
+            print('Total validation loss: {}'.format(curr_loss_val))
+
+        if curr_loss_val <= best_loss_val:
+            if C.verbose:
+                print('Total validation loss decreased from {} to {}'.format(best_loss_val,
+                                                                             curr_loss_val))
+            best_loss_val = curr_loss_val
+            best_epoch = epoch_num + 1
+            model_all.save_weights(os.path.join(record_path, validation_code + ".hdf5"))
+
+        new_row = {'validation_code': validation_code,
+                       'curr_loss': curr_loss_val,
+                       'best_loss': best_loss_val,
+                       'best_epoch': best_epoch}
+
+        record_df = validation_record_df.append(new_row, ignore_index=True)
+        record_df.to_csv(validation_record_path, index=0)
+
+        recorder.add_new_entry_with_validation(class_acc, loss_rpn_cls, loss_rpn_regr, loss_class_cls,
+                                               loss_class_regr, curr_loss, elapsed_time, class_acc_val,
+                                               loss_rpn_cls_val, loss_rpn_regr_val, loss_class_cls_val,
+                                               loss_class_regr_val, curr_loss_val, best_loss_val)
+
+    # recorder.show_graphs()
+    recorder.save_graphs()
+    return curr_loss_val, best_loss_val, best_epoch
+
+
+def rpn_to_class(X, img_data, rpn_accuracy_rpn_monitor, rpn_accuracy_for_epoch):
+    # Get predicted rpn from rpn model [rpn_cls, rpn_regr]
+    P_rpn = model_rpn.predict_on_batch(X)
+
+    # R: bboxes (shape=(300,4))
+    # Convert rpn layer to roi bboxes
+    R = rpn_to_roi(P_rpn[0], P_rpn[1], C, K.image_data_format(), use_regr=True, overlap_thresh=0.7,
+                   max_boxes=300)
+
+    # note: calc_iou converts from (x1,y1,x2,y2) to (x,y,w,h) format
+    # X2: bboxes that iou > C.classifier_min_overlap for all gt bboxes in 300 non_max_suppression bboxes
+    # Y1: one hot code for bboxes from above => x_roi (X)
+    # Y2: corresponding labels and corresponding gt bboxes
+    X2, Y1, Y2, IouS = calc_iou(R, img_data, C, class_mapping)
+
+    # If X2 is None means there are no matching bboxes
+    if X2 is None:
+        rpn_accuracy_rpn_monitor.append(0)
+        rpn_accuracy_for_epoch.append(0)
+        return None, None, None, None
+
+    # Find out the positive anchors and negative anchors
+    neg_samples = np.where(Y1[0, :, -1] == 1)
+    pos_samples = np.where(Y1[0, :, -1] == 0)
+
+    if len(neg_samples) > 0:
+        neg_samples = neg_samples[0]
+    else:
+        neg_samples = []
+
+    if len(pos_samples) > 0:
+        pos_samples = pos_samples[0]
+    else:
+        pos_samples = []
+
+    # TODO: do something with these measurements
+    rpn_accuracy_rpn_monitor.append(len(pos_samples))
+    rpn_accuracy_for_epoch.append((len(pos_samples)))
+
+    if C.num_rois > 1:
+        # If number of positive anchors is larger than 4//2 = 2, randomly choose 2 pos samples
+        if len(pos_samples) < C.num_rois // 2:
+            selected_pos_samples = pos_samples.tolist()
+        else:
+            selected_pos_samples = np.random.choice(pos_samples, C.num_rois // 2, replace=False).tolist()
+
+        # Randomly choose (num_rois - num_pos) neg samples
+        try:
+            selected_neg_samples = np.random.choice(neg_samples, C.num_rois - len(selected_pos_samples),
+                                                    replace=False).tolist()
+        except:
+            selected_neg_samples = np.random.choice(neg_samples, C.num_rois - len(selected_pos_samples),
+                                                    replace=True).tolist()
+
+        # Save all the pos and neg samples in sel_samples
+        sel_samples = selected_pos_samples + selected_neg_samples
+    else:
+        # in the extreme case where num_rois = 1, we pick a random pos or neg sample
+        selected_pos_samples = pos_samples.tolist()
+        selected_neg_samples = neg_samples.tolist()
+        if np.random.randint(0, 2):
+            sel_samples = random.choice(neg_samples)
+        else:
+            sel_samples = random.choice(pos_samples)
+
+    return X2, Y1, Y2, sel_samples
+
+
+"""
+    Define the base network (VGG)
+"""
+
+
+def initialize_model():
+    img_input = Input(shape=(None, None, 3))
+    roi_input = Input(shape=(None, 4))
+    shared_layers = nn_base(img_input, trainable=True)
+    num_anchors = len(C.anchor_box_scales) * len(C.anchor_box_ratios)  # 9
+
+    # Define the RPN, built on the base layers
+    rpn = rpn_layer(shared_layers, num_anchors)
+
+    classifier = classifier_layer(shared_layers, roi_input, C.num_rois, nb_classes=len(classes_count))
+
+    base_model_rpn = Model(img_input, rpn[:2])
+    base_model_classifier = Model([img_input, roi_input], classifier)
+
+    # This is a model that holds both the RPN and the classifier, used to load/save weights for the models
+    base_model_all = Model([img_input, roi_input], rpn[:2] + classifier)
+    try:
+        print('Loading weights from {}'.format(C.base_net_weights))
+        model_rpn.load_weights(C.base_net_weights, by_name=True)
+        model_classifier.load_weights(C.base_net_weights, by_name=True)
+    except Exception as e:
+        print('Exception: {}'.format(e))
+
+    base_model_rpn.compile(optimizer=Adam(lr=1e-5), loss=[rpn_loss_cls(num_anchors), rpn_loss_regr(num_anchors)])
+    base_model_classifier.compile(optimizer=Adam(lr=1e-5),
+                                  loss=[class_loss_cls, class_loss_regr(len(classes_count) - 1)],
+                                  metrics={'dense_class_{}'.format(len(classes_count)): 'accuracy'})
+    base_model_all.compile(optimizer='sgd', loss='mae')
+    return base_model_all, base_model_rpn, base_model_classifier
+
+
+def split_imgs(imgs, val_split, test_split):
+    train_split = 1 - val_split - test_split
+    recalc_val_split = val_split / (val_split + test_split)
+    train_list, temp = imgs[:int(len(imgs) * train_split)], imgs[int((len(imgs) * (train_split))):]
+    val_list, test_list = temp[:int(len(temp) * recalc_val_split)], temp[int(len(temp) * recalc_val_split):]
+    print("Train set size: {}\nVal set size: {}\nTest set size: {}\nTotal dataset size: {}".format(len(train_list), len(val_list), len(test_list), len(imgs)))
+    return train_list, val_list, test_list
+
+
+def get_validation_code(names, values):
+    values_str = []
+    for value in values:
+        values_str.append(str(value))
+
+    return "Validation - " + ", ".join(names) + " - " + ", ".join(values_str)
+
 
 if __name__ == "__main__":
-    base_path = '.'
 
-    train_path = './data/valid_data_annotations.txt'  # Training data (annotation file)
-    data_path = './data'
+    TESTING_SPLIT = 0.2
+    VALIDATION_SPLIT = 0.2
+    TRAINING_SPLIT = 1 - TESTING_SPLIT - VALIDATION_SPLIT
+
+    import argparse
+
+    # Parse command line arguments
+    parser = argparse.ArgumentParser(
+        description='Use Faster R-CNN to detect insects.')
+    parser.add_argument('--model_name', required=False,
+                        metavar="name_of_your_model", default='model',
+                        help='Name of the model being tested')
+    parser.add_argument('--dataset', required=False,
+                        metavar="/path/to/insects/dataset/", default='./data',
+                        help='Directory of the Insects dataset')
+    parser.add_argument('--annotations', required=False, default='./data/data_annotations.txt',
+                        metavar="/path/to/insects/dataset/annotations/file.txt",
+                        help='Annotation file for the provided dataset')
+    parser.add_argument('--validation', required=False,
+                        metavar="True/False", default=False,
+                        help='True to do a validation')
+    parser.add_argument('--validation_code', required=False,
+                        metavar="Validation code from last validation step", default=None,
+                        help='Validation code from last validation step to provide if starting from where the '
+                             'validation was left off')
+    parser.add_argument('--num_epochs', required=False,
+                        metavar="Integer", default=10,
+                        help='Number of epochs for the training if --validation has been set to False\n'
+                             'Maximum number of epochs for the validation if --validation has been set to True')
+    parser.add_argument('--weights', required=False, default='./model/vgg16_weights_tf_dim_ordering_tf_kernels.h5',
+                        metavar="/path/to/base/weights.h5",
+                        help="Path to base weights .h5 file")
+    parser.add_argument('--use_gpu', required=False, default="True",
+                        metavar="True/False",
+                        help="True if you want to run the training on a gpu, False otherwise")
+    args = parser.parse_args()
+
+    use_gpu = eval(args.use_gpu)
+    if use_gpu is True:
+        config = tf.compat.v1.ConfigProto()
+        config.gpu_options.allow_growth = True
+        config.gpu_options.per_process_gpu_memory_fraction = 0.9
+        session = tf.compat.v1.InteractiveSession(config=config)
+    else:
+        os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+        config = tf.compat.v1.ConfigProto(device_count={'GPU': 0})
+        session = tf.compat.v1.InteractiveSession(config=config)
+
+    num_epochs = int(args.num_epochs)
+
+    validation_record_path = "./logs/{}.csv".format(args.model_name)
+    imgs_record_path = "./logs/{} - imgs.csv".format(args.model_name)
+
+    last_validation_code = args.validation_code 
+
+    if last_validation_code is not None:
+        start_from_last_step = True
+        imgs_record_df = pd.read_csv(imgs_record_path)       
+        validation_record_df = pd.read_csv(validation_record_path)
+    else:
+        start_from_last_step = False
+        imgs_record_df = pd.DataFrame(columns=['train', 'val', 'test'])
+        validation_record_df = pd.DataFrame(columns=['validation_code', 'curr_loss', 'best_loss', 'best_epoch'])
+
+    train_path = args.annotations  # Training data (annotation file)
+    data_path = args.dataset
 
     num_rois = 4  # Number of RoIs to process at once.
 
@@ -12,30 +484,38 @@ if __name__ == "__main__":
     horizontal_flips = True  # Augment with horizontal flips in training.
     vertical_flips = True  # Augment with vertical flips in training.
     rot_90 = True  # Augment with 90 degree rotations in training.
+    brightness_jitter = True  # Augment with brightness jitter in training.
 
-    output_weight_path = os.path.join(base_path, 'model/weights1500.hdf5')
-
-    record_path = os.path.join(base_path,
-                               'model/weights1500.csv')  # Record data (used to save the losses, classification accuracy and mean average precision)
-
-    base_weight_path = os.path.join(base_path, 'model/vgg16_weights_tf_dim_ordering_tf_kernels.h5')
-
-    config_output_filename = os.path.join(base_path, 'weights1500.pickle')
+    # Record data (used to save the losses, classification accuracy and mean average precision)
+    record_path = "./logs/{}".format(args.model_name)
+    if not os.path.exists(record_path):
+        os.mkdir(record_path)
+    output_weight_path = "./model/{}.hdf5".format(args.model_name)
+    output_temp_weight_path = "./model/temp_{}.hdf5".format(args.model_name)
+    base_weight_path = args.weights
+    config_output_filename = "./config/{}.pickle".format(args.model_name)
 
     C = Config()
 
     C.use_horizontal_flips = horizontal_flips
     C.use_vertical_flips = vertical_flips
     C.rot_90 = rot_90
+    C.use_brightness_jitter = brightness_jitter
 
     C.record_path = record_path
     C.model_path = output_weight_path
+    C.temp_model_path = output_temp_weight_path
     C.num_rois = num_rois
 
     C.base_net_weights = base_weight_path
 
+    C.im_size = 300
+
+    # C.im_size = 100
+    # C.anchor_box_scales = [16, 32, 64] #Values should be < im_size
+    
     st = time.time()
-    train_imgs, classes_count, class_mapping = get_data(train_path, data_path)
+    all_imgs, classes_count, class_mapping = get_data(train_path, data_path)
     print()
     print('Spend %0.2f mins to load the data' % ((time.time() - st) / 60))
 
@@ -59,401 +539,72 @@ if __name__ == "__main__":
             config_output_filename))
 
     random.seed(1)
-    random.shuffle(train_imgs)
 
-    print('Num train samples (images) {}'.format(len(train_imgs)))
+    print('Num train samples (images) {}'.format(len(all_imgs)))
 
-    data_gen_train = get_anchor_gt(train_imgs, C, get_img_output_length, mode='train')
+    import itertools as it
 
-    # X, Y, image_data, debug_img, debug_num_pos = next(data_gen_train)
-    #
-    # print('Original image: height=%d width=%d' % (image_data['height'], image_data['width']))
-    # print('Resized image:  height=%d width=%d C.im_size=%d' % (X.shape[1], X.shape[2], C.im_size))
-    # print('Feature map size: height=%d width=%d C.rpn_stride=%d' % (Y[0].shape[1], Y[0].shape[2], C.rpn_stride))
-    # print(X.shape)
-    # print(str(len(Y)) + " includes 'y_rpn_cls' and 'y_rpn_regr'")
-    # print('Shape of y_rpn_cls {}'.format(Y[0].shape))
-    # print('Shape of y_rpn_regr {}'.format(Y[1].shape))
-    # print(image_data)
-    #
-    # print('Number of positive anchors for this image: %d' % (debug_num_pos))
-    # if debug_num_pos == 0:
-    #     gt_x1, gt_x2 = image_data['bboxes'][0]['x1'] * (X.shape[2] / image_data['height']), image_data['bboxes'][0][
-    #         'x2'] * (X.shape[2] / image_data['height'])
-    #     gt_y1, gt_y2 = image_data['bboxes'][0]['y1'] * (X.shape[1] / image_data['width']), image_data['bboxes'][0][
-    #         'y2'] * (X.shape[1] / image_data['width'])
-    #     gt_x1, gt_y1, gt_x2, gt_y2 = int(gt_x1), int(gt_y1), int(gt_x2), int(gt_y2)
-    #
-    #     img = debug_img.copy()
-    #     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-    #     color = (0, 255, 0)
-    #     cv2.putText(img, 'gt bbox', (gt_x1, gt_y1 - 5), cv2.FONT_HERSHEY_DUPLEX, 0.7, color, 1)
-    #     cv2.rectangle(img, (gt_x1, gt_y1), (gt_x2, gt_y2), color, 2)
-    #     cv2.circle(img, (int((gt_x1 + gt_x2) / 2), int((gt_y1 + gt_y2) / 2)), 3, color, -1)
-    #
-    #     plt.grid()
-    #     plt.imshow(img)
-    #     plt.show()
-    # else:
-    #     cls = Y[0][0]
-    #     pos_cls = np.where(cls == 1)
-    #     print(pos_cls)
-    #     regr = Y[1][0]
-    #     pos_regr = np.where(regr == 1)
-    #     print(pos_regr)
-    #     print('y_rpn_cls for possible pos anchor: {}'.format(cls[pos_cls[0][0], pos_cls[1][0], :]))
-    #     print('y_rpn_regr for positive anchor: {}'.format(regr[pos_regr[0][0], pos_regr[1][0], :]))
-    #
-    #     gt_x1, gt_x2 = image_data['bboxes'][0]['x1'] * (X.shape[2] / image_data['width']), image_data['bboxes'][0][
-    #         'x2'] * (X.shape[2] / image_data['width'])
-    #     gt_y1, gt_y2 = image_data['bboxes'][0]['y1'] * (X.shape[1] / image_data['height']), image_data['bboxes'][0][
-    #         'y2'] * (X.shape[1] / image_data['height'])
-    #     gt_x1, gt_y1, gt_x2, gt_y2 = int(gt_x1), int(gt_y1), int(gt_x2), int(gt_y2)
-    #
-    #     img = debug_img.copy()
-    #     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-    #     color = (0, 255, 0)
-    #     #   cv2.putText(img, 'gt bbox', (gt_x1, gt_y1-5), cv2.FONT_HERSHEY_DUPLEX, 0.7, color, 1)
-    #     cv2.rectangle(img, (gt_x1, gt_y1), (gt_x2, gt_y2), color, 2)
-    #     cv2.circle(img, (int((gt_x1 + gt_x2) / 2), int((gt_y1 + gt_y2) / 2)), 3, color, -1)
-    #
-    #     # Add text
-    #     textLabel = 'gt bbox'
-    #     (retval, baseLine) = cv2.getTextSize(textLabel, cv2.FONT_HERSHEY_COMPLEX, 0.5, 1)
-    #     textOrg = (gt_x1, gt_y1 + 5)
-    #     cv2.rectangle(img, (textOrg[0] - 5, textOrg[1] + baseLine - 5),
-    #                   (textOrg[0] + retval[0] + 5, textOrg[1] - retval[1] - 5), (0, 0, 0), 2)
-    #     cv2.rectangle(img, (textOrg[0] - 5, textOrg[1] + baseLine - 5),
-    #                   (textOrg[0] + retval[0] + 5, textOrg[1] - retval[1] - 5), (255, 255, 255), -1)
-    #     cv2.putText(img, textLabel, textOrg, cv2.FONT_HERSHEY_DUPLEX, 0.5, (0, 0, 0), 1)
-    #
-    #     # Draw positive anchors according to the y_rpn_regr
-    #     for i in range(debug_num_pos):
-    #         color = (100 + i * (155 / 4), 0, 100 + i * (155 / 4))
-    #
-    #         idx = pos_regr[2][i * 4] / 4
-    #         anchor_size = C.anchor_box_scales[int(idx / 3)]
-    #         anchor_ratio = C.anchor_box_ratios[2 - int((idx + 1) % 3)]
-    #
-    #         center = (pos_regr[1][i * 4] * C.rpn_stride, pos_regr[0][i * 4] * C.rpn_stride)
-    #         print('Center position of positive anchor: ', center)
-    #         cv2.circle(img, center, 3, color, -1)
-    #         anc_w, anc_h = anchor_size * anchor_ratio[0], anchor_size * anchor_ratio[1]
-    #         cv2.rectangle(img, (center[0] - int(anc_w / 2), center[1] - int(anc_h / 2)),
-    #                       (center[0] + int(anc_w / 2), center[1] + int(anc_h / 2)), color, 2)
-    # #         cv2.putText(img, 'pos anchor bbox '+str(i+1), (center[0]-int(anc_w/2), center[1]-int(anc_h/2)-5), cv2.FONT_HERSHEY_DUPLEX, 0.5, color, 1)
-    #
-    # print('Green bboxes is ground-truth bbox. Others are positive anchors')
-    # plt.figure(figsize=(8, 8))
-    # plt.grid()
-    # plt.imshow(img)
-    # plt.show()
+    param = {
+        'histogram_equalization': [True, False],
+        'noise_reduction': [None, "box_filter", "gaussian"],
+        'gamma_correction': [True, False],
+        'brightness_jitter': [True, False]
+    }
 
-    input_shape_img = (None, None, 3)
+    paramNames = list(param.keys())
+    combinations = it.product(*(param[Name] for Name in paramNames))
 
-    img_input = Input(shape=input_shape_img)
-    roi_input = Input(shape=(None, 4))
-
-    # define the base network (VGG here, can be Resnet50, Inception, etc)
-    shared_layers = nn_base(img_input, trainable=True)
-
-    # define the RPN, built on the base layers
-    num_anchors = len(C.anchor_box_scales) * len(C.anchor_box_ratios)  # 9
-    rpn = rpn_layer(shared_layers, num_anchors)
-
-    classifier = classifier_layer(shared_layers, roi_input, C.num_rois, nb_classes=len(classes_count))
-
-    model_rpn = Model(img_input, rpn[:2])
-    model_classifier = Model([img_input, roi_input], classifier)
-
-    # this is a model that holds both the RPN and the classifier, used to load/save weights for the models
-    model_all = Model([img_input, roi_input], rpn[:2] + classifier)
-
-    # weights_path = data_utils.get_file(
-    #           'vgg16_weights_tf_dim_ordering_tf_kernels.h5',
-    #           WEIGHTS_PATH,
-    #           cache_subdir='models',
-    #           file_hash='64373286793e3c8b2b4e3219cbf3544b')
-    # model_classifier.load_weights(weights_path)
-    # model_all.load_weights(weights_path)
-
-    # Because the google colab can only run the session several hours one time (then you need to connect again),
-    # we need to save the model and load the model to continue training
-    if not os.path.isfile(C.model_path):
-        # If this is the begin of the training, load the pre-traind base network such as vgg-16
-        try:
-            print('This is the first time of your training')
-            print('loading weights from {}'.format(C.base_net_weights))
-            model_rpn.load_weights(C.base_net_weights, by_name=True)
-            model_classifier.load_weights(C.base_net_weights, by_name=True)
-        except:
-            print('Could not load pretrained model weights. Weights can be found in the keras application folder \
-                https://github.com/fchollet/keras/tree/master/keras/applications')
-
-        # Create the record.csv file to record losses, acc and mAP
-        record_df = pd.DataFrame(
-            columns=['mean_overlapping_bboxes', 'class_acc', 'loss_rpn_cls', 'loss_rpn_regr', 'loss_class_cls',
-                     'loss_class_regr', 'curr_loss', 'elapsed_time', 'mAP'])
+    model_all, model_rpn, model_classifier = initialize_model()
+    initial_weights_rpn = model_rpn.get_weights()
+    initial_weights_classifier = model_classifier.get_weights()
+    
+    if start_from_last_step:
+        last_row = imgs_record_df.tail(1)
+        train_imgs = ast.literal_eval(last_row['train'].tolist()[0])
+        val_imgs = ast.literal_eval(last_row['val'].tolist()[0])
+        test_imgs = ast.literal_eval(last_row['test'].tolist()[0])
     else:
-        # If this is a continued training, load the trained model from before
-        print('Continue training based on previous trained model')
-        print('Loading weights from {}'.format(C.model_path))
-        model_rpn.load_weights(C.model_path, by_name=True)
-        model_classifier.load_weights(C.model_path, by_name=True)
+        random.shuffle(all_imgs)
+        train_imgs, val_imgs, test_imgs = split_imgs(all_imgs, VALIDATION_SPLIT, TESTING_SPLIT)
+        new_row = {'train': train_imgs, 'val': val_imgs, 'test': test_imgs}
+        imgs_record_df = imgs_record_df.append(new_row, ignore_index=True)
+        imgs_record_df.to_csv(imgs_record_path, index=0)
 
-        # Load the records
-        record_df = pd.read_csv(record_path)
+    best_values = {}
+    best_loss = float('inf')
 
-        r_mean_overlapping_bboxes = record_df['mean_overlapping_bboxes']
-        r_class_acc = record_df['class_acc']
-        r_loss_rpn_cls = record_df['loss_rpn_cls']
-        r_loss_rpn_regr = record_df['loss_rpn_regr']
-        r_loss_class_cls = record_df['loss_class_cls']
-        r_loss_class_regr = record_df['loss_class_regr']
-        r_curr_loss = record_df['curr_loss']
-        r_elapsed_time = record_df['elapsed_time']
-        r_mAP = record_df['mAP']
+    if args.validation:
+        for params in combinations:
 
-        print('Already train %dK batches' % (len(record_df)))
+            validation_code = get_validation_code(paramNames, list(params))
 
-    optimizer = Adam(lr=1e-5)
-    optimizer_classifier = Adam(lr=1e-5)
-    model_rpn.compile(optimizer=optimizer, loss=[rpn_loss_cls(num_anchors), rpn_loss_regr(num_anchors)])
-    model_classifier.compile(optimizer=optimizer_classifier,
-                             loss=[class_loss_cls, class_loss_regr(len(classes_count) - 1)],
-                             metrics={'dense_class_{}'.format(len(classes_count)): 'accuracy'})
-    model_all.compile(optimizer='sgd', loss='mae')
-
-    # Training setting
-    total_epochs = len(record_df)
-    r_epochs = len(record_df)
-
-    epoch_length = 100
-    num_epochs = 10*6*2
-    iter_num = 0
-
-    total_epochs += num_epochs
-
-    losses = np.zeros((epoch_length, 5))
-    rpn_accuracy_rpn_monitor = []
-    rpn_accuracy_for_epoch = []
-
-    if len(record_df) == 0:
-        best_loss = np.Inf
-    else:
-        best_loss = np.min(r_curr_loss)
-
-    print(len(record_df))
-
-    start_time = time.time()
-    for epoch_num in range(num_epochs):
-
-        progbar = generic_utils.Progbar(epoch_length)
-        print('Epoch {}/{}'.format(r_epochs + 1, total_epochs))
-
-        r_epochs += 1
-
-        while True:
-            try:
-
-                if len(rpn_accuracy_rpn_monitor) == epoch_length and C.verbose:
-                    mean_overlapping_bboxes = float(sum(rpn_accuracy_rpn_monitor)) / len(rpn_accuracy_rpn_monitor)
-                    rpn_accuracy_rpn_monitor = []
-                    #                 print('Average number of overlapping bounding boxes from RPN = {} for {} previous iterations'.format(mean_overlapping_bboxes, epoch_length))
-                    if mean_overlapping_bboxes == 0:
-                        print(
-                            'RPN is not producing bounding boxes that overlap the ground truth boxes. Check RPN settings or keep training.')
-
-                # Generate X (x_img) and label Y ([y_rpn_cls, y_rpn_regr])
-                X, Y, img_data, debug_img, debug_num_pos = next(data_gen_train)
-
-                # Train rpn model and get loss value [_, loss_rpn_cls, loss_rpn_regr]
-                loss_rpn = model_rpn.train_on_batch(X, Y)
-
-                # Get predicted rpn from rpn model [rpn_cls, rpn_regr]
-                P_rpn = model_rpn.predict_on_batch(X)
-
-                # R: bboxes (shape=(300,4))
-                # Convert rpn layer to roi bboxes
-                R = rpn_to_roi(P_rpn[0], P_rpn[1], C, K.image_data_format(), use_regr=True, overlap_thresh=0.7,
-                               max_boxes=300)
-
-                # note: calc_iou converts from (x1,y1,x2,y2) to (x,y,w,h) format
-                # X2: bboxes that iou > C.classifier_min_overlap for all gt bboxes in 300 non_max_suppression bboxes
-                # Y1: one hot code for bboxes from above => x_roi (X)
-                # Y2: corresponding labels and corresponding gt bboxes
-                X2, Y1, Y2, IouS = calc_iou(R, img_data, C, class_mapping)
-
-                # If X2 is None means there are no matching bboxes
-                if X2 is None:
-                    rpn_accuracy_rpn_monitor.append(0)
-                    rpn_accuracy_for_epoch.append(0)
+            if start_from_last_step:
+                if not last_validation_code == validation_code:
+                    continue
+                else:
+                    start_from_last_step = False
                     continue
 
-                # Find out the positive anchors and negative anchors
-                neg_samples = np.where(Y1[0, :, -1] == 1)
-                pos_samples = np.where(Y1[0, :, -1] == 0)
+            model_rpn.set_weights(initial_weights_rpn)
+            model_classifier.set_weights(initial_weights_classifier)
 
-                if len(neg_samples) > 0:
-                    neg_samples = neg_samples[0]
-                else:
-                    neg_samples = []
+            print("Best loss: {}".format(best_loss))
+            print("=== Validation step code: {}".format(validation_code))
+            curr_loss_val, best_loss_val, best_epoch = val_model(train_imgs, val_imgs,
+                                                                 params, paramNames,
+                                                                 record_path, validation_code)
 
-                if len(pos_samples) > 0:
-                    pos_samples = pos_samples[0]
-                else:
-                    pos_samples = []
+            if best_loss_val < best_loss:
+                best_loss = best_loss_val
+                for i in range(len(params)):
+                    best_values[list(paramNames)[i]] = params[i]
 
-                rpn_accuracy_rpn_monitor.append(len(pos_samples))
-                rpn_accuracy_for_epoch.append((len(pos_samples)))
+        print("=== Best values:")
+        for key in best_values.keys():
+            print("    - {}: {}".format(key, best_values[key]))
 
-                if C.num_rois > 1:
-                    # If number of positive anchors is larger than 4//2 = 2, randomly choose 2 pos samples
-                    if len(pos_samples) < C.num_rois // 2:
-                        selected_pos_samples = pos_samples.tolist()
-                    else:
-                        selected_pos_samples = np.random.choice(pos_samples, C.num_rois // 2, replace=False).tolist()
-
-                    # Randomly choose (num_rois - num_pos) neg samples
-                    try:
-                        selected_neg_samples = np.random.choice(neg_samples, C.num_rois - len(selected_pos_samples),
-                                                                replace=False).tolist()
-                    except:
-                        selected_neg_samples = np.random.choice(neg_samples, C.num_rois - len(selected_pos_samples),
-                                                                replace=True).tolist()
-
-                    # Save all the pos and neg samples in sel_samples
-                    sel_samples = selected_pos_samples + selected_neg_samples
-                else:
-                    # in the extreme case where num_rois = 1, we pick a random pos or neg sample
-                    selected_pos_samples = pos_samples.tolist()
-                    selected_neg_samples = neg_samples.tolist()
-                    if np.random.randint(0, 2):
-                        sel_samples = random.choice(neg_samples)
-                    else:
-                        sel_samples = random.choice(pos_samples)
-
-                # training_data: [X, X2[:, sel_samples, :]]
-                # labels: [Y1[:, sel_samples, :], Y2[:, sel_samples, :]]
-                #  X                     => img_data resized image
-                #  X2[:, sel_samples, :] => num_rois (4 in here) bboxes which contains selected neg and pos
-                #  Y1[:, sel_samples, :] => one hot encode for num_rois bboxes which contains selected neg and pos
-                #  Y2[:, sel_samples, :] => labels and gt bboxes for num_rois bboxes which contains selected neg and pos
-                loss_class = model_classifier.train_on_batch([X, X2[:, sel_samples, :]],
-                                                             [Y1[:, sel_samples, :], Y2[:, sel_samples, :]])
-
-                losses[iter_num, 0] = loss_rpn[1]
-                losses[iter_num, 1] = loss_rpn[2]
-
-                losses[iter_num, 2] = loss_class[1]
-                losses[iter_num, 3] = loss_class[2]
-                losses[iter_num, 4] = loss_class[3]
-
-                iter_num += 1
-
-                progbar.update(iter_num,
-                               [('rpn_cls', np.mean(losses[:iter_num, 0])), ('rpn_regr', np.mean(losses[:iter_num, 1])),
-                                ('final_cls', np.mean(losses[:iter_num, 2])),
-                                ('final_regr', np.mean(losses[:iter_num, 3]))])
-
-                if iter_num == epoch_length:
-                    loss_rpn_cls = np.mean(losses[:, 0])
-                    loss_rpn_regr = np.mean(losses[:, 1])
-                    loss_class_cls = np.mean(losses[:, 2])
-                    loss_class_regr = np.mean(losses[:, 3])
-                    class_acc = np.mean(losses[:, 4])
-
-                    mean_overlapping_bboxes = float(sum(rpn_accuracy_for_epoch)) / len(rpn_accuracy_for_epoch)
-                    rpn_accuracy_for_epoch = []
-
-                    if C.verbose:
-                        print('Mean number of bounding boxes from RPN overlapping ground truth boxes: {}'.format(
-                            mean_overlapping_bboxes))
-                        print('Classifier accuracy for bounding boxes from RPN: {}'.format(class_acc))
-                        print('Loss RPN classifier: {}'.format(loss_rpn_cls))
-                        print('Loss RPN regression: {}'.format(loss_rpn_regr))
-                        print('Loss Detector classifier: {}'.format(loss_class_cls))
-                        print('Loss Detector regression: {}'.format(loss_class_regr))
-                        print('Total loss: {}'.format(loss_rpn_cls + loss_rpn_regr + loss_class_cls + loss_class_regr))
-                        print('Elapsed time: {}'.format(time.time() - start_time))
-                        elapsed_time = (time.time() - start_time) / 60
-
-                    curr_loss = loss_rpn_cls + loss_rpn_regr + loss_class_cls + loss_class_regr
-                    iter_num = 0
-                    start_time = time.time()
-
-                    if curr_loss < best_loss:
-                        if C.verbose:
-                            print('Total loss decreased from {} to {}, saving weights'.format(best_loss, curr_loss))
-                        best_loss = curr_loss
-                        model_all.save_weights(C.model_path)
-
-                    new_row = {'mean_overlapping_bboxes': round(mean_overlapping_bboxes, 3),
-                               'class_acc': round(class_acc, 3),
-                               'loss_rpn_cls': round(loss_rpn_cls, 3),
-                               'loss_rpn_regr': round(loss_rpn_regr, 3),
-                               'loss_class_cls': round(loss_class_cls, 3),
-                               'loss_class_regr': round(loss_class_regr, 3),
-                               'curr_loss': round(curr_loss, 3),
-                               'elapsed_time': round(elapsed_time, 3),
-                               'mAP': 0}
-
-                    record_df = record_df.append(new_row, ignore_index=True)
-                    record_df.to_csv(record_path, index=0)
-
-                    break
-
-            except Exception as e:
-                print('Exception: {}'.format(e))
-                continue
+    else:
+        num_epochs = args.num_epochs
+        train_model(all_imgs, math.ceil(num_epochs), os.path.join(C.record_path, "Training"))
 
     print('Training complete, exiting.')
-
-    plt.figure(figsize=(15, 5))
-    plt.subplot(1, 2, 1)
-    plt.plot(np.arange(0, r_epochs), record_df['mean_overlapping_bboxes'], 'r')
-    plt.title('mean_overlapping_bboxes')
-    plt.subplot(1, 2, 2)
-    plt.plot(np.arange(0, r_epochs), record_df['class_acc'], 'r')
-    plt.title('class_acc')
-
-    plt.show()
-
-    plt.figure(figsize=(15, 5))
-    plt.subplot(1, 2, 1)
-    plt.plot(np.arange(0, r_epochs), record_df['loss_rpn_cls'], 'r')
-    plt.title('loss_rpn_cls')
-    plt.subplot(1, 2, 2)
-    plt.plot(np.arange(0, r_epochs), record_df['loss_rpn_regr'], 'r')
-    plt.title('loss_rpn_regr')
-    plt.show()
-
-    plt.figure(figsize=(15, 5))
-    plt.subplot(1, 2, 1)
-    plt.plot(np.arange(0, r_epochs), record_df['loss_class_cls'], 'r')
-    plt.title('loss_class_cls')
-    plt.subplot(1, 2, 2)
-    plt.plot(np.arange(0, r_epochs), record_df['loss_class_regr'], 'r')
-    plt.title('loss_class_regr')
-    plt.show()
-
-    plt.plot(np.arange(0, r_epochs), record_df['curr_loss'], 'r')
-    plt.title('total_loss')
-    plt.show()
-
-    # plt.figure(figsize=(15,5))
-    # plt.subplot(1,2,1)
-    # plt.plot(np.arange(0, r_epochs), record_df['curr_loss'], 'r')
-    # plt.title('total_loss')
-    # plt.subplot(1,2,2)
-    # plt.plot(np.arange(0, r_epochs), record_df['elapsed_time'], 'r')
-    # plt.title('elapsed_time')
-    # plt.show()
-
-    # plt.title('loss')
-    # plt.plot(np.arange(0, r_epochs), record_df['loss_rpn_cls'], 'b')
-    # plt.plot(np.arange(0, r_epochs), record_df['loss_rpn_regr'], 'g')
-    # plt.plot(np.arange(0, r_epochs), record_df['loss_class_cls'], 'r')
-    # plt.plot(np.arange(0, r_epochs), record_df['loss_class_regr'], 'c')
-    # # plt.plot(np.arange(0, r_epochs), record_df['curr_loss'], 'm')
-    # plt.show()

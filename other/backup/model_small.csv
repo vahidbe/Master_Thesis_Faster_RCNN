@@ -1,0 +1,3 @@
+validation_code,curr_loss,best_loss,best_epoch
+Validation - param - [0],11.584383323788645,11.584383323788645,1
+Validation - param - [1],2.1341627316433005,2.0345052710326854,2
