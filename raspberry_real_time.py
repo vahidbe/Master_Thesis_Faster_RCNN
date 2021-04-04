@@ -27,7 +27,7 @@ if __name__ == "__main__":
     parser.add_argument('--use_gpu', required=False, default="True",
                         metavar="True/False",
                         help="True if you want to run the training on a gpu, False otherwise")
-    parser.add_argument('--resolution', required=False, default="(1920, 1080)",
+    parser.add_argument('--resolution', required=False, default="(1920, 1088)",
                         metavar="(xres,yres)",
                         help="Resolution of the pictures taken by the camera")
     parser.add_argument('--fps', required=False, default=1,
