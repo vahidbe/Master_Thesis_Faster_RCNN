@@ -204,6 +204,7 @@ def run_processing(bbox_threshold, C, output_results_filename, use_gpu, frame_qu
     while True:
         time.sleep(1)
         timestamp, img = frame_queue.get(block=True, timeout=None)
+        cv2.imwrite(os.path.join(images_output_dir, "raw_{}.jpg".format(timestamp)), img)
         if C.verbose:
             print("[INFO] processing_proc - starting detection on a new image", flush=True)
             print("[INFO] processing_proc - number of frames waiting to be processed: {}".format(frame_queue.qsize()), flush=True)
@@ -217,8 +218,7 @@ def run_processing(bbox_threshold, C, output_results_filename, use_gpu, frame_qu
                          'x1': x1, 'y1': y1, 'x2': x2, 'y2': y2, 'temperature': 'empty', 'humidity': 'empty',
                          'pressure': 'empty', 'wind': 'empty', 'sun_exposure': 'empty', 'rain': 'empty',
                          'weather description': 'empty', 'lat': 'empty', 'lon': 'empty'})
-
-        cv2.imwrite(os.path.join(images_output_dir, "{}.jpg".format(timestamp)), img)
+        cv2.imwrite(os.path.join(images_output_dir, "processed_{}.jpg".format(timestamp)), img)
         if C.show_images:
             cv2.imshow("detection", img)
             key = cv2.waitKey(1000) & 0xFF
