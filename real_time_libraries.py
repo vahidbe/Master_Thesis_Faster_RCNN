@@ -50,13 +50,13 @@ def run_detection(fps, resolution, alpha, min_area, C, use_motor, frame_queue, f
     from picamera import PiCamera
     import time
     import board
+    from multiprocessing import Process
     if use_motor:
         from adafruit_motorkit import MotorKit
         from adafruit_motor import stepper
-    from multiprocessing import Process
 
-    kit = MotorKit(i2c=board.I2C())
-    p_trap = None
+		kit = MotorKit(i2c=board.I2C())
+		p_trap = None
 
     flag = flag_queue.get(block=True, timeout=None)
     if flag == "ready":
