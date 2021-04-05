@@ -50,7 +50,7 @@ def run_detection(fps, resolution, alpha, min_area, with_motor, C, frame_queue, 
     from picamera import PiCamera
     import time
     import board
-    if with_trap:
+    if with_motor:
         from adafruit_motorkit import MotorKit
         from adafruit_motor import stepper
     from multiprocessing import Process
