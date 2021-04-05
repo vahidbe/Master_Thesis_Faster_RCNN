@@ -1,0 +1,2 @@
+validation_code,curr_loss,best_loss,best_epoch
+"Validation - brightness_jitter, brightness_jitter_bound, gamma_correction, gamma_value - False, 0.0, True, 2.0",2.7787867356454705,2.7787867356454705,4
