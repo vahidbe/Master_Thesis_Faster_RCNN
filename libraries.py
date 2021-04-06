@@ -52,7 +52,7 @@ class Config:
         self.use_brightness_jitter = False
 
         # Maximum percentage of increase or decrease of the brightness during the augmentation
-        self.brightness_jitter_bound = 0.2
+        self.brightness_jitter_bound = 0.1
 
         # Anchor box scales
         # Note that if im_size is smaller, anchor_box_scales should be scaled
@@ -93,7 +93,7 @@ class Config:
 
         self.histogram_equalization = False
         self.gamma_correction = False
-        self.gamma_value = 3.5
+        self.gamma_value = 1.5
         
         self.noise_reduction = None
 
