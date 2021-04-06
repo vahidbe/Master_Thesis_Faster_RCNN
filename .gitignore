@@ -9,3 +9,4 @@
 *.hdf5
 *.pyc
 /resources/api-keys
+/resources/tokens
