@@ -150,6 +150,7 @@ def draw_box_on_images():
             bbox = np.array(bboxes[key])
 
             new_boxes, new_probs = non_max_suppression_fast(bbox, np.array(probs[key]), overlap_thresh=0.2)
+            #Has to be < overlap_threshold used in the return value of rpn
             for jk in range(new_boxes.shape[0]):
                 (x1, y1, x2, y2) = new_boxes[jk, :]
 
@@ -190,18 +191,20 @@ def plot_precision_recall(precision, recall, thresholds, class_name):
     plt.ylabel('Precision')
     plt.xlim([0.0, 1.0])
     plt.ylim([0.0, 1.0])
-    plt.savefig("./other/graphs/{}_prec-rec_{}".format(args.model_name, str(class_name)))
-    # plt.show()
+    plt.savefig("./other/graphs/test_{}_prec-rec_{}".format(str(args.model_name), str(class_name)))
 
-    # plt.plot(thresholds, lw=2)
-    # plt.title('[' + class_name + ']' + ' Evolution of thresholds for prediction and recall')
-    # plt.ylabel('Threshold')
-    # plt.ylim([0.0, 1.0])
-    # plt.savefig("./other/graphs/{}_threshold_{}".format(args.model_name, str(class_name)))
-    # plt.show()
+    plt.figure()
+    plt.xlabel('Thresholds')
+    plt.ylabel('AP metrics')
+    plt.xlim([0.0, 1.0])
+    plt.ylim([0.0, 1.0])
+    plt.plot(thresholds, precision[:-1], label='precision')
+    plt.plot(thresholds, recall[:-1], label='recall')
+    plt.legend()
+    plt.title('[' + class_name + ']' + ' AP thresholds')
+    plt.savefig("./other/graphs/test_{}_AP_thresh_{}".format(str(args.model_name), str(class_name)))
 
-
-def plot_roc(fpr, tpr, class_name):
+def plot_roc(fpr, tpr, class_name, thresholds):
     plt.figure()
     plt.plot(fpr, tpr, lw=2)
     plt.title('[' + class_name + ']' + 'ROC')
@@ -209,8 +212,33 @@ def plot_roc(fpr, tpr, class_name):
     plt.ylabel('Precision')
     plt.xlim([0.0, 1.0])
     plt.ylim([0.0, 1.0])
-    plt.savefig("./other/graphs/{}_roc_{}".format(args.model_name, str(class_name)))
+    plt.savefig("./other/graphs/test_{}_roc_{}".format(args.model_name, str(class_name)))
 
+    # plt.figure()
+    # plt.xlabel('Thresholds')
+    # plt.ylabel('AP metrics')
+    # plt.xlim([0.0, 1.0])
+    # plt.ylim([0.0, 1.0])
+    # plt.plot(thresholds, fpr)
+    # plt.plot(thresholds, tpr)
+    # plt.legend('fpr', 'tpr')
+    # plt.title('[' + class_name + ']' + ' ROC thresholds')
+    # plt.savefig("./other/graphs/test_{}_ROC_thresh_{}".format(str(args.model_name), str(class_name)))
+
+def maximise_F_score(precision, recall, threshold):
+    best_F_score = 0
+    best_threshold = -1
+    best_precision = -1
+    best_recall = -1
+    for i in range(len(threshold)):
+        F_score = 2 * precision[i]*recall[i]/(precision[i] + recall[i])
+        if F_score > best_F_score:
+            best_threshold = threshold[i]
+            best_precision = precision[i]
+            best_recall = recall[i]
+            best_F_score = F_score
+
+    return round(best_threshold, 3), round(best_F_score, 3), round(best_precision, 3), round(best_recall, 3)
 
 def accuracy():
     if from_csv:
@@ -301,7 +329,7 @@ def accuracy():
             bbox = np.array(bboxes[key])
 
             # Apply non-max-suppression on final bboxes to get the output bounding boxe
-            new_boxes, new_probs = non_max_suppression_fast(bbox, np.array(probs[key]), overlap_thresh=0.5)
+            new_boxes, new_probs = non_max_suppression_fast(bbox, np.array(probs[key]), overlap_thresh=0.2)
             for jk in range(new_boxes.shape[0]):
                 (x1, y1, x2, y2) = new_boxes[jk, :]
                 det = {'x1': x1, 'x2': x2, 'y1': y1, 'y2': y2, 'class': key, 'prob': new_probs[jk]}
@@ -340,6 +368,11 @@ def accuracy():
     print('The mean average precision is %0.3f' % (mean_average_prec))
     # print('The mean Area Under the Receiver Operating Characteristic Curve is %0.3f' % (mean_roc_auc))
 
+    optimal_data = dict()
+    threshold_list = list()
+    F_score_list = list()
+    precision_list = list()
+    recall_list = list()
     for key in T.keys():
         print(key)
         precision, recall, thresholds = precision_recall_curve(T[key], P[key])
@@ -347,7 +380,20 @@ def accuracy():
         fpr, tpr, thresholds = roc_curve(T[key], P[key])
         roc_auc = auc(fpr, tpr)
         print("ROC AUC for {} = {}".format(str(key), str(roc_auc)))
-        plot_roc(fpr, tpr, key)
+        plot_roc(fpr, tpr, key, thresholds)
+        best_threshold, best_F_score, best_precision, best_recall = maximise_F_score(precision, recall, thresholds)
+        optimal_data[key] = best_threshold, best_F_score, best_precision, best_recall
+        threshold_list.append(best_threshold)
+        F_score_list.append(best_F_score)
+        precision_list.append(best_precision)
+        recall_list.append(best_recall)
+
+    print("Best data summary with order : (Threshold, F-score, precision, recall")
+    print(optimal_data)
+    print("Mean threshold : " + str(np.mean(threshold_list)))
+    print("Mean F-score : " + str(np.mean(F_score_list)))
+    print("Mean precision : " + str(np.mean(precision_list)))
+    print("Mean recall : " + str(np.mean(recall_list)))
 
 
 
