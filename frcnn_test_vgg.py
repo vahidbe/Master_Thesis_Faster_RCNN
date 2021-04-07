@@ -376,19 +376,19 @@ def accuracy():
     for key in T.keys():
         print(key)
         precision, recall, thresholds = precision_recall_curve(T[key], P[key])
+        best_threshold, best_F_score, best_precision, best_recall = maximise_F_score(precision, recall, thresholds)
         plot_precision_recall(precision, recall, thresholds, key)
         fpr, tpr, thresholds = roc_curve(T[key], P[key])
         roc_auc = auc(fpr, tpr)
         print("ROC AUC for {} = {}".format(str(key), str(roc_auc)))
         plot_roc(fpr, tpr, key, thresholds)
-        best_threshold, best_F_score, best_precision, best_recall = maximise_F_score(precision, recall, thresholds)
         optimal_data[key] = best_threshold, best_F_score, best_precision, best_recall
         threshold_list.append(best_threshold)
         F_score_list.append(best_F_score)
         precision_list.append(best_precision)
         recall_list.append(best_recall)
 
-    print("Best data summary with order : (Threshold, F-score, precision, recall")
+    print("Best data summary with order : (Threshold, F-score, precision, recall)")
     print(optimal_data)
     print("Mean threshold : " + str(np.mean(threshold_list)))
     print("Mean F-score : " + str(np.mean(F_score_list)))
