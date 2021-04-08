@@ -10,23 +10,21 @@ class Recorder:
         self.base_path = base_path
         self.has_validation = has_validation
         self.csv_path = base_path + ".csv"
-        try:
-            self.record_df = pd.read_csv(self.csv_path)
-        except Exception as _:
-            self.record_df = pd.DataFrame(columns=['class_acc',
-                                                   'loss_rpn_cls',
-                                                   'loss_rpn_regr',
-                                                   'loss_class_cls',
-                                                   'loss_class_regr',
-                                                   'curr_loss',
-                                                   'elapsed_time',
-                                                   'loss_rpn_cls_val',
-                                                   'loss_rpn_regr_val',
-                                                   'loss_class_cls_val',
-                                                   'loss_class_regr_val',
-                                                   'class_acc_val',
-                                                   'curr_loss_val',
-                                                   'best_loss_val'])
+        # self.record_df = pd.read_csv(self.csv_path)
+        self.record_df = pd.DataFrame(columns=['class_acc',
+                                               'loss_rpn_cls',
+                                               'loss_rpn_regr',
+                                               'loss_class_cls',
+                                               'loss_class_regr',
+                                               'curr_loss',
+                                               'elapsed_time',
+                                               'loss_rpn_cls_val',
+                                               'loss_rpn_regr_val',
+                                               'loss_class_cls_val',
+                                               'loss_class_regr_val',
+                                               'class_acc_val',
+                                               'curr_loss_val',
+                                               'best_loss_val'])
 
     def _create_graphs(self, save=False):
         num_epochs = len(self.record_df['class_acc'])

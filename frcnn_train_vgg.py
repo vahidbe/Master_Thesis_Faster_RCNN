@@ -449,15 +449,15 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     use_gpu = eval(args.use_gpu)
-    if use_gpu is True:
-        config = tf.compat.v1.ConfigProto()
-        config.gpu_options.allow_growth = True
-        config.gpu_options.per_process_gpu_memory_fraction = 0.9
-        session = tf.compat.v1.InteractiveSession(config=config)
-    else:
-        os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
-        config = tf.compat.v1.ConfigProto(device_count={'GPU': 0})
-        session = tf.compat.v1.InteractiveSession(config=config)
+    # if use_gpu is True:
+    #     config = tf.compat.v1.ConfigProto()
+    #     config.gpu_options.allow_growth = True
+    #     config.gpu_options.per_process_gpu_memory_fraction = 0.9
+    #     session = tf.compat.v1.InteractiveSession(config=config)
+    # else:
+    #     os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+    #     config = tf.compat.v1.ConfigProto(device_count={'GPU': 0})
+    #     session = tf.compat.v1.InteractiveSession(config=config)
 
     num_epochs = int(args.num_epochs)
 
@@ -544,11 +544,15 @@ if __name__ == "__main__":
 
     import itertools as it
 
+    # param = {
+    #     'histogram_equalization': [False, True],
+    #     'noise_reduction': [None, "box_filter", "gaussian"],
+    #     'gamma_correction': [False, True],
+    #     'brightness_jitter': [False, True]
+    # }
+
     param = {
-        'histogram_equalization': [False, True],
-        'noise_reduction': [None, "box_filter", "gaussian"],
-        'gamma_correction': [False, True],
-        'brightness_jitter': [False, True]
+        'param0': [1, 2]
     }
 
     # param = {
@@ -558,12 +562,26 @@ if __name__ == "__main__":
     #     'gamma_value': [1.5]
     # }
 
+    # combinations = [
+    #     (True, 0.0, False, 1.0),
+    #     (True, 0.1, False, 1.0),
+    #     (True, 0.2, False, 1.0),
+    #     (True, 0.3, False, 1.0),
+    #     (True, 0.4, False, 1.0),
+    #     (False, 0.1, True, 1.0),
+    #     (False, 0.1, True, 1.5),
+    #     (False, 0.1, True, 2.0),
+    #     (False, 0.1, True, 2.5),
+    #     (False, 0.1, True, 3.0),
+    #     (False, 0.1, True, 3.5),
+    #     (False, 0.1, True, 4.0)
+    # ]
+
     paramNames = list(param.keys())
     combinations = it.product(*(param[Name] for Name in paramNames))
 
-    model_all, model_rpn, model_classifier = initialize_model()
-    initial_weights_rpn = model_rpn.get_weights()
-    initial_weights_classifier = model_classifier.get_weights()
+    # initial_weights_rpn = model_rpn.get_weights()
+    # initial_weights_classifier = model_classifier.get_weights()
     
     if start_from_last_step:
         last_row = imgs_record_df.tail(1)
@@ -592,8 +610,17 @@ if __name__ == "__main__":
                     start_from_last_step = False
                     continue
 
-            model_rpn.set_weights(initial_weights_rpn)
-            model_classifier.set_weights(initial_weights_classifier)
+            if use_gpu is True:
+                config = tf.compat.v1.ConfigProto()
+                config.gpu_options.allow_growth = True
+                config.gpu_options.per_process_gpu_memory_fraction = 0.9
+                session = tf.compat.v1.InteractiveSession(config=config)
+            else:
+                os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+                config = tf.compat.v1.ConfigProto(device_count={'GPU': 0})
+                session = tf.compat.v1.InteractiveSession(config=config)
+
+            model_all, model_rpn, model_classifier = initialize_model()
 
             print("Best loss: {}".format(best_loss))
             print("=== Validation step code: {}".format(validation_code))
@@ -605,13 +632,18 @@ if __name__ == "__main__":
                 best_loss = best_loss_val
                 for i in range(len(params)):
                     best_values[list(paramNames)[i]] = params[i]
-
+            K.clear_session()
+            tf.keras.backend.clear_session()
+            session.close()
         print("=== Best values:")
         for key in best_values.keys():
             print("    - {}: {}".format(key, best_values[key]))
+
+
 
     else:
         num_epochs = args.num_epochs
         train_model(all_imgs, math.ceil(num_epochs), os.path.join(C.record_path, "Training"))
 
+    tf.keras.backend.clear_session()
     print('Training complete, exiting.')
