@@ -1,10 +1,14 @@
 from libraries import *
 from recorder import Recorder
 import pandas as pd
+from multiprocessing import Process, Value
 from sklearn.model_selection import KFold, train_test_split
+from numba import cuda
 
+best_loss = 1000000
+a = 6
 
-def train_model(train_imgs, num_epochs, record_filepath):
+def train_model(train_imgs, num_epochs, record_filepath, model_rpn, model_classifier, model_all):
     recorder = Recorder(record_filepath)
     losses = np.zeros((len(train_imgs), 5))
     rpn_accuracy_rpn_monitor = []
@@ -29,7 +33,7 @@ def train_model(train_imgs, num_epochs, record_filepath):
                 losses[iter_num, 0] = loss_rpn[1]
                 losses[iter_num, 1] = loss_rpn[2]
 
-                X2, Y1, Y2, sel_samples = rpn_to_class(X, img_data, rpn_accuracy_rpn_monitor, rpn_accuracy_for_epoch)
+                X2, Y1, Y2, sel_samples = rpn_to_class(X, img_data, rpn_accuracy_rpn_monitor, rpn_accuracy_for_epoch, model_rpn)
 
                 if X2 is None:
                     continue
@@ -96,7 +100,7 @@ def train_model(train_imgs, num_epochs, record_filepath):
     os.remove(C.temp_model_path)
 
 
-def val_model(train_imgs, val_imgs, param, paramNames, record_path, validation_code):
+def val_model(train_imgs, val_imgs, param, paramNames, record_path, validation_code, model_rpn, model_classifier, model_all):
     global last_epoch
 
     for i in range(len(paramNames)):
@@ -144,7 +148,7 @@ def val_model(train_imgs, val_imgs, param, paramNames, record_path, validation_c
                 losses[iter_num, 0] = loss_rpn[1]
                 losses[iter_num, 1] = loss_rpn[2]
 
-                X2, Y1, Y2, sel_samples = rpn_to_class(X, img_data, rpn_accuracy_rpn_monitor, rpn_accuracy_for_epoch)
+                X2, Y1, Y2, sel_samples = rpn_to_class(X, img_data, rpn_accuracy_rpn_monitor, rpn_accuracy_for_epoch, model_rpn)
 
                 if X2 is None:
                     continue
@@ -212,7 +216,7 @@ def val_model(train_imgs, val_imgs, param, paramNames, record_path, validation_c
                 losses_val[iter_num_val, 0] = loss_rpn_val[1]
                 losses_val[iter_num_val, 1] = loss_rpn_val[2]
 
-                X2_val, Y1_val, Y2_val, sel_samples_val = rpn_to_class(X_val, img_data_val, [], [])
+                X2_val, Y1_val, Y2_val, sel_samples_val = rpn_to_class(X_val, img_data_val, [], [], model_rpn)
 
                 if X2_val is None:
                     continue
@@ -288,7 +292,7 @@ def val_model(train_imgs, val_imgs, param, paramNames, record_path, validation_c
     return curr_loss_val, best_loss_val, best_epoch
 
 
-def rpn_to_class(X, img_data, rpn_accuracy_rpn_monitor, rpn_accuracy_for_epoch):
+def rpn_to_class(X, img_data, rpn_accuracy_rpn_monitor, rpn_accuracy_for_epoch, model_rpn):
     # Get predicted rpn from rpn model [rpn_cls, rpn_regr]
     P_rpn = model_rpn.predict_on_batch(X)
 
@@ -409,6 +413,31 @@ def get_validation_code(names, values):
     return "Validation - " + ", ".join(names) + " - " + ", ".join(values_str)
 
 
+def run_validation_phase(best_loss_val):
+    if use_gpu is True:
+        config = tf.compat.v1.ConfigProto()
+        config.gpu_options.allow_growth = True
+        config.gpu_options.per_process_gpu_memory_fraction = 0.9
+        session = tf.compat.v1.InteractiveSession(config=config)
+    else:
+        os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+        config = tf.compat.v1.ConfigProto(device_count={'GPU': 0})
+        session = tf.compat.v1.InteractiveSession(config=config)
+
+    model_all, model_rpn, model_classifier = initialize_model()
+
+    print("Best loss: {}".format(best_loss))
+    print("=== Validation step code: {}".format(validation_code))
+    curr_loss_val, best_loss_val.value, best_epoch = val_model(train_imgs, val_imgs,
+                                                         params, paramNames,
+                                                         record_path, validation_code,
+                                                         model_rpn, model_classifier, model_all)
+
+    K.clear_session()
+    tf.keras.backend.clear_session()
+    session.close()
+
+
 if __name__ == "__main__":
 
     TESTING_SPLIT = 0.2
@@ -449,15 +478,6 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     use_gpu = eval(args.use_gpu)
-    # if use_gpu is True:
-    #     config = tf.compat.v1.ConfigProto()
-    #     config.gpu_options.allow_growth = True
-    #     config.gpu_options.per_process_gpu_memory_fraction = 0.9
-    #     session = tf.compat.v1.InteractiveSession(config=config)
-    # else:
-    #     os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
-    #     config = tf.compat.v1.ConfigProto(device_count={'GPU': 0})
-    #     session = tf.compat.v1.InteractiveSession(config=config)
 
     num_epochs = int(args.num_epochs)
 
@@ -551,37 +571,34 @@ if __name__ == "__main__":
     #     'brightness_jitter': [False, True]
     # }
 
-    param = {
-        'param0': [1, 2]
-    }
-
     # param = {
-    #     'brightness_jitter': [True, False],
-    #     'brightness_jitter_bound': [0.1],
-    #     'gamma_correction': [True, False],
-    #     'gamma_value': [1.5]
+    #     'param0': [1, 2]
     # }
 
-    # combinations = [
-    #     (True, 0.0, False, 1.0),
-    #     (True, 0.1, False, 1.0),
-    #     (True, 0.2, False, 1.0),
-    #     (True, 0.3, False, 1.0),
-    #     (True, 0.4, False, 1.0),
-    #     (False, 0.1, True, 1.0),
-    #     (False, 0.1, True, 1.5),
-    #     (False, 0.1, True, 2.0),
-    #     (False, 0.1, True, 2.5),
-    #     (False, 0.1, True, 3.0),
-    #     (False, 0.1, True, 3.5),
-    #     (False, 0.1, True, 4.0)
-    # ]
+    param = {
+        'brightness_jitter': [True, False],
+        'brightness_jitter_bound': [0.1],
+        'gamma_correction': [True, False],
+        'gamma_value': [1.5]
+    }
+
+    combinations = [
+        (True, 0.0, False, 1.0),
+        (True, 0.1, False, 1.0),
+        (True, 0.2, False, 1.0),
+        (True, 0.3, False, 1.0),
+        (True, 0.4, False, 1.0),
+        (False, 0.1, True, 1.0),
+        (False, 0.1, True, 1.5),
+        (False, 0.1, True, 2.0),
+        (False, 0.1, True, 2.5),
+        (False, 0.1, True, 3.0),
+        (False, 0.1, True, 3.5),
+        (False, 0.1, True, 4.0)
+    ]
 
     paramNames = list(param.keys())
-    combinations = it.product(*(param[Name] for Name in paramNames))
-
-    # initial_weights_rpn = model_rpn.get_weights()
-    # initial_weights_classifier = model_classifier.get_weights()
+    # combinations = it.product(*(param[Name] for Name in paramNames))
     
     if start_from_last_step:
         last_row = imgs_record_df.tail(1)
@@ -596,7 +613,7 @@ if __name__ == "__main__":
         imgs_record_df.to_csv(imgs_record_path, index=0)
 
     best_values = {}
-    best_loss = float('inf')
+
 
     if args.validation:
         for params in combinations:
@@ -610,31 +627,17 @@ if __name__ == "__main__":
                     start_from_last_step = False
                     continue
 
-            if use_gpu is True:
-                config = tf.compat.v1.ConfigProto()
-                config.gpu_options.allow_growth = True
-                config.gpu_options.per_process_gpu_memory_fraction = 0.9
-                session = tf.compat.v1.InteractiveSession(config=config)
-            else:
-                os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
-                config = tf.compat.v1.ConfigProto(device_count={'GPU': 0})
-                session = tf.compat.v1.InteractiveSession(config=config)
+            best_loss = float('inf')
+            best_loss_val = Value('d', float(0.0))
+            p = Process(target=run_validation_phase, args=(best_loss_val,))
+            p.start()
+            p.join()
 
-            model_all, model_rpn, model_classifier = initialize_model()
-
-            print("Best loss: {}".format(best_loss))
-            print("=== Validation step code: {}".format(validation_code))
-            curr_loss_val, best_loss_val, best_epoch = val_model(train_imgs, val_imgs,
-                                                                 params, paramNames,
-                                                                 record_path, validation_code)
-
-            if best_loss_val < best_loss:
-                best_loss = best_loss_val
+            if best_loss_val.value < best_loss:
+                best_loss = best_loss_val.value
                 for i in range(len(params)):
                     best_values[list(paramNames)[i]] = params[i]
-            K.clear_session()
-            tf.keras.backend.clear_session()
-            session.close()
+
         print("=== Best values:")
         for key in best_values.keys():
             print("    - {}: {}".format(key, best_values[key]))
@@ -643,7 +646,8 @@ if __name__ == "__main__":
 
     else:
         num_epochs = args.num_epochs
-        train_model(all_imgs, math.ceil(num_epochs), os.path.join(C.record_path, "Training"))
+        model_all, model_rpn, model_classifier = initialize_model()
+        train_model(all_imgs, math.ceil(num_epochs), os.path.join(C.record_path, "Training"), model_rpn, model_classifier, model_all)
 
     tf.keras.backend.clear_session()
     print('Training complete, exiting.')
