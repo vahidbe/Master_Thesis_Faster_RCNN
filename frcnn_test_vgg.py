@@ -191,7 +191,7 @@ def plot_precision_recall(precision, recall, thresholds, class_name):
     plt.ylabel('Precision')
     plt.xlim([0.0, 1.0])
     plt.ylim([0.0, 1.0])
-    plt.savefig("./other/graphs/test_{}_prec-rec_{}".format(str(args.model_name), str(class_name)))
+    plt.savefig("./graphs/test_{}_prec-rec_{}".format(str(args.model_name), str(class_name)))
 
     plt.figure()
     plt.xlabel('Thresholds')
@@ -202,7 +202,7 @@ def plot_precision_recall(precision, recall, thresholds, class_name):
     plt.plot(thresholds, recall[:-1], label='recall')
     plt.legend()
     plt.title('[' + class_name + ']' + ' AP thresholds')
-    plt.savefig("./other/graphs/test_{}_AP_thresh_{}".format(str(args.model_name), str(class_name)))
+    plt.savefig("./graphs/test_{}_AP_thresh_{}".format(str(args.model_name), str(class_name)))
 
 def plot_roc(fpr, tpr, class_name, thresholds):
     plt.figure()
@@ -212,7 +212,7 @@ def plot_roc(fpr, tpr, class_name, thresholds):
     plt.ylabel('Precision')
     plt.xlim([0.0, 1.0])
     plt.ylim([0.0, 1.0])
-    plt.savefig("./other/graphs/test_{}_roc_{}".format(args.model_name, str(class_name)))
+    plt.savefig("./graphs/test_{}_roc_{}".format(args.model_name, str(class_name)))
 
     # plt.figure()
     # plt.xlabel('Thresholds')
@@ -223,7 +223,7 @@ def plot_roc(fpr, tpr, class_name, thresholds):
     # plt.plot(thresholds, tpr)
     # plt.legend('fpr', 'tpr')
     # plt.title('[' + class_name + ']' + ' ROC thresholds')
-    # plt.savefig("./other/graphs/test_{}_ROC_thresh_{}".format(str(args.model_name), str(class_name)))
+    # plt.savefig("./graphs/test_{}_ROC_thresh_{}".format(str(args.model_name), str(class_name)))
 
 def maximise_F_score(precision, recall, threshold):
     best_F_score = 0
@@ -250,6 +250,10 @@ def accuracy():
 
     T = {}
     P = {}
+    T_all = np.empty((0,4), int)
+    P_all = np.empty((0,4), float)
+    # T_all = []
+    # P_all = []
     mAPs = []
     mROC_AUCs = []
     for idx, img_data in enumerate(test_imgs):
@@ -276,6 +280,7 @@ def accuracy():
         # apply the spatial pyramid pooling to the proposed regions
         bboxes = {}
         probs = {}
+        all_probs = {}
 
         for jk in range(R.shape[0] // C.num_rois + 1):
             ROIs = np.expand_dims(R[C.num_rois * jk:C.num_rois * (jk + 1), :], axis=0)
@@ -307,6 +312,7 @@ def accuracy():
                 if cls_name not in bboxes:
                     bboxes[cls_name] = []
                     probs[cls_name] = []
+                    all_probs[cls_name] = []
 
                 (x, y, w, h) = ROIs[0, ii, :]
 
@@ -322,21 +328,28 @@ def accuracy():
                     pass
                 bboxes[cls_name].append([16 * x, 16 * y, 16 * (x + w), 16 * (y + h)])
                 probs[cls_name].append(np.max(P_cls[0, ii, :]))
+                all_probs[cls_name].append(list(P_cls[0, ii, :]))
 
         all_dets = []
 
         for key in bboxes:
             bbox = np.array(bboxes[key])
+            all_prob = np.array(all_probs[key])
 
-            # Apply non-max-suppression on final bboxes to get the output bounding boxe
-            new_boxes, new_probs = non_max_suppression_fast(bbox, np.array(probs[key]), overlap_thresh=0.2)
+            # Apply non-max-suppression on final bboxes to get the output bounding boxes
+            new_boxes, new_probs, new_all_prob = non_max_suppression_fast_with_all_probs(bbox, np.array(probs[key]), all_prob, overlap_thresh=0.2)
             for jk in range(new_boxes.shape[0]):
                 (x1, y1, x2, y2) = new_boxes[jk, :]
-                det = {'x1': x1, 'x2': x2, 'y1': y1, 'y2': y2, 'class': key, 'prob': new_probs[jk]}
+                det = {'x1': x1, 'x2': x2, 'y1': y1, 'y2': y2, 'class': key, 'prob': new_probs[jk], 'all_probs': new_all_prob[jk]}
                 all_dets.append(det)
 
         print('Elapsed time = {}'.format(time.time() - st))
         t, p = get_map(all_dets, img_data['bboxes'], (fx, fy)) #p contient les proba de prédiction des classes
+        T_all_for_image, P_all_for_image = get_map_all(all_dets, img_data['bboxes'], (fx, fy), class_mapping)
+        for T_all_box in T_all_for_image:
+            T_all = np.append(T_all, np.array([T_all_box]), axis=0)
+        for P_all_box in P_all_for_image:
+            P_all = np.append(P_all, np.array([P_all_box]), axis=0)
         for key in t.keys():
             if key not in T:
                 T[key] = []
@@ -356,6 +369,11 @@ def accuracy():
         # print('mROC_AUC = {}'.format(np.mean(np.array(all_roc_aucs)))) #Mean on all classes
         mAPs.append(np.mean(np.array(all_aps)))
         # mROC_AUCs.append(np.mean(np.array(all_roc_aucs)))
+
+    # T_all = np.concatenate(T_all, axis=0)
+    # P_all = np.concatenate(P_all, axis=0)
+    T_all = T_all.ravel()
+    P_all = P_all.ravel()
 
     print()
     print('mean average precision:', np.nanmean(np.array(mAPs)))
@@ -388,14 +406,17 @@ def accuracy():
         precision_list.append(best_precision)
         recall_list.append(best_recall)
 
+    precision, recall, thresholds = precision_recall_curve(T_all, P_all)
+    best_threshold, best_F_score, best_precision, best_recall = maximise_F_score(precision, recall, thresholds)
+    plot_precision_recall(precision, recall, thresholds, 'All classes')
+    fpr, tpr, thresholds = roc_curve(T_all, P_all)
+    roc_auc = auc(fpr, tpr)
+    print("ROC AUC for {} = {}".format('all classe', str(roc_auc)))
+    plot_roc(fpr, tpr, 'All classes', thresholds)
+    optimal_data['All classes'] = best_threshold, best_F_score, best_precision, best_recall
+
     print("Best data summary with order : (Threshold, F-score, precision, recall)")
     print(optimal_data)
-    print("Mean threshold : " + str(np.mean(threshold_list)))
-    print("Mean F-score : " + str(np.mean(F_score_list)))
-    print("Mean precision : " + str(np.mean(precision_list)))
-    print("Mean recall : " + str(np.mean(recall_list)))
-
-
 
     # record_df.loc[len(record_df)-1, 'mAP'] = mean_average_prec
     # record_df.to_csv(C.record_path, index=0)

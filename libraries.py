@@ -19,6 +19,7 @@ import ast
 import scipy
 from scipy.ndimage import maximum_filter, minimum_filter
 from sklearn.metrics import average_precision_score, recall_score, accuracy_score, precision_recall_fscore_support, precision_recall_curve, roc_auc_score, RocCurveDisplay, roc_curve, auc
+from sklearn.preprocessing import label_binarize
 
 from keras import backend as K
 from keras.optimizers import Adam, SGD, RMSprop
@@ -869,6 +870,82 @@ def non_max_suppression_fast(boxes, probs, overlap_thresh=0.9, max_boxes=300):
     return boxes, probs
 
 
+def non_max_suppression_fast_with_all_probs(boxes, probs, all_probs, overlap_thresh=0.9, max_boxes=300):
+    # code used from here: http://www.pyimagesearch.com/2015/02/16/faster-non-maximum-suppression-python/
+    # if there are no boxes, return an empty list
+
+    # Process explanation:
+    #   Step 1: Sort the probs list
+    #   Step 2: Find the larget prob 'Last' in the list and save it to the pick list
+    #   Step 3: Calculate the IoU with 'Last' box and other boxes in the list. If the IoU is larger than overlap_threshold, delete the box from list
+    #   Step 4: Repeat step 2 and step 3 until there is no item in the probs list
+    if len(boxes) == 0:
+        return []
+
+    # grab the coordinates of the bounding boxes
+    x1 = boxes[:, 0]
+    y1 = boxes[:, 1]
+    x2 = boxes[:, 2]
+    y2 = boxes[:, 3]
+
+    np.testing.assert_array_less(x1, x2)
+    np.testing.assert_array_less(y1, y2)
+
+    # if the bounding boxes integers, convert them to floats --
+    # this is important since we'll be doing a bunch of divisions
+    if boxes.dtype.kind == "i":
+        boxes = boxes.astype("float")
+
+    # initialize the list of picked indexes
+    pick = []
+
+    # calculate the areas
+    area = (x2 - x1) * (y2 - y1)
+
+    # sort the bounding boxes
+    idxs = np.argsort(probs)
+
+    # keep looping while some indexes still remain in the indexes
+    # list
+    while len(idxs) > 0:
+        # grab the last index in the indexes list and add the
+        # index value to the list of picked indexes
+        last = len(idxs) - 1
+        i = idxs[last]
+        pick.append(i)
+
+        # find the intersection
+
+        xx1_int = np.maximum(x1[i], x1[idxs[:last]])
+        yy1_int = np.maximum(y1[i], y1[idxs[:last]])
+        xx2_int = np.minimum(x2[i], x2[idxs[:last]])
+        yy2_int = np.minimum(y2[i], y2[idxs[:last]])
+
+        ww_int = np.maximum(0, xx2_int - xx1_int)
+        hh_int = np.maximum(0, yy2_int - yy1_int)
+
+        area_int = ww_int * hh_int
+
+        # find the union
+        area_union = area[i] + area[idxs[:last]] - area_int
+
+        # compute the ratio of overlap
+        overlap = area_int / (area_union + 1e-6)
+
+        # delete all indexes from the index list that have
+        idxs = np.delete(idxs, np.concatenate(([last],
+                                               np.where(overlap > overlap_thresh)[0])))
+
+        if len(pick) >= max_boxes:
+            break
+
+    # return only the bounding boxes that were picked using the integer data type
+    boxes = boxes[pick].astype("int")
+    probs = probs[pick]
+    all_probs = all_probs[pick]
+    return boxes, probs, all_probs
+
+
 def apply_regr_np(X, T):
     """Apply regression layer to all anchors in one feature map
 
@@ -1367,6 +1444,69 @@ def get_map(pred, gt, f):
     # import pdb
     # pdb.set_trace()
     return T, P
+
+
+def get_map_all(pred, gt, f, class_mapping):
+    T_all = []
+    P_all = []
+    fx, fy = f
+
+    for bbox in gt:
+        bbox['bbox_matched'] = False
+
+    pred_probs = np.array([s['prob'] for s in pred])
+    box_idx_sorted_by_prob = np.argsort(pred_probs)[::-1]
+
+    for box_idx in box_idx_sorted_by_prob:
+        pred_box = pred[box_idx]
+        pred_class = pred_box['class']
+        pred_x1 = pred_box['x1']
+        pred_x2 = pred_box['x2']
+        pred_y1 = pred_box['y1']
+        pred_y2 = pred_box['y2']
+        pred_prob = pred_box['prob']
+        all_pred_probs = pred_box['all_probs']
+
+        # Pour chaque box prédite, on met dans P la proba de la classe prédite
+        P_all.append(all_pred_probs[:-1])
+        found_match = False
+
+        for gt_box in gt: # On parcourt les vraies boxes de l'image jusqu'à trouver une box qui correspond à la classe et qui overlap
+            gt_class = gt_box['class']
+            gt_x1 = gt_box['x1'] / fx
+            gt_x2 = gt_box['x2'] / fx
+            gt_y1 = gt_box['y1'] / fy
+            gt_y2 = gt_box['y2'] / fy
+            gt_seen = gt_box['bbox_matched'] # A-t-on trouvé une box prédite qui correspond à la vraie box
+            if gt_class != pred_class:
+                continue
+            if gt_seen: # Si la vraie box a déjà été assignée à autre predicted box, on skip
+                continue
+            iou_map = iou((pred_x1, pred_y1, pred_x2, pred_y2), (gt_x1, gt_y1, gt_x2, gt_y2))
+            if iou_map >= 0.5:
+                found_match = True
+                gt_box['bbox_matched'] = True
+                break
+            else:
+                continue
+
+        # Si la box prédite correspond à une vraie box, on append 1, sinon 0
+        if found_match:
+            T_all.append(label_binarize([pred_class], classes=list(class_mapping.values())[:-1])[0])
+        else:
+            T_all.append(np.zeros(len(class_mapping.values())-1))
+
+    # Pour toutes les vraies box qui n'ont pas d'équivalent prédite,
+    # on append un 1 dans T (=true labels) et un 0 dans P (= predicted labels)
+    # Dans ce cas 0 dans P correspond à la probabilité de classification --> 0 = pas détecté du tout
+    for gt_box in gt:
+        if not gt_box['bbox_matched']:  # and not gt_box['difficult']:
+            T_all.append(label_binarize([gt_box['class']], classes=list(class_mapping.values())[:-1])[0])
+            P_all.append(np.zeros(len(class_mapping.values())-1))
+
+    # import pdb
+    # pdb.set_trace()
+    return T_all, P_all
 
 
 def format_img_map(img, C):
