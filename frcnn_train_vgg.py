@@ -582,6 +582,7 @@ if __name__ == "__main__":
         'gamma_value': [1.5]
     }
 
+    #Tour Gaming
     combinations = [
         (True, 0.0, False, 1.0),
         (True, 0.1, False, 1.0),
@@ -589,13 +590,18 @@ if __name__ == "__main__":
         (True, 0.3, False, 1.0),
         (True, 0.4, False, 1.0),
         (False, 0.1, True, 1.0),
-        (False, 0.1, True, 1.5),
-        (False, 0.1, True, 2.0),
-        (False, 0.1, True, 2.5),
-        (False, 0.1, True, 3.0),
-        (False, 0.1, True, 3.5),
-        (False, 0.1, True, 4.0)
     ]
+
+    #Gotham
+    # combinations = [
+    #     (False, 0.1, True, 1.5),
+    #     (False, 0.1, True, 2.0),
+    #     (False, 0.1, True, 2.5),
+    #     (False, 0.1, True, 3.0),
+    #     (False, 0.1, True, 3.5),
+    #     (False, 0.1, True, 4.0),
+    #     (False, 0.1, True, 4.5)
+    # ]
 
     paramNames = list(param.keys())
     # combinations = it.product(*(param[Name] for Name in paramNames))
