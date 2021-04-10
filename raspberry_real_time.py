@@ -15,7 +15,7 @@ if __name__ == "__main__":
     parser.add_argument('--model_name', required=False,
                         metavar="name_of_your_model", default='model',
                         help='Name of the model being tested')
-    parser.add_argument('--bbox_threshold', required=False, default=0.7,
+    parser.add_argument('--bbox_threshold', required=False, default=0.822,
                         metavar="Value from 0 to 1",
                         help="Model probability threshold to detect an object")
     parser.add_argument('--demo', required=False, default="False",
@@ -69,7 +69,7 @@ if __name__ == "__main__":
     else:
         frame_queue = Queue()
         flag_queue = Queue()
-        p_detection = Process(target=run_detection, args=(10, resolution, 0.3, 5000, use_motor, C, frame_queue, flag_queue))
+        p_detection = Process(target=run_detection, args=(10, resolution, 0.3, 500, use_motor, C, frame_queue, flag_queue))
         p_processing = Process(target=run_processing, args=(bbox_threshold, C, output_results_filename, use_gpu, frame_queue, flag_queue))
         p_detection.start()
         p_processing.start()
