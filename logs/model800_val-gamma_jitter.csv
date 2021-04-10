@@ -1,0 +1,7 @@
+validation_code,curr_loss,best_loss,best_epoch
+"Validation - brightness_jitter, brightness_jitter_bound, gamma_correction, gamma_value - True, 0.2, False, 1.0",5.927303838983499,4.213725319923685,1
+"Validation - brightness_jitter, brightness_jitter_bound, gamma_correction, gamma_value - True, 0.4, False, 1.0",3.9347724742353343,3.9347724742353343,2
+"Validation - brightness_jitter, brightness_jitter_bound, gamma_correction, gamma_value - False, 0.1, True, 1.0",0.0,0.0,1
+"Validation - brightness_jitter, brightness_jitter_bound, gamma_correction, gamma_value - True, 0.4, False, 1.0",0.0,0.0,1
+"Validation - brightness_jitter, brightness_jitter_bound, gamma_correction, gamma_value - True, 0.4, False, 1.0",3.3956249841013486,3.3956249841013486,1
+"Validation - brightness_jitter, brightness_jitter_bound, gamma_correction, gamma_value - False, 0.1, True, 4.0",1.8296211219096312,1.2810821957311131,32
