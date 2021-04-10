@@ -43,7 +43,7 @@ def init_session(use_gpu):
         session = tf.compat.v1.InteractiveSession(config=config)
 
 
-def run_detection(fps, resolution, alpha, min_area, C, use_motor, frame_queue, flag_queue):
+def run_detection(fps, resolution, alpha, min_area, use_motor, C, frame_queue, flag_queue):
     import imutils
     import cv2
     from picamera.array import PiRGBArray
