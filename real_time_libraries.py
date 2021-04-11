@@ -43,7 +43,7 @@ def init_session(use_gpu):
         session = tf.compat.v1.InteractiveSession(config=config)
 
 
-def run_detection(fps, resolution, alpha, min_area, C, use_motor, frame_queue, flag_queue):
+def run_detection(fps, resolution, alpha, min_area, use_motor, C, frame_queue, flag_queue):
     import imutils
     import cv2
     from picamera.array import PiRGBArray
@@ -210,7 +210,7 @@ def run_processing(bbox_threshold, C, output_results_filename, use_gpu, frame_qu
         if C.verbose:
             print("[INFO] processing_proc - starting detection on a new image", flush=True)
             print("[INFO] processing_proc - number of frames waiting to be processed: {}".format(frame_queue.qsize()), flush=True)
-        all_dets = detect(img.copy(), model_rpn, model_classifier_only, C, class_mapping, bbox_threshold, class_to_color)
+        all_dets = detect(img, model_rpn, model_classifier_only, C, class_mapping, bbox_threshold, class_to_color)
         if not len(all_dets) == 0:
             for detected_class, probability, ((x1, y1), (x2, y2)) in all_dets:
                 with open(record_path, 'a', newline='') as f:
