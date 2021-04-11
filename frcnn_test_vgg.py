@@ -1,3 +1,5 @@
+import sklearn.metrics
+
 from libraries import *
 
 
@@ -417,6 +419,12 @@ def accuracy():
 
     print("Best data summary with order : (Threshold, F-score, precision, recall)")
     print(optimal_data)
+
+    P_all[P_all >= best_threshold] = 1.0
+    P_all[P_all < best_threshold] = 0.0
+    acc = accuracy_score(T_all, P_all)
+
+    print("Accuracy of the model : " + str(acc))
 
     # record_df.loc[len(record_df)-1, 'mAP'] = mean_average_prec
     # record_df.to_csv(C.record_path, index=0)
