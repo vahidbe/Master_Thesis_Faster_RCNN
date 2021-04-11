@@ -408,12 +408,12 @@ def accuracy():
 
     precision, recall, thresholds = precision_recall_curve(T_all, P_all)
     best_threshold, best_F_score, best_precision, best_recall = maximise_F_score(precision, recall, thresholds)
-    plot_precision_recall(precision, recall, thresholds, 'All classes')
+    plot_precision_recall(precision, recall, thresholds, 'Micro Average')
     fpr, tpr, thresholds = roc_curve(T_all, P_all)
     roc_auc = auc(fpr, tpr)
-    print("ROC AUC for {} = {}".format('all classe', str(roc_auc)))
-    plot_roc(fpr, tpr, 'All classes', thresholds)
-    optimal_data['All classes'] = best_threshold, best_F_score, best_precision, best_recall
+    print("ROC AUC for {} = {}".format('micro average', str(roc_auc)))
+    plot_roc(fpr, tpr, 'Micro Average', thresholds)
+    optimal_data['Micro Average'] = best_threshold, best_F_score, best_precision, best_recall
 
     print("Best data summary with order : (Threshold, F-score, precision, recall)")
     print(optimal_data)
