@@ -3,7 +3,6 @@ from recorder import Recorder
 import pandas as pd
 from multiprocessing import Process, Value
 from sklearn.model_selection import KFold, train_test_split
-from numba import cuda
 
 best_loss = 1000000
 a = 6
