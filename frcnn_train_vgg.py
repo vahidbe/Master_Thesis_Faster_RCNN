@@ -564,47 +564,26 @@ if __name__ == "__main__":
 
     import itertools as it
 
-    # param = {
-    #     'histogram_equalization': [False, True],
-    #     'noise_reduction': [None, "box_filter", "gaussian"],
-    #     'gamma_correction': [False, True],
-    #     'brightness_jitter': [False, True]
-    # }
+    param = {
+        'histogram_equalization': [False, True],
+        'noise_reduction': [None, "box_filter", "gaussian"],
+        'gamma_correction': [False, True],
+        'brightness_jitter': [False, True]
+    }
 
     # param = {
     #     'param0': [1, 2]
     # }
 
-    param = {
-        'brightness_jitter': [True, False],
-        'brightness_jitter_bound': [0.1],
-        'gamma_correction': [True, False],
-        'gamma_value': [1.5]
-    }
-
-    #Tour Gaming
-    combinations = [
-        (True, 0.0, False, 1.0),
-        (True, 0.1, False, 1.0),
-        (True, 0.2, False, 1.0),
-        (True, 0.3, False, 1.0),
-        (True, 0.4, False, 1.0),
-        (False, 0.1, True, 1.0),
-    ]
-
-    #Gotham
-    # combinations = [
-    #     (False, 0.1, True, 1.5),
-    #     (False, 0.1, True, 2.0),
-    #     (False, 0.1, True, 2.5),
-    #     (False, 0.1, True, 3.0),
-    #     (False, 0.1, True, 3.5),
-    #     (False, 0.1, True, 4.0),
-    #     (False, 0.1, True, 4.5)
-    # ]
+    # param = {
+    #     'brightness_jitter': [True, False],
+    #     'brightness_jitter_bound': [0.1],
+    #     'gamma_correction': [True, False],
+    #     'gamma_value': [1.5]
+    # }
 
     paramNames = list(param.keys())
-    # combinations = it.product(*(param[Name] for Name in paramNames))
+    combinations = it.product(*(param[Name] for Name in paramNames))
     
     if start_from_last_step:
         last_row = imgs_record_df.tail(1)
