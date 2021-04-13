@@ -77,7 +77,8 @@ def run_detection(fps, resolution, alpha, min_area, use_motor, C, frame_queue, f
     for frame in cam.capture_continuous(stream, format="bgr", use_video_port=True):
         time.sleep(1/fps)
         frame = frame.array
-        stream.truncate(0) 
+        stream.truncate()
+        stream.seek(0) 
         # if the frame could not be grabbed, then we have reached the end
         # of the video
         if frame is None:
