@@ -1,3 +1,5 @@
+import sklearn.metrics
+
 from libraries import *
 
 
@@ -408,15 +410,21 @@ def accuracy():
 
     precision, recall, thresholds = precision_recall_curve(T_all, P_all)
     best_threshold, best_F_score, best_precision, best_recall = maximise_F_score(precision, recall, thresholds)
-    plot_precision_recall(precision, recall, thresholds, 'All classes')
+    plot_precision_recall(precision, recall, thresholds, 'Micro Average')
     fpr, tpr, thresholds = roc_curve(T_all, P_all)
     roc_auc = auc(fpr, tpr)
-    print("ROC AUC for {} = {}".format('all classe', str(roc_auc)))
-    plot_roc(fpr, tpr, 'All classes', thresholds)
-    optimal_data['All classes'] = best_threshold, best_F_score, best_precision, best_recall
+    print("ROC AUC for {} = {}".format('micro average', str(roc_auc)))
+    plot_roc(fpr, tpr, 'Micro Average', thresholds)
+    optimal_data['Micro Average'] = best_threshold, best_F_score, best_precision, best_recall
 
     print("Best data summary with order : (Threshold, F-score, precision, recall)")
     print(optimal_data)
+
+    P_all[P_all >= best_threshold] = 1.0
+    P_all[P_all < best_threshold] = 0.0
+    acc = accuracy_score(T_all, P_all)
+
+    print("Accuracy of the model : " + str(acc))
 
     # record_df.loc[len(record_df)-1, 'mAP'] = mean_average_prec
     # record_df.to_csv(C.record_path, index=0)
