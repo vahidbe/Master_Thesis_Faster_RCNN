@@ -1225,3 +1225,75 @@ Starting detection
 Elapsed time = 68.94892859458923
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 0
+[INFO] detection_proc - *** Movement detected ***
+Starting detection
+[]
+Elapsed time = 70.50150060653687
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 0
+[INFO] detection_proc - *** Movement detected ***
+Starting detection
+[]
+Elapsed time = 70.79659247398376
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 0
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+Starting detection
+[]
+Elapsed time = 70.44675159454346
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 1
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+Starting detection
+[]
+Elapsed time = 70.62867045402527
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 2
+Starting detection
+[]
+Elapsed time = 70.57816886901855
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 1
+Starting detection
+[]
+Elapsed time = 68.58963465690613
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 0
+[INFO] detection_proc - *** Movement detected ***
+Starting detection
+[]
+Elapsed time = 73.04528784751892
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 0
+Process Process-1:
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/picamera/camera.py", line 1704, in capture_continuous
+    'Timed out waiting for capture to end')
+picamera.exc.PiCameraRuntimeError: Timed out waiting for capture to end
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.7/multiprocessing/process.py", line 297, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.7/multiprocessing/process.py", line 99, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/pi/Faster_RCNN_for_Open_Images_Dataset_Keras/real_time_libraries.py", line 77, in run_detection
+    for frame in cam.capture_continuous(stream, format="bgr", use_video_port=True):
+  File "/usr/lib/python3/dist-packages/picamera/camera.py", line 1710, in capture_continuous
+    encoder.close()
+  File "/usr/lib/python3/dist-packages/picamera/encoders.py", line 431, in close
+    self.stop()
+  File "/usr/lib/python3/dist-packages/picamera/encoders.py", line 419, in stop
+    self._close_output()
+  File "/usr/lib/python3/dist-packages/picamera/encoders.py", line 349, in _close_output
+    mo.close_stream(output, opened)
+  File "/usr/lib/python3/dist-packages/picamera/mmalobj.py", line 371, in close_stream
+    stream.flush()
+  File "/usr/lib/python3/dist-packages/picamera/array.py", line 238, in flush
+    self.array = bytes_to_rgb(self.getvalue(), self.size or self.camera.resolution)
+  File "/usr/lib/python3/dist-packages/picamera/array.py", line 127, in bytes_to_rgb
+    'Incorrect buffer length for resolution %dx%d' % (width, height))
+picamera.exc.PiCameraValueError: Incorrect buffer length for resolution 1920x1088
