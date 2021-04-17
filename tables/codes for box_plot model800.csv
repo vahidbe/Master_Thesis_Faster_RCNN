@@ -1,0 +1,25 @@
+﻿Code,Brightness Jitter,Gamma Correction,Histogram Equalization,Noise Reduction
+3,false,true,True,Box Filter
+4,false,true,False,None
+5,false,true,False,Box Filter
+6,false,true,True,None
+7,false,true,True,Gaussian
+8,false,false,True,None
+9,false,false,False,Box Filter
+11,false,false,False,Gaussian
+13,false,false,True,Gaussian
+15,false,false,True,Box Filter
+17,false,false,False,None
+21,false,true,False,Gaussian
+0,true,false,False,None
+1,true,true,False,None
+2,true,true,False,Box Filter
+10,true,false,False,Gaussian
+12,true,true,True,Box Filter
+14,true,true,False,Gaussian
+16,true,true,True,None
+18,true,false,False,Box Filter
+19,true,false,True,Gaussian
+20,true,false,True,Box Filter
+22,true,true,True,Gaussian
+23,true,false,True,None
