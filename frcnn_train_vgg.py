@@ -581,8 +581,16 @@ if __name__ == "__main__":
     #     'gamma_value': [1.5]
     # }
 
+    combinations_model6000_validated = [
+        (False, None, True, True),
+        (False, None, True, False),
+        (False, None, False, True),
+        (False, "box_filter", False, False)
+    ]
+
     paramNames = list(param.keys())
-    combinations = it.product(*(param[Name] for Name in paramNames))
+    combinations = combinations_model6000_validated
+    # combinations = it.product(*(param[Name] for Name in paramNames))
     
     if start_from_last_step:
         last_row = imgs_record_df.tail(1)
