@@ -582,10 +582,10 @@ if __name__ == "__main__":
     # }
 
     combinations_model6000_validated = [
+        (False, None, False, False),
         (False, None, True, True),
         (False, None, True, False),
-        (False, None, False, True),
-        (False, "box_filter", False, False)
+        (False, None, False, True)
     ]
 
     paramNames = list(param.keys())
