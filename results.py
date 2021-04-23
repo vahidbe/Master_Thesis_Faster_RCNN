@@ -59,8 +59,7 @@ def errorbars_plot(x, ymean, ymin, ymax, title):
     plt.ylabel('Loss value')
     plt.errorbar(x, ymean, yerr=yerr, fmt='o', label='Simulations')
     plt.title(title)
-
-    plt.savefig('./graphs/model800_validated')
+    plt.savefig("./graphs/{}".format(title))
 
 def model800_validated_errorbars():
     x = np.linspace(1, 24, 24)
@@ -73,6 +72,16 @@ def model800_validated_errorbars():
     losses_mean = np.mean(losses, axis=0)
     print(losses_mean)
     errorbars_plot(x, losses_mean, losses_min, losses_max, 'Validation of model800')
+
+def model6000_validated_errorbars():
+    x = np.linspace(1, 4, 4)
+    losses = [[0.847500530434425, 0.8160113169647802, 0.8157910783364376, 0.8594888867015318],
+              [0.8881682209536967, 0.8268874593089663, 0.862405197471224, 0.8200220964624049]]
+    losses_min = np.min(losses, axis=0)
+    losses_max = np.max(losses, axis=0)
+    losses_mean = np.mean(losses, axis=0)
+    print(losses_mean)
+    errorbars_plot(x, losses_mean, losses_min, losses_max, 'Validation of model6000')
 
 
 if __name__ == '__main__':
@@ -90,4 +99,4 @@ if __name__ == '__main__':
     #
     # elapsed_time_roc_graph(time, roc)
     # elapsed_time_mAP_graph(time, mAP)
-    model800_validated_errorbars()
+    model6000_validated_errorbars()
