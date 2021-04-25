@@ -1,4 +1,5 @@
 import sklearn.metrics
+import os
 
 from libraries import *
 
@@ -493,7 +494,7 @@ if __name__ == "__main__":
     parser.add_argument('--gamma_correction', required=False, default="False",
                         metavar="True/False",
                         help="True if you want to apply gamma correction as preprocessing, False otherwise")
-    parser.add_argument('--processed_directory', required=False, default="new_directory",
+    parser.add_argument('--processed_directory', type=str, required=False, default="new_directory",
                         metavar="directory_name",
                         help="Name of the directory in which the processed images will be saved when show_images is "
                              "True") 
@@ -508,7 +509,14 @@ if __name__ == "__main__":
     noise_reduction = eval(args.noise_reduction)
     histogram_equalization = eval(args.histogram_equalization)
     gamma_correction = eval(args.gamma_correction)
-    processed_directory = eval(args.processed_directory)
+    processed_directory = args.processed_directory
+
+    try:
+        os.mkdir('other/box_figure/{}'.format(processed_directory))
+    except OSError:
+        print('Creation of the directory {} failed'.format(processed_directory))
+    else:
+        print('Successfully created the directory {}'.format(processed_directory))
 
     if use_gpu is True:
         config = tf.compat.v1.ConfigProto()
