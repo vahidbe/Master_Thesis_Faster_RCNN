@@ -1,10 +1,10 @@
 Using TensorFlow backend.
 [INFO] processing_proc - initializing session...
 [INFO] processing_proc - loading model...
-2021-04-21 20:28:42.324894: W tensorflow/core/framework/cpu_allocator_impl.cc:81] Allocation of 411041792 exceeds 10% of system memory.
-2021-04-21 20:28:43.133467: W tensorflow/core/framework/cpu_allocator_impl.cc:81] Allocation of 411041792 exceeds 10% of system memory.
-2021-04-21 20:28:43.555455: W tensorflow/core/framework/cpu_allocator_impl.cc:81] Allocation of 411041792 exceeds 10% of system memory.
-2021-04-21 20:29:04.037012: W tensorflow/core/framework/cpu_allocator_impl.cc:81] Allocation of 411041792 exceeds 10% of system memory.
+2021-04-23 16:11:44.061908: W tensorflow/core/framework/cpu_allocator_impl.cc:81] Allocation of 411041792 exceeds 10% of system memory.
+2021-04-23 16:11:44.864916: W tensorflow/core/framework/cpu_allocator_impl.cc:81] Allocation of 411041792 exceeds 10% of system memory.
+2021-04-23 16:11:45.287633: W tensorflow/core/framework/cpu_allocator_impl.cc:81] Allocation of 411041792 exceeds 10% of system memory.
+2021-04-23 16:12:02.446691: W tensorflow/core/framework/cpu_allocator_impl.cc:81] Allocation of 411041792 exceeds 10% of system memory.
 Loading weights from ./model/model6000_val_epoch.hdf5
 {0: 'abeille_mellifere', 1: 'boudon_des_arbres', 2: 'anthophore_plumeuse', 3: 'bourdon_des_jardins', 4: 'bg'}
 [INFO] processing_proc - done loading model
@@ -15,1902 +15,564 @@ Loading weights from ./model/model6000_val_epoch.hdf5
 [INFO] processing_proc - number of frames waiting to be processed: 0
 [INFO] detection_proc - *** Movement detected ***
 [INFO] detection_proc - *** Movement detected ***
-Starting detection
-[('bourdon_des_jardins', 91.73340797424316, ((522, 580), (928, 1044)))]
-Elapsed time = 70.45120549201965
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 1
-Starting detection
-[]
-Elapsed time = 69.00743627548218
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 68.67142462730408
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[('bourdon_des_jardins', 92.4609899520874, ((522, 580), (928, 986)))]
-Elapsed time = 68.95260691642761
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 1
-Starting detection
-[('bourdon_des_jardins', 85.36204695701599, ((522, 522), (928, 986)))]
-Elapsed time = 69.11169838905334
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[('boudon_des_arbres', 84.7019374370575, ((580, 580), (1044, 1044)))]
-Elapsed time = 70.67219114303589
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[('boudon_des_arbres', 87.25546002388, ((580, 522), (986, 928)))]
-Elapsed time = 70.84367752075195
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 4
-Starting detection
-[('boudon_des_arbres', 91.61047339439392, ((580, 580), (986, 986)))]
-Elapsed time = 69.01556992530823
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 3
-Starting detection
-[('boudon_des_arbres', 82.93755650520325, ((580, 580), (986, 986)))]
-Elapsed time = 68.85523772239685
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 2
-Starting detection
-[]
-Elapsed time = 69.09000134468079
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 1
-Starting detection
-[]
-Elapsed time = 68.9589512348175
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 68.9314317703247
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[('anthophore_plumeuse', 85.97403168678284, ((0, 522), (406, 986)))]
-Elapsed time = 68.8464286327362
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 6
-Starting detection
-[('boudon_des_arbres', 84.14568305015564, ((580, 580), (986, 986))), ('anthophore_plumeuse', 86.88117861747742, ((-59, 522), (348, 986)))]
-Elapsed time = 69.00972294807434
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 5
-Starting detection
-[]
-Elapsed time = 70.90761995315552
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 4
-Starting detection
-[('anthophore_plumeuse', 84.25305485725403, ((0, 522), (348, 986)))]
-Elapsed time = 68.83300042152405
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 3
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[('anthophore_plumeuse', 85.23720502853394, ((0, 522), (406, 986))), ('boudon_des_arbres', 83.49056839942932, ((580, 580), (986, 986)))]
-Elapsed time = 68.91772103309631
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 3
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[('anthophore_plumeuse', 86.7413878440857, ((-59, 522), (348, 986)))]
-Elapsed time = 69.12789392471313
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 5
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 68.88824367523193
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 6
-Starting detection
-[]
-Elapsed time = 68.86248922348022
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 5
-Starting detection
-[('boudon_des_arbres', 86.17129921913147, ((522, 580), (928, 986))), ('anthophore_plumeuse', 88.88821005821228, ((0, 522), (406, 986)))]
-Elapsed time = 68.78961634635925
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 4
-Starting detection
-[('boudon_des_arbres', 88.37980031967163, ((580, 580), (986, 986))), ('anthophore_plumeuse', 92.50856637954712, ((-59, 522), (348, 986)))]
-Elapsed time = 68.75704526901245
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 3
-Starting detection
-[('anthophore_plumeuse', 90.73086977005005, ((-59, 522), (348, 986)))]
-Elapsed time = 68.96097159385681
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 2
-Starting detection
-[]
-Elapsed time = 68.88187575340271
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 1
-Starting detection
-[]
-Elapsed time = 70.81529974937439
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[('anthophore_plumeuse', 85.20708680152893, ((0, 580), (348, 986)))]
-Elapsed time = 71.14207696914673
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 68.70021224021912
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[('anthophore_plumeuse', 84.54138040542603, ((0, 522), (348, 986)))]
-Elapsed time = 68.78766584396362
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 70.82095313072205
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 68.8918833732605
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 68.90360760688782
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 3
-Starting detection
-[('anthophore_plumeuse', 85.40006279945374, ((0, 522), (348, 986)))]
-Elapsed time = 68.6107861995697
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 2
-Starting detection
-[]
-Elapsed time = 72.76319718360901
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 1
-Starting detection
-[]
-Elapsed time = 68.90700030326843
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 68.86435031890869
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 68.9734890460968
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 1
-Starting detection
-[]
-Elapsed time = 72.04003119468689
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[('anthophore_plumeuse', 82.64713883399963, ((58, 522), (406, 870)))]
-Elapsed time = 68.90807056427002
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 69.98707628250122
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 5
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 68.85855174064636
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 8
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 68.8058557510376
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 10
-Starting detection
-[]
-Elapsed time = 70.76918339729309
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 9
-Starting detection
-[]
-Elapsed time = 69.0778329372406
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 8
-Starting detection
-[('anthophore_plumeuse', 84.5694363117218, ((58, 522), (406, 870)))]
-Elapsed time = 75.38391494750977
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 7
-Starting detection
-[('anthophore_plumeuse', 84.02554392814636, ((58, 522), (406, 870)))]
-Elapsed time = 72.79135966300964
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 6
-Starting detection
-[]
-Elapsed time = 73.68484568595886
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 5
-Starting detection
-[]
-Elapsed time = 69.06561231613159
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 4
-Starting detection
-[]
-Elapsed time = 70.69515872001648
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 3
-Starting detection
-[]
-Elapsed time = 69.06222462654114
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 2
-Starting detection
-[]
-Elapsed time = 70.03792667388916
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 1
-Starting detection
-[('anthophore_plumeuse', 85.07872223854065, ((58, 522), (406, 870)))]
-Elapsed time = 68.93628096580505
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[('anthophore_plumeuse', 83.56757164001465, ((58, 522), (406, 986)))]
-Elapsed time = 68.65159726142883
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 69.11434292793274
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 3
-Starting detection
-[('anthophore_plumeuse', 84.36101078987122, ((58, 522), (406, 928)))]
-Elapsed time = 70.77838563919067
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 2
-Starting detection
-[]
-Elapsed time = 69.09478402137756
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 1
-Starting detection
-[]
-Elapsed time = 72.59757995605469
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 69.17717790603638
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 68.72908186912537
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[('boudon_des_arbres', 84.46202278137207, ((580, 522), (986, 928)))]
-Elapsed time = 69.23886823654175
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[('boudon_des_arbres', 90.83089232444763, ((580, 580), (1044, 986)))]
-Elapsed time = 68.94724559783936
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 1
-Starting detection
-[]
-Elapsed time = 68.59119629859924
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[('boudon_des_arbres', 82.80277848243713, ((580, 580), (986, 986)))]
-Elapsed time = 69.16795253753662
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 1
-Starting detection
-[]
-Elapsed time = 69.11053419113159
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 68.83824038505554
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 69.14530110359192
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 68.59288763999939
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 68.92244911193848
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 12
-Starting detection
-[]
-Elapsed time = 70.42082166671753
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 11
-Starting detection
-[]
-Elapsed time = 70.72847843170166
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 10
-Starting detection
-[('bourdon_des_jardins', 83.64770412445068, ((522, 580), (928, 986)))]
-Elapsed time = 68.94880962371826
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 9
-Starting detection
-[]
-Elapsed time = 69.11693525314331
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 8
-Starting detection
-[('bourdon_des_jardins', 85.2557122707367, ((522, 580), (928, 986)))]
-Elapsed time = 68.8545241355896
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 7
-Starting detection
-[('bourdon_des_jardins', 82.99354314804077, ((522, 580), (928, 986)))]
-Elapsed time = 68.92563891410828
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 6
-Starting detection
-[]
-Elapsed time = 70.81250953674316
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 5
-Starting detection
-[('boudon_des_arbres', 87.36868500709534, ((580, 522), (1044, 986)))]
-Elapsed time = 72.78669786453247
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 4
-Starting detection
-[]
-Elapsed time = 68.90570878982544
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 3
-Starting detection
-[]
-Elapsed time = 68.89929342269897
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 2
-Starting detection
-[]
-Elapsed time = 72.50324892997742
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 1
-Starting detection
-[('bourdon_des_jardins', 85.37158370018005, ((522, 580), (928, 986)))]
-Elapsed time = 68.84748864173889
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 71.50041699409485
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 70.83489561080933
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 6
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 75.45000624656677
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 17
-Starting detection
-[]
-Elapsed time = 75.36615347862244
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 16
-Starting detection
-[]
-Elapsed time = 74.10412311553955
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 15
-Starting detection
-[]
-Elapsed time = 73.05694818496704
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 14
-Starting detection
-[]
-Elapsed time = 74.68667602539062
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 13
-Starting detection
-[]
-Elapsed time = 71.45637226104736
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 12
-Starting detection
-[]
-Elapsed time = 76.04156565666199
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 11
-Starting detection
-[]
-Elapsed time = 72.8517074584961
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 10
-Starting detection
-[]
-Elapsed time = 72.36625790596008
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 9
-Starting detection
-[]
-Elapsed time = 73.81957197189331
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 8
-Starting detection
-[]
-Elapsed time = 74.32089495658875
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 7
-Starting detection
-[]
-Elapsed time = 75.07606625556946
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 6
-Starting detection
-[]
-Elapsed time = 73.17246770858765
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 5
-Starting detection
-[]
-Elapsed time = 73.53264260292053
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 4
-Starting detection
-[]
-Elapsed time = 74.0339925289154
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 3
-Starting detection
-[]
-Elapsed time = 73.11077046394348
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 2
-Starting detection
-[]
-Elapsed time = 72.78604173660278
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 1
-Starting detection
-[]
-Elapsed time = 69.91667318344116
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 74.30914163589478
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 71.14310717582703
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 77
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 74.12588882446289
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 94
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 73.33349514007568
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 94
-Starting detection
-[]
-Elapsed time = 71.76870131492615
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 93
-Starting detection
-[]
-Elapsed time = 69.30508255958557
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 92
-Starting detection
-[]
-Elapsed time = 70.77031970024109
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 91
-Starting detection
-[]
-Elapsed time = 70.80647349357605
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 90
-Starting detection
-[('boudon_des_arbres', 83.53453874588013, ((580, 580), (1044, 986)))]
-Elapsed time = 72.72560048103333
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 89
-Starting detection
-[]
-Elapsed time = 76.13293862342834
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 88
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 69.2481198310852
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 88
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[('boudon_des_arbres', 86.2149715423584, ((522, 580), (986, 986)))]
-Elapsed time = 74.1226544380188
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 92
-Starting detection
-[]
-Elapsed time = 77.15644788742065
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 91
-Starting detection
-[]
-Elapsed time = 71.92904281616211
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 90
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[('bourdon_des_jardins', 87.29485273361206, ((580, 580), (1044, 986)))]
-Elapsed time = 71.18321347236633
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 98
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 71.86677384376526
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 106
-Starting detection
-[]
-Elapsed time = 75.96409559249878
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 105
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 77.00938439369202
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 115
-Starting detection
-[]
-Elapsed time = 74.7194139957428
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 114
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 75.36925268173218
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 114
-Starting detection
-[]
-Elapsed time = 77.85595345497131
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 113
-Starting detection
-[]
-Elapsed time = 77.10345602035522
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 112
-Starting detection
-[]
-Elapsed time = 72.30354619026184
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 111
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 78.64197325706482
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 119
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 78.37176442146301
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 120
-Starting detection
-[('boudon_des_arbres', 83.10183882713318, ((522, 522), (986, 986)))]
-Elapsed time = 77.18068051338196
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 119
-Starting detection
-[]
-Elapsed time = 71.3165590763092
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 118
-Starting detection
-[]
-Elapsed time = 75.52465081214905
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 117
-Starting detection
-[('bourdon_des_jardins', 88.13625574111938, ((522, 522), (986, 928)))]
-Elapsed time = 76.05218982696533
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 116
-Starting detection
-[]
-Elapsed time = 72.73838639259338
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 115
-Starting detection
-[]
-Elapsed time = 77.47413539886475
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 114
-Starting detection
-[]
-Elapsed time = 75.46507453918457
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 113
-Starting detection
-[('bourdon_des_jardins', 85.47384738922119, ((464, 464), (986, 928)))]
-Elapsed time = 75.55237793922424
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 112
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[('boudon_des_arbres', 84.27128791809082, ((522, 580), (986, 986)))]
-Elapsed time = 74.04835224151611
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 117
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 77.84080386161804
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 117
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 72.0811812877655
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 120
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 75.09305667877197
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 124
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 78.28079724311829
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 125
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 75.39750337600708
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 126
-Starting detection
-[]
-Elapsed time = 75.96912884712219
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 125
-Starting detection
-[('bourdon_des_jardins', 89.88277316093445, ((522, 580), (986, 986)))]
-Elapsed time = 80.56448030471802
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 124
-Starting detection
-[('bourdon_des_jardins', 87.95242309570312, ((464, 522), (1044, 928)))]
-Elapsed time = 77.02382230758667
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 123
-Starting detection
-[('bourdon_des_jardins', 87.34646439552307, ((464, 522), (986, 928)))]
-Elapsed time = 75.2893443107605
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 122
-Starting detection
-[]
-Elapsed time = 73.6487488746643
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 121
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 76.21034669876099
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 121
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 73.5957612991333
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 123
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 79.02245354652405
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 123
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 79.4865608215332
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 124
-Starting detection
-[]
-Elapsed time = 74.6704592704773
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 123
-Starting detection
-[]
-Elapsed time = 72.81710052490234
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 122
-Starting detection
-[]
-Elapsed time = 73.62239289283752
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 121
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
 [INFO] detection_proc - *** Movement detected ***
 [INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 77.07157278060913
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 124
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
 [INFO] detection_proc - *** Movement detected ***
 [INFO] detection_proc - *** Movement detected ***
 [INFO] detection_proc - *** Movement detected ***
 [INFO] detection_proc - *** Movement detected ***
 [INFO] detection_proc - *** Movement detected ***
 [INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 79.61822319030762
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 134
-Starting detection
-[]
-Elapsed time = 76.55558562278748
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 133
-Starting detection
-[]
-Elapsed time = 76.35212683677673
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 132
-Starting detection
-[]
-Elapsed time = 76.79969334602356
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 131
-Starting detection
-[]
-Elapsed time = 76.76261758804321
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 130
-Starting detection
-[]
-Elapsed time = 76.46032547950745
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 129
-Starting detection
-[]
-Elapsed time = 76.01625680923462
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 128
-Starting detection
-[]
-Elapsed time = 76.05544400215149
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 127
-Starting detection
-[]
-Elapsed time = 71.87137913703918
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 126
-Starting detection
-[]
-Elapsed time = 75.92937636375427
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 125
-Starting detection
-[]
-Elapsed time = 75.90707898139954
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 124
-Starting detection
-[]
-Elapsed time = 72.27901649475098
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 123
-Starting detection
-[]
-Elapsed time = 74.22808909416199
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 122
-Starting detection
-[]
-Elapsed time = 72.44636058807373
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 121
-Starting detection
-[]
-Elapsed time = 71.75459408760071
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 120
-Starting detection
-[]
-Elapsed time = 71.93039011955261
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 119
 [INFO] detection_proc - *** Movement detected ***
 [INFO] detection_proc - *** Movement detected ***
 [INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 69.98915481567383
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 121
-Starting detection
-[]
-Elapsed time = 73.44522070884705
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 120
-Starting detection
-[]
-Elapsed time = 75.82891082763672
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 119
-Starting detection
-[]
-Elapsed time = 76.25113916397095
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 118
 [INFO] detection_proc - *** Movement detected ***
 [INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 74.15559530258179
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 119
 [INFO] detection_proc - *** Movement detected ***
 [INFO] detection_proc - *** Movement detected ***
 [INFO] detection_proc - *** Movement detected ***
 [INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 71.85514760017395
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 122
-Starting detection
-[]
-Elapsed time = 72.92893981933594
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 121
-Starting detection
-[]
-Elapsed time = 71.69064998626709
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 120
 [INFO] detection_proc - *** Movement detected ***
 [INFO] detection_proc - *** Movement detected ***
 [INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 70.62367606163025
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 122
-Starting detection
-[]
-Elapsed time = 74.78354048728943
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 121
-Starting detection
-[]
-Elapsed time = 74.99602842330933
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 120
 [INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 71.69190311431885
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 120
 [INFO] detection_proc - *** Movement detected ***
 [INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 71.17469429969788
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 121
 [INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 72.7379322052002
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 121
-Starting detection
-[]
-Elapsed time = 72.02435731887817
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 120
-Starting detection
-[]
-Elapsed time = 71.05375075340271
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 119
-Starting detection
-[]
-Elapsed time = 72.82301735877991
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 118
 [INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 72.35554027557373
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 118
-Starting detection
-[]
-Elapsed time = 73.11296129226685
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 117
 [INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 77.55056047439575
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 117
-Starting detection
-[]
-Elapsed time = 70.98712158203125
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 116
-Starting detection
-[]
-Elapsed time = 72.54344367980957
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 115
 [INFO] detection_proc - *** Movement detected ***
 [INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 73.04690837860107
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 116
-Starting detection
-[]
-Elapsed time = 75.42327666282654
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 115
-Starting detection
-[]
-Elapsed time = 75.20078635215759
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 114
-Starting detection
-[]
-Elapsed time = 76.34257578849792
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 113
-Starting detection
-[]
-Elapsed time = 73.8086633682251
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 112
 [INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 72.58411717414856
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 112
-Starting detection
-[]
-Elapsed time = 70.31622219085693
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 111
-Starting detection
-[]
-Elapsed time = 73.06362915039062
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 110
-Starting detection
-[]
-Elapsed time = 70.89891505241394
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 109
-Starting detection
-[]
-Elapsed time = 75.10463786125183
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 108
-Starting detection
-[]
-Elapsed time = 71.84407234191895
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 107
 [INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 74.4498839378357
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 107
 [INFO] detection_proc - *** Movement detected ***
 [INFO] detection_proc - *** Movement detected ***
 [INFO] detection_proc - *** Movement detected ***
 [INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 70.71268653869629
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 110
-Starting detection
-[]
-Elapsed time = 70.53084993362427
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 109
-Starting detection
-[]
-Elapsed time = 70.6530647277832
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 108
-Starting detection
-[]
-Elapsed time = 70.67936515808105
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 107
-Starting detection
-[]
-Elapsed time = 70.76491785049438
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 106
-Starting detection
-[]
-Elapsed time = 70.85718560218811
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 105
-Starting detection
-[]
-Elapsed time = 72.66923332214355
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 104
-Starting detection
-[]
-Elapsed time = 69.97102546691895
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 103
-Starting detection
-[]
-Elapsed time = 72.80711078643799
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 102
 [INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 71.64896368980408
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 102
-Starting detection
-[]
-Elapsed time = 72.12878918647766
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 101
-Starting detection
-[]
-Elapsed time = 72.72580599784851
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 100
-Starting detection
-[]
-Elapsed time = 73.45785665512085
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 99
-Starting detection
-[]
-Elapsed time = 75.41957473754883
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 98
-Starting detection
-[]
-Elapsed time = 71.5257830619812
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 97
-Starting detection
-[]
-Elapsed time = 73.40244555473328
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 96
 [INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 71.49779915809631
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 96
-Starting detection
-[]
-Elapsed time = 71.37924528121948
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 95
 [INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 71.73513603210449
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 95
-Starting detection
-[]
-Elapsed time = 72.87477564811707
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 94
 [INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 74.15018844604492
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 94
-Starting detection
-[]
-Elapsed time = 75.27946925163269
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 93
-Starting detection
-[]
-Elapsed time = 76.67437863349915
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 92
 [INFO] detection_proc - *** Movement detected ***
 [INFO] detection_proc - *** Movement detected ***
 [INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 77.92073774337769
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 94
 [INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 73.7926094532013
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 94
 [INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 75.6238272190094
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 94
-Starting detection
-[]
-Elapsed time = 71.75162100791931
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 93
-Starting detection
-[]
-Elapsed time = 73.49547243118286
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 92
 [INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 75.09404850006104
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 92
-Starting detection
-[]
-Elapsed time = 71.616770029068
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 91
-Starting detection
-[]
-Elapsed time = 73.39626693725586
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 90
-Starting detection
-[]
-Elapsed time = 72.59331488609314
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 89
-Starting detection
-[]
-Elapsed time = 71.26165246963501
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 88
-Starting detection
-[]
-Elapsed time = 72.08005619049072
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 87
-Starting detection
-[]
-Elapsed time = 76.15806913375854
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 86
-Starting detection
-[]
-Elapsed time = 75.27493739128113
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 85
-Starting detection
-[]
-Elapsed time = 71.72019362449646
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 84
-Starting detection
-[]
-Elapsed time = 75.8344464302063
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 83
-Starting detection
-[]
-Elapsed time = 70.42580342292786
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 82
-Starting detection
-[]
-Elapsed time = 73.19539642333984
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 81
-Starting detection
-[]
-Elapsed time = 71.4297399520874
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 80
-Starting detection
-[]
-Elapsed time = 71.7237401008606
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 79
-Starting detection
-[]
-Elapsed time = 75.17501735687256
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 78
-Starting detection
-[]
-Elapsed time = 71.43786764144897
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 77
-Starting detection
-[]
-Elapsed time = 74.19275045394897
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 76
-Starting detection
-[]
-Elapsed time = 75.42789554595947
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 75
-Starting detection
-[]
-Elapsed time = 72.55603885650635
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 74
-Starting detection
-[]
-Elapsed time = 72.6753659248352
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 73
-Starting detection
-[]
-Elapsed time = 73.95326113700867
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 72
-Starting detection
-[]
-Elapsed time = 69.98138093948364
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 71
-Starting detection
-[]
-Elapsed time = 75.99320816993713
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 70
-Starting detection
-[]
-Elapsed time = 75.69435834884644
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 69
-Starting detection
-[]
-Elapsed time = 73.92462539672852
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 68
-Starting detection
-[]
-Elapsed time = 76.071786403656
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 67
-Starting detection
-[]
-Elapsed time = 72.35815024375916
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 66
-Starting detection
-[]
-Elapsed time = 74.29266691207886
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 65
-Starting detection
-[]
-Elapsed time = 75.07310891151428
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 64
-Starting detection
-[]
-Elapsed time = 73.82775354385376
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 63
-Starting detection
-[]
-Elapsed time = 71.56906843185425
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 62
-Starting detection
-[]
-Elapsed time = 73.68097233772278
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 61
-Starting detection
-[]
-Elapsed time = 75.96014761924744
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 60
-Starting detection
-[]
-Elapsed time = 73.64196300506592
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 59
-Starting detection
-[]
-Elapsed time = 75.30678367614746
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 58
-Starting detection
-[]
-Elapsed time = 73.611013174057
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 57
-Starting detection
-[]
-Elapsed time = 74.075115442276
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 56
-Starting detection
-[]
-Elapsed time = 72.7837610244751
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 55
-Starting detection
-[]
-Elapsed time = 77.4600293636322
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 54
-Starting detection
-[]
-Elapsed time = 76.47070002555847
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 53
-Starting detection
-[]
-Elapsed time = 72.18823909759521
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 52
 [INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 72.34136009216309
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 52
 [INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 75.25314259529114
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 52
-Starting detection
-[]
-Elapsed time = 74.46186780929565
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 51
-Starting detection
-[]
-Elapsed time = 72.68502306938171
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 50
-Starting detection
-[]
-Elapsed time = 74.14536380767822
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 49
-Starting detection
-[]
-Elapsed time = 71.94712567329407
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 48
 Starting detection
 []
-Elapsed time = 78.7850112915039
+Elapsed time = 79.09522438049316
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 47
 Starting detection
 []
-Elapsed time = 77.14811491966248
+Elapsed time = 75.4160647392273
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 46
 Starting detection
 []
-Elapsed time = 72.33745861053467
+Elapsed time = 78.91525769233704
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 45
 Starting detection
 []
-Elapsed time = 72.38539409637451
+Elapsed time = 73.2186541557312
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 44
 Starting detection
 []
-Elapsed time = 73.97027111053467
+Elapsed time = 77.97581958770752
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 43
 Starting detection
 []
-Elapsed time = 72.99352693557739
+Elapsed time = 73.51941871643066
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 42
 Starting detection
 []
-Elapsed time = 72.43087983131409
+Elapsed time = 74.48294281959534
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 41
 Starting detection
 []
-Elapsed time = 72.81740427017212
+Elapsed time = 72.53284907341003
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 40
 Starting detection
 []
-Elapsed time = 75.07373237609863
+Elapsed time = 74.43577933311462
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 39
 Starting detection
 []
-Elapsed time = 70.98661732673645
+Elapsed time = 72.96920990943909
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 38
 Starting detection
 []
-Elapsed time = 77.8482346534729
+Elapsed time = 75.00008988380432
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 37
 Starting detection
 []
-Elapsed time = 78.14349842071533
+Elapsed time = 69.86159682273865
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 36
 Starting detection
 []
-Elapsed time = 73.64783573150635
+Elapsed time = 76.00447916984558
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 35
 Starting detection
 []
-Elapsed time = 76.95059537887573
+Elapsed time = 71.05314803123474
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 34
 Starting detection
 []
-Elapsed time = 72.14360928535461
+Elapsed time = 72.64383482933044
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 33
 Starting detection
 []
-Elapsed time = 72.47820091247559
+Elapsed time = 71.81490349769592
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 32
 Starting detection
 []
-Elapsed time = 76.52262997627258
+Elapsed time = 70.77610349655151
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 31
 Starting detection
 []
-Elapsed time = 76.76906180381775
+Elapsed time = 69.56611633300781
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 30
 Starting detection
 []
-Elapsed time = 70.82103157043457
+Elapsed time = 71.49731469154358
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 29
 Starting detection
 []
-Elapsed time = 72.64072394371033
+Elapsed time = 72.65374875068665
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 28
 Starting detection
 []
-Elapsed time = 73.57019019126892
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 27
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 71.58069658279419
+Elapsed time = 74.27393436431885
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 27
 Starting detection
 []
-Elapsed time = 73.92122220993042
+Elapsed time = 72.35785269737244
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 26
 Starting detection
 []
-Elapsed time = 76.84439659118652
+Elapsed time = 70.05634260177612
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 25
 Starting detection
 []
-Elapsed time = 72.16574239730835
+Elapsed time = 70.05428886413574
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 24
 Starting detection
 []
-Elapsed time = 71.80562925338745
+Elapsed time = 71.39631223678589
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 23
 Starting detection
 []
-Elapsed time = 72.12955522537231
+Elapsed time = 72.16612982749939
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 22
 Starting detection
 []
-Elapsed time = 74.04585552215576
+Elapsed time = 73.83004879951477
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 21
 Starting detection
 []
-Elapsed time = 75.02940392494202
+Elapsed time = 71.01434540748596
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 20
 Starting detection
 []
-Elapsed time = 71.99040389060974
+Elapsed time = 73.34229731559753
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 19
 Starting detection
 []
-Elapsed time = 73.63621830940247
+Elapsed time = 71.27140688896179
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 18
 Starting detection
 []
-Elapsed time = 72.72801685333252
+Elapsed time = 73.11687874794006
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 17
 Starting detection
 []
-Elapsed time = 71.60499668121338
+Elapsed time = 71.42134070396423
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 16
 Starting detection
 []
-Elapsed time = 74.28217840194702
+Elapsed time = 71.53693103790283
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 15
 Starting detection
 []
-Elapsed time = 75.40423941612244
+Elapsed time = 70.35028791427612
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 14
 Starting detection
 []
-Elapsed time = 74.75407075881958
+Elapsed time = 71.73431038856506
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 13
 Starting detection
 []
-Elapsed time = 71.95397973060608
+Elapsed time = 72.11548280715942
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 12
 Starting detection
 []
-Elapsed time = 72.25278902053833
+Elapsed time = 71.56441760063171
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 11
 Starting detection
 []
-Elapsed time = 74.2842128276825
+Elapsed time = 72.07099771499634
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 10
+Starting detection
+[]
+Elapsed time = 71.58192229270935
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 9
+Starting detection
+[]
+Elapsed time = 73.54846572875977
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 8
+Starting detection
+[]
+Elapsed time = 71.2177746295929
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 7
+Starting detection
+[]
+Elapsed time = 71.2081868648529
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 6
+Starting detection
+[]
+Elapsed time = 72.17547154426575
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 5
+Starting detection
+[]
+Elapsed time = 72.52260947227478
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 4
+Starting detection
+[]
+Elapsed time = 76.13754463195801
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 3
+Starting detection
+[]
+Elapsed time = 70.78922963142395
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 2
+Starting detection
+[]
+Elapsed time = 73.21758890151978
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 1
+Starting detection
+[]
+Elapsed time = 70.30823636054993
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 0
+[INFO] detection_proc - *** Movement detected ***
+Starting detection
+[]
+Elapsed time = 75.50676989555359
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 0
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+Starting detection
+[]
+Elapsed time = 73.86503648757935
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 6
+Starting detection
+[]
+Elapsed time = 71.77211308479309
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 5
+Starting detection
+[]
+Elapsed time = 71.18091917037964
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 4
+Starting detection
+[]
+Elapsed time = 72.35992789268494
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 3
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+Starting detection
+[]
+Elapsed time = 69.8383891582489
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 6
+Starting detection
+[]
+Elapsed time = 69.74656867980957
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 5
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+Starting detection
+[]
+Elapsed time = 72.92794060707092
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 7
+Starting detection
+[]
+Elapsed time = 71.22394251823425
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 6
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+Starting detection
+[]
+Elapsed time = 70.76338458061218
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 7
+Starting detection
+[]
+Elapsed time = 70.50587868690491
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 6
+Starting detection
+[]
+Elapsed time = 72.39852833747864
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 5
+Starting detection
+[]
+Elapsed time = 73.80106973648071
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 4
+Starting detection
+[]
+Elapsed time = 71.14821743965149
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 3
+Starting detection
+[]
+Elapsed time = 74.57773113250732
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 2
+Starting detection
+[]
+Elapsed time = 68.37678456306458
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 1
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+Starting detection
+[]
+Elapsed time = 70.6148898601532
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 2
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+Starting detection
+[]
+Elapsed time = 73.2272515296936
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 3
+[INFO] detection_proc - *** Movement detected ***
+Starting detection
+[]
+Elapsed time = 70.2652530670166
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 3
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+Starting detection
+[]
+Elapsed time = 72.70809674263
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 8
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+Starting detection
+[]
+Elapsed time = 70.0932068824768
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 24
+Starting detection
+[]
+Elapsed time = 72.56735229492188
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 23
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+Starting detection
+[]
+Elapsed time = 70.1664776802063
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 28
+Starting detection
+[]
+Elapsed time = 69.32874274253845
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 27
+Starting detection
+[]
+Elapsed time = 70.930255651474
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 26
+Starting detection
+[]
+Elapsed time = 70.52877116203308
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 25
+Starting detection
+[]
+Elapsed time = 73.67164492607117
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 24
+Starting detection
+[]
+Elapsed time = 73.1259343624115
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 23
+Starting detection
+[]
+Elapsed time = 72.31193470954895
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 22
+Starting detection
+[]
+Elapsed time = 72.24260544776917
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 21
+Starting detection
+[]
+Elapsed time = 72.10445427894592
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 20
+Starting detection
+[]
+Elapsed time = 72.36458945274353
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 19
+Starting detection
+[]
+Elapsed time = 69.67022442817688
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 18
+Starting detection
+[]
+Elapsed time = 68.11695671081543
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 17
+Starting detection
+[]
+Elapsed time = 71.19156837463379
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 16
+Starting detection
+[]
+Elapsed time = 70.37986445426941
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 15
+Starting detection
+[]
+Elapsed time = 72.23353362083435
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 14
+Starting detection
+[]
+Elapsed time = 71.15222644805908
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 13
+Starting detection
+[]
+Elapsed time = 69.65998363494873
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 12
+Starting detection
+[]
+Elapsed time = 68.41004157066345
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 11
+Starting detection
+[]
+Elapsed time = 71.64838290214539
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 10
+Starting detection
+[]
+Elapsed time = 74.44221425056458
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 9
+Starting detection
+[]
+Elapsed time = 74.95626950263977
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 8
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+Starting detection
+[]
+Elapsed time = 70.41593956947327
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 10
 [INFO] detection_proc - *** Movement detected ***
@@ -1920,11 +582,17 @@ Elapsed time = 74.2842128276825
 [INFO] detection_proc - *** Movement detected ***
 [INFO] detection_proc - *** Movement detected ***
 [INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
 Starting detection
 []
-Elapsed time = 73.2030565738678
+Elapsed time = 71.9665014743805
 [INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 16
+[INFO] processing_proc - number of frames waiting to be processed: 20
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
 [INFO] detection_proc - *** Movement detected ***
 [INFO] detection_proc - *** Movement detected ***
 [INFO] detection_proc - *** Movement detected ***
@@ -1937,9 +605,36 @@ Elapsed time = 73.2030565738678
 [INFO] detection_proc - *** Movement detected ***
 Starting detection
 []
-Elapsed time = 73.0301399230957
+Elapsed time = 74.24493455886841
 [INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 25
+[INFO] processing_proc - number of frames waiting to be processed: 31
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
 [INFO] detection_proc - *** Movement detected ***
 [INFO] detection_proc - *** Movement detected ***
 [INFO] detection_proc - *** Movement detected ***
@@ -1949,528 +644,511 @@ Elapsed time = 73.0301399230957
 [INFO] detection_proc - *** Movement detected ***
 Starting detection
 []
-Elapsed time = 70.84505128860474
+Elapsed time = 71.88885760307312
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 64
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+Starting detection
+[]
+Elapsed time = 68.15157127380371
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 82
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+[INFO] detection_proc - *** Movement detected ***
+Starting detection
+[]
+Elapsed time = 71.20369148254395
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 90
+[INFO] detection_proc - *** Movement detected ***
+Starting detection
+[]
+Elapsed time = 69.99901342391968
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 90
+Starting detection
+[]
+Elapsed time = 72.06525039672852
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 89
+Starting detection
+[]
+Elapsed time = 69.30821919441223
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 88
+Starting detection
+[]
+Elapsed time = 70.86154246330261
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 87
+Starting detection
+[]
+Elapsed time = 70.09663534164429
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 86
+Starting detection
+[]
+Elapsed time = 70.27388787269592
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 85
+Starting detection
+[]
+Elapsed time = 71.92995882034302
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 84
+Starting detection
+[]
+Elapsed time = 70.2375373840332
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 83
+Starting detection
+[]
+Elapsed time = 72.27348589897156
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 82
+Starting detection
+[]
+Elapsed time = 69.95878267288208
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 81
+Starting detection
+[]
+Elapsed time = 68.5979552268982
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 80
+Starting detection
+[]
+Elapsed time = 72.59497094154358
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 79
+Starting detection
+[]
+Elapsed time = 71.11355209350586
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 78
+Starting detection
+[]
+Elapsed time = 72.48071575164795
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 77
+Starting detection
+[]
+Elapsed time = 72.98252296447754
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 76
+Starting detection
+[]
+Elapsed time = 71.87647151947021
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 75
+Starting detection
+[]
+Elapsed time = 70.48288679122925
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 74
+Starting detection
+[]
+Elapsed time = 70.60270404815674
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 73
+Starting detection
+[]
+Elapsed time = 68.58220219612122
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 72
+Starting detection
+[]
+Elapsed time = 72.27962470054626
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 71
+Starting detection
+[]
+Elapsed time = 72.49194693565369
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 70
+Starting detection
+[]
+Elapsed time = 72.52516198158264
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 69
+Starting detection
+[]
+Elapsed time = 69.31604719161987
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 68
+Starting detection
+[]
+Elapsed time = 70.37106823921204
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 67
+Starting detection
+[]
+Elapsed time = 68.94902014732361
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 66
+Starting detection
+[]
+Elapsed time = 71.66222906112671
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 65
+Starting detection
+[]
+Elapsed time = 71.01139235496521
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 64
+Starting detection
+[]
+Elapsed time = 70.25005626678467
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 63
+Starting detection
+[]
+Elapsed time = 72.0550708770752
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 62
+Starting detection
+[]
+Elapsed time = 71.9182345867157
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 61
+Starting detection
+[]
+Elapsed time = 71.53008508682251
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 60
+Starting detection
+[]
+Elapsed time = 69.0873293876648
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 59
+Starting detection
+[]
+Elapsed time = 70.34977579116821
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 58
+Starting detection
+[]
+Elapsed time = 72.46001672744751
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 57
+Starting detection
+[]
+Elapsed time = 70.43863105773926
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 56
+Starting detection
+[]
+Elapsed time = 74.90252017974854
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 55
+Starting detection
+[]
+Elapsed time = 54.723199129104614
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 54
+Starting detection
+[]
+Elapsed time = 54.93087339401245
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 53
+Starting detection
+[]
+Elapsed time = 58.46945810317993
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 52
+Starting detection
+[]
+Elapsed time = 54.77847504615784
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 51
+Starting detection
+[]
+Elapsed time = 54.93193435668945
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 50
+Starting detection
+[]
+Elapsed time = 56.79938530921936
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 49
+Starting detection
+[]
+Elapsed time = 57.73596167564392
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 48
+Starting detection
+[]
+Elapsed time = 55.16310930252075
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 47
+Starting detection
+[]
+Elapsed time = 54.97134327888489
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 46
+Starting detection
+[]
+Elapsed time = 55.106274366378784
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 45
+Starting detection
+[]
+Elapsed time = 55.41709876060486
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 44
+Starting detection
+[]
+Elapsed time = 52.85516166687012
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 43
+Starting detection
+[]
+Elapsed time = 52.74516797065735
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 42
+Starting detection
+[]
+Elapsed time = 52.98869228363037
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 41
+Starting detection
+[]
+Elapsed time = 53.99872589111328
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 40
+Starting detection
+[]
+Elapsed time = 55.05742001533508
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 39
+Starting detection
+[]
+Elapsed time = 54.79708170890808
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 38
+Starting detection
+[]
+Elapsed time = 54.93571090698242
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 37
+Starting detection
+[]
+Elapsed time = 55.02767848968506
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 36
+Starting detection
+[]
+Elapsed time = 55.16349530220032
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 35
+Starting detection
+[]
+Elapsed time = 57.23397779464722
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 34
+Starting detection
+[]
+Elapsed time = 55.30781602859497
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 33
+Starting detection
+[]
+Elapsed time = 56.30340099334717
+[INFO] processing_proc - starting detection on a new image
+[INFO] processing_proc - number of frames waiting to be processed: 32
+Starting detection
+[]
+Elapsed time = 56.93709707260132
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 31
 Starting detection
 []
-Elapsed time = 71.6230297088623
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 30
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 71.48541784286499
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 30
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 71.48226809501648
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 34
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 73.84580516815186
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 34
-Starting detection
-[]
-Elapsed time = 73.63701295852661
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 33
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 73.89117741584778
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 33
-Starting detection
-[]
-Elapsed time = 72.93400359153748
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 32
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 75.99721765518188
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 32
-Starting detection
-[]
-Elapsed time = 69.61075735092163
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 31
-Starting detection
-[]
-Elapsed time = 69.66762638092041
+Elapsed time = 57.36079382896423
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 30
 Starting detection
 []
-Elapsed time = 69.38177490234375
+Elapsed time = 55.1116259098053
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 29
 Starting detection
 []
-Elapsed time = 71.36254549026489
+Elapsed time = 52.915555238723755
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 28
 Starting detection
 []
-Elapsed time = 73.07774472236633
+Elapsed time = 54.01003384590149
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 27
 Starting detection
 []
-Elapsed time = 73.4600076675415
+Elapsed time = 55.48608064651489
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 26
 Starting detection
 []
-Elapsed time = 71.46980857849121
+Elapsed time = 53.314677715301514
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 25
 Starting detection
 []
-Elapsed time = 69.31366777420044
+Elapsed time = 53.12265706062317
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 24
 Starting detection
 []
-Elapsed time = 71.18846487998962
+Elapsed time = 55.297959327697754
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 23
 Starting detection
 []
-Elapsed time = 69.17587208747864
+Elapsed time = 58.98651838302612
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 22
 Starting detection
 []
-Elapsed time = 69.22160077095032
+Elapsed time = 52.55427885055542
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 21
 Starting detection
 []
-Elapsed time = 70.97139000892639
+Elapsed time = 53.07533669471741
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 20
 Starting detection
 []
-Elapsed time = 69.68828749656677
+Elapsed time = 52.68134069442749
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 19
 Starting detection
 []
-Elapsed time = 70.53954458236694
+Elapsed time = 55.558758020401
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 18
 Starting detection
 []
-Elapsed time = 69.5438003540039
+Elapsed time = 53.69511866569519
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 17
 Starting detection
 []
-Elapsed time = 69.53222894668579
+Elapsed time = 52.66152095794678
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 16
 Starting detection
 []
-Elapsed time = 69.4468183517456
+Elapsed time = 52.56164884567261
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 15
 Starting detection
 []
-Elapsed time = 69.34081077575684
+Elapsed time = 54.99295234680176
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 14
 Starting detection
 []
-Elapsed time = 69.37738275527954
+Elapsed time = 55.14032745361328
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 13
 Starting detection
 []
-Elapsed time = 73.16255903244019
+Elapsed time = 56.074334144592285
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 12
 Starting detection
 []
-Elapsed time = 69.93544101715088
+Elapsed time = 52.85960841178894
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 11
 Starting detection
 []
-Elapsed time = 69.42198157310486
+Elapsed time = 52.693981409072876
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 10
 Starting detection
 []
-Elapsed time = 69.46955347061157
+Elapsed time = 54.74718523025513
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 9
 Starting detection
 []
-Elapsed time = 69.29465579986572
+Elapsed time = 55.14427351951599
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 8
 Starting detection
 []
-Elapsed time = 73.08440780639648
+Elapsed time = 52.87418818473816
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 7
 Starting detection
 []
-Elapsed time = 69.51830625534058
+Elapsed time = 54.98064684867859
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 6
 Starting detection
 []
-Elapsed time = 68.90105819702148
+Elapsed time = 54.954779386520386
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 5
 Starting detection
 []
-Elapsed time = 71.34082007408142
+Elapsed time = 53.79469156265259
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 4
 Starting detection
 []
-Elapsed time = 69.48676490783691
+Elapsed time = 52.78494167327881
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 3
 Starting detection
 []
-Elapsed time = 71.20747780799866
+Elapsed time = 55.27233123779297
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 2
 Starting detection
 []
-Elapsed time = 69.26170682907104
+Elapsed time = 56.62021541595459
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 1
+Process Process-1:
+Traceback (most recent call last):
+  File "/usr/lib/python3.7/multiprocessing/process.py", line 297, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.7/multiprocessing/process.py", line 99, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/pi/Faster_RCNN_for_Open_Images_Dataset_Keras/real_time_libraries.py", line 77, in run_detection
+    for frame in cam.capture_continuous(stream, format="bgr", use_video_port=True):
+  File "/usr/lib/python3/dist-packages/picamera/camera.py", line 1704, in capture_continuous
+    'Timed out waiting for capture to end')
+picamera.exc.PiCameraRuntimeError: Timed out waiting for capture to end
 Starting detection
 []
-Elapsed time = 69.24777293205261
+Elapsed time = 53.61272978782654
 [INFO] processing_proc - starting detection on a new image
 [INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 69.24325275421143
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 73.25524377822876
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 10
-Starting detection
-[]
-Elapsed time = 69.37794828414917
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 9
-Starting detection
-[]
-Elapsed time = 69.50853276252747
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 8
-Starting detection
-[]
-Elapsed time = 71.10587310791016
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 7
-Starting detection
-[]
-Elapsed time = 69.44353532791138
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 6
-Starting detection
-[]
-Elapsed time = 73.2218267917633
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 5
-Starting detection
-[]
-Elapsed time = 69.59142351150513
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 4
-Starting detection
-[]
-Elapsed time = 72.04663062095642
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 3
-Starting detection
-[]
-Elapsed time = 71.17746615409851
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 2
-Starting detection
-[]
-Elapsed time = 71.6194543838501
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 1
-Starting detection
-[]
-Elapsed time = 75.0662112236023
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 73.46254420280457
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 71.54208087921143
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 69.67263507843018
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 69.67114901542664
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 69.53165125846863
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 69.61702156066895
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 1
-Starting detection
-[]
-Elapsed time = 73.17908000946045
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 69.34913730621338
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 69.12424731254578
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 69.62316870689392
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 70.74269461631775
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 72.50382924079895
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 69.44994902610779
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 71.53271007537842
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 69.35513806343079
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 69.0035252571106
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 71.13565611839294
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 1
-Starting detection
-[]
-Elapsed time = 71.24704360961914
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 73.21966338157654
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 69.5239725112915
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 71.16889786720276
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 1
-Starting detection
-[]
-Elapsed time = 69.60322403907776
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 73.66263031959534
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 71.10314750671387
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 71.18434357643127
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 69.60220551490784
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 0
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 71.4885151386261
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 9
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 73.05406212806702
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 9
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 71.73231387138367
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 9
-Starting detection
-[]
-Elapsed time = 70.45124077796936
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 8
-Starting detection
-[]
-Elapsed time = 75.06853294372559
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 7
-Starting detection
-[]
-Elapsed time = 76.80542016029358
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 6
-Starting detection
-[]
-Elapsed time = 74.14960932731628
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 5
-Starting detection
-[]
-Elapsed time = 70.91157460212708
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 4
-Starting detection
-[]
-Elapsed time = 70.70680785179138
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 3
-[INFO] detection_proc - *** Movement detected ***
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 75.56186056137085
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 4
-[INFO] detection_proc - *** Movement detected ***
-Starting detection
-[]
-Elapsed time = 71.95971131324768
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 4
-Starting detection
-[]
-Elapsed time = 69.4531238079071
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 3
-Starting detection
-[]
-Elapsed time = 71.11356949806213
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 2
-Starting detection
-[]
-Elapsed time = 72.1713650226593
-[INFO] processing_proc - starting detection on a new image
-[INFO] processing_proc - number of frames waiting to be processed: 1
