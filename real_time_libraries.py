@@ -68,7 +68,7 @@ def run_detection(fps, resolution, alpha, min_area, use_motor, C, frame_queue, f
 
     cam = PiCamera()
     cam.resolution = resolution
-    cam.CAPTURE_TIMEOUT = 60 # seconds
+	cam.CAPTURE_TIMEOUT = 60 # seconds
     # cam.framerate = fps # not working for some reason instead we use sleep
     stream = PiRGBArray(cam)
     time.sleep(1.0)
