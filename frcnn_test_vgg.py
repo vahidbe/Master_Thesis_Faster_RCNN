@@ -204,7 +204,8 @@ def draw_box_on_images(noise_reduction, histogram_equalization, gamma_correction
         plt.figure(figsize=(10, 10))
         plt.grid()
         plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
-        plt.savefig('other/box_figure/{}/{}.jpg'.format(processed_directory, str(idx)))
+        filename = filepath.split(".")[0].split("/")[-1].split("\\")[-1]
+        plt.savefig('other/box_figure/{}/{}.jpg'.format(processed_directory, filename))
 
         print(class_mapping)
 
