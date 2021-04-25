@@ -203,7 +203,7 @@ def draw_box_on_images(noise_reduction, histogram_equalization, gamma_correction
         plt.figure(figsize=(10, 10))
         plt.grid()
         plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
-        plt.savefig('other/box_figure/{}.jpg'.format(str(idx)))
+        plt.savefig('other/box_figure/{}/{}.jpg'.format(processed_directory, str(idx)))
 
         print(class_mapping)
 
@@ -265,7 +265,7 @@ def maximise_F_score(precision, recall, threshold):
 
     return round(best_threshold, 3), round(best_F_score, 3), round(best_precision, 3), round(best_recall, 3)
 
-def accuracy():
+def accuracy(noise_reduction, histogram_equalization, gamma_correction):
     if from_csv:
         imgs_record_df = pd.read_csv(imgs_record_path)
         last_row = imgs_record_df.tail(1)
@@ -493,6 +493,11 @@ if __name__ == "__main__":
     parser.add_argument('--gamma_correction', required=False, default="False",
                         metavar="True/False",
                         help="True if you want to apply gamma correction as preprocessing, False otherwise")
+    parser.add_argument('--processed_directory', required=False, default="new_directory",
+                        metavar="directory_name",
+                        help="Name of the directory in which the processed images will be saved when show_images is "
+                             "True") 
+
 
     args = parser.parse_args()
 
@@ -503,6 +508,7 @@ if __name__ == "__main__":
     noise_reduction = eval(args.noise_reduction)
     histogram_equalization = eval(args.histogram_equalization)
     gamma_correction = eval(args.gamma_correction)
+    processed_directory = eval(args.processed_directory)
 
     if use_gpu is True:
         config = tf.compat.v1.ConfigProto()
