@@ -2,6 +2,27 @@ import sklearn.metrics
 
 from libraries import *
 
+def preprocess_img(img, noise_reduction, histogram_equalization, gamma_correction):
+    if noise_reduction is None:
+        pass
+    elif noise_reduction == "box_filter":
+        img = cv2.boxFilter(img, -1, C.noise_reduction_shape, normalize=True)
+    elif noise_reduction == "gaussian":
+        img = cv2.GaussianBlur(img,(7,7), 0)
+
+    if histogram_equalization:
+        img_yuv = cv2.cvtColor(img, cv2.COLOR_BGR2YUV)
+
+        # equalize the histogram of the Y channel
+        img_yuv[:,:,0] = cv2.equalizeHist(img_yuv[:,:,0])
+
+        # convert the YUV image back to RGB format
+        img = cv2.cvtColor(img_yuv, cv2.COLOR_YUV2BGR)
+
+    if gamma_correction:
+        img = adjust_gamma(img, gamma=C.gamma_value)
+
+    return img
 
 def init_models():
     num_features = 512
@@ -41,7 +62,7 @@ def init_models():
     return model_rpn, class_mapping, model_classifier_only
 
 
-def draw_box_on_images():
+def draw_box_on_images(noise_reduction, histogram_equalization, gamma_correction):
     class_to_color = {class_mapping[v]: np.random.randint(0, 255, 3) for v in class_mapping}
 
     if from_csv:
@@ -79,6 +100,8 @@ def draw_box_on_images():
         st = time.time()
 
         img = cv2.imread(filepath)
+
+        img = preprocess_img(img, noise_reduction, histogram_equalization, gamma_correction)
 
         X, ratio = format_img(img, C)
 
@@ -264,6 +287,8 @@ def accuracy():
         filepath = img_data['filepath']
 
         img = cv2.imread(filepath)
+
+        img = preprocess_img(img, noise_reduction, histogram_equalization, gamma_correction)
 
         X, fx, fy = format_img_map(img, C)
 
@@ -459,12 +484,25 @@ if __name__ == "__main__":
     parser.add_argument('--use_gpu', required=False, default="True",
                         metavar="True/False",
                         help="True if you want to run the training on a gpu, False otherwise")
+    parser.add_argument('--noise_reduction', required=False, default='None',
+                        metavar="None/box_filter/gaussian",
+                        help="Noise reduction technique to use as preprocessing")
+    parser.add_argument('--histogram_equalization', required=False, default="False",
+                        metavar="True/False",
+                        help="True if you want to apply histogram equlization as preprocessing, False otherwise")
+    parser.add_argument('--gamma_correction', required=False, default="False",
+                        metavar="True/False",
+                        help="True if you want to apply gamma correction as preprocessing, False otherwise")
+
     args = parser.parse_args()
 
     use_gpu = eval(args.use_gpu)
     from_csv = eval(args.from_csv)
     show_images = eval(args.show_images)
     compute_accuracy = eval(args.compute_accuracy)
+    noise_reduction = eval(args.noise_reduction)
+    histogram_equalization = eval(args.histogram_equalization)
+    gamma_correction = eval(args.gamma_correction)
 
     if use_gpu is True:
         config = tf.compat.v1.ConfigProto()
@@ -502,6 +540,6 @@ if __name__ == "__main__":
     # record_df = plot_some_graphs(C)
     model_rpn, class_mapping, model_classifier_only = init_models()
     if show_images:
-        draw_box_on_images()
+        draw_box_on_images(noise_reduction, histogram_equalization, gamma_correction)
     if compute_accuracy:
-        accuracy()
+        accuracy(noise_reduction, histogram_equalization, gamma_correction)
