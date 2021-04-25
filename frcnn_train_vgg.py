@@ -581,15 +581,15 @@ if __name__ == "__main__":
     #     'gamma_value': [1.5]
     # }
 
-    combinations_model6000_validated = [
-        (False, None, False, False),
-        (False, None, True, True),
-        (False, None, True, False),
+    combinations_model10classes = [
+        #(False, None, False, False),
+        #(False, None, True, True),
+        #(False, None, True, False),
         (False, None, False, True)
     ]
 
     paramNames = list(param.keys())
-    combinations = combinations_model6000_validated
+    combinations = combinations_model10classes
     # combinations = it.product(*(param[Name] for Name in paramNames))
     
     if start_from_last_step:

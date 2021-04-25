@@ -193,7 +193,7 @@ def plot_precision_recall(precision, recall, thresholds, class_name):
     plt.ylabel('Precision')
     plt.xlim([0.0, 1.0])
     plt.ylim([0.0, 1.0])
-    plt.savefig("./graphs/test_{}_prec-rec_{}".format(str(args.model_name), str(class_name)))
+    plt.savefig("./graphs/{}_prec-rec_{}".format(str(args.model_name), str(class_name)))
 
     plt.figure()
     plt.xlabel('Thresholds')
@@ -204,7 +204,7 @@ def plot_precision_recall(precision, recall, thresholds, class_name):
     plt.plot(thresholds, recall[:-1], label='recall')
     plt.legend()
     plt.title('[' + class_name + ']' + ' AP thresholds')
-    plt.savefig("./graphs/test_{}_AP_thresh_{}".format(str(args.model_name), str(class_name)))
+    plt.savefig("./graphs/{}_AP_thresh_{}".format(str(args.model_name), str(class_name)))
 
 def plot_roc(fpr, tpr, class_name, thresholds):
     plt.figure()
@@ -214,7 +214,7 @@ def plot_roc(fpr, tpr, class_name, thresholds):
     plt.ylabel('Precision')
     plt.xlim([0.0, 1.0])
     plt.ylim([0.0, 1.0])
-    plt.savefig("./graphs/test_{}_roc_{}".format(args.model_name, str(class_name)))
+    plt.savefig("./graphs/{}_roc_{}".format(args.model_name, str(class_name)))
 
     # plt.figure()
     # plt.xlabel('Thresholds')
