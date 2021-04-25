@@ -1,0 +1,1871 @@
+2021-04-25 18:38:47.019266: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libnvinfer.so.6'; dlerror: libnvinfer.so.6: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /usr/local/cuda-10.1/lib64:/usr/local/cuda-10.2/lib64
+2021-04-25 18:38:47.019319: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libnvinfer_plugin.so.6'; dlerror: libnvinfer_plugin.so.6: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /usr/local/cuda-10.1/lib64:/usr/local/cuda-10.2/lib64
+2021-04-25 18:38:47.019326: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:30] Cannot dlopen some TensorRT libraries. If you would like to use Nvidia GPU with TensorRT, please make sure the missing libraries mentioned above are installed properly.
+2021-04-25 18:38:47.463765: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2021-04-25 18:38:47.485752: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 3000000000 Hz
+2021-04-25 18:38:47.485997: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55ef22d55370 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2021-04-25 18:38:47.486022: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+2021-04-25 18:38:47.487193: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcuda.so.1
+2021-04-25 18:38:47.551037: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-04-25 18:38:47.551318: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55ef22dd7130 initialized for platform CUDA (this does not guarantee that XLA will be used). Devices:
+2021-04-25 18:38:47.551330: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): GeForce GTX 1660 SUPER, Compute Capability 7.5
+2021-04-25 18:38:47.551442: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-04-25 18:38:47.551628: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1555] Found device 0 with properties: 
+pciBusID: 0000:01:00.0 name: GeForce GTX 1660 SUPER computeCapability: 7.5
+coreClock: 1.83GHz coreCount: 22 deviceMemorySize: 5.80GiB deviceMemoryBandwidth: 312.97GiB/s
+2021-04-25 18:38:47.551761: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.1
+2021-04-25 18:38:47.552587: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10
+2021-04-25 18:38:47.553469: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10
+2021-04-25 18:38:47.553638: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10
+2021-04-25 18:38:47.554525: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10
+2021-04-25 18:38:47.555029: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10
+2021-04-25 18:38:47.556946: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
+2021-04-25 18:38:47.557021: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-04-25 18:38:47.557255: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-04-25 18:38:47.557432: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1697] Adding visible gpu devices: 0
+2021-04-25 18:38:47.557456: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.1
+2021-04-25 18:38:47.557755: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1096] Device interconnect StreamExecutor with strength 1 edge matrix:
+2021-04-25 18:38:47.557764: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1102]      0 
+2021-04-25 18:38:47.557768: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] 0:   N 
+2021-04-25 18:38:47.557827: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-04-25 18:38:47.558027: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-04-25 18:38:47.558214: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1241] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 5342 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1660 SUPER, pci bus id: 0000:01:00.0, compute capability: 7.5)
+2021-04-25 18:38:47.575738: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-04-25 18:38:47.575926: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1555] Found device 0 with properties: 
+pciBusID: 0000:01:00.0 name: GeForce GTX 1660 SUPER computeCapability: 7.5
+coreClock: 1.83GHz coreCount: 22 deviceMemorySize: 5.80GiB deviceMemoryBandwidth: 312.97GiB/s
+2021-04-25 18:38:47.575947: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.1
+2021-04-25 18:38:47.575959: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10
+2021-04-25 18:38:47.575969: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10
+2021-04-25 18:38:47.575979: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10
+2021-04-25 18:38:47.575989: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10
+2021-04-25 18:38:47.575999: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10
+2021-04-25 18:38:47.576009: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
+2021-04-25 18:38:47.576041: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-04-25 18:38:47.576234: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-04-25 18:38:47.576398: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1697] Adding visible gpu devices: 0
+2021-04-25 18:38:47.576673: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-04-25 18:38:47.576848: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1555] Found device 0 with properties: 
+pciBusID: 0000:01:00.0 name: GeForce GTX 1660 SUPER computeCapability: 7.5
+coreClock: 1.83GHz coreCount: 22 deviceMemorySize: 5.80GiB deviceMemoryBandwidth: 312.97GiB/s
+2021-04-25 18:38:47.576864: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.1
+2021-04-25 18:38:47.576875: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10
+2021-04-25 18:38:47.576889: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10
+2021-04-25 18:38:47.576899: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10
+2021-04-25 18:38:47.576908: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10
+2021-04-25 18:38:47.576918: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10
+2021-04-25 18:38:47.576928: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
+2021-04-25 18:38:47.576960: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-04-25 18:38:47.577152: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-04-25 18:38:47.577316: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1697] Adding visible gpu devices: 0
+2021-04-25 18:38:47.577328: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1096] Device interconnect StreamExecutor with strength 1 edge matrix:
+2021-04-25 18:38:47.577332: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1102]      0 
+2021-04-25 18:38:47.577335: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] 0:   N 
+2021-04-25 18:38:47.577378: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-04-25 18:38:47.577580: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-04-25 18:38:47.577751: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1241] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 5342 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1660 SUPER, pci bus id: 0000:01:00.0, compute capability: 7.5)
+2021-04-25 18:38:48.472877: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
+2021-04-25 18:38:49.150943: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10
+2021-04-25 18:38:49.341186: W tensorflow/core/common_runtime/bfc_allocator.cc:309] Garbage collection: deallocate free memory regions (i.e., allocations) so that we can re-allocate a larger region to avoid OOM due to memory fragmentation. If you see this message frequently, you are running near the threshold of the available device memory and re-allocation may incur great performance overhead. You may try smaller batch sizes to observe the performance impact. Set TF_ENABLE_GPU_GARBAGE_COLLECTION=false if you'd like to disable this feature.
+Successfully created the directory model6000_validated-phase1-False_None_True_True
+Loading weights from ./model/model6000_validated-phase2.hdf5
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+359
+Progression : 1/359
+trap_results/raw_22-04-2021_11-29-40.jpg
+Elapsed time = 2.0592193603515625
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 2/359
+trap_results/raw_19-04-2021_12-27-40.jpg
+Elapsed time = 0.33612608909606934
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 3/359
+trap_results/raw_12-04-2021_08-52-43.jpg
+Elapsed time = 0.34272050857543945
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 4/359
+trap_results/raw_19-04-2021_12-29-24.jpg
+Elapsed time = 0.2830226421356201
+[('bombus_hypnorum', 92.03658103942871)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 5/359
+trap_results/raw_19-04-2021_12-20-18.jpg
+Elapsed time = 0.3062610626220703
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 6/359
+trap_results/raw_12-04-2021_08-48-06.jpg
+Elapsed time = 0.28336167335510254
+[('bombus_hypnorum', 91.91084504127502)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 7/359
+trap_results/raw_19-04-2021_12-19-26.jpg
+Elapsed time = 0.300778865814209
+[('bombus_hypnorum', 91.80664420127869)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 8/359
+trap_results/raw_18-04-2021_14-25-37.jpg
+Elapsed time = 0.30341410636901855
+[('apis_mellifera', 96.17618322372437)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 9/359
+trap_results/raw_19-04-2021_12-29-26.jpg
+Elapsed time = 0.29715657234191895
+[('bombus_hypnorum', 92.33986735343933)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 10/359
+trap_results/raw_18-04-2021_20-05-56.jpg
+Elapsed time = 0.3083474636077881
+[('bombus_hypnorum', 87.18186616897583)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 11/359
+trap_results/raw_19-04-2021_12-25-03.jpg
+Elapsed time = 0.27945637702941895
+[('bombus_hypnorum', 95.65824270248413)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 12/359
+trap_results/raw_19-04-2021_12-31-43.jpg
+Elapsed time = 0.2796630859375
+[('bombus_hortorum', 93.84248852729797)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 13/359
+trap_results/raw_19-04-2021_12-29-44.jpg
+Elapsed time = 0.28170156478881836
+[('bombus_hypnorum', 83.15871357917786)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 14/359
+trap_results/raw_19-04-2021_12-29-23.jpg
+Elapsed time = 0.37611913681030273
+[('bombus_hypnorum', 95.68309783935547)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 15/359
+trap_results/raw_22-04-2021_08-38-35.jpg
+Elapsed time = 0.28752946853637695
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 16/359
+trap_results/raw_19-04-2021_12-29-38.jpg
+Elapsed time = 0.2802760601043701
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 17/359
+trap_results/raw_19-04-2021_12-19-48.jpg
+Elapsed time = 0.2872636318206787
+[('anthophora_plumipes', 91.49947762489319)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 18/359
+trap_results/raw_19-04-2021_12-20-32.jpg
+Elapsed time = 0.3066716194152832
+[('bombus_hypnorum', 89.28345441818237)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 19/359
+trap_results/raw_19-04-2021_12-19-16.jpg
+Elapsed time = 0.30481743812561035
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 20/359
+trap_results/raw_19-04-2021_12-25-36.jpg
+Elapsed time = 0.2901132106781006
+[('bombus_hypnorum', 96.3284969329834)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 21/359
+trap_results/raw_19-04-2021_12-19-45.jpg
+Elapsed time = 0.29118895530700684
+[('bombus_hypnorum', 82.35355615615845), ('anthophora_plumipes', 86.78427338600159)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 22/359
+trap_results/raw_14-04-2021_11-49-27.jpg
+Elapsed time = 0.307206392288208
+[('bombus_hypnorum', 94.34679746627808)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 23/359
+trap_results/raw_19-04-2021_12-25-34.jpg
+Elapsed time = 0.3426828384399414
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 24/359
+trap_results/raw_20-04-2021_12-05-01.jpg
+Elapsed time = 0.2846958637237549
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 25/359
+trap_results/raw_19-04-2021_15-49-49.jpg
+Elapsed time = 0.37035489082336426
+[('bombus_hypnorum', 97.91679382324219)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 26/359
+trap_results/raw_19-04-2021_12-20-10.jpg
+Elapsed time = 0.29955101013183594
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 27/359
+trap_results/raw_19-04-2021_12-22-56.jpg
+Elapsed time = 0.29489636421203613
+[('bombus_hypnorum', 96.86565399169922)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 28/359
+trap_results/raw_18-04-2021_14-25-33.jpg
+Elapsed time = 0.286243200302124
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 29/359
+trap_results/raw_19-04-2021_12-29-42.jpg
+Elapsed time = 0.2872800827026367
+[('bombus_hypnorum', 90.22784233093262)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 30/359
+trap_results/raw_18-04-2021_14-25-58.jpg
+Elapsed time = 0.32080698013305664
+[('apis_mellifera', 98.00429344177246)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 31/359
+trap_results/raw_14-04-2021_11-50-08.jpg
+Elapsed time = 0.40976381301879883
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 32/359
+trap_results/raw_22-04-2021_13-07-23.jpg
+Elapsed time = 0.2845876216888428
+[('bombus_hypnorum', 97.36807346343994)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 33/359
+trap_results/raw_22-04-2021_11-38-55.jpg
+Elapsed time = 0.2713932991027832
+[('bombus_hypnorum', 92.45357513427734)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 34/359
+trap_results/raw_22-04-2021_12-37-24.jpg
+Elapsed time = 0.30553197860717773
+[('bombus_hypnorum', 96.40629887580872)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 35/359
+trap_results/raw_19-04-2021_12-25-31.jpg
+Elapsed time = 0.31223058700561523
+[('bombus_hypnorum', 91.54701828956604)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 36/359
+trap_results/raw_19-04-2021_12-19-27.jpg
+Elapsed time = 0.28740525245666504
+[('bombus_hypnorum', 83.53692889213562), ('anthophora_plumipes', 84.87791419029236)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 37/359
+trap_results/raw_19-04-2021_12-29-46.jpg
+Elapsed time = 0.33840060234069824
+[('bombus_hypnorum', 92.87133812904358)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 38/359
+trap_results/raw_19-04-2021_12-25-06.jpg
+Elapsed time = 0.29961276054382324
+[('bombus_hypnorum', 96.71911001205444), ('anthophora_plumipes', 84.21565890312195)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 39/359
+trap_results/raw_12-04-2021_08-52-48.jpg
+Elapsed time = 0.2813589572906494
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 40/359
+trap_results/raw_19-04-2021_12-29-49.jpg
+Elapsed time = 0.311159610748291
+[('bombus_hypnorum', 95.00192403793335)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 41/359
+trap_results/raw_19-04-2021_12-20-26.jpg
+Elapsed time = 0.2845027446746826
+[('bombus_hypnorum', 83.89226198196411)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 42/359
+trap_results/raw_19-04-2021_12-18-46.jpg
+Elapsed time = 0.2946314811706543
+[('bombus_hypnorum', 82.9693853855133)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 43/359
+trap_results/raw_19-04-2021_12-29-30.jpg
+Elapsed time = 0.27919840812683105
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 44/359
+trap_results/raw_20-04-2021_11-53-25.jpg
+Elapsed time = 0.2763094902038574
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 45/359
+trap_results/raw_19-04-2021_12-18-51.jpg
+Elapsed time = 0.28093886375427246
+[('bombus_hypnorum', 91.75345301628113)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 46/359
+trap_results/raw_12-04-2021_08-50-22.jpg
+Elapsed time = 0.28299808502197266
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 47/359
+trap_results/raw_22-04-2021_13-53-03.jpg
+Elapsed time = 0.29569387435913086
+[('bombus_hypnorum', 97.44572043418884)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 48/359
+trap_results/raw_14-04-2021_11-50-02.jpg
+Elapsed time = 0.29601073265075684
+[('anthophora_plumipes', 88.84987235069275)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 49/359
+trap_results/raw_19-04-2021_12-29-34.jpg
+Elapsed time = 0.29366230964660645
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 50/359
+trap_results/raw_18-04-2021_14-20-16.jpg
+Elapsed time = 0.28609347343444824
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 51/359
+trap_results/raw_12-04-2021_08-48-20.jpg
+Elapsed time = 0.3259868621826172
+[('bombus_hypnorum', 85.88431477546692)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 52/359
+trap_results/raw_22-04-2021_11-38-19.jpg
+Elapsed time = 0.27746105194091797
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 53/359
+trap_results/raw_19-04-2021_15-49-52.jpg
+Elapsed time = 0.3238403797149658
+[('bombus_hypnorum', 96.44995927810669)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 54/359
+trap_results/raw_19-04-2021_12-29-55.jpg
+Elapsed time = 0.2803671360015869
+[('bombus_hortorum', 82.23596811294556)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 55/359
+trap_results/raw_22-04-2021_09-29-04.jpg
+Elapsed time = 0.3205840587615967
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 56/359
+trap_results/raw_12-04-2021_08-48-07.jpg
+Elapsed time = 0.32860660552978516
+[('bombus_hypnorum', 93.96894574165344)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 57/359
+trap_results/raw_19-04-2021_15-49-57.jpg
+Elapsed time = 0.28919386863708496
+[('bombus_hypnorum', 97.2280740737915)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 58/359
+trap_results/raw_12-04-2021_08-40-30.jpg
+Elapsed time = 0.32795119285583496
+[('bombus_hypnorum', 89.27834033966064)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 59/359
+trap_results/raw_19-04-2021_12-18-48.jpg
+Elapsed time = 0.28087878227233887
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 60/359
+trap_results/raw_19-04-2021_12-25-20.jpg
+Elapsed time = 0.29021286964416504
+[('bombus_hypnorum', 96.0310161113739), ('anthophora_plumipes', 83.54775309562683)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 61/359
+trap_results/raw_18-04-2021_14-25-57.jpg
+Elapsed time = 0.2819676399230957
+[('apis_mellifera', 89.50949907302856)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 62/359
+trap_results/raw_19-04-2021_12-25-24.jpg
+Elapsed time = 0.27466273307800293
+[('bombus_hypnorum', 93.87257099151611)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 63/359
+trap_results/raw_19-04-2021_12-25-17.jpg
+Elapsed time = 0.29933738708496094
+[('bombus_hypnorum', 95.49986720085144)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 64/359
+trap_results/raw_19-04-2021_12-19-00.jpg
+Elapsed time = 0.3011462688446045
+[('bombus_hypnorum', 90.45009016990662)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 65/359
+trap_results/raw_18-04-2021_14-20-11.jpg
+Elapsed time = 0.3185436725616455
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 66/359
+trap_results/raw_19-04-2021_12-19-15.jpg
+Elapsed time = 0.2779514789581299
+[('bombus_hypnorum', 90.28943181037903)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 67/359
+trap_results/raw_19-04-2021_15-49-54.jpg
+Elapsed time = 0.3197026252746582
+[('bombus_hypnorum', 98.84631037712097)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 68/359
+trap_results/raw_18-04-2021_20-05-55.jpg
+Elapsed time = 0.29133152961730957
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 69/359
+trap_results/raw_18-04-2021_14-24-27.jpg
+Elapsed time = 0.31276726722717285
+[('apis_mellifera', 96.3204562664032)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 70/359
+trap_results/raw_22-04-2021_13-53-16.jpg
+Elapsed time = 0.3350968360900879
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 71/359
+trap_results/raw_12-04-2021_08-38-41.jpg
+Elapsed time = 0.2992088794708252
+[('bombus_hypnorum', 92.81812310218811)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 72/359
+trap_results/raw_12-04-2021_08-48-03.jpg
+Elapsed time = 0.33649730682373047
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 73/359
+trap_results/raw_19-04-2021_12-20-11.jpg
+Elapsed time = 0.3319392204284668
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 74/359
+trap_results/raw_18-04-2021_14-24-26.jpg
+Elapsed time = 0.2841298580169678
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 75/359
+trap_results/raw_19-04-2021_12-25-22.jpg
+Elapsed time = 0.3136153221130371
+[('bombus_hypnorum', 94.57627534866333)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 76/359
+trap_results/raw_19-04-2021_12-29-33.jpg
+Elapsed time = 0.28803372383117676
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 77/359
+trap_results/raw_19-04-2021_12-19-03.jpg
+Elapsed time = 0.2924973964691162
+[('bombus_hypnorum', 93.18274259567261)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 78/359
+trap_results/raw_19-04-2021_12-25-13.jpg
+Elapsed time = 0.28418517112731934
+[('bombus_hypnorum', 95.5994188785553), ('anthophora_plumipes', 87.33242750167847)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 79/359
+trap_results/raw_14-04-2021_11-50-09.jpg
+Elapsed time = 0.2953944206237793
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 80/359
+trap_results/raw_22-04-2021_11-38-56.jpg
+Elapsed time = 0.29117774963378906
+[('bombus_hypnorum', 96.0922122001648)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 81/359
+trap_results/raw_18-04-2021_14-25-38.jpg
+Elapsed time = 0.30812668800354004
+[('apis_mellifera', 89.93346691131592)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 82/359
+trap_results/raw_19-04-2021_15-50-02.jpg
+Elapsed time = 0.32386112213134766
+[('bombus_hypnorum', 96.17109298706055)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 83/359
+trap_results/raw_14-04-2021_11-50-07.jpg
+Elapsed time = 0.29645729064941406
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 84/359
+trap_results/raw_22-04-2021_13-52-57.jpg
+Elapsed time = 0.31495165824890137
+[('bombus_hypnorum', 96.3707447052002)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 85/359
+trap_results/raw_12-04-2021_08-11-30.jpg
+Elapsed time = 0.28621840476989746
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 86/359
+trap_results/raw_14-04-2021_11-50-05.jpg
+Elapsed time = 0.30075669288635254
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 87/359
+trap_results/raw_22-04-2021_13-07-38.jpg
+Elapsed time = 0.3169209957122803
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 88/359
+trap_results/raw_22-04-2021_09-36-26.jpg
+Elapsed time = 0.2968893051147461
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 89/359
+trap_results/raw_14-04-2021_11-50-01.jpg
+Elapsed time = 0.28783392906188965
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 90/359
+trap_results/raw_19-04-2021_12-23-08.jpg
+Elapsed time = 0.315352201461792
+[('bombus_hypnorum', 95.26290893554688), ('anthophora_plumipes', 87.24780678749084)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 91/359
+trap_results/raw_22-04-2021_09-15-34.jpg
+Elapsed time = 0.2849602699279785
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 92/359
+trap_results/raw_19-04-2021_15-49-50.jpg
+Elapsed time = 0.3356344699859619
+[('bombus_hortorum', 99.49847459793091)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 93/359
+trap_results/raw_20-04-2021_11-53-24.jpg
+Elapsed time = 0.38005995750427246
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 94/359
+trap_results/raw_19-04-2021_12-25-37.jpg
+Elapsed time = 0.2960357666015625
+[('bombus_hypnorum', 91.43447279930115)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 95/359
+trap_results/raw_19-04-2021_12-31-38.jpg
+Elapsed time = 0.41817164421081543
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 96/359
+trap_results/raw_22-04-2021_13-06-05.jpg
+Elapsed time = 0.340076208114624
+[('bombus_hypnorum', 95.49870491027832)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 97/359
+trap_results/raw_19-04-2021_12-29-48.jpg
+Elapsed time = 0.34512829780578613
+[('bombus_hypnorum', 95.87543606758118)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 98/359
+trap_results/raw_18-04-2021_14-20-09.jpg
+Elapsed time = 0.4062066078186035
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 99/359
+trap_results/raw_20-04-2021_11-49-11.jpg
+Elapsed time = 0.3527989387512207
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 100/359
+trap_results/raw_19-04-2021_12-29-47.jpg
+Elapsed time = 0.3259880542755127
+[('bombus_hypnorum', 94.35675740242004)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 101/359
+trap_results/raw_12-04-2021_08-48-04.jpg
+Elapsed time = 0.28490424156188965
+[('bombus_hypnorum', 91.75135493278503)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 102/359
+trap_results/raw_19-04-2021_12-25-12.jpg
+Elapsed time = 0.28237175941467285
+[('bombus_hypnorum', 96.09886407852173), ('anthophora_plumipes', 88.14398050308228)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 103/359
+trap_results/raw_22-04-2021_13-07-22.jpg
+Elapsed time = 0.28113651275634766
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 104/359
+trap_results/raw_19-04-2021_12-18-59.jpg
+Elapsed time = 0.28079724311828613
+[('bombus_hypnorum', 88.36092352867126)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 105/359
+trap_results/raw_19-04-2021_12-27-12.jpg
+Elapsed time = 0.2945272922515869
+[('bombus_hypnorum', 93.59418153762817)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 106/359
+trap_results/raw_19-04-2021_12-19-32.jpg
+Elapsed time = 0.29709863662719727
+[('bombus_hypnorum', 83.07949304580688), ('anthophora_plumipes', 91.5177047252655)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 107/359
+trap_results/raw_19-04-2021_12-19-21.jpg
+Elapsed time = 0.3321831226348877
+[('bombus_hypnorum', 94.91314888000488)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 108/359
+trap_results/raw_22-04-2021_13-53-13.jpg
+Elapsed time = 0.376690149307251
+[('bombus_hypnorum', 98.21503758430481)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 109/359
+trap_results/raw_22-04-2021_13-07-37.jpg
+Elapsed time = 0.2803521156311035
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 110/359
+trap_results/raw_22-04-2021_09-29-59.jpg
+Elapsed time = 0.2874906063079834
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 111/359
+trap_results/raw_19-04-2021_12-29-36.jpg
+Elapsed time = 0.3156445026397705
+[('bombus_hypnorum', 89.64657187461853)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 112/359
+trap_results/raw_19-04-2021_12-25-10.jpg
+Elapsed time = 0.2912006378173828
+[('bombus_hypnorum', 94.90336179733276)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 113/359
+trap_results/raw_12-04-2021_08-52-44.jpg
+Elapsed time = 0.28451991081237793
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 114/359
+trap_results/raw_19-04-2021_12-18-49.jpg
+Elapsed time = 0.3229212760925293
+[('bombus_hypnorum', 84.14652347564697)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 115/359
+trap_results/raw_12-04-2021_08-52-54.jpg
+Elapsed time = 0.3491494655609131
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 116/359
+trap_results/raw_19-04-2021_12-29-28.jpg
+Elapsed time = 0.36496615409851074
+[('bombus_hypnorum', 91.32536053657532)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 117/359
+trap_results/raw_19-04-2021_12-19-39.jpg
+Elapsed time = 0.27872562408447266
+[('anthophora_plumipes', 84.16856527328491)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 118/359
+trap_results/raw_19-04-2021_12-19-22.jpg
+Elapsed time = 0.30121564865112305
+[('bombus_hypnorum', 93.70969533920288)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 119/359
+trap_results/raw_19-04-2021_12-20-02.jpg
+Elapsed time = 0.2746083736419678
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 120/359
+trap_results/raw_19-04-2021_12-29-35.jpg
+Elapsed time = 0.4119393825531006
+[('bombus_hypnorum', 88.59477043151855)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 121/359
+trap_results/raw_19-04-2021_12-19-28.jpg
+Elapsed time = 0.29517340660095215
+[('bombus_hypnorum', 84.34751033782959)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 122/359
+trap_results/raw_19-04-2021_12-19-13.jpg
+Elapsed time = 0.3145322799682617
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 123/359
+trap_results/raw_19-04-2021_12-20-46.jpg
+Elapsed time = 0.2753176689147949
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 124/359
+trap_results/raw_19-04-2021_12-19-08.jpg
+Elapsed time = 0.29581189155578613
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 125/359
+trap_results/raw_19-04-2021_12-29-22.jpg
+Elapsed time = 0.3199801445007324
+[('bombus_hypnorum', 95.32623887062073)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 126/359
+trap_results/raw_19-04-2021_12-19-25.jpg
+Elapsed time = 0.2957935333251953
+[('bombus_hypnorum', 95.25817036628723)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 127/359
+trap_results/raw_19-04-2021_12-21-22.jpg
+Elapsed time = 0.3304307460784912
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 128/359
+trap_results/raw_19-04-2021_12-20-06.jpg
+Elapsed time = 0.280977725982666
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 129/359
+trap_results/raw_20-04-2021_11-49-12.jpg
+Elapsed time = 0.2808241844177246
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 130/359
+trap_results/raw_19-04-2021_12-20-56.jpg
+Elapsed time = 0.3262770175933838
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 131/359
+trap_results/raw_22-04-2021_12-07-17.jpg
+Elapsed time = 0.2786831855773926
+[('bombus_hypnorum', 96.95709943771362)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 132/359
+trap_results/raw_22-04-2021_13-53-15.jpg
+Elapsed time = 0.37612438201904297
+[('bombus_hypnorum', 88.5657548904419)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 133/359
+trap_results/raw_22-04-2021_09-29-41.jpg
+Elapsed time = 0.29762697219848633
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 134/359
+trap_results/raw_14-04-2021_11-49-23.jpg
+Elapsed time = 0.3865690231323242
+[('bombus_hypnorum', 96.94184064865112)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 135/359
+trap_results/raw_14-04-2021_11-49-26.jpg
+Elapsed time = 0.2842259407043457
+[('bombus_hypnorum', 85.5705976486206)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 136/359
+trap_results/raw_22-04-2021_10-01-12.jpg
+Elapsed time = 0.3290989398956299
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 137/359
+trap_results/raw_14-04-2021_11-49-52.jpg
+Elapsed time = 0.2986764907836914
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 138/359
+trap_results/raw_22-04-2021_11-29-41.jpg
+Elapsed time = 0.2889721393585205
+[('bombus_hypnorum', 94.68119144439697)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 139/359
+trap_results/raw_22-04-2021_08-44-41.jpg
+Elapsed time = 0.2871437072753906
+[('bombus_hypnorum', 84.81684923171997)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 140/359
+trap_results/raw_19-04-2021_12-21-03.jpg
+Elapsed time = 0.2930030822753906
+[('bombus_hypnorum', 82.84994959831238)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 141/359
+trap_results/raw_19-04-2021_12-19-46.jpg
+Elapsed time = 0.3388631343841553
+[('bombus_hypnorum', 84.90815162658691)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 142/359
+trap_results/raw_18-04-2021_20-05-54.jpg
+Elapsed time = 0.28530001640319824
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 143/359
+trap_results/raw_19-04-2021_15-49-59.jpg
+Elapsed time = 0.27638697624206543
+[('bombus_hypnorum', 93.80228519439697)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 144/359
+trap_results/raw_14-04-2021_11-49-50.jpg
+Elapsed time = 0.334989070892334
+[('bombus_hypnorum', 92.47514605522156)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 145/359
+trap_results/raw_19-04-2021_12-20-31.jpg
+Elapsed time = 0.3014082908630371
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 146/359
+trap_results/raw_19-04-2021_12-20-52.jpg
+Elapsed time = 0.28502845764160156
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 147/359
+trap_results/raw_12-04-2021_08-52-47.jpg
+Elapsed time = 0.29250407218933105
+[('apis_mellifera', 83.55836272239685)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 148/359
+trap_results/raw_19-04-2021_12-29-27.jpg
+Elapsed time = 0.3069183826446533
+[('bombus_hypnorum', 88.31695318222046)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 149/359
+trap_results/raw_19-04-2021_12-20-20.jpg
+Elapsed time = 0.281846284866333
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 150/359
+trap_results/raw_18-04-2021_14-24-24.jpg
+Elapsed time = 0.27737975120544434
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 151/359
+trap_results/raw_19-04-2021_15-49-55.jpg
+Elapsed time = 0.2947967052459717
+[('bombus_hypnorum', 96.89456224441528)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 152/359
+trap_results/raw_19-04-2021_15-49-46.jpg
+Elapsed time = 0.28732895851135254
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 153/359
+trap_results/raw_19-04-2021_12-18-52.jpg
+Elapsed time = 0.36405491828918457
+[('bombus_hypnorum', 86.61104440689087), ('anthophora_plumipes', 84.22275185585022)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 154/359
+trap_results/raw_22-04-2021_09-29-19.jpg
+Elapsed time = 0.2817225456237793
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 155/359
+trap_results/raw_19-04-2021_12-19-19.jpg
+Elapsed time = 0.28235673904418945
+[('bombus_hypnorum', 87.61426210403442)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 156/359
+trap_results/raw_18-04-2021_14-19-37.jpg
+Elapsed time = 0.3051624298095703
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 157/359
+trap_results/raw_19-04-2021_12-31-47.jpg
+Elapsed time = 0.289473295211792
+[('bombus_hypnorum', 95.82110643386841)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 158/359
+trap_results/raw_18-04-2021_14-25-48.jpg
+Elapsed time = 0.31277990341186523
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 159/359
+trap_results/raw_22-04-2021_10-54-34.jpg
+Elapsed time = 0.3072090148925781
+[('bombus_hypnorum', 85.39402484893799)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 160/359
+trap_results/raw_19-04-2021_12-20-19.jpg
+Elapsed time = 0.2794311046600342
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 161/359
+trap_results/raw_18-04-2021_14-25-32.jpg
+Elapsed time = 0.3173232078552246
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 162/359
+trap_results/raw_22-04-2021_13-52-54.jpg
+Elapsed time = 0.34450578689575195
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 163/359
+trap_results/raw_19-04-2021_12-21-19.jpg
+Elapsed time = 0.31549954414367676
+[('bombus_hypnorum', 83.73401761054993)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 164/359
+trap_results/raw_19-04-2021_12-23-07.jpg
+Elapsed time = 0.296828031539917
+[('bombus_hypnorum', 95.7884430885315)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 165/359
+trap_results/raw_19-04-2021_12-19-44.jpg
+Elapsed time = 0.3358907699584961
+[('bombus_hypnorum', 83.02164077758789), ('anthophora_plumipes', 94.88104581832886)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 166/359
+trap_results/raw_19-04-2021_12-25-15.jpg
+Elapsed time = 0.3454868793487549
+[('bombus_hypnorum', 95.04074454307556), ('anthophora_plumipes', 82.76258707046509)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 167/359
+trap_results/raw_12-04-2021_08-48-30.jpg
+Elapsed time = 0.2979450225830078
+[('bombus_hypnorum', 88.18401098251343)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 168/359
+trap_results/raw_19-04-2021_12-18-41.jpg
+Elapsed time = 0.3081650733947754
+[('bombus_hypnorum', 86.30063533782959)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 169/359
+trap_results/raw_12-04-2021_08-52-50.jpg
+Elapsed time = 0.33085203170776367
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 170/359
+trap_results/raw_19-04-2021_12-18-47.jpg
+Elapsed time = 0.3168492317199707
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 171/359
+trap_results/raw_22-04-2021_13-06-04.jpg
+Elapsed time = 0.29845523834228516
+[('bombus_hypnorum', 90.87637066841125)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 172/359
+trap_results/raw_19-04-2021_12-20-17.jpg
+Elapsed time = 0.30045080184936523
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 173/359
+trap_results/raw_19-04-2021_12-30-20.jpg
+Elapsed time = 0.3021097183227539
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 174/359
+trap_results/raw_19-04-2021_12-31-54.jpg
+Elapsed time = 0.28499794006347656
+[('bombus_hypnorum', 96.02115750312805)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 175/359
+trap_results/raw_19-04-2021_12-18-22.jpg
+Elapsed time = 0.2861905097961426
+[('bombus_hypnorum', 96.65714502334595)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 176/359
+trap_results/raw_19-04-2021_12-18-56.jpg
+Elapsed time = 0.2975578308105469
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 177/359
+trap_results/raw_19-04-2021_12-31-44.jpg
+Elapsed time = 0.2836580276489258
+[('bombus_hypnorum', 82.47331380844116)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 178/359
+trap_results/raw_19-04-2021_12-31-46.jpg
+Elapsed time = 0.2966032028198242
+[('bombus_hypnorum', 95.71340680122375)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 179/359
+trap_results/raw_22-04-2021_09-15-27.jpg
+Elapsed time = 0.33181118965148926
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 180/359
+trap_results/raw_19-04-2021_12-25-14.jpg
+Elapsed time = 0.2987251281738281
+[('bombus_hypnorum', 94.75158452987671)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 181/359
+trap_results/raw_22-04-2021_09-15-26.jpg
+Elapsed time = 0.3000195026397705
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 182/359
+trap_results/raw_12-04-2021_08-50-21.jpg
+Elapsed time = 0.2917027473449707
+[('bombus_hypnorum', 85.72518229484558)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 183/359
+trap_results/raw_19-04-2021_12-23-05.jpg
+Elapsed time = 0.27776455879211426
+[('bombus_hypnorum', 93.07055473327637)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 184/359
+trap_results/raw_19-04-2021_12-20-04.jpg
+Elapsed time = 0.2922196388244629
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 185/359
+trap_results/raw_14-04-2021_11-49-46.jpg
+Elapsed time = 0.3125722408294678
+[('bombus_hypnorum', 91.99411869049072)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 186/359
+trap_results/raw_22-04-2021_08-38-34.jpg
+Elapsed time = 0.3749532699584961
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 187/359
+trap_results/raw_19-04-2021_12-29-17.jpg
+Elapsed time = 0.309978723526001
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 188/359
+trap_results/raw_19-04-2021_12-19-17.jpg
+Elapsed time = 0.2816274166107178
+[('bombus_hypnorum', 85.41649580001831)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 189/359
+trap_results/raw_19-04-2021_12-19-12.jpg
+Elapsed time = 0.2823667526245117
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 190/359
+trap_results/raw_22-04-2021_09-29-08.jpg
+Elapsed time = 0.332899808883667
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 191/359
+trap_results/raw_19-04-2021_16-18-38.jpg
+Elapsed time = 0.28054356575012207
+[('bombus_hypnorum', 93.69823336601257)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 192/359
+trap_results/raw_19-04-2021_15-49-58.jpg
+Elapsed time = 0.28559064865112305
+[('bombus_hypnorum', 88.08826208114624)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 193/359
+trap_results/raw_12-04-2021_08-48-14.jpg
+Elapsed time = 0.30820655822753906
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 194/359
+trap_results/raw_19-04-2021_12-27-39.jpg
+Elapsed time = 0.28478121757507324
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 195/359
+trap_results/raw_22-04-2021_11-36-29.jpg
+Elapsed time = 0.3323967456817627
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 196/359
+trap_results/raw_19-04-2021_12-21-27.jpg
+Elapsed time = 0.28682732582092285
+[('bombus_hypnorum', 86.74641251564026)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 197/359
+trap_results/raw_19-04-2021_12-29-31.jpg
+Elapsed time = 0.3067495822906494
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 198/359
+trap_results/raw_19-04-2021_12-25-23.jpg
+Elapsed time = 0.3186023235321045
+[('bombus_hypnorum', 90.64257740974426)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 199/359
+trap_results/raw_18-04-2021_14-20-12.jpg
+Elapsed time = 0.2783675193786621
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 200/359
+trap_results/raw_19-04-2021_12-29-08.jpg
+Elapsed time = 0.28740835189819336
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 201/359
+trap_results/raw_19-04-2021_12-25-38.jpg
+Elapsed time = 0.2921483516693115
+[('bombus_hypnorum', 93.6829149723053), ('anthophora_plumipes', 83.89723896980286)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 202/359
+trap_results/raw_12-04-2021_08-48-05.jpg
+Elapsed time = 0.28983545303344727
+[('bombus_hypnorum', 94.33671832084656)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 203/359
+trap_results/raw_19-04-2021_15-49-48.jpg
+Elapsed time = 0.3999357223510742
+[('anthophora_plumipes', 97.15980887413025)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 204/359
+trap_results/raw_19-04-2021_12-21-24.jpg
+Elapsed time = 0.3074672222137451
+[('bombus_hypnorum', 87.99084424972534)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 205/359
+trap_results/raw_12-04-2021_08-48-41.jpg
+Elapsed time = 0.2840096950531006
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 206/359
+trap_results/raw_19-04-2021_12-20-01.jpg
+Elapsed time = 0.2986624240875244
+[('anthophora_plumipes', 83.77771973609924)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 207/359
+trap_results/raw_22-04-2021_11-38-18.jpg
+Elapsed time = 0.32251477241516113
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 208/359
+trap_results/raw_19-04-2021_12-29-15.jpg
+Elapsed time = 0.34351086616516113
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 209/359
+trap_results/raw_19-04-2021_12-21-06.jpg
+Elapsed time = 0.3139324188232422
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 210/359
+trap_results/raw_22-04-2021_09-35-34.jpg
+Elapsed time = 0.3191511631011963
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 211/359
+trap_results/raw_19-04-2021_12-19-43.jpg
+Elapsed time = 0.27832818031311035
+[('anthophora_plumipes', 92.24498867988586)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 212/359
+trap_results/raw_22-04-2021_13-52-55.jpg
+Elapsed time = 0.2986457347869873
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 213/359
+trap_results/raw_20-04-2021_12-05-00.jpg
+Elapsed time = 0.28116536140441895
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 214/359
+trap_results/raw_18-04-2021_14-20-10.jpg
+Elapsed time = 0.28566837310791016
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 215/359
+trap_results/raw_12-04-2021_08-40-31.jpg
+Elapsed time = 0.28176403045654297
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 216/359
+trap_results/raw_19-04-2021_12-29-29.jpg
+Elapsed time = 0.2903175354003906
+[('bombus_hypnorum', 91.15791916847229)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 217/359
+trap_results/raw_19-04-2021_12-19-33.jpg
+Elapsed time = 0.3468739986419678
+[('bombus_hypnorum', 84.21153426170349)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 218/359
+trap_results/raw_22-04-2021_09-36-07.jpg
+Elapsed time = 0.3355386257171631
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 219/359
+trap_results/raw_19-04-2021_12-21-17.jpg
+Elapsed time = 0.3716580867767334
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 220/359
+trap_results/raw_22-04-2021_13-08-09.jpg
+Elapsed time = 0.33592772483825684
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 221/359
+trap_results/raw_18-04-2021_14-19-36.jpg
+Elapsed time = 0.28505825996398926
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 222/359
+trap_results/raw_12-04-2021_08-11-33.jpg
+Elapsed time = 0.43558573722839355
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 223/359
+trap_results/raw_18-04-2021_14-19-38.jpg
+Elapsed time = 0.3183741569519043
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 224/359
+trap_results/raw_19-04-2021_12-25-09.jpg
+Elapsed time = 0.28464841842651367
+[('bombus_hypnorum', 95.27580738067627)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 225/359
+trap_results/raw_19-04-2021_12-27-13.jpg
+Elapsed time = 0.2902204990386963
+[('bombus_hypnorum', 92.95792579650879)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 226/359
+trap_results/raw_19-04-2021_12-20-38.jpg
+Elapsed time = 0.2966194152832031
+[('bombus_hypnorum', 83.19607377052307)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 227/359
+trap_results/raw_22-04-2021_13-53-18.jpg
+Elapsed time = 0.28313446044921875
+[('bombus_hypnorum', 93.17980408668518)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 228/359
+trap_results/raw_19-04-2021_15-50-01.jpg
+Elapsed time = 0.32309460639953613
+[('bombus_hypnorum', 98.24355244636536)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 229/359
+trap_results/raw_22-04-2021_11-37-05.jpg
+Elapsed time = 0.28295207023620605
+[('bombus_hypnorum', 94.00746822357178)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 230/359
+trap_results/raw_18-04-2021_14-24-25.jpg
+Elapsed time = 0.27875828742980957
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 231/359
+trap_results/raw_19-04-2021_12-22-54.jpg
+Elapsed time = 0.2892434597015381
+[('bombus_hypnorum', 94.06443238258362), ('anthophora_plumipes', 84.94133949279785)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 232/359
+trap_results/raw_19-04-2021_12-23-13.jpg
+Elapsed time = 0.2794811725616455
+[('bombus_hypnorum', 96.08200788497925)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 233/359
+trap_results/raw_19-04-2021_12-27-41.jpg
+Elapsed time = 0.277477502822876
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 234/359
+trap_results/raw_19-04-2021_10-17-39.jpg
+Elapsed time = 0.31607890129089355
+[('bombus_hypnorum', 93.73350739479065)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 235/359
+trap_results/raw_19-04-2021_12-20-22.jpg
+Elapsed time = 0.2879648208618164
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 236/359
+trap_results/raw_22-04-2021_13-06-10.jpg
+Elapsed time = 0.31427931785583496
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 237/359
+trap_results/raw_22-04-2021_13-07-51.jpg
+Elapsed time = 0.29230165481567383
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 238/359
+trap_results/raw_19-04-2021_12-29-50.jpg
+Elapsed time = 0.2874453067779541
+[('bombus_hypnorum', 94.20844316482544), ('bombus_hortorum', 91.30765795707703)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 239/359
+trap_results/raw_22-04-2021_09-15-22.jpg
+Elapsed time = 0.31981682777404785
+[('apis_mellifera', 83.44596028327942)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 240/359
+trap_results/raw_18-04-2021_14-25-34.jpg
+Elapsed time = 0.34513378143310547
+[('apis_mellifera', 96.12782597541809)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 241/359
+trap_results/raw_12-04-2021_08-52-49.jpg
+Elapsed time = 0.2842707633972168
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 242/359
+trap_results/raw_18-04-2021_14-20-08.jpg
+Elapsed time = 0.35346555709838867
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 243/359
+trap_results/raw_14-04-2021_11-49-24.jpg
+Elapsed time = 0.2774677276611328
+[('bombus_hypnorum', 96.14288210868835)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 244/359
+trap_results/raw_19-04-2021_12-19-01.jpg
+Elapsed time = 0.29690074920654297
+[('bombus_hypnorum', 89.21905159950256)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 245/359
+trap_results/raw_12-04-2021_08-52-53.jpg
+Elapsed time = 0.29961109161376953
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 246/359
+trap_results/raw_19-04-2021_12-19-11.jpg
+Elapsed time = 0.2798473834991455
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 247/359
+trap_results/raw_18-04-2021_14-26-07.jpg
+Elapsed time = 0.36442017555236816
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 248/359
+trap_results/raw_19-04-2021_12-29-39.jpg
+Elapsed time = 0.2834136486053467
+[('bombus_hypnorum', 85.65723299980164)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 249/359
+trap_results/raw_19-04-2021_12-18-43.jpg
+Elapsed time = 0.2912781238555908
+[('bombus_hypnorum', 88.2232666015625)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 250/359
+trap_results/raw_19-04-2021_12-29-56.jpg
+Elapsed time = 0.281848669052124
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 251/359
+trap_results/raw_19-04-2021_12-25-21.jpg
+Elapsed time = 0.29286742210388184
+[('bombus_hypnorum', 96.23099565505981)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 252/359
+trap_results/raw_22-04-2021_09-29-58.jpg
+Elapsed time = 0.2839236259460449
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 253/359
+trap_results/raw_19-04-2021_12-18-53.jpg
+Elapsed time = 0.28420090675354004
+[('bombus_hypnorum', 85.6202244758606)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 254/359
+trap_results/raw_19-04-2021_12-21-07.jpg
+Elapsed time = 0.2816300392150879
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 255/359
+trap_results/raw_19-04-2021_12-20-57.jpg
+Elapsed time = 0.29631996154785156
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 256/359
+trap_results/raw_19-04-2021_15-49-47.jpg
+Elapsed time = 0.31316709518432617
+[('anthophora_plumipes', 98.44526648521423)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 257/359
+trap_results/raw_19-04-2021_15-49-56.jpg
+Elapsed time = 0.3139336109161377
+[('bombus_hypnorum', 99.07177090644836)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 258/359
+trap_results/raw_19-04-2021_12-20-27.jpg
+Elapsed time = 0.2884101867675781
+[('bombus_hypnorum', 83.61603617668152)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 259/359
+trap_results/raw_19-04-2021_15-49-53.jpg
+Elapsed time = 0.2891123294830322
+[('bombus_hypnorum', 97.56753444671631)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 260/359
+trap_results/raw_22-04-2021_09-15-30.jpg
+Elapsed time = 0.32333827018737793
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 261/359
+trap_results/raw_19-04-2021_12-19-40.jpg
+Elapsed time = 0.36834001541137695
+[('bombus_hypnorum', 85.07707118988037), ('anthophora_plumipes', 88.11622262001038)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 262/359
+trap_results/raw_19-04-2021_12-19-14.jpg
+Elapsed time = 0.30393552780151367
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 263/359
+trap_results/raw_19-04-2021_12-19-30.jpg
+Elapsed time = 0.28275585174560547
+[('anthophora_plumipes', 91.18605256080627)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 264/359
+trap_results/raw_22-04-2021_10-54-53.jpg
+Elapsed time = 0.28880786895751953
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 265/359
+trap_results/raw_19-04-2021_12-29-37.jpg
+Elapsed time = 0.3008992671966553
+[('bombus_hypnorum', 89.07897472381592)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 266/359
+trap_results/raw_19-04-2021_12-18-54.jpg
+Elapsed time = 0.3040039539337158
+[('bombus_hypnorum', 84.20099020004272)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 267/359
+trap_results/raw_22-04-2021_13-53-11.jpg
+Elapsed time = 0.28675413131713867
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 268/359
+trap_results/raw_22-04-2021_09-29-52.jpg
+Elapsed time = 0.29563069343566895
+[('bombus_hortorum', 85.64890623092651)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 269/359
+trap_results/raw_19-04-2021_12-19-29.jpg
+Elapsed time = 0.2827436923980713
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 270/359
+trap_results/raw_19-04-2021_12-29-54.jpg
+Elapsed time = 0.3270738124847412
+[('bombus_hortorum', 85.30257940292358)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 271/359
+trap_results/raw_18-04-2021_14-24-23.jpg
+Elapsed time = 0.288205623626709
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 272/359
+trap_results/raw_18-04-2021_14-25-49.jpg
+Elapsed time = 0.2921760082244873
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 273/359
+trap_results/raw_22-04-2021_11-37-04.jpg
+Elapsed time = 0.2943875789642334
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 274/359
+trap_results/raw_19-04-2021_12-18-58.jpg
+Elapsed time = 0.33388519287109375
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 275/359
+trap_results/raw_19-04-2021_12-22-53.jpg
+Elapsed time = 0.3452937602996826
+[('bombus_hypnorum', 89.41613435745239), ('anthophora_plumipes', 86.76077723503113)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 276/359
+trap_results/raw_22-04-2021_13-05-41.jpg
+Elapsed time = 0.28045153617858887
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 277/359
+trap_results/raw_19-04-2021_12-31-45.jpg
+Elapsed time = 0.29995036125183105
+[('bombus_hypnorum', 94.01880502700806)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 278/359
+trap_results/raw_22-04-2021_13-07-52.jpg
+Elapsed time = 0.30010223388671875
+[('bombus_hypnorum', 98.06773066520691)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 279/359
+trap_results/raw_19-04-2021_12-29-51.jpg
+Elapsed time = 0.3181939125061035
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 280/359
+trap_results/raw_22-04-2021_11-38-17.jpg
+Elapsed time = 0.2951774597167969
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 281/359
+trap_results/raw_19-04-2021_12-18-55.jpg
+Elapsed time = 0.2958989143371582
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 282/359
+trap_results/raw_14-04-2021_11-49-29.jpg
+Elapsed time = 0.2994835376739502
+[('bombus_hypnorum', 86.99880838394165)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 283/359
+trap_results/raw_19-04-2021_12-20-37.jpg
+Elapsed time = 0.297884464263916
+[('bombus_hypnorum', 94.00546550750732)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 284/359
+trap_results/raw_22-04-2021_10-00-58.jpg
+Elapsed time = 0.2896537780761719
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 285/359
+trap_results/raw_19-04-2021_12-20-05.jpg
+Elapsed time = 0.32308197021484375
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 286/359
+trap_results/raw_19-04-2021_12-29-16.jpg
+Elapsed time = 0.27832722663879395
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 287/359
+trap_results/raw_19-04-2021_12-23-15.jpg
+Elapsed time = 0.29108190536499023
+[('bombus_hypnorum', 96.81167602539062)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 288/359
+trap_results/raw_19-04-2021_12-21-21.jpg
+Elapsed time = 0.284182071685791
+[('bombus_hypnorum', 82.32724070549011)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 289/359
+trap_results/raw_18-04-2021_14-25-50.jpg
+Elapsed time = 0.3142275810241699
+[('apis_mellifera', 96.65818214416504)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 290/359
+trap_results/raw_19-04-2021_15-49-51.jpg
+Elapsed time = 0.3323702812194824
+[('bombus_hypnorum', 83.60162377357483)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 291/359
+trap_results/raw_22-04-2021_10-54-54.jpg
+Elapsed time = 0.3325943946838379
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 292/359
+trap_results/raw_19-04-2021_16-18-40.jpg
+Elapsed time = 0.29891133308410645
+[('bombus_hypnorum', 89.07670378684998)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 293/359
+trap_results/raw_19-04-2021_16-18-39.jpg
+Elapsed time = 0.2817528247833252
+[('bombus_hypnorum', 94.46247816085815)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 294/359
+trap_results/raw_18-04-2021_20-05-57.jpg
+Elapsed time = 0.31508779525756836
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 295/359
+trap_results/raw_12-04-2021_08-52-51.jpg
+Elapsed time = 0.336899995803833
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 296/359
+trap_results/raw_12-04-2021_08-11-29.jpg
+Elapsed time = 0.29462480545043945
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 297/359
+trap_results/raw_19-04-2021_12-29-25.jpg
+Elapsed time = 0.3353426456451416
+[('bombus_hypnorum', 88.25532793998718)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 298/359
+trap_results/raw_19-04-2021_12-18-50.jpg
+Elapsed time = 0.29093027114868164
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 299/359
+trap_results/raw_18-04-2021_14-20-15.jpg
+Elapsed time = 0.28487300872802734
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 300/359
+trap_results/raw_22-04-2021_12-37-01.jpg
+Elapsed time = 0.278839111328125
+[('bombus_hypnorum', 96.13964557647705)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 301/359
+trap_results/raw_12-04-2021_08-52-46.jpg
+Elapsed time = 0.2776145935058594
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 302/359
+trap_results/raw_18-04-2021_14-26-04.jpg
+Elapsed time = 0.3174920082092285
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 303/359
+trap_results/raw_14-04-2021_11-49-25.jpg
+Elapsed time = 0.3274672031402588
+[('bombus_hypnorum', 97.74008393287659)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 304/359
+trap_results/raw_19-04-2021_12-19-18.jpg
+Elapsed time = 0.46431732177734375
+[('bombus_hypnorum', 95.76908946037292)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 305/359
+trap_results/raw_14-04-2021_11-50-03.jpg
+Elapsed time = 0.3013627529144287
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 306/359
+trap_results/raw_22-04-2021_11-37-06.jpg
+Elapsed time = 0.30809831619262695
+[('bombus_hypnorum', 98.09483289718628)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 307/359
+trap_results/raw_19-04-2021_12-19-05.jpg
+Elapsed time = 0.28670716285705566
+[('bombus_hypnorum', 86.4530622959137)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 308/359
+trap_results/raw_19-04-2021_12-26-08.jpg
+Elapsed time = 0.285430908203125
+[('bombus_hypnorum', 95.31247019767761)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 309/359
+trap_results/raw_18-04-2021_14-20-14.jpg
+Elapsed time = 0.2836754322052002
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 310/359
+trap_results/raw_12-04-2021_08-52-52.jpg
+Elapsed time = 0.2908191680908203
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 311/359
+trap_results/raw_18-04-2021_20-08-35.jpg
+Elapsed time = 0.2947118282318115
+[('bombus_hypnorum', 91.00807905197144)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 312/359
+trap_results/raw_19-04-2021_12-25-32.jpg
+Elapsed time = 0.422792911529541
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 313/359
+trap_results/raw_12-04-2021_08-48-08.jpg
+Elapsed time = 0.28350305557250977
+[('bombus_hypnorum', 94.21353340148926)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 314/359
+trap_results/raw_19-04-2021_12-19-35.jpg
+Elapsed time = 0.2817506790161133
+[('bombus_hypnorum', 84.66642498970032), ('anthophora_plumipes', 90.51761627197266)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 315/359
+trap_results/raw_14-04-2021_11-50-00.jpg
+Elapsed time = 0.28537726402282715
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 316/359
+trap_results/raw_19-04-2021_12-21-25.jpg
+Elapsed time = 0.332855224609375
+[('bombus_hypnorum', 88.87050747871399)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 317/359
+trap_results/raw_19-04-2021_12-19-31.jpg
+Elapsed time = 0.34288501739501953
+[('bombus_hypnorum', 86.18795275688171), ('anthophora_plumipes', 92.23407506942749)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 318/359
+trap_results/raw_19-04-2021_15-50-00.jpg
+Elapsed time = 0.28787899017333984
+[('bombus_hypnorum', 97.53170013427734)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 319/359
+trap_results/raw_19-04-2021_12-31-42.jpg
+Elapsed time = 0.27684521675109863
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 320/359
+trap_results/raw_22-04-2021_09-35-32.jpg
+Elapsed time = 0.2883164882659912
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 321/359
+trap_results/raw_19-04-2021_12-19-23.jpg
+Elapsed time = 0.3067636489868164
+[('bombus_hypnorum', 92.3167884349823)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 322/359
+trap_results/raw_12-04-2021_08-52-45.jpg
+Elapsed time = 0.28136754035949707
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 323/359
+trap_results/raw_22-04-2021_12-37-21.jpg
+Elapsed time = 0.2767002582550049
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 324/359
+trap_results/raw_19-04-2021_12-31-39.jpg
+Elapsed time = 0.30677270889282227
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 325/359
+trap_results/raw_22-04-2021_09-15-29.jpg
+Elapsed time = 0.3278188705444336
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 326/359
+trap_results/raw_19-04-2021_12-18-23.jpg
+Elapsed time = 0.2890033721923828
+[('bombus_hypnorum', 82.4482798576355)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 327/359
+trap_results/raw_22-04-2021_11-36-30.jpg
+Elapsed time = 0.28235697746276855
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 328/359
+trap_results/raw_19-04-2021_12-19-41.jpg
+Elapsed time = 0.3154928684234619
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 329/359
+trap_results/raw_19-04-2021_12-19-24.jpg
+Elapsed time = 0.2838582992553711
+[('bombus_hypnorum', 89.47387337684631)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 330/359Using TensorFlow backend.
+frcnn_test_vgg.py:204: RuntimeWarning: More than 20 figures have been opened. Figures created through the pyplot interface (`matplotlib.pyplot.figure`) are retained until explicitly closed and may consume too much memory. (To control this warning, see the rcParam `figure.max_open_warning`).
+  plt.figure(figsize=(10, 10))
+
+trap_results/raw_22-04-2021_09-34-42.jpg
+Elapsed time = 0.28802490234375
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 331/359
+trap_results/raw_19-04-2021_15-49-45.jpg
+Elapsed time = 0.2765159606933594
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 332/359
+trap_results/raw_19-04-2021_12-25-33.jpg
+Elapsed time = 0.29286885261535645
+[('bombus_hypnorum', 86.59135103225708)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 333/359
+trap_results/raw_19-04-2021_12-19-06.jpg
+Elapsed time = 0.2790093421936035
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 334/359
+trap_results/raw_19-04-2021_12-25-35.jpg
+Elapsed time = 0.2783534526824951
+[('bombus_hypnorum', 86.88543438911438)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 335/359
+trap_results/raw_19-04-2021_12-18-42.jpg
+Elapsed time = 0.31224513053894043
+[('bombus_hypnorum', 85.69667339324951)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 336/359
+trap_results/raw_19-04-2021_12-29-43.jpg
+Elapsed time = 0.2810964584350586
+[('bombus_hypnorum', 87.55661845207214)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 337/359
+trap_results/raw_22-04-2021_10-54-33.jpg
+Elapsed time = 0.2908644676208496
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 338/359
+trap_results/raw_19-04-2021_12-20-03.jpg
+Elapsed time = 0.2934086322784424
+[('anthophora_plumipes', 83.59770774841309)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 339/359
+trap_results/raw_19-04-2021_12-22-55.jpg
+Elapsed time = 0.3029444217681885
+[('bombus_hypnorum', 94.95146870613098)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 340/359
+trap_results/raw_18-04-2021_14-25-31.jpg
+Elapsed time = 0.287616491317749
+[('apis_mellifera', 96.50182127952576)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 341/359
+trap_results/raw_12-04-2021_08-48-02.jpg
+Elapsed time = 0.293975830078125
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 342/359
+trap_results/raw_19-04-2021_12-19-20.jpg
+Elapsed time = 0.29682374000549316
+[('bombus_hypnorum', 96.36203646659851)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 343/359
+trap_results/raw_19-04-2021_12-19-10.jpg
+Elapsed time = 0.2960548400878906
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 344/359
+trap_results/raw_19-04-2021_12-18-44.jpg
+Elapsed time = 0.31177377700805664
+[('bombus_hypnorum', 88.52571249008179)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 345/359
+trap_results/raw_19-04-2021_12-20-49.jpg
+Elapsed time = 0.284717321395874
+[('bombus_hypnorum', 93.90547275543213)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 346/359
+trap_results/raw_22-04-2021_09-35-23.jpg
+Elapsed time = 0.29297471046447754
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 347/359
+trap_results/raw_19-04-2021_12-22-57.jpg
+Elapsed time = 0.3221449851989746
+[('bombus_hypnorum', 94.00982856750488)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 348/359
+trap_results/raw_19-04-2021_12-18-57.jpg
+Elapsed time = 0.3124277591705322
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 349/359
+trap_results/raw_19-04-2021_12-19-09.jpg
+Elapsed time = 0.29959654808044434
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 350/359
+trap_results/raw_19-04-2021_12-19-37.jpg
+Elapsed time = 0.2956819534301758
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 351/359
+trap_results/raw_22-04-2021_13-52-56.jpg
+Elapsed time = 0.30257081985473633
+[('bombus_hypnorum', 97.0173716545105)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 352/359
+trap_results/raw_19-04-2021_12-29-57.jpg
+Elapsed time = 0.41656947135925293
+[('bombus_hortorum', 83.45198035240173)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 353/359
+trap_results/raw_18-04-2021_14-20-07.jpg
+Elapsed time = 0.3479304313659668
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 354/359
+trap_results/raw_22-04-2021_13-52-58.jpg
+Elapsed time = 0.28939151763916016
+[('bombus_hypnorum', 96.19694352149963)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 355/359
+trap_results/raw_14-04-2021_11-49-49.jpg
+Elapsed time = 0.31409573554992676
+[('bombus_hypnorum', 92.62027144432068)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 356/359
+trap_results/raw_19-04-2021_12-18-45.jpg
+Elapsed time = 0.2840280532836914
+[('bombus_hypnorum', 87.53993511199951)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 357/359
+trap_results/raw_12-04-2021_08-40-29.jpg
+Elapsed time = 0.2797360420227051
+[]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 358/359
+trap_results/raw_22-04-2021_08-44-42.jpg
+Elapsed time = 0.2906489372253418
+[('bombus_hypnorum', 87.75878548622131)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
+Progression : 359/359
+trap_results/raw_19-04-2021_12-21-26.jpg
+Elapsed time = 0.3103499412536621
+[('bombus_hypnorum', 84.52882170677185)]
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bg'}
