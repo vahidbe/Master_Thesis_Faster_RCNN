@@ -10,3 +10,4 @@
 *.pyc
 /resources/api-keys
 stepper_motor_open.py
+/results
