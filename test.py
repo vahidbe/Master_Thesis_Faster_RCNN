@@ -14,6 +14,16 @@ def adjust_gamma(image, gamma=2.0):
     # apply gamma correction using the lookup table
     return cv2.LUT(image, table)
 
+def equalize_hist(image):
+    img_yuv = cv2.cvtColor(image, cv2.COLOR_BGR2YUV)
+
+    # equalize the histogram of the Y channel
+    img_yuv[:, :, 0] = cv2.equalizeHist(img_yuv[:, :, 0])
+
+    # convert the YUV image back to RGB format
+    image = cv2.cvtColor(img_yuv, cv2.COLOR_YUV2BGR)
+    return image
+
 if __name__ =='__main__':
     # param = {
     #     'brightness_jitter': [True],
@@ -47,8 +57,11 @@ if __name__ =='__main__':
     #     print(param)
     #     print(type(param))
     #
-    img = cv2.imread('./data/bourdon_des_jardins1405.jpg', cv2.IMREAD_COLOR)
+    img = cv2.imread('./11-04/processed_22-04-2021_09-29-59.jpg', cv2.IMREAD_COLOR)
     cv2.imshow('image', img.copy())
+    img2 = equalize_hist(img)
+    cv2.imwrite('./11-04/corrected2.jpg', img2)
+    cv2.imshow('image2', img2)
     cv2.waitKey(0)
 
     # for g in np.linspace(1.5, 4.0, 6):

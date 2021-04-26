@@ -10,3 +10,11 @@
 *.pyc
 /resources/api-keys
 /resources/tokens
+/data
+/data_800
+/data_small
+/data_test
+/data_test_small
+/captured_insects
+/11-04
+/trap_results
