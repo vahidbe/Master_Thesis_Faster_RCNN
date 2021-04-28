@@ -88,7 +88,8 @@ def draw_box_on_images(noise_reduction, histogram_equalization, gamma_correction
     #
     # classes = {}
 
-    bbox_threshold = 0.822
+    #bbox_threshold = 0.822
+    bbox_threshold = 0.6
 
     # for idx, img_name in enumerate(imgs_path):
     length = len(test_imgs)
@@ -101,6 +102,8 @@ def draw_box_on_images(noise_reduction, histogram_equalization, gamma_correction
         st = time.time()
 
         img = cv2.imread(filepath)
+
+        initial_img = img.copy()
 
         img = preprocess_img(img, noise_reduction, histogram_equalization, gamma_correction)
 
@@ -183,7 +186,7 @@ def draw_box_on_images(noise_reduction, histogram_equalization, gamma_correction
                 # Calculate real coordinates on original image
                 (real_x1, real_y1, real_x2, real_y2) = get_real_coordinates(ratio, x1, y1, x2, y2)
 
-                cv2.rectangle(img, (real_x1, real_y1), (real_x2, real_y2),
+                cv2.rectangle(initial_img, (real_x1, real_y1), (real_x2, real_y2),
                               (int(class_to_color[key][0]), int(class_to_color[key][1]), int(class_to_color[key][2])),
                               4)
 
@@ -193,17 +196,17 @@ def draw_box_on_images(noise_reduction, histogram_equalization, gamma_correction
                 (retval, baseLine) = cv2.getTextSize(textLabel, cv2.FONT_HERSHEY_COMPLEX, 1, 1)
                 textOrg = (real_x1, real_y1 - 0)
 
-                cv2.rectangle(img, (textOrg[0] - 5, textOrg[1] + baseLine - 5),
+                cv2.rectangle(initial_img, (textOrg[0] - 5, textOrg[1] + baseLine - 5),
                               (textOrg[0] + retval[0] + 5, textOrg[1] - retval[1] - 5), (0, 0, 0), 1)
-                cv2.rectangle(img, (textOrg[0] - 5, textOrg[1] + baseLine - 5),
+                cv2.rectangle(initial_img, (textOrg[0] - 5, textOrg[1] + baseLine - 5),
                               (textOrg[0] + retval[0] + 5, textOrg[1] - retval[1] - 5), (255, 255, 255), -1)
-                cv2.putText(img, textLabel, textOrg, cv2.FONT_HERSHEY_DUPLEX, 1, (0, 0, 0), 1)
+                cv2.putText(initial_img, textLabel, textOrg, cv2.FONT_HERSHEY_DUPLEX, 1, (0, 0, 0), 1)
 
         print('Elapsed time = {}'.format(time.time() - st))
         print(all_dets)
         plt.figure(figsize=(10, 10))
         plt.grid()
-        plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+        plt.imshow(cv2.cvtColor(initial_img, cv2.COLOR_BGR2RGB))
         filename = filepath.split(".")[0].split("/")[-1].split("\\")[-1]
         plt.savefig('other/box_figure/{}/{}.jpg'.format(processed_directory, filename))
 
