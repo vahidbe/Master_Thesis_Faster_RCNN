@@ -277,8 +277,8 @@ def accuracy(noise_reduction, histogram_equalization, gamma_correction):
 
     T = {}
     P = {}
-    T_all = np.empty((0,4), int)
-    P_all = np.empty((0,4), float)
+    T_all = np.empty((0,nbr_classes), int)
+    P_all = np.empty((0,nbr_classes), float)
     # T_all = []
     # P_all = []
     mAPs = []
@@ -554,6 +554,9 @@ if __name__ == "__main__":
 
     # record_df = plot_some_graphs(C)
     model_rpn, class_mapping, model_classifier_only = init_models()
+    nbr_classes = len(class_mapping.keys()) - 1
+    print(nbr_classes)
+
     if show_images:
         draw_box_on_images(noise_reduction, histogram_equalization, gamma_correction)
     if compute_accuracy:
