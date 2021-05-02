@@ -480,9 +480,9 @@ if __name__ == "__main__":
     parser.add_argument('--annotations', required=False, default='./data/data_annotations.txt',
                         metavar="/path/to/insects/dataset/annotations/file.txt",
                         help='Annotation file for the provided dataset')
-    parser.add_argument('--show_images', required=False, default='False',
+    parser.add_argument('--save_images', required=False, default='False',
                         metavar="True/False",
-                        help="True if you want to show the images after detection, False otherwise")
+                        help="True if you want to save the images after detection, False otherwise")
     parser.add_argument('--compute_accuracy', required=False, default='True',
                         metavar="True/False",
                         help="True if you want to compute the different 'accuracy' metrics, False otherwise")
@@ -508,7 +508,7 @@ if __name__ == "__main__":
 
     use_gpu = eval(args.use_gpu)
     from_csv = eval(args.from_csv)
-    show_images = eval(args.show_images)
+    save_images = eval(args.save_images)
     compute_accuracy = eval(args.compute_accuracy)
     noise_reduction = eval(args.noise_reduction)
     histogram_equalization = eval(args.histogram_equalization)
@@ -560,7 +560,7 @@ if __name__ == "__main__":
     nbr_classes = len(class_mapping.keys()) - 1
     print(nbr_classes)
 
-    if show_images:
+    if save_images:
         draw_box_on_images(noise_reduction, histogram_equalization, gamma_correction)
     if compute_accuracy:
         accuracy(noise_reduction, histogram_equalization, gamma_correction)
