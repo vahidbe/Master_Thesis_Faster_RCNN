@@ -291,6 +291,7 @@ def accuracy(noise_reduction, histogram_equalization, gamma_correction):
         st = time.time()
         filepath = img_data['filepath']
 
+        print(filepath)
         img = cv2.imread(filepath)
 
         img = preprocess_img(img, noise_reduction, histogram_equalization, gamma_correction)
