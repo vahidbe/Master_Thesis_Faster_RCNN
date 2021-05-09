@@ -238,9 +238,8 @@ def plot_roc(fpr, tpr, class_name, thresholds):
     plt.figure()
     plt.plot(fpr, tpr, lw=2)
     plt.title('[' + class_name + ']' + 'ROC')
-    plt.xlabel('Recall')
-    plt.ylabel('Precision')
-    plt.xlim([0.0, 1.0])
+    plt.xlabel('False Positive Rate')
+    plt.ylabel('True Positive Rate')
     plt.ylim([0.0, 1.0])
     plt.savefig("./graphs/{}_roc_{}".format(args.model_name, str(class_name)))
 
