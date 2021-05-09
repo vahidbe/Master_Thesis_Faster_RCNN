@@ -3,6 +3,9 @@ import os
 
 from libraries import *
 
+bbox_threshold = 0.66
+
+
 def preprocess_img(img, noise_reduction, histogram_equalization, gamma_correction):
     if noise_reduction is None:
         pass
@@ -87,9 +90,6 @@ def draw_box_on_images(noise_reduction, histogram_equalization, gamma_correction
     # all_imgs = []
     #
     # classes = {}
-
-    #bbox_threshold = 0.822
-    bbox_threshold = 0.66
 
     # for idx, img_name in enumerate(imgs_path):
     length = len(test_imgs)
@@ -221,7 +221,7 @@ def plot_precision_recall(precision, recall, thresholds, class_name):
     plt.ylabel('Precision')
     plt.xlim([0.0, 1.0])
     plt.ylim([0.0, 1.0])
-    plt.savefig("./graphs/{}_prec-rec_{}".format(str(args.model_name), str(class_name)))
+    plt.savefig("./other/graphs/{}_prec-rec_{}".format(str(model_name), str(class_name)))
 
     plt.figure()
     plt.xlabel('Thresholds')
@@ -232,7 +232,7 @@ def plot_precision_recall(precision, recall, thresholds, class_name):
     plt.plot(thresholds, recall[:-1], label='recall')
     plt.legend()
     plt.title('[' + class_name + ']' + ' AP thresholds')
-    plt.savefig("./graphs/{}_AP_thresh_{}".format(str(args.model_name), str(class_name)))
+    plt.savefig("./other/graphs/{}_AP_thresh_{}".format(str(model_name), str(class_name)))
 
 def plot_roc(fpr, tpr, class_name, thresholds):
     plt.figure()
@@ -241,7 +241,7 @@ def plot_roc(fpr, tpr, class_name, thresholds):
     plt.xlabel('False Positive Rate')
     plt.ylabel('True Positive Rate')
     plt.ylim([0.0, 1.0])
-    plt.savefig("./graphs/{}_roc_{}".format(args.model_name, str(class_name)))
+    plt.savefig("./other/graphs/{}_roc_{}".format(model_name, str(class_name)))
 
     # plt.figure()
     # plt.xlabel('Thresholds')
@@ -252,7 +252,31 @@ def plot_roc(fpr, tpr, class_name, thresholds):
     # plt.plot(thresholds, tpr)
     # plt.legend('fpr', 'tpr')
     # plt.title('[' + class_name + ']' + ' ROC thresholds')
-    # plt.savefig("./graphs/test_{}_ROC_thresh_{}".format(str(args.model_name), str(class_name)))
+    # plt.savefig("./other/graphs/test_{}_ROC_thresh_{}".format(str(model_name), str(class_name)))
+
+
+def plot_confusion_matrix(confusion_matrix):
+    import seaborn as sn
+    df_cm = pd.DataFrame(confusion_matrix)
+    plt.figure(figsize=(10, 7))
+    sn.heatmap(df_cm, annot=True)
+    plt.title("Confusion matrix")
+    plt.savefig("./other/graphs/{}_confusion_matrix.png".format(model_name))
+
+
+def build_confusion_matrix(T_all, P_all):
+    matrix = np.zeros((nbr_classes,nbr_classes), int)
+    for i in range(len(T_all)):
+        T_filtered = T_all[i].tolist()
+        if T_filtered.count(1) == 0:
+            continue
+        P_filtered = P_all[i].tolist()
+        if P_filtered.count(1) == 0:
+            continue
+        matrix[T_filtered.index(1), P_filtered.index(1)] += 1
+
+    return matrix
+
 
 def maximise_F_score(precision, recall, threshold):
     best_F_score = 0
@@ -269,7 +293,8 @@ def maximise_F_score(precision, recall, threshold):
 
     return round(best_threshold, 3), round(best_F_score, 3), round(best_precision, 3), round(best_recall, 3)
 
-def accuracy(noise_reduction, histogram_equalization, gamma_correction):
+
+def accuracy():
     if from_csv:
         imgs_record_df = pd.read_csv(imgs_record_path)
         last_row = imgs_record_df.tail(1)
@@ -401,10 +426,9 @@ def accuracy(noise_reduction, histogram_equalization, gamma_correction):
         mAPs.append(np.mean(np.array(all_aps)))
         # mROC_AUCs.append(np.mean(np.array(all_roc_aucs)))
 
-    # T_all = np.concatenate(T_all, axis=0)
-    # P_all = np.concatenate(P_all, axis=0)
-    T_all = T_all.ravel()
-    P_all = P_all.ravel()
+
+    T_all_flattened = T_all.ravel()
+    P_all_flattened = P_all.ravel()
 
     print()
     print('mean average precision:', np.nanmean(np.array(mAPs)))
@@ -437,21 +461,30 @@ def accuracy(noise_reduction, histogram_equalization, gamma_correction):
         precision_list.append(best_precision)
         recall_list.append(best_recall)
 
-    precision, recall, thresholds = precision_recall_curve(T_all, P_all)
+    precision, recall, thresholds = precision_recall_curve(T_all_flattened, P_all_flattened)
     best_threshold, best_F_score, best_precision, best_recall = maximise_F_score(precision, recall, thresholds)
     plot_precision_recall(precision, recall, thresholds, 'Micro Average')
-    fpr, tpr, thresholds = roc_curve(T_all, P_all)
+    fpr, tpr, thresholds = roc_curve(T_all_flattened, P_all_flattened)
     roc_auc = auc(fpr, tpr)
     print("ROC AUC for {} = {}".format('micro average', str(roc_auc)))
     plot_roc(fpr, tpr, 'Micro Average', thresholds)
+    ap_all_classes = average_precision_score(T_all_flattened, P_all_flattened)
+    print("Micro average AP score: {}".format(ap_all_classes))
     optimal_data['Micro Average'] = best_threshold, best_F_score, best_precision, best_recall
 
     print("Best data summary with order : (Threshold, F-score, precision, recall)")
     print(optimal_data)
 
-    P_all[P_all >= best_threshold] = 1.0
-    P_all[P_all < best_threshold] = 0.0
-    acc = accuracy_score(T_all, P_all)
+    P_all[P_all >= best_threshold] = 1
+    P_all[P_all < best_threshold] = 0
+
+    P_all_flattened[P_all_flattened >= best_threshold] = 1.0
+    P_all_flattened[P_all_flattened < best_threshold] = 0.0
+
+    acc = accuracy_score(T_all_flattened, P_all_flattened)
+
+    confusion_matrix = build_confusion_matrix(T_all, P_all)
+    plot_confusion_matrix(confusion_matrix)
 
     print("Accuracy of the model : " + str(acc))
 
@@ -505,6 +538,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
+    model_name = args.model_name
     use_gpu = eval(args.use_gpu)
     from_csv = eval(args.from_csv)
     process_images = eval(args.process_images)
@@ -534,15 +568,15 @@ if __name__ == "__main__":
     test_path = args.annotations  # Test data (annotation file)
     data_test_path = args.dataset
 
-    imgs_record_path = "./config/{} - imgs.csv".format(args.model_name)
+    imgs_record_path = "./config/{} - imgs.csv".format(model_name)
 
-    # output_results_filename = "./results/{}".format(args.model_name)
+    # output_results_filename = "./results/{}".format(model_name)
     # if not os.path.exists(output_results_filename):
     #     os.mkdir(output_results_filename)
     # TODO: output results of accuracy in file
     # TODO: parametrer le programme pour afficher les images ou calculer les metrics
 
-    config_output_filename = "./config/{}.pickle".format(args.model_name)
+    config_output_filename = "./config/{}.pickle".format(model_name)
 
     with open(config_output_filename, 'rb') as f_in:
         C = pickle.load(f_in)
@@ -552,7 +586,7 @@ if __name__ == "__main__":
     C.use_vertical_flips = False
     C.rot_90 = False
 
-    C.model_path = "./model/{}.hdf5".format(args.model_name)  # UPDATE WEIGHTS PATH HERE !!!!!!!!
+    C.model_path = "./model/{}.hdf5".format(model_name)  # UPDATE WEIGHTS PATH HERE !!!!!!!!
 
     # record_df = plot_some_graphs(C)
     model_rpn, class_mapping, model_classifier_only = init_models()
@@ -562,4 +596,4 @@ if __name__ == "__main__":
     if process_images:
         draw_box_on_images(noise_reduction, histogram_equalization, gamma_correction)
     if compute_accuracy:
-        accuracy(noise_reduction, histogram_equalization, gamma_correction)
+        accuracy()
