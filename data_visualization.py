@@ -33,32 +33,9 @@ def display_histogram(hist, title, type):
 def get_box_image_ratio(input_path, set):
     global imgs_temp
     ratio_surface = {}
-
-    ratio_surface["abeille_mellifere"] = []
-    ratio_surface["boudon_des_arbres"] = []
-    ratio_surface["anthophore_plumeuse"] = []
-    ratio_surface["bourdon_des_jardins"] = []
-
     ratio_width_height = {}
-
-    ratio_width_height["abeille_mellifere"] = []
-    ratio_width_height["boudon_des_arbres"] = []
-    ratio_width_height["anthophore_plumeuse"] = []
-    ratio_width_height["bourdon_des_jardins"] = []
-
     rgb_intensity = {}
-
-    rgb_intensity["abeille_mellifere"] = []
-    rgb_intensity["boudon_des_arbres"] = []
-    rgb_intensity["anthophore_plumeuse"] = []
-    rgb_intensity["bourdon_des_jardins"] = []
-
     gray_intensity = {}
-
-    gray_intensity["abeille_mellifere"] = []
-    gray_intensity["boudon_des_arbres"] = []
-    gray_intensity["anthophore_plumeuse"] = []
-    gray_intensity["bourdon_des_jardins"] = []
 
     i = 1
 
@@ -80,6 +57,12 @@ def get_box_image_ratio(input_path, set):
         wbox = np.abs(int(x1) - int(x2))
         box_surface = hbox * wbox
 
+        if class_name not in ratio_surface.keys():
+            ratio_surface[class_name] = []
+            ratio_width_height[class_name] = []
+            rgb_intensity[class_name] = []
+            gray_intensity[class_name] = []
+
         # thepath = os.path.join(data_path, filename)
         im = cv2.imread(thepath)
         im_gray = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
@@ -92,49 +75,15 @@ def get_box_image_ratio(input_path, set):
         rgb_intensity[class_name].append(mean_rgb_intensity)
         gray_intensity[class_name].append(mean_gray_intensity)
 
-    # with open(input_path, 'r') as f:
-    #
-    #     print('Parsing annotation files')
-    #
-    #     for line in f:
-    #
-    #         sys.stdout.write('\r' + 'idx=' + str(i))
-    #         i += 1
-    #
-    #         line_split = line.strip().split(',')
-    #
-    #         (filename, x1, y1, x2, y2, class_name) = line_split
-    #         hbox = np.abs(int(y1)-int(y2))
-    #         wbox = np.abs(int(x1)-int(x2))
-    #         box_surface = hbox * wbox
-    #
-    #         thepath = os.path.join(data_path, filename)
-    #         im = cv2.imread(thepath)
-    #         im_gray = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
-    #         mean_rgb_intensity = np.mean(im)
-    #         mean_gray_intensity = np.mean(im_gray)
-    #         h, w, c = im.shape
-    #         surface = h * w
-    #         ratio_surface[class_name].append(box_surface/surface)
-    #         ratio_width_height[class_name].append(wbox/hbox)
-    #         rgb_intensity[class_name].append(mean_rgb_intensity)
-    #         gray_intensity[class_name].append(mean_gray_intensity)
-
     return ratio_surface, ratio_width_height, rgb_intensity, gray_intensity
 
 
 if __name__ == '__main__':
-    # train_path = './data/data_annotations.txt'  # Training data (annotation file)
-    # data_path = './data'
-    #
-    # test_path = './data_test/data_annotations.txt'  # Training data (annotation file)
-    # data_test_path = './data_test'
 
-    csv_file = './logs/model6000_val_epoch - imgs.csv'
+    csv_file = './config/model10classes - imgs.csv'
 
     ratio_surface, ratio_width_height, rgb_intensity, gray_intensity = get_box_image_ratio(csv_file, 'train')
-    ratio_surface_test, ratio_width_height_test, rgb_intensity_test, gray_intensity_test = get_box_image_ratio(csv_file,
-                                                                                                               'test')
+    ratio_surface_test, ratio_width_height_test, rgb_intensity_test, gray_intensity_test = get_box_image_ratio(csv_file, 'test')
 
     for class_name in ratio_surface.keys():
         display_histogram(ratio_surface[class_name], '[Train] Ratio box on image - ' + class_name, type='train')
