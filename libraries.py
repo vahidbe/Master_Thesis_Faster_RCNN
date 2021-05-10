@@ -1469,7 +1469,7 @@ def get_map_all(pred, gt, f, class_mapping):
 
         # Pour chaque box prédite, on met dans P la proba de la classe prédite
         P_all.append(all_pred_probs[:-1])
-        found_match = False
+        found_class = None
 
         for gt_box in gt: # On parcourt les vraies boxes de l'image jusqu'à trouver une box qui correspond à la classe et qui overlap
             gt_class = gt_box['class']
@@ -1478,21 +1478,21 @@ def get_map_all(pred, gt, f, class_mapping):
             gt_y1 = gt_box['y1'] / fy
             gt_y2 = gt_box['y2'] / fy
             gt_seen = gt_box['bbox_matched'] # A-t-on trouvé une box prédite qui correspond à la vraie box
-            if gt_class != pred_class:
-                continue
+            # if gt_class != pred_class:
+            #     continue
             if gt_seen: # Si la vraie box a déjà été assignée à autre predicted box, on skip
                 continue
             iou_map = iou((pred_x1, pred_y1, pred_x2, pred_y2), (gt_x1, gt_y1, gt_x2, gt_y2))
             if iou_map >= 0.5:
-                found_match = True
+                found_class = gt_class
                 gt_box['bbox_matched'] = True
                 break
             else:
                 continue
 
         # Si la box prédite correspond à une vraie box, on append 1, sinon 0
-        if found_match:
-            T_all.append(label_binarize([pred_class], classes=list(class_mapping.values())[:-1])[0])
+        if found_class is not None:
+            T_all.append(label_binarize([found_class], classes=list(class_mapping.values())[:-1])[0])
         else:
             T_all.append(np.zeros(len(class_mapping.values())-1))
 
