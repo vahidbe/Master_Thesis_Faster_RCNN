@@ -1485,7 +1485,8 @@ def get_map_all(pred, gt, f, class_mapping):
             iou_map = iou((pred_x1, pred_y1, pred_x2, pred_y2), (gt_x1, gt_y1, gt_x2, gt_y2))
             if iou_map >= 0.5:
                 found_class = gt_class
-                gt_box['bbox_matched'] = True
+                if gt_class == pred_class:
+                    gt_box['bbox_matched'] = True
                 break
             else:
                 continue
