@@ -3,7 +3,7 @@ import os
 
 from libraries import *
 
-bbox_threshold = 0.66
+bbox_threshold = 0
 
 
 def preprocess_img(img, noise_reduction, histogram_equalization, gamma_correction):
@@ -214,6 +214,10 @@ def draw_box_on_images(noise_reduction, histogram_equalization, gamma_correction
 
 
 def plot_precision_recall(precision, recall, thresholds, class_name):
+    if thresholds[0] == 0:
+        precision[0] = precision[1]
+        recall[0] = recall[1]
+
     plt.figure()
     plt.plot(recall, precision, lw=2)
     plt.title('[' + class_name + ']' + ' Precision - Recall curve')
@@ -233,6 +237,7 @@ def plot_precision_recall(precision, recall, thresholds, class_name):
     plt.legend()
     plt.title('[' + class_name + ']' + ' AP thresholds')
     plt.savefig("./other/graphs/{}_AP_thresh_{}".format(str(model_name), str(class_name)))
+
 
 def plot_roc(fpr, tpr, class_name, thresholds):
     plt.figure()
@@ -284,14 +289,14 @@ def maximise_F_score(precision, recall, threshold):
     best_precision = -1
     best_recall = -1
     for i in range(len(threshold)):
-        F_score = 2 * precision[i]*recall[i]/(precision[i] + recall[i])
-        if F_score > best_F_score:
-            best_threshold = threshold[i]
-            best_precision = precision[i]
-            best_recall = recall[i]
+        F_score = 2 * precision[i].copy()*recall[i].copy()/(precision[i].copy() + recall[i].copy())
+        if F_score > best_F_score and not threshold[i] == 0:
+            best_threshold = threshold[i].copy()
+            best_precision = precision[i].copy()
+            best_recall = recall[i].copy()
             best_F_score = F_score
 
-    return round(best_threshold, 3), round(best_F_score, 3), round(best_precision, 3), round(best_recall, 3)
+    return best_threshold, round(best_F_score, 3), round(best_precision, 3), round(best_recall, 3)
 
 
 def accuracy():
@@ -304,16 +309,17 @@ def accuracy():
 
     T = {}
     P = {}
-    T_all = np.empty((0,nbr_classes), int)
-    P_all = np.empty((0,nbr_classes), float)
-    # T_all = []
-    # P_all = []
+    T_all = []
+    P_all = []
+    T_all_conf = np.empty((0,nbr_classes), int)
+    P_all_conf = np.empty((0,nbr_classes), float)
     mAPs = []
-    mROC_AUCs = []
+    # mROC_AUCs = []
     for idx, img_data in enumerate(test_imgs):
         print('{}/{}'.format(idx, len(test_imgs)))
         st = time.time()
         filepath = img_data['filepath']
+        print(filepath)
 
         img = cv2.imread(filepath)
 
@@ -401,19 +407,21 @@ def accuracy():
 
         print('Elapsed time = {}'.format(time.time() - st))
         t, p = get_map(all_dets, img_data['bboxes'], (fx, fy)) #p contient les proba de prédiction des classes
-        T_all_for_image, P_all_for_image = get_map_all(all_dets, img_data['bboxes'], (fx, fy), class_mapping)
-        for T_all_box in T_all_for_image:
-            T_all = np.append(T_all, np.array([T_all_box]), axis=0)
-        for P_all_box in P_all_for_image:
-            P_all = np.append(P_all, np.array([P_all_box]), axis=0)
+        T_all_for_image_conf, P_all_for_image_conf = get_map_all(all_dets, img_data['bboxes'], (fx, fy), class_mapping)
+        for T_all_box_conf in T_all_for_image_conf:
+            T_all_conf = np.append(T_all_conf, np.array([T_all_box_conf]), axis=0)
+        for P_all_box_conf in P_all_for_image_conf:
+            P_all_conf = np.append(P_all_conf, np.array([P_all_box_conf]), axis=0)
         for key in t.keys():
             if key not in T:
                 T[key] = []
                 P[key] = []
             T[key].extend(t[key]) #C'est cumulatif, on garde les prédictions des images précédemment considérées dans le test
             P[key].extend(p[key])
+            T_all += t[key]
+            P_all += p[key]
         all_aps = []
-        all_roc_aucs = []
+        # all_roc_aucs = []
         for key in T.keys():
             ap = average_precision_score(T[key], P[key])
             # roc_auc = roc_auc_score(T[key], P[key])
@@ -425,10 +433,6 @@ def accuracy():
         # print('mROC_AUC = {}'.format(np.mean(np.array(all_roc_aucs)))) #Mean on all classes
         mAPs.append(np.mean(np.array(all_aps)))
         # mROC_AUCs.append(np.mean(np.array(all_roc_aucs)))
-
-
-    T_all_flattened = T_all.ravel()
-    P_all_flattened = P_all.ravel()
 
     print()
     print('mean average precision:', np.nanmean(np.array(mAPs)))
@@ -455,38 +459,39 @@ def accuracy():
         roc_auc = auc(fpr, tpr)
         print("ROC AUC for {} = {}".format(str(key), str(roc_auc)))
         plot_roc(fpr, tpr, key, thresholds)
-        optimal_data[key] = best_threshold, best_F_score, best_precision, best_recall
+        optimal_data[key] = round(best_threshold, 3), best_F_score, best_precision, best_recall
         threshold_list.append(best_threshold)
         F_score_list.append(best_F_score)
         precision_list.append(best_precision)
         recall_list.append(best_recall)
 
-    precision, recall, thresholds = precision_recall_curve(T_all_flattened, P_all_flattened)
+    precision, recall, thresholds = precision_recall_curve(T_all, P_all)
     best_threshold, best_F_score, best_precision, best_recall = maximise_F_score(precision, recall, thresholds)
-    plot_precision_recall(precision, recall, thresholds, 'Micro Average')
-    fpr, tpr, thresholds = roc_curve(T_all_flattened, P_all_flattened)
+    plot_precision_recall(precision, recall, thresholds, 'all classes')
+    fpr, tpr, thresholds = roc_curve(T_all, P_all)
     roc_auc = auc(fpr, tpr)
-    print("ROC AUC for {} = {}".format('micro average', str(roc_auc)))
-    plot_roc(fpr, tpr, 'Micro Average', thresholds)
-    ap_all_classes = average_precision_score(T_all_flattened, P_all_flattened)
-    print("Micro average AP score: {}".format(ap_all_classes))
-    optimal_data['Micro Average'] = best_threshold, best_F_score, best_precision, best_recall
+    print("ROC AUC for {} = {}".format('all classes', str(roc_auc)))
+    plot_roc(fpr, tpr, 'all classes', thresholds)
+    ap_all_classes = average_precision_score(T_all, P_all)
+    print("AP score over all classes: {}".format(ap_all_classes))
+    optimal_data['all classes'] = round(best_threshold, 3), best_F_score, best_precision, best_recall
 
     print("Best data summary with order : (Threshold, F-score, precision, recall)")
     print(optimal_data)
 
-    P_all[P_all >= best_threshold] = 1
-    P_all[P_all < best_threshold] = 0
+    P_all = [int(num >= best_threshold) for num in P_all]
+    acc = accuracy_score(T_all, P_all)
+    prec = precision_score(T_all, P_all)
+    rec = recall_score(T_all, P_all)
 
-    P_all_flattened[P_all_flattened >= best_threshold] = 1.0
-    P_all_flattened[P_all_flattened < best_threshold] = 0.0
-
-    acc = accuracy_score(T_all_flattened, P_all_flattened)
-
-    confusion_matrix = build_confusion_matrix(T_all, P_all)
+    P_all_conf[P_all_conf >= best_threshold] = 1
+    P_all_conf[P_all_conf < best_threshold] = 0
+    confusion_matrix = build_confusion_matrix(T_all_conf, P_all_conf)
     plot_confusion_matrix(confusion_matrix)
 
     print("Accuracy of the model : " + str(acc))
+    print("Precision of the model : " + str(prec))
+    print("Recall of the model : " + str(rec))
 
     # record_df.loc[len(record_df)-1, 'mAP'] = mean_average_prec
     # record_df.to_csv(C.record_path, index=0)
