@@ -1,0 +1,5 @@
+cropped_07-05-2021_13-15-14_1.jpg,550,98,858,308,apis_mellifera
+cropped_07-05-2021_13-15-17_1.jpg,553,91,860,352,apis_mellifera
+cropped_07-05-2021_13-15-18_1.jpg,606,89,913,351,apis_mellifera
+cropped_07-05-2021_13-15-38_1.jpg,267,87,568,326,apis_mellifera
+cropped_07-05-2021_13-15-38_3.jpg,371,102,644,318,apis_mellifera
