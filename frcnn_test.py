@@ -654,6 +654,12 @@ def evaluate_trap_results():
 
     print('Mean recall for all classes : {}'.format(str(np.mean(recall_list))))
     print('Mean precision for all classes : {}'.format(str(np.mean(precision_list))))
+    
+    recall_array = np.array(recall_list)
+    recall_array[recall_array > 0.0] = 1
+    detection_proba = np.sum(recall_array)/len(recall_array)
+    print('Probability that an insect is correctly detected at least once : {}'.format(str(detection_proba)))
+
 
     # P_all_conf[P_all_conf >= best_threshold] = 1
     # P_all_conf[P_all_conf < best_threshold] = 0
