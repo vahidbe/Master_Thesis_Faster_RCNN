@@ -518,6 +518,151 @@ def accuracy():
     # record_df.to_csv(C.record_path, index=0)
     # print('Save mAP to {}'.format(C.record_path))
 
+def evaluate_trap_results():
+    T_all = []
+    P_all = []
+    T_all_conf = np.empty((0, nbr_classes), int)
+    P_all_conf = np.empty((0, nbr_classes), float)
+    best_threshold = 0.601
+
+    recall_list = []
+    precision_list = []
+
+    for dir_path in [x[0] for x in os.walk(data_test_path) if x[0] != data_test_path]:
+        annotation_path = os.path.join(dir_path, 'annotations.txt')
+        test_imgs, _, _ = get_data(annotation_path, dir_path)
+
+        T = {}
+        P = {}
+
+        for idx, img_data in enumerate(test_imgs):
+            print('{}/{}'.format(idx, len(test_imgs)))
+            st = time.time()
+            filepath = img_data['filepath']
+            print(filepath)
+
+            img = cv2.imread(filepath)
+
+            img = preprocess_img(img, noise_reduction, histogram_equalization, gamma_correction)
+
+            X, fx, fy = format_img_map(img, C)
+
+            # Change X (img) shape from (1, channel, height, width) to (1, height, width, channel)
+            X = np.transpose(X, (0, 2, 3, 1))
+
+            # get the feature maps and output from the RPN
+            [Y1, Y2, F] = model_rpn.predict(X)
+
+            R = rpn_to_roi(Y1, Y2, C, K.image_data_format(), overlap_thresh=0.7)
+
+            # convert from (x1,y1,x2,y2) to (x,y,w,h)
+            R[:, 2] -= R[:, 0]
+            R[:, 3] -= R[:, 1]
+
+            # apply the spatial pyramid pooling to the proposed regions
+            bboxes = {}
+            probs = {}
+            all_probs = {}
+
+            for jk in range(R.shape[0] // C.num_rois + 1):
+                ROIs = np.expand_dims(R[C.num_rois * jk:C.num_rois * (jk + 1), :], axis=0)
+                if ROIs.shape[1] == 0:
+                    break
+
+                if jk == R.shape[0] // C.num_rois:
+                    # pad R
+                    curr_shape = ROIs.shape
+                    target_shape = (curr_shape[0], C.num_rois, curr_shape[2])
+                    ROIs_padded = np.zeros(target_shape).astype(ROIs.dtype)
+                    ROIs_padded[:, :curr_shape[1], :] = ROIs
+                    ROIs_padded[0, curr_shape[1]:, :] = ROIs[0, 0, :]
+                    ROIs = ROIs_padded
+
+                [P_cls, P_regr] = model_classifier_only.predict([F, ROIs])
+
+                # Calculate all classes' bboxes coordinates on resized image (300, 400)
+                # Drop 'bg' classes bboxes
+                for ii in range(P_cls.shape[1]):
+
+                    # If class name is 'bg', continue
+                    if np.argmax(P_cls[0, ii, :]) == (P_cls.shape[2] - 1):
+                        continue
+
+                    # Get class name
+                    cls_name = class_mapping[np.argmax(P_cls[0, ii, :])]
+
+                    if cls_name not in bboxes:
+                        bboxes[cls_name] = []
+                        probs[cls_name] = []
+                        all_probs[cls_name] = []
+
+                    (x, y, w, h) = ROIs[0, ii, :]
+
+                    cls_num = np.argmax(P_cls[0, ii, :])
+                    try:
+                        (tx, ty, tw, th) = P_regr[0, ii, 4 * cls_num:4 * (cls_num + 1)]
+                        tx /= C.classifier_regr_std[0]
+                        ty /= C.classifier_regr_std[1]
+                        tw /= C.classifier_regr_std[2]
+                        th /= C.classifier_regr_std[3]
+                        x, y, w, h = apply_regr(x, y, w, h, tx, ty, tw, th)
+                    except:
+                        pass
+                    bboxes[cls_name].append([16 * x, 16 * y, 16 * (x + w), 16 * (y + h)])
+                    probs[cls_name].append(np.max(P_cls[0, ii, :]))
+                    all_probs[cls_name].append(list(P_cls[0, ii, :]))
+
+            all_dets = []
+
+            for key in bboxes:
+                bbox = np.array(bboxes[key])
+                all_prob = np.array(all_probs[key])
+
+                # Apply non-max-suppression on final bboxes to get the output bounding boxes
+                new_boxes, new_probs, new_all_prob = non_max_suppression_fast_with_all_probs(bbox, np.array(probs[key]), all_prob, overlap_thresh=0.2)
+                for jk in range(new_boxes.shape[0]):
+                    (x1, y1, x2, y2) = new_boxes[jk, :]
+                    det = {'x1': x1, 'x2': x2, 'y1': y1, 'y2': y2, 'class': key, 'prob': new_probs[jk], 'all_probs': new_all_prob[jk]}
+                    all_dets.append(det)
+
+            print('Elapsed time = {}'.format(time.time() - st))
+            t, p = get_map(all_dets, img_data['bboxes'], (fx, fy)) #p contient les proba de prédiction des classes
+            T_all_for_image_conf, P_all_for_image_conf = get_map_all(all_dets, img_data['bboxes'], (fx, fy), class_mapping)
+            for T_all_box_conf in T_all_for_image_conf:
+                T_all_conf = np.append(T_all_conf, np.array([T_all_box_conf]), axis=0)
+            for P_all_box_conf in P_all_for_image_conf:
+                P_all_conf = np.append(P_all_conf, np.array([P_all_box_conf]), axis=0)
+            for key in t.keys():
+                if key not in T:
+                    T[key] = []
+                    P[key] = []
+                T[key].extend(t[key])
+                P[key].extend(p[key])
+                T_all += t[key]
+                P_all += p[key]
+
+        for key in T.keys():
+            P_list = np.array(P[key])
+            P_list[P_list >= best_threshold] = 1
+            P_list[P_list < best_threshold] = 0
+            recall = recall_score(T[key], P_list)
+            precision = precision_score(T[key], P_list)
+            print('{} - {} Recall: {}'.format(dir_path, key, str(recall)))
+            print('{} - {} Precision: {}'.format(dir_path, key, str(precision)))
+            precision_list.append(precision)
+            recall_list.append(recall)
+
+    print('Average recall for all classes : {}'.format(str(np.mean(recall_list))))
+    print('Average precision for all classes : {}'.format(str(np.mean(precision_list))))
+
+    P_all_conf[P_all_conf >= best_threshold] = 1
+    P_all_conf[P_all_conf < best_threshold] = 0
+    confusion_matrix = build_confusion_matrix(T_all_conf, P_all_conf)
+    plot_confusion_matrix(confusion_matrix)
+    recall_all_insects = recall_score(T_all_conf, P_all_conf)
+    precision_all_insects = precision_score(T_all_conf, P_all_conf)
+    print('[All classes] Recall : {}'.format(str(recall_all_insects)))
+    print('[All classes] Precision : {}'.format(str(precision_all_insects)))
 
 if __name__ == "__main__":
 
