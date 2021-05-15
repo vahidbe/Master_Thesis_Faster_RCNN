@@ -689,6 +689,9 @@ if __name__ == "__main__":
     parser.add_argument('--evaluate', required=False, default='True',
                         metavar="True/False",
                         help="True if you want to evaluate the model, False otherwise")
+    parser.add_argument('--trap_images', required=False, default='False',
+                        metavar="True/False",
+                        help="True if you want to evaluate the model on trap results, False otherwise")
     parser.add_argument('--use_gpu', required=False, default="True",
                         metavar="True/False",
                         help="True if you want to run the training on a gpu, False otherwise")
@@ -714,6 +717,7 @@ if __name__ == "__main__":
     from_csv = eval(args.from_csv)
     process_images = eval(args.process_images)
     compute_accuracy = eval(args.evaluate)
+    trap_images = eval(args.trap_images)
     noise_reduction = eval(args.noise_reduction)
     histogram_equalization = eval(args.histogram_equalization)
     gamma_correction = eval(args.gamma_correction)
@@ -767,4 +771,7 @@ if __name__ == "__main__":
     if process_images:
         draw_box_on_images(noise_reduction, histogram_equalization, gamma_correction)
     if compute_accuracy:
-        accuracy()
+        if trap_images:
+            evaluate_trap_results()
+        else:
+            accuracy()
