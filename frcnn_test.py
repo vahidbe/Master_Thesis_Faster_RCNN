@@ -519,10 +519,6 @@ def accuracy():
     # print('Save mAP to {}'.format(C.record_path))
 
 def evaluate_trap_results():
-    T_all = []
-    P_all = []
-    T_all_conf = np.empty((0, nbr_classes), int)
-    P_all_conf = np.empty((0, nbr_classes), float)
     best_threshold = 0.601
 
     recall_list = []
@@ -534,6 +530,11 @@ def evaluate_trap_results():
 
         T = {}
         P = {}
+
+        T_all = []
+        P_all = []
+        T_all_conf = np.empty((0, nbr_classes), int)
+        P_all_conf = np.empty((0, nbr_classes), float)
 
         for idx, img_data in enumerate(test_imgs):
             print('{}/{}'.format(idx, len(test_imgs)))
@@ -641,28 +642,28 @@ def evaluate_trap_results():
                 T_all += t[key]
                 P_all += p[key]
 
-        for key in T.keys():
-            P_list = np.array(P[key])
-            P_list[P_list >= best_threshold] = 1
-            P_list[P_list < best_threshold] = 0
-            recall = recall_score(T[key], P_list)
-            precision = precision_score(T[key], P_list)
-            print('{} - {} Recall: {}'.format(dir_path, key, str(recall)))
-            print('{} - {} Precision: {}'.format(dir_path, key, str(precision)))
-            precision_list.append(precision)
-            recall_list.append(recall)
+
+        P_list = np.array(P_all)
+        P_all[P_all >= best_threshold] = 1
+        P_all[P_all < best_threshold] = 0
+        recall = recall_score(T_all, P_all)
+        precision = precision_score(T_all, P_all)
+        print('{} - Recall: {}'.format(dir_path, str(recall)))
+        print('{} - Precision: {}'.format(dir_path, str(precision)))
+        precision_list.append(precision)
+        recall_list.append(recall)
 
     print('Average recall for all classes : {}'.format(str(np.mean(recall_list))))
     print('Average precision for all classes : {}'.format(str(np.mean(precision_list))))
 
-    P_all_conf[P_all_conf >= best_threshold] = 1
-    P_all_conf[P_all_conf < best_threshold] = 0
-    confusion_matrix = build_confusion_matrix(T_all_conf, P_all_conf)
-    plot_confusion_matrix(confusion_matrix)
-    recall_all_insects = recall_score(T_all_conf, P_all_conf)
-    precision_all_insects = precision_score(T_all_conf, P_all_conf)
-    print('[All classes] Recall : {}'.format(str(recall_all_insects)))
-    print('[All classes] Precision : {}'.format(str(precision_all_insects)))
+    # P_all_conf[P_all_conf >= best_threshold] = 1
+    # P_all_conf[P_all_conf < best_threshold] = 0
+    # confusion_matrix = build_confusion_matrix(T_all_conf, P_all_conf)
+    # plot_confusion_matrix(confusion_matrix)
+    # recall_all_insects = recall_score(T_all_conf, P_all_conf)
+    # precision_all_insects = precision_score(T_all_conf, P_all_conf)
+    # print('[All classes] Recall : {}'.format(str(recall_all_insects)))
+    # print('[All classes] Precision : {}'.format(str(precision_all_insects)))
 
 if __name__ == "__main__":
 
