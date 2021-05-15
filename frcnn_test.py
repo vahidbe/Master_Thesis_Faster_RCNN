@@ -214,6 +214,8 @@ def draw_box_on_images(noise_reduction, histogram_equalization, gamma_correction
 
 
 def plot_precision_recall(precision, recall, thresholds, class_name):
+    # The following commented lines aim at removing the extrapolation made by sci-kit learn to reach a recall value
+    # of 1. See report for more explanations about this.
     if thresholds[0] == 0:
         precision[0] = precision[1]
         recall[0] = recall[1]
@@ -297,6 +299,15 @@ def maximise_F_score(precision, recall, threshold):
             best_F_score = F_score
 
     return best_threshold, round(best_F_score, 3), round(best_precision, 3), round(best_recall, 3)
+
+def modified_average_precision_score(T, P):
+    precision, recall, thresholds = precision_recall_curve(T, P)
+    if thresholds[0] == 0:
+        precision[0] = precision[1]
+        recall[0] = recall[1]
+
+    modified_ap = auc(recall, precision)
+    return modified_ap
 
 
 def accuracy():
@@ -420,29 +431,31 @@ def accuracy():
             P[key].extend(p[key])
             T_all += t[key]
             P_all += p[key]
-        all_aps = []
+
         # all_roc_aucs = []
         for key in T.keys():
-            ap = average_precision_score(T[key], P[key])
+            ap = modified_average_precision_score(T[key], P[key])
             # roc_auc = roc_auc_score(T[key], P[key])
             print('{} AP: {}'.format(key, ap))
             # print('{} ROC AUC: {}'.format(key, roc_auc))
-            all_aps.append(ap)
+            # all_aps.append(ap)
             # all_roc_aucs.append(roc_auc)
-        print('mAP = {}'.format(np.mean(np.array(all_aps)))) #Mean on all classes
+        # print('mAP = {}'.format(np.mean(np.array(all_aps)))) #Mean on all classes
         # print('mROC_AUC = {}'.format(np.mean(np.array(all_roc_aucs)))) #Mean on all classes
-        mAPs.append(np.mean(np.array(all_aps)))
+        # mAPs.append(np.mean(np.array(all_aps)))
         # mROC_AUCs.append(np.mean(np.array(all_roc_aucs)))
 
-    print()
-    print('mean average precision:', np.nanmean(np.array(mAPs)))
+    # print()
+
+    # print('mean average precision:', np.nanmean(np.array(mAPs)))
+    # print('Final mean average precision value = {}'.format(np.mean(np.array(all_aps))))
     # print('mean Area Under the Receiver Operating Characteristic Curve:', np.nanmean(np.array(mROC_AUCs)))
 
-    mAP = [mAP for mAP in mAPs if str(mAP) != 'nan']
+    # mAP = [mAP for mAP in mAPs if str(mAP) != 'nan']
     # mROC_AUC = [mROC_AUC for mROC_AUC in mROC_AUCs if str(mROC_AUC) != 'nan']
-    mean_average_prec = np.nanmean(np.array(mAP))
+    # mean_average_prec = np.nanmean(np.array(mAP))
     # mean_roc_auc = np.nanmean(np.array(mROC_AUC))
-    print('The mean average precision is %0.3f' % (mean_average_prec))
+    # print('The mean average precision is %0.3f' % (mean_average_prec))
     # print('The mean Area Under the Receiver Operating Characteristic Curve is %0.3f' % (mean_roc_auc))
 
     optimal_data = dict()
@@ -450,13 +463,18 @@ def accuracy():
     F_score_list = list()
     precision_list = list()
     recall_list = list()
+    all_aps = []
+    all_roc_aucs = []
     for key in T.keys():
         print(key)
+        ap = modified_average_precision_score(T[key], P[key])
+        all_aps.append(ap)
         precision, recall, thresholds = precision_recall_curve(T[key], P[key])
         best_threshold, best_F_score, best_precision, best_recall = maximise_F_score(precision, recall, thresholds)
         plot_precision_recall(precision, recall, thresholds, key)
         fpr, tpr, thresholds = roc_curve(T[key], P[key])
         roc_auc = auc(fpr, tpr)
+        all_roc_aucs.append(roc_auc)
         print("ROC AUC for {} = {}".format(str(key), str(roc_auc)))
         plot_roc(fpr, tpr, key, thresholds)
         optimal_data[key] = round(best_threshold, 3), best_F_score, best_precision, best_recall
@@ -465,6 +483,9 @@ def accuracy():
         precision_list.append(best_precision)
         recall_list.append(best_recall)
 
+    print('Final mean average precision value = {}'.format(np.mean(all_aps)))
+    print('Final mean ROC AUC value = {}'.format(np.mean(all_roc_aucs)))
+
     precision, recall, thresholds = precision_recall_curve(T_all, P_all)
     best_threshold, best_F_score, best_precision, best_recall = maximise_F_score(precision, recall, thresholds)
     plot_precision_recall(precision, recall, thresholds, 'all classes')
@@ -472,7 +493,7 @@ def accuracy():
     roc_auc = auc(fpr, tpr)
     print("ROC AUC for {} = {}".format('all classes', str(roc_auc)))
     plot_roc(fpr, tpr, 'all classes', thresholds)
-    ap_all_classes = average_precision_score(T_all, P_all)
+    ap_all_classes = modified_average_precision_score(T_all, P_all)
     print("AP score over all classes: {}".format(ap_all_classes))
     optimal_data['all classes'] = round(best_threshold, 3), best_F_score, best_precision, best_recall
 
