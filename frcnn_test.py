@@ -642,19 +642,18 @@ def evaluate_trap_results():
                 T_all += t[key]
                 P_all += p[key]
 
-
         P_list = np.array(P_all)
-        P_all[P_all >= best_threshold] = 1
-        P_all[P_all < best_threshold] = 0
-        recall = recall_score(T_all, P_all)
-        precision = precision_score(T_all, P_all)
+        P_list[P_list >= best_threshold] = 1
+        P_list[P_list < best_threshold] = 0
+        recall = recall_score(T_all, P_list)
+        precision = precision_score(T_all, P_list)
         print('{} - Recall: {}'.format(dir_path, str(recall)))
         print('{} - Precision: {}'.format(dir_path, str(precision)))
         precision_list.append(precision)
         recall_list.append(recall)
 
-    print('Average recall for all classes : {}'.format(str(np.mean(recall_list))))
-    print('Average precision for all classes : {}'.format(str(np.mean(precision_list))))
+    print('Mean recall for all classes : {}'.format(str(np.mean(recall_list))))
+    print('Mean precision for all classes : {}'.format(str(np.mean(precision_list))))
 
     # P_all_conf[P_all_conf >= best_threshold] = 1
     # P_all_conf[P_all_conf < best_threshold] = 0
