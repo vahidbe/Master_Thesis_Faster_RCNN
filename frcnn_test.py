@@ -3,7 +3,7 @@ import os
 
 from libraries import *
 
-bbox_threshold = 0
+bbox_threshold = 0.601
 
 
 def preprocess_img(img, noise_reduction, histogram_equalization, gamma_correction):
@@ -69,18 +69,25 @@ def init_models():
 def draw_box_on_images(noise_reduction, histogram_equalization, gamma_correction):
     class_to_color = {class_mapping[v]: np.random.randint(0, 255, 3) for v in class_mapping}
 
-    if from_csv:
-        imgs_record_df = pd.read_csv(imgs_record_path)
-        last_row = imgs_record_df.tail(1)
-        test_imgs_temp = ast.literal_eval(last_row['test'].tolist()[0])
-        test_imgs = []
-        for img_dict in test_imgs_temp:
-            test_imgs.append(img_dict['filepath'])
+    if trap_images:
+        for dir_path in [x[0] for x in os.walk(data_test_path) if x[0] != data_test_path]:
+            test_imgs_temp = os.listdir(dir_path)
+            test_imgs = []
+            for img_name in test_imgs_temp:
+                test_imgs.append(os.path.join(dir_path, img_name))
     else:
-        test_imgs_temp = os.listdir(data_test_path)
-        test_imgs = []
-        for img_name in test_imgs_temp:
-            test_imgs.append(os.path.join(data_test_path, img_name))
+        if from_csv:
+            imgs_record_df = pd.read_csv(imgs_record_path)
+            last_row = imgs_record_df.tail(1)
+            test_imgs_temp = ast.literal_eval(last_row['test'].tolist()[0])
+            test_imgs = []
+            for img_dict in test_imgs_temp:
+                test_imgs.append(img_dict['filepath'])
+        else:
+            test_imgs_temp = os.listdir(data_test_path)
+            test_imgs = []
+            for img_name in test_imgs_temp:
+                test_imgs.append(os.path.join(data_test_path, img_name))
 
     # imgs_path = []
     # for i in range(10):
