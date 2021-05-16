@@ -544,12 +544,16 @@ def evaluate_trap_results():
     recall_list = []
     precision_list = []
 
+    summary = {}
+
     for dir_path in [x[0] for x in os.walk(data_test_path) if x[0] != data_test_path]:
         annotation_path = os.path.join(dir_path, 'annotations.txt')
         test_imgs, _, _ = get_data(annotation_path, dir_path)
 
         T = {}
         P = {}
+
+        insect_ID = dir_path.split('/')[3]
 
         T_all = []
         P_all = []
@@ -561,6 +565,8 @@ def evaluate_trap_results():
             st = time.time()
             filepath = img_data['filepath']
             print(filepath)
+
+
 
             img = cv2.imread(filepath)
 
@@ -667,14 +673,20 @@ def evaluate_trap_results():
         P_list[P_list < best_threshold] = 0
         recall = recall_score(T_all, P_list)
         precision = precision_score(T_all, P_list)
-        print('{} - Recall: {}'.format(dir_path, str(recall)))
-        print('{} - Precision: {}'.format(dir_path, str(precision)))
+        # print('{} - Recall: {}'.format(dir_path, str(recall)))
+        # print('{} - Precision: {}'.format(dir_path, str(precision)))
+        summary[insect_ID] = (recall, precision)
         precision_list.append(precision)
         recall_list.append(recall)
 
-    print('Mean recall for all classes : {}'.format(str(np.mean(recall_list))))
-    print('Mean precision for all classes : {}'.format(str(np.mean(precision_list))))
-    
+    mRec = np.mean(recall_list)
+    mPrec = np.mean(precision_list)
+    # print('Mean recall for all classes : {}'.format(str(np.mean(recall_list))))
+    # print('Mean precision for all classes : {}'.format(str(np.mean(precision_list))))
+    summary['Average'] = (str(mRec), str(mPrec))
+
+    print("Summary presented in the form [ID : (recall, precision)]")
+    print(summary)
     recall_array = np.array(recall_list)
     recall_array[recall_array > 0.0] = 1
     detection_proba = np.sum(recall_array)/len(recall_array)
