@@ -80,32 +80,64 @@ def get_box_image_ratio(input_path, set):
 
 if __name__ == '__main__':
 
-    csv_file = './config/model10classes - imgs.csv'
+    import argparse
+
+    # Parse command line arguments
+    parser = argparse.ArgumentParser(
+        description='Use Faster R-CNN to detect insects.')
+    parser.add_argument('--split_img_file', required=False,
+                        metavar="path_to_split_image_file", default='./config/model10classes - imgs.csv',
+                        help='Path to the .csv file that contains the train/test/validation split of images')
+    parser.add_argument('--ratio_area', required=False, default='True',
+                        metavar="True/False",
+                        help="True if you want to plot the histogram of the ratio of the box area on the picture area")
+    parser.add_argument('--ratio_width_height', required=False, default='True',
+                        metavar="True/False",
+                        help="True if you want to plot the histogram of the ratio of the box width on the box height")
+    parser.add_argument('--rgb_intensity', required=False, default='True',
+                        metavar="True/False",
+                        help="True if you want to plot the histogram of the rgb intensity of pictures")
+    parser.add_argument('--gray_intensity', required=False, default='True',
+                        metavar="True/False",
+                        help="True if you want to plot the histogram of the gray intensity of pictures")
+
+    args = parser.parse_args()
+
+    csv_file = args.split_img_file
+    plot_ratio_surface = eval(args.ratio_area)
+    plot_ratio_width_height = eval(args.ratio_width_height)
+    plot_rgb_intensity = eval(args.rgb_intensity)
+    plot_gray_intensity = eval(args.gray_intensity)
+
 
     ratio_surface, ratio_width_height, rgb_intensity, gray_intensity = get_box_image_ratio(csv_file, 'train')
     ratio_surface_test, ratio_width_height_test, rgb_intensity_test, gray_intensity_test = get_box_image_ratio(csv_file, 'test')
 
-    for class_name in ratio_surface.keys():
-        display_histogram(ratio_surface[class_name], '[Train] Ratio box on image - ' + class_name, type='train')
+    if plot_ratio_surface:
+        for class_name in ratio_surface.keys():
+            display_histogram(ratio_surface[class_name], '[Train] Ratio box on image - ' + class_name, type='train')
 
-    for class_name in ratio_surface_test.keys():
-        display_histogram(ratio_surface_test[class_name], '[Test] Ratio box on image - ' + class_name, type='test')
+        for class_name in ratio_surface_test.keys():
+            display_histogram(ratio_surface_test[class_name], '[Test] Ratio box on image - ' + class_name, type='test')
 
-    for class_name in ratio_width_height.keys():
-        display_histogram(ratio_width_height[class_name], '[Train] Ratio width on height - ' + class_name, type='train')
+    if plot_ratio_width_height:
+        for class_name in ratio_width_height.keys():
+            display_histogram(ratio_width_height[class_name], '[Train] Ratio width on height - ' + class_name, type='train')
 
-    for class_name in ratio_width_height_test.keys():
-        display_histogram(ratio_width_height_test[class_name], '[Test] Ratio width on height - ' + class_name,
-                          type='test')
+        for class_name in ratio_width_height_test.keys():
+            display_histogram(ratio_width_height_test[class_name], '[Test] Ratio width on height - ' + class_name,
+                              type='test')
 
-    for class_name in rgb_intensity.keys():
-        display_histogram(rgb_intensity[class_name], '[Train] RGB Intensity - ' + class_name, type='train')
+    if plot_rgb_intensity:
+        for class_name in rgb_intensity.keys():
+            display_histogram(rgb_intensity[class_name], '[Train] RGB Intensity - ' + class_name, type='train')
 
-    for class_name in rgb_intensity_test.keys():
-        display_histogram(rgb_intensity_test[class_name], '[Test] RGB Intensity - ' + class_name, type='test')
+        for class_name in rgb_intensity_test.keys():
+            display_histogram(rgb_intensity_test[class_name], '[Test] RGB Intensity - ' + class_name, type='test')
 
-    for class_name in gray_intensity.keys():
-        display_histogram(gray_intensity[class_name], '[Train] Gray Intensity - ' + class_name, type='train')
+    if plot_gray_intensity:
+        for class_name in gray_intensity.keys():
+            display_histogram(gray_intensity[class_name], '[Train] Gray Intensity - ' + class_name, type='train')
 
-    for class_name in gray_intensity_test.keys():
-        display_histogram(gray_intensity_test[class_name], '[Test] Gray Intensity - ' + class_name, type='test')
+        for class_name in gray_intensity_test.keys():
+            display_histogram(gray_intensity_test[class_name], '[Test] Gray Intensity - ' + class_name, type='test')
