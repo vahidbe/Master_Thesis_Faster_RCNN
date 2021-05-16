@@ -72,6 +72,7 @@ def draw_box_on_images(noise_reduction, histogram_equalization, gamma_correction
     if trap_images:
         for dir_path in [x[0] for x in os.walk(data_test_path) if x[0] != data_test_path]:
             test_imgs_temp = os.listdir(dir_path)
+            print(test_imgs_temp)
             test_imgs = []
             for img_name in test_imgs_temp:
                 test_imgs.append(os.path.join(dir_path, img_name))
@@ -214,7 +215,10 @@ def draw_box_on_images(noise_reduction, histogram_equalization, gamma_correction
         plt.figure(figsize=(10, 10))
         plt.grid()
         plt.imshow(cv2.cvtColor(initial_img, cv2.COLOR_BGR2RGB))
-        filename = filepath.split(".")[0].split("/")[-1].split("\\")[-1]
+        if trap_images:
+            filename = filepath.split("/")[4]
+        else:
+            filename = filepath.split(".")[0].split("/")[-1].split("\\")[-1]
         plt.savefig('predictions/{}/{}.jpg'.format(processed_directory, filename))
 
         print(class_mapping)
