@@ -70,12 +70,12 @@ def draw_box_on_images(noise_reduction, histogram_equalization, gamma_correction
     class_to_color = {class_mapping[v]: np.random.randint(0, 255, 3) for v in class_mapping}
 
     if trap_images:
+        test_imgs = []
         for dir_path in [x[0] for x in os.walk(data_test_path) if x[0] != data_test_path]:
             test_imgs_temp = os.listdir(dir_path)
-            print(test_imgs_temp)
-            test_imgs = []
             for img_name in test_imgs_temp:
-                test_imgs.append(os.path.join(dir_path, img_name))
+                if img_name.split('.')[1] != 'txt':
+                    test_imgs.append(os.path.join(dir_path, img_name))
     else:
         if from_csv:
             imgs_record_df = pd.read_csv(imgs_record_path)
@@ -89,7 +89,8 @@ def draw_box_on_images(noise_reduction, histogram_equalization, gamma_correction
             test_imgs = []
             for img_name in test_imgs_temp:
                 test_imgs.append(os.path.join(data_test_path, img_name))
-
+    
+    print(test_imgs)
     # imgs_path = []
     # for i in range(10):
     #     idx = np.random.randint(len(test_imgs))
