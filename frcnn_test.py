@@ -3,7 +3,7 @@ import os
 
 from libraries import *
 
-bbox_threshold = 0.601
+bbox_threshold = 0.611
 
 
 def preprocess_img(img, noise_reduction, histogram_equalization, gamma_correction):
