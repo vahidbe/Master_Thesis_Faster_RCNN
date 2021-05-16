@@ -1,3 +1,4 @@
-cropped_08-05-2021_11-06-10_1.jpg,417,76,716,208,apis_mellifera
-cropped_08-05-2021_11-06-11_1.jpg,422,67,705,212,apis_mellifera
-cropped_08-05-2021_11-06-12_1.jpg,422,72,703,200,apis_mellifera
+cropped_08-05-2021_15-52-00_1.jpg,158,138,562,490,bombus_terrestris
+cropped_08-05-2021_15-52-01_1.jpg,150,127,588,476,bombus_terrestris
+cropped_08-05-2021_15-52-01_2.jpg,115,119,562,465,bombus_terrestris
+cropped_08-05-2021_15-52-02_1.jpg,140,113,558,473,bombus_terrestris
