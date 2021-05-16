@@ -1,305 +1,342 @@
-2021-05-16 17:48:17.210506: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libnvinfer.so.6'; dlerror: libnvinfer.so.6: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /usr/local/cuda-10.1/lib64:/usr/local/cuda-10.2/lib64
-2021-05-16 17:48:17.210558: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libnvinfer_plugin.so.6'; dlerror: libnvinfer_plugin.so.6: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /usr/local/cuda-10.1/lib64:/usr/local/cuda-10.2/lib64
-2021-05-16 17:48:17.210565: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:30] Cannot dlopen some TensorRT libraries. If you would like to use Nvidia GPU with TensorRT, please make sure the missing libraries mentioned above are installed properly.
-2021-05-16 17:48:17.655316: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
-2021-05-16 17:48:17.677099: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 3000000000 Hz
-2021-05-16 17:48:17.677386: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x5615d3f9ce90 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
-2021-05-16 17:48:17.677397: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
-2021-05-16 17:48:17.678601: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcuda.so.1
-2021-05-16 17:48:17.764151: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
-2021-05-16 17:48:17.764430: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x5615d403adc0 initialized for platform CUDA (this does not guarantee that XLA will be used). Devices:
-2021-05-16 17:48:17.764442: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): GeForce GTX 1660 SUPER, Compute Capability 7.5
-2021-05-16 17:48:17.764554: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
-2021-05-16 17:48:17.764738: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1555] Found device 0 with properties: 
+2021-05-16 18:33:12.831331: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libnvinfer.so.6'; dlerror: libnvinfer.so.6: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /usr/local/cuda-10.1/lib64:/usr/local/cuda-10.2/lib64
+2021-05-16 18:33:12.831384: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libnvinfer_plugin.so.6'; dlerror: libnvinfer_plugin.so.6: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /usr/local/cuda-10.1/lib64:/usr/local/cuda-10.2/lib64
+2021-05-16 18:33:12.831391: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:30] Cannot dlopen some TensorRT libraries. If you would like to use Nvidia GPU with TensorRT, please make sure the missing libraries mentioned above are installed properly.
+2021-05-16 18:33:13.276940: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2021-05-16 18:33:13.297069: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 3000000000 Hz
+2021-05-16 18:33:13.297391: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55ef853b9920 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2021-05-16 18:33:13.297415: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+2021-05-16 18:33:13.298611: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcuda.so.1
+2021-05-16 18:33:13.367518: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-05-16 18:33:13.367792: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55ef85457670 initialized for platform CUDA (this does not guarantee that XLA will be used). Devices:
+2021-05-16 18:33:13.367804: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): GeForce GTX 1660 SUPER, Compute Capability 7.5
+2021-05-16 18:33:13.367909: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-05-16 18:33:13.368093: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1555] Found device 0 with properties: 
 pciBusID: 0000:01:00.0 name: GeForce GTX 1660 SUPER computeCapability: 7.5
 coreClock: 1.83GHz coreCount: 22 deviceMemorySize: 5.80GiB deviceMemoryBandwidth: 312.97GiB/s
-2021-05-16 17:48:17.764908: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.1
-2021-05-16 17:48:17.765783: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10
-2021-05-16 17:48:17.766727: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10
-2021-05-16 17:48:17.766867: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10
-2021-05-16 17:48:17.767797: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10
-2021-05-16 17:48:17.768306: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10
-2021-05-16 17:48:17.770326: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
-2021-05-16 17:48:17.770404: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
-2021-05-16 17:48:17.770639: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
-2021-05-16 17:48:17.770813: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1697] Adding visible gpu devices: 0
-2021-05-16 17:48:17.770836: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.1
-2021-05-16 17:48:17.771100: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1096] Device interconnect StreamExecutor with strength 1 edge matrix:
-2021-05-16 17:48:17.771108: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1102]      0 
-2021-05-16 17:48:17.771113: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] 0:   N 
-2021-05-16 17:48:17.771174: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
-2021-05-16 17:48:17.771371: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
-2021-05-16 17:48:17.771556: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1241] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 5342 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1660 SUPER, pci bus id: 0000:01:00.0, compute capability: 7.5)
-2021-05-16 17:48:17.775160: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
-2021-05-16 17:48:17.775350: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1555] Found device 0 with properties: 
+2021-05-16 18:33:13.368227: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.1
+2021-05-16 18:33:13.369168: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10
+2021-05-16 18:33:13.370111: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10
+2021-05-16 18:33:13.370249: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10
+2021-05-16 18:33:13.371189: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10
+2021-05-16 18:33:13.371704: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10
+2021-05-16 18:33:13.373788: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
+2021-05-16 18:33:13.373867: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-05-16 18:33:13.374102: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-05-16 18:33:13.374277: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1697] Adding visible gpu devices: 0
+2021-05-16 18:33:13.374301: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.1
+2021-05-16 18:33:13.374570: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1096] Device interconnect StreamExecutor with strength 1 edge matrix:
+2021-05-16 18:33:13.374578: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1102]      0 
+2021-05-16 18:33:13.374582: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] 0:   N 
+2021-05-16 18:33:13.374644: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-05-16 18:33:13.374844: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-05-16 18:33:13.375032: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1241] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 5342 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1660 SUPER, pci bus id: 0000:01:00.0, compute capability: 7.5)
+2021-05-16 18:33:13.378565: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-05-16 18:33:13.378757: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1555] Found device 0 with properties: 
 pciBusID: 0000:01:00.0 name: GeForce GTX 1660 SUPER computeCapability: 7.5
 coreClock: 1.83GHz coreCount: 22 deviceMemorySize: 5.80GiB deviceMemoryBandwidth: 312.97GiB/s
-2021-05-16 17:48:17.775374: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.1
-2021-05-16 17:48:17.775388: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10
-2021-05-16 17:48:17.775400: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10
-2021-05-16 17:48:17.775412: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10
-2021-05-16 17:48:17.775424: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10
-2021-05-16 17:48:17.775435: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10
-2021-05-16 17:48:17.775448: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
-2021-05-16 17:48:17.775480: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
-2021-05-16 17:48:17.775672: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
-2021-05-16 17:48:17.775836: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1697] Adding visible gpu devices: 0
-2021-05-16 17:48:17.776098: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
-2021-05-16 17:48:17.776272: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1555] Found device 0 with properties: 
+2021-05-16 18:33:13.378779: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.1
+2021-05-16 18:33:13.378791: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10
+2021-05-16 18:33:13.378801: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10
+2021-05-16 18:33:13.378811: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10
+2021-05-16 18:33:13.378820: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10
+2021-05-16 18:33:13.378830: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10
+2021-05-16 18:33:13.378840: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
+2021-05-16 18:33:13.378873: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-05-16 18:33:13.379068: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-05-16 18:33:13.379234: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1697] Adding visible gpu devices: 0
+2021-05-16 18:33:13.379466: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-05-16 18:33:13.379643: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1555] Found device 0 with properties: 
 pciBusID: 0000:01:00.0 name: GeForce GTX 1660 SUPER computeCapability: 7.5
 coreClock: 1.83GHz coreCount: 22 deviceMemorySize: 5.80GiB deviceMemoryBandwidth: 312.97GiB/s
-2021-05-16 17:48:17.776288: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.1
-2021-05-16 17:48:17.776299: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10
-2021-05-16 17:48:17.776314: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10
-2021-05-16 17:48:17.776325: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10
-2021-05-16 17:48:17.776335: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10
-2021-05-16 17:48:17.776344: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10
-2021-05-16 17:48:17.776354: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
-2021-05-16 17:48:17.776387: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
-2021-05-16 17:48:17.776576: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
-2021-05-16 17:48:17.776740: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1697] Adding visible gpu devices: 0
-2021-05-16 17:48:17.776752: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1096] Device interconnect StreamExecutor with strength 1 edge matrix:
-2021-05-16 17:48:17.776756: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1102]      0 
-2021-05-16 17:48:17.776759: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] 0:   N 
-2021-05-16 17:48:17.776825: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
-2021-05-16 17:48:17.777032: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
-2021-05-16 17:48:17.777202: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1241] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 5342 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1660 SUPER, pci bus id: 0000:01:00.0, compute capability: 7.5)
-2021-05-16 17:48:18.665272: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
-2021-05-16 17:48:19.318069: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10
-2021-05-16 17:48:19.856284: W tensorflow/core/common_runtime/bfc_allocator.cc:309] Garbage collection: deallocate free memory regions (i.e., allocations) so that we can re-allocate a larger region to avoid OOM due to memory fragmentation. If you see this message frequently, you are running near the threshold of the available device memory and re-allocation may incur great performance overhead. You may try smaller batch sizes to observe the performance impact. Set TF_ENABLE_GPU_GARBAGE_COLLECTION=false if you'd like to disable this feature.
-2021-05-16 17:48:19.923271: I tensorflow/stream_executor/cuda/cuda_driver.cc:801] failed to allocate 4.00G (4294967296 bytes) from device: CUDA_ERROR_OUT_OF_MEMORY: out of memory
-Creation of the directory new_directory failed
+2021-05-16 18:33:13.379659: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.1
+2021-05-16 18:33:13.379670: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10
+2021-05-16 18:33:13.379688: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10
+2021-05-16 18:33:13.379698: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10
+2021-05-16 18:33:13.379708: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10
+2021-05-16 18:33:13.379717: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10
+2021-05-16 18:33:13.379727: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
+2021-05-16 18:33:13.379760: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-05-16 18:33:13.379954: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-05-16 18:33:13.380121: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1697] Adding visible gpu devices: 0
+2021-05-16 18:33:13.380133: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1096] Device interconnect StreamExecutor with strength 1 edge matrix:
+2021-05-16 18:33:13.380136: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1102]      0 
+2021-05-16 18:33:13.380140: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] 0:   N 
+2021-05-16 18:33:13.380184: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-05-16 18:33:13.380380: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-05-16 18:33:13.380552: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1241] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 5342 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1660 SUPER, pci bus id: 0000:01:00.0, compute capability: 7.5)
+2021-05-16 18:33:14.269082: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
+2021-05-16 18:33:14.925234: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10
+2021-05-16 18:33:15.497363: W tensorflow/core/common_runtime/bfc_allocator.cc:309] Garbage collection: deallocate free memory regions (i.e., allocations) so that we can re-allocate a larger region to avoid OOM due to memory fragmentation. If you see this message frequently, you are running near the threshold of the available device memory and re-allocation may incur great performance overhead. You may try smaller batch sizes to observe the performance impact. Set TF_ENABLE_GPU_GARBAGE_COLLECTION=false if you'd like to disable this feature.
+2021-05-16 18:33:15.559069: I tensorflow/stream_executor/cuda/cuda_driver.cc:801] failed to allocate 4.00G (4294967296 bytes) from device: CUDA_ERROR_OUT_OF_MEMORY: out of memory
+Successfully created the directory new_directory
 Loading weights from ./model/model10classes.hdf5
 {0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bombus_lapidarius', 5: 'bombus_lucorum', 6: 'bombus_pascuorum', 7: 'bombus_pratorum', 8: 'bombus_terrestris', 9: 'vespula_vulgaris', 10: 'bg'}
 10
 Parsing annotation files
-idx=1idx=2idx=30/3
-./other/trap_results/insect004/cropped_08-05-2021_11-06-10_1.jpg
-Elapsed time = 1.767364740371704
-1/3
-./other/trap_results/insect004/cropped_08-05-2021_11-06-11_1.jpg
-Elapsed time = 0.7239043712615967
-2/3
-./other/trap_results/insect004/cropped_08-05-2021_11-06-12_1.jpg
-Elapsed time = 0.8125603199005127
+idx=1idx=2idx=3idx=40/4
+./other/trap_results/insect004/cropped_08-05-2021_15-52-00_1.jpg
+Elapsed time = 1.8235468864440918
+1/4
+./other/trap_results/insect004/cropped_08-05-2021_15-52-01_1.jpg
+Elapsed time = 0.7445499897003174
+2/4
+./other/trap_results/insect004/cropped_08-05-2021_15-52-01_2.jpg
+Elapsed time = 0.3575320243835449
+3/4
+./other/trap_results/insect004/cropped_08-05-2021_15-52-02_1.jpg
+Elapsed time = 0.7517638206481934
 ./other/trap_results/insect004 - Recall: 0.0
 ./other/trap_results/insect004 - Precision: 0.0
 Parsing annotation files
-idx=1idx=2idx=3idx=40/4
-./other/trap_results/insect005/cropped_08-05-2021_15-52-00_1.jpg
-Elapsed time = 0.26163434982299805
-1/4
-./other/trap_results/insect005/cropped_08-05-2021_15-52-01_1.jpg
-Elapsed time = 0.3636007308959961
-2/4
-./other/trap_results/insect005/cropped_08-05-2021_15-52-01_2.jpg
-Elapsed time = 0.3426179885864258
-3/4
-./other/trap_results/insect005/cropped_08-05-2021_15-52-02_1.jpg
-Elapsed time = 0.7288670539855957
-./other/trap_results/insect005 - Recall: 0.0
-./other/trap_results/insect005 - Precision: 0.0
-Parsing annotation files
-idx=1idx=2idx=3idx=4idx=5idx=6idx=7idx=8idx=90/9
-./other/trap_results/insect003/cropped_07-05-2021_15-21-40_1.jpg
-Elapsed time = 0.5422182083129883
-1/9
-./other/trap_results/insect003/cropped_07-05-2021_15-21-42_1.jpg
-Elapsed time = 1.0171229839324951
-2/9
-./other/trap_results/insect003/cropped_07-05-2021_15-21-47_2.jpg
-Elapsed time = 0.7370636463165283
-3/9
-./other/trap_results/insect003/cropped_07-05-2021_15-21-51_2.jpg
-Elapsed time = 0.8022260665893555
-4/9
-./other/trap_results/insect003/cropped_07-05-2021_15-21-52_2.jpg
-Elapsed time = 0.870415210723877
-5/9
-./other/trap_results/insect003/cropped_07-05-2021_15-21-53_1.jpg
-Elapsed time = 0.3899104595184326
-6/9
-./other/trap_results/insect003/cropped_07-05-2021_15-21-55_1.jpg
-Elapsed time = 0.8413805961608887
-7/9
-./other/trap_results/insect003/cropped_07-05-2021_15-22-02_2.jpg
-Elapsed time = 0.8787491321563721
-8/9
-./other/trap_results/insect003/cropped_07-05-2021_15-22-10_1.jpg
-Elapsed time = 0.9334745407104492
-./other/trap_results/insect003 - Recall: 0.2222222222222222
-./other/trap_results/insect003 - Precision: 0.2857142857142857
-Parsing annotation files
-idx=1idx=2idx=3idx=4idx=5idx=6idx=7idx=8idx=9idx=100/10
-./other/trap_results/insect007/cropped_11-05-2021_14-16-52_1.jpg
-Elapsed time = 0.7232992649078369
-1/10
-./other/trap_results/insect007/cropped_11-05-2021_14-16-53_1.jpg
-Elapsed time = 0.2742185592651367
-2/10
-./other/trap_results/insect007/cropped_11-05-2021_14-16-54_1.jpg
-Elapsed time = 0.7883074283599854
-3/10
-./other/trap_results/insect007/cropped_11-05-2021_14-16-55_1.jpg
-Elapsed time = 0.5011165142059326
-4/10
-./other/trap_results/insect007/cropped_11-05-2021_14-16-56_1.jpg
-Elapsed time = 0.4817829132080078
-5/10
-./other/trap_results/insect007/cropped_11-05-2021_14-16-57_1.jpg
-Elapsed time = 0.26073265075683594
-6/10
-./other/trap_results/insect007/cropped_11-05-2021_14-16-58_1.jpg
-Elapsed time = 0.7697157859802246
-7/10
-./other/trap_results/insect007/cropped_11-05-2021_14-16-59_1.jpg
-Elapsed time = 0.6388623714447021
-8/10
-./other/trap_results/insect007/cropped_11-05-2021_14-17-00_1.jpg
-Elapsed time = 0.76578688621521
-9/10
-./other/trap_results/insect007/cropped_11-05-2021_14-17-00_2.jpg
-Elapsed time = 1.0263803005218506
-./other/trap_results/insect007 - Recall: 1.0
-./other/trap_results/insect007 - Precision: 0.7692307692307693
-Parsing annotation files
-idx=1idx=20/2
-./other/trap_results/insect008/raw_01-05-2021_10-50-02.jpg
-Elapsed time = 0.670203447341919
-1/2
-./other/trap_results/insect008/raw_01-05-2021_10-50-04.jpg
-Elapsed time = 0.6669826507568359
-./other/trap_results/insect008 - Recall: 0.0
-./other/trap_results/insect008 - Precision: 0.0
-Parsing annotation files
-idx=1idx=2idx=3idx=4idx=5idx=6idx=7idx=8idx=9idx=10idx=11idx=12idx=13idx=14idx=15idx=160/16
-./other/trap_results/insect002/cropped_07-05-2021_13-27-43_1.jpg
-Elapsed time = 1.096904993057251
-1/16
-./other/trap_results/insect002/cropped_07-05-2021_13-27-50_1.jpg
-Elapsed time = 0.945976972579956
-2/16
-./other/trap_results/insect002/cropped_07-05-2021_13-27-53_1.jpg
-Elapsed time = 0.8281631469726562
-3/16
-./other/trap_results/insect002/cropped_07-05-2021_13-27-54_1.jpg
-Elapsed time = 0.5865154266357422
-4/16
-./other/trap_results/insect002/cropped_07-05-2021_13-28-04_1.jpg
-Elapsed time = 0.9790613651275635
-5/16
-./other/trap_results/insect002/cropped_07-05-2021_13-28-05_1.jpg
-Elapsed time = 0.8369724750518799
-6/16
-./other/trap_results/insect002/cropped_07-05-2021_13-28-10_1.jpg
-Elapsed time = 0.9074368476867676
-7/16
-./other/trap_results/insect002/cropped_07-05-2021_13-28-11_1.jpg
-Elapsed time = 0.7510614395141602
-8/16
-./other/trap_results/insect002/cropped_07-05-2021_13-28-34_1.jpg
-Elapsed time = 0.7974584102630615
-9/16
-./other/trap_results/insect002/cropped_07-05-2021_13-28-48_1.jpg
-Elapsed time = 0.717029333114624
-10/16
-./other/trap_results/insect002/cropped_07-05-2021_13-28-50_1.jpg
-Elapsed time = 0.772834300994873
-11/16
-./other/trap_results/insect002/cropped_07-05-2021_13-28-52_1.jpg
-Elapsed time = 0.6009323596954346
-12/16
-./other/trap_results/insect002/cropped_07-05-2021_13-28-53_1.jpg
-Elapsed time = 0.7946007251739502
-13/16
-./other/trap_results/insect002/cropped_07-05-2021_13-28-54_1.jpg
-Elapsed time = 0.6964249610900879
-14/16
-./other/trap_results/insect002/cropped_07-05-2021_13-28-55_1.jpg
-Elapsed time = 0.46349024772644043
-15/16
-./other/trap_results/insect002/cropped_07-05-2021_13-28-56_3.jpg
-Elapsed time = 0.44917726516723633
-./other/trap_results/insect002 - Recall: 0.1875
-./other/trap_results/insect002 - Precision: 0.23076923076923078
-Parsing annotation files
-idx=1idx=2idx=3idx=4idx=5idx=6idx=7idx=8idx=9idx=10idx=11idx=12idx=13idx=14idx=15idx=16idx=17idx=180/18
-./other/trap_results/insect006/raw_22-04-2021_08-38-34.jpg
-Elapsed time = 0.5010452270507812
+idx=1idx=2idx=3idx=4idx=5idx=6idx=7idx=8idx=9idx=10idx=11idx=12idx=13idx=14idx=15idx=16idx=17idx=18idx=190/18
+./other/trap_results/insect005/raw_22-04-2021_08-38-34.jpg
+Elapsed time = 0.8476567268371582
 1/18
-./other/trap_results/insect006/raw_22-04-2021_08-38-35.jpg
-Elapsed time = 0.8889131546020508
+./other/trap_results/insect005/raw_22-04-2021_08-38-35.jpg
+Elapsed time = 0.7676272392272949
 2/18
-./other/trap_results/insect006/raw_22-04-2021_08-44-41.jpg
-Elapsed time = 0.2602558135986328
+./other/trap_results/insect005/raw_22-04-2021_08-44-41.jpg
+Elapsed time = 0.7690036296844482
 3/18
-./other/trap_results/insect006/raw_22-04-2021_08-44-42.jpg
-Elapsed time = 0.5570995807647705
+./other/trap_results/insect005/raw_22-04-2021_08-44-42.jpg
+Elapsed time = 0.5625684261322021
 4/18
-./other/trap_results/insect006/raw_22-04-2021_09-15-22.jpg
-Elapsed time = 0.47594618797302246
+./other/trap_results/insect005/raw_22-04-2021_09-15-22.jpg
+Elapsed time = 0.4896981716156006
 5/18
-./other/trap_results/insect006/raw_22-04-2021_09-15-26.jpg
-Elapsed time = 0.693511962890625
+./other/trap_results/insect005/raw_22-04-2021_09-15-26.jpg
+Elapsed time = 0.7056310176849365
 6/18
-./other/trap_results/insect006/raw_22-04-2021_09-15-27.jpg
-Elapsed time = 0.28403282165527344
+./other/trap_results/insect005/raw_22-04-2021_09-15-27.jpg
+Elapsed time = 0.27123403549194336
 7/18
-./other/trap_results/insect006/raw_22-04-2021_09-15-29.jpg
-Elapsed time = 0.2736992835998535
+./other/trap_results/insect005/raw_22-04-2021_09-15-29.jpg
+Elapsed time = 0.2840607166290283
 8/18
-./other/trap_results/insect006/raw_22-04-2021_09-15-30.jpg
-Elapsed time = 0.5879724025726318
+./other/trap_results/insect005/raw_22-04-2021_09-15-30.jpg
+Elapsed time = 0.5595929622650146
 9/18
-./other/trap_results/insect006/raw_22-04-2021_09-15-34.jpg
-Elapsed time = 0.568570613861084
+./other/trap_results/insect005/raw_22-04-2021_09-15-34.jpg
+Elapsed time = 0.5851366519927979
 10/18
-./other/trap_results/insect006/raw_22-04-2021_09-29-04.jpg
-Elapsed time = 0.5315194129943848
+./other/trap_results/insect005/raw_22-04-2021_09-29-04.jpg
+Elapsed time = 0.5324044227600098
 11/18
-./other/trap_results/insect006/raw_22-04-2021_09-29-08.jpg
-Elapsed time = 0.5652618408203125
+./other/trap_results/insect005/raw_22-04-2021_09-29-08.jpg
+Elapsed time = 0.7739169597625732
 12/18
-./other/trap_results/insect006/raw_22-04-2021_09-29-19.jpg
-Elapsed time = 0.5017557144165039
+./other/trap_results/insect005/raw_22-04-2021_09-29-19.jpg
+Elapsed time = 0.6499538421630859
 13/18
-./other/trap_results/insect006/raw_22-04-2021_09-29-41.jpg
-Elapsed time = 0.3672349452972412
+./other/trap_results/insect005/raw_22-04-2021_09-29-41.jpg
+Elapsed time = 0.3721635341644287
 14/18
-./other/trap_results/insect006/raw_22-04-2021_09-29-52.jpg
-Elapsed time = 0.24358892440795898
+./other/trap_results/insect005/raw_22-04-2021_09-29-52.jpg
+Elapsed time = 0.48833417892456055
 15/18
-./other/trap_results/insect006/raw_22-04-2021_09-29-58.jpg
-Elapsed time = 0.47254061698913574
+./other/trap_results/insect005/raw_22-04-2021_09-29-58.jpg
+Elapsed time = 0.455014705657959
 16/18
-./other/trap_results/insect006/raw_22-04-2021_09-29-59.jpg
-Elapsed time = 0.47103071212768555
+./other/trap_results/insect005/raw_22-04-2021_09-29-59.jpg
+Elapsed time = 0.48914480209350586
 17/18
-./other/trap_results/insect006/raw_22-04-2021_09-34-42.jpg
-Elapsed time = 0.2790083885192871
-./other/trap_results/insect006 - Recall: 0.2777777777777778
-./other/trap_results/insect006 - Precision: 0.7142857142857143
+./other/trap_results/insect005/raw_22-04-2021_09-34-42.jpg
+Elapsed time = 0.2703855037689209
+./other/trap_results/insect005 - Recall: 0.2631578947368421
+./other/trap_results/insect005 - Precision: 0.7142857142857143
 Parsing annotation files
-idx=1idx=2idx=3idx=4idx=50/5
-./other/trap_results/insect001/cropped_07-05-2021_13-15-14_1.jpg
-Elapsed time = 0.5378460884094238
-1/5
-./other/trap_results/insect001/cropped_07-05-2021_13-15-17_1.jpgUsing TensorFlow backend.
-/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_classification.py:1245: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 due to no predicted samples. Use `zero_division` parameter to control this behavior.
-  _warn_prf(average, modifier, msg_start, len(result))
+idx=1idx=2idx=3idx=4idx=5idx=6idx=7idx=8idx=9idx=10idx=11idx=12idx=13idx=14idx=150/15
+./other/trap_results/insect003/cropped_07-05-2021_15-21-40_1.jpg
+Elapsed time = 0.5694983005523682
+1/15
+./other/trap_results/insect003/cropped_07-05-2021_15-21-42_1.jpg
+Elapsed time = 1.0264241695404053
+2/15
+./other/trap_results/insect003/cropped_07-05-2021_15-21-47_2.jpg
+Elapsed time = 0.7070178985595703
+3/15
+./other/trap_results/insect003/cropped_07-05-2021_15-21-49_2.jpg
+Elapsed time = 0.40831756591796875
+4/15
+./other/trap_results/insect003/cropped_07-05-2021_15-21-50_2.jpg
+Elapsed time = 0.4973030090332031
+5/15
+./other/trap_results/insect003/cropped_07-05-2021_15-21-51_2.jpg
+Elapsed time = 0.8401517868041992
+6/15
+./other/trap_results/insect003/cropped_07-05-2021_15-21-52_2.jpg
+Elapsed time = 0.8334236145019531
+7/15
+./other/trap_results/insect003/cropped_07-05-2021_15-21-53_1.jpg
+Elapsed time = 0.4153928756713867
+8/15
+./other/trap_results/insect003/cropped_07-05-2021_15-21-55_1.jpg
+Elapsed time = 0.8490121364593506
+9/15
+./other/trap_results/insect003/cropped_07-05-2021_15-22-02_2.jpg
+Elapsed time = 0.8842051029205322
+10/15
+./other/trap_results/insect003/cropped_07-05-2021_15-22-05_1.jpg
+Elapsed time = 0.5723514556884766
+11/15
+./other/trap_results/insect003/cropped_07-05-2021_15-22-05_2.jpg
+Elapsed time = 0.7678499221801758
+12/15
+./other/trap_results/insect003/cropped_07-05-2021_15-22-06_1.jpg
+Elapsed time = 0.5788075923919678
+13/15
+./other/trap_results/insect003/cropped_07-05-2021_15-22-08_1.jpg
+Elapsed time = 0.4671344757080078
+14/15
+./other/trap_results/insect003/cropped_07-05-2021_15-22-10_1.jpg
+Elapsed time = 0.9369277954101562
+./other/trap_results/insect003 - Recall: 0.2
+./other/trap_results/insect003 - Precision: 0.25
+Parsing annotation files
+idx=1idx=2idx=3idx=40/4
+./other/trap_results/insect007/raw_01-05-2021_10-50-01.jpg
+Elapsed time = 0.6586346626281738
+1/4
+./other/trap_results/insect007/raw_01-05-2021_10-50-02.jpg
+Elapsed time = 0.6810581684112549
+2/4
+./other/trap_results/insect007/raw_01-05-2021_10-50-03.jpg
+Elapsed time = 0.8818747997283936
+3/4
+./other/trap_results/insect007/raw_01-05-2021_10-50-04.jpg
+Elapsed time = 0.5623824596405029
+./other/trap_results/insect007 - Recall: 0.0
+./other/trap_results/insect007 - Precision: 0.0
+Parsing annotation files
+idx=1idx=2idx=3idx=4idx=5idx=6idx=7idx=8idx=9idx=10idx=11idx=12idx=13idx=14idx=15idx=16idx=17idx=18idx=19idx=200/20
+./other/trap_results/insect002/cropped_07-05-2021_13-27-00_1.jpg
+Elapsed time = 0.7539281845092773
+1/20
+./other/trap_results/insect002/cropped_07-05-2021_13-27-43_1.jpg
+Elapsed time = 1.067197561264038
+2/20
+./other/trap_results/insect002/cropped_07-05-2021_13-27-50_1.jpg
+Elapsed time = 0.9558591842651367
+3/20
+./other/trap_results/insect002/cropped_07-05-2021_13-27-53_1.jpg
+Elapsed time = 0.8334333896636963
+4/20
+./other/trap_results/insect002/cropped_07-05-2021_13-27-54_1.jpg
+Elapsed time = 0.5701899528503418
+5/20
+./other/trap_results/insect002/cropped_07-05-2021_13-28-04_1.jpg
+Elapsed time = 0.9890179634094238
+6/20
+./other/trap_results/insect002/cropped_07-05-2021_13-28-05_1.jpg
+Elapsed time = 0.8318068981170654
+7/20
+./other/trap_results/insect002/cropped_07-05-2021_13-28-06_1.jpg
+Elapsed time = 0.2848243713378906
+8/20
+./other/trap_results/insect002/cropped_07-05-2021_13-28-08_1.jpg
+Elapsed time = 0.6505258083343506
+9/20
+./other/trap_results/insect002/cropped_07-05-2021_13-28-09_1.jpg
+Elapsed time = 0.8327195644378662
+10/20
+./other/trap_results/insect002/cropped_07-05-2021_13-28-10_1.jpg
+Elapsed time = 0.906597375869751
+11/20
+./other/trap_results/insect002/cropped_07-05-2021_13-28-10_2.jpg
+Elapsed time = 0.7767722606658936
+12/20
+./other/trap_results/insect002/cropped_07-05-2021_13-28-11_1.jpg
+Elapsed time = 0.7604198455810547
+13/20
+./other/trap_results/insect002/cropped_07-05-2021_13-28-48_1.jpg
+Elapsed time = 0.25673770904541016
+14/20
+./other/trap_results/insect002/cropped_07-05-2021_13-28-50_1.jpg
+Elapsed time = 0.8293874263763428
+15/20
+./other/trap_results/insect002/cropped_07-05-2021_13-28-52_1.jpg
+Elapsed time = 0.2538571357727051
+16/20
+./other/trap_results/insect002/cropped_07-05-2021_13-28-53_1.jpg
+Elapsed time = 0.8219261169433594
+17/20
+./other/trap_results/insect002/cropped_07-05-2021_13-28-54_1.jpg
+Elapsed time = 0.2922556400299072
+18/20
+./other/trap_results/insect002/cropped_07-05-2021_13-28-55_1.jpg
+Elapsed time = 0.4494459629058838
+19/20
+./other/trap_results/insect002/cropped_07-05-2021_13-28-56_3.jpg
+Elapsed time = 0.45529961585998535
+./other/trap_results/insect002 - Recall: 0.15
+./other/trap_results/insect002 - Precision: 0.17647058823529413
+Parsing annotation files
+idx=1idx=2idx=3idx=4idx=5idx=6idx=7idx=8idx=9idx=10idx=11idx=120/12
+./other/trap_results/insect006/cropped_11-05-2021_14-12-50_1.jpg
+Elapsed time = 0.2363433837890625
+1/12
+./other/trap_results/insect006/cropped_11-05-2021_14-12-50_2.jpg
+Elapsed time = 0.2501230239868164
+2/12
+./other/trap_results/insect006/cropped_11-05-2021_14-16-52_1.jpg
+Elapsed time = 0.658179521560669
+3/12
+./other/trap_results/insect006/cropped_11-05-2021_14-16-53_1.jpg
+Elapsed time = 0.2875711917877197
+4/12
+./other/trap_results/insect006/cropped_11-05-2021_14-16-54_1.jpg
+Elapsed time = 0.7982122898101807Using TensorFlow backend.
 
-Elapsed time = 0.6667711734771729
-2/5
+5/12
+./other/trap_results/insect006/cropped_11-05-2021_14-16-55_1.jpg
+Elapsed time = 0.4793517589569092
+6/12
+./other/trap_results/insect006/cropped_11-05-2021_14-16-56_1.jpg
+Elapsed time = 0.43249964714050293
+7/12
+./other/trap_results/insect006/cropped_11-05-2021_14-16-57_1.jpg
+Elapsed time = 0.7313001155853271
+8/12
+./other/trap_results/insect006/cropped_11-05-2021_14-16-58_1.jpg
+Elapsed time = 0.5628488063812256
+9/12
+./other/trap_results/insect006/cropped_11-05-2021_14-16-59_1.jpg
+Elapsed time = 0.6208477020263672
+10/12
+./other/trap_results/insect006/cropped_11-05-2021_14-17-00_1.jpg
+Elapsed time = 0.7548022270202637
+11/12
+./other/trap_results/insect006/cropped_11-05-2021_14-17-00_2.jpg
+Elapsed time = 1.0216035842895508
+./other/trap_results/insect006 - Recall: 0.75
+./other/trap_results/insect006 - Precision: 0.6428571428571429
+Parsing annotation files
+idx=1idx=2idx=3idx=4idx=5idx=6idx=7idx=80/8
+./other/trap_results/insect001/cropped_07-05-2021_13-11-15_1.jpg
+Elapsed time = 0.9254317283630371
+1/8
+./other/trap_results/insect001/cropped_07-05-2021_13-15-14_1.jpg
+Elapsed time = 0.5754356384277344
+2/8
+./other/trap_results/insect001/cropped_07-05-2021_13-15-15_1.jpg
+Elapsed time = 1.0734508037567139
+3/8
+./other/trap_results/insect001/cropped_07-05-2021_13-15-17_1.jpg
+Elapsed time = 0.7242739200592041
+4/8
 ./other/trap_results/insect001/cropped_07-05-2021_13-15-18_1.jpg
-Elapsed time = 1.019718885421753
-3/5
+Elapsed time = 0.7696449756622314
+5/8
+./other/trap_results/insect001/cropped_07-05-2021_13-15-25_1.jpg
+Elapsed time = 0.957129716873169
+6/8
 ./other/trap_results/insect001/cropped_07-05-2021_13-15-38_1.jpg
-Elapsed time = 0.8567509651184082
-4/5
+Elapsed time = 0.8465545177459717
+7/8
 ./other/trap_results/insect001/cropped_07-05-2021_13-15-38_3.jpg
-Elapsed time = 0.5320677757263184
+Elapsed time = 0.5548725128173828
 ./other/trap_results/insect001 - Recall: 0.0
 ./other/trap_results/insect001 - Precision: 0.0
-Mean recall for all classes : 0.2109375
-Mean precision for all classes : 0.25
-Probability that an insect is correctly detected at least once : 0.5
+Mean recall for all classes : 0.19473684210526315
+Mean precision for all classes : 0.2548019207683073
+Probability that an insect is correctly detected at least once : 0.5714285714285714
