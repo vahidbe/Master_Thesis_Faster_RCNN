@@ -12,13 +12,13 @@ def preprocess_img(img, noise_reduction, histogram_equalization, gamma_correctio
     elif noise_reduction == "box_filter":
         img = cv2.boxFilter(img, -1, C.noise_reduction_shape, normalize=True)
     elif noise_reduction == "gaussian":
-        img = cv2.GaussianBlur(img,(7,7), 0)
+        img = cv2.GaussianBlur(img, (7, 7), 0)
 
     if histogram_equalization:
         img_yuv = cv2.cvtColor(img, cv2.COLOR_BGR2YUV)
 
         # equalize the histogram of the Y channel
-        img_yuv[:,:,0] = cv2.equalizeHist(img_yuv[:,:,0])
+        img_yuv[:, :, 0] = cv2.equalizeHist(img_yuv[:, :, 0])
 
         # convert the YUV image back to RGB format
         img = cv2.cvtColor(img_yuv, cv2.COLOR_YUV2BGR)
@@ -27,6 +27,7 @@ def preprocess_img(img, noise_reduction, histogram_equalization, gamma_correctio
         img = adjust_gamma(img, gamma=C.gamma_value)
 
     return img
+
 
 def init_models():
     num_features = 512
@@ -89,7 +90,7 @@ def draw_box_on_images(noise_reduction, histogram_equalization, gamma_correction
             test_imgs = []
             for img_name in test_imgs_temp:
                 test_imgs.append(os.path.join(data_test_path, img_name))
-    
+
     print(test_imgs)
     # imgs_path = []
     # for i in range(10):
@@ -159,7 +160,6 @@ def draw_box_on_images(noise_reduction, histogram_equalization, gamma_correction
                 if np.max(P_cls[0, ii, :]) < bbox_threshold or np.argmax(P_cls[0, ii, :]) == (P_cls.shape[2] - 1):
                     continue
 
-
                 cls_name = class_mapping[np.argmax(P_cls[0, ii, :])]
 
                 if cls_name not in bboxes:
@@ -188,7 +188,7 @@ def draw_box_on_images(noise_reduction, histogram_equalization, gamma_correction
             bbox = np.array(bboxes[key])
 
             new_boxes, new_probs = non_max_suppression_fast(bbox, np.array(probs[key]), overlap_thresh=0.2)
-            #Has to be < overlap_threshold used in the return value of rpn
+            # Has to be < overlap_threshold used in the return value of rpn
             for jk in range(new_boxes.shape[0]):
                 (x1, y1, x2, y2) = new_boxes[jk, :]
 
@@ -217,17 +217,20 @@ def draw_box_on_images(noise_reduction, histogram_equalization, gamma_correction
         plt.grid()
         plt.imshow(cv2.cvtColor(initial_img, cv2.COLOR_BGR2RGB))
         if trap_images:
-            insect_directory = filename = filepath.split("/")[3]
+            insect_directory = filename = filepath.split("/")[-2]  # For linux
+            # insect_directory = filename = filepath.split(".")[0].split("/")[-1].split("\\")[-2]  # For windows
             try:
                 os.mkdir('predictions/{}/{}'.format(processed_directory, insect_directory))
             except OSError:
                 print('Creation of the directory {} failed'.format(insect_directory))
             else:
                 print('Successfully created the directory {}'.format(insect_directory))
-            filename = filepath.split("/")[4]
+            # filename = filepath.split("\\")[-1].split("/")[-1]  # For windows
+            filename = filepath.split("/")[-1]  # For linux
             plt.savefig('predictions/{}/{}/{}.jpg'.format(processed_directory, insect_directory, filename))
         else:
-            filename = filepath.split(".")[0].split("/")[-1].split("\\")[-1]
+            filename = filepath.split("/")[-1]  # For linux
+            # filename = filepath.split(".")[0].split("/")[-1].split("\\")[-1]  # For windows
             plt.savefig('predictions/{}/{}.jpg'.format(processed_directory, filename))
 
         print(class_mapping)
@@ -292,7 +295,7 @@ def plot_confusion_matrix(confusion_matrix):
 
 
 def build_confusion_matrix(T_all, P_all):
-    matrix = np.zeros((nbr_classes,nbr_classes), int)
+    matrix = np.zeros((nbr_classes, nbr_classes), int)
     for i in range(len(T_all)):
         T_filtered = T_all[i].tolist()
         if T_filtered.count(1) == 0:
@@ -311,7 +314,7 @@ def maximise_F_score(precision, recall, threshold):
     best_precision = -1
     best_recall = -1
     for i in range(len(threshold)):
-        F_score = 2 * precision[i].copy()*recall[i].copy()/(precision[i].copy() + recall[i].copy())
+        F_score = 2 * precision[i].copy() * recall[i].copy() / (precision[i].copy() + recall[i].copy())
         if F_score > best_F_score and not threshold[i] == 0:
             best_threshold = threshold[i].copy()
             best_precision = precision[i].copy()
@@ -319,6 +322,7 @@ def maximise_F_score(precision, recall, threshold):
             best_F_score = F_score
 
     return best_threshold, round(best_F_score, 3), round(best_precision, 3), round(best_recall, 3)
+
 
 def modified_average_precision_score(T, P):
     precision, recall, thresholds = precision_recall_curve(T, P)
@@ -342,8 +346,8 @@ def accuracy():
     P = {}
     T_all = []
     P_all = []
-    T_all_conf = np.empty((0,nbr_classes), int)
-    P_all_conf = np.empty((0,nbr_classes), float)
+    T_all_conf = np.empty((0, nbr_classes), int)
+    P_all_conf = np.empty((0, nbr_classes), float)
     mAPs = []
     # mROC_AUCs = []
     for idx, img_data in enumerate(test_imgs):
@@ -430,14 +434,16 @@ def accuracy():
             all_prob = np.array(all_probs[key])
 
             # Apply non-max-suppression on final bboxes to get the output bounding boxes
-            new_boxes, new_probs, new_all_prob = non_max_suppression_fast_with_all_probs(bbox, np.array(probs[key]), all_prob, overlap_thresh=0.2)
+            new_boxes, new_probs, new_all_prob = non_max_suppression_fast_with_all_probs(bbox, np.array(probs[key]),
+                                                                                         all_prob, overlap_thresh=0.2)
             for jk in range(new_boxes.shape[0]):
                 (x1, y1, x2, y2) = new_boxes[jk, :]
-                det = {'x1': x1, 'x2': x2, 'y1': y1, 'y2': y2, 'class': key, 'prob': new_probs[jk], 'all_probs': new_all_prob[jk]}
+                det = {'x1': x1, 'x2': x2, 'y1': y1, 'y2': y2, 'class': key, 'prob': new_probs[jk],
+                       'all_probs': new_all_prob[jk]}
                 all_dets.append(det)
 
         print('Elapsed time = {}'.format(time.time() - st))
-        t, p = get_map(all_dets, img_data['bboxes'], (fx, fy)) #p contient les proba de prédiction des classes
+        t, p = get_map(all_dets, img_data['bboxes'], (fx, fy))  # p contient les proba de prédiction des classes
         T_all_for_image_conf, P_all_for_image_conf = get_map_all(all_dets, img_data['bboxes'], (fx, fy), class_mapping)
         for T_all_box_conf in T_all_for_image_conf:
             T_all_conf = np.append(T_all_conf, np.array([T_all_box_conf]), axis=0)
@@ -447,7 +453,8 @@ def accuracy():
             if key not in T:
                 T[key] = []
                 P[key] = []
-            T[key].extend(t[key]) #C'est cumulatif, on garde les prédictions des images précédemment considérées dans le test
+            T[key].extend(
+                t[key])  # C'est cumulatif, on garde les prédictions des images précédemment considérées dans le test
             P[key].extend(p[key])
             T_all += t[key]
             P_all += p[key]
@@ -538,8 +545,9 @@ def accuracy():
     # record_df.to_csv(C.record_path, index=0)
     # print('Save mAP to {}'.format(C.record_path))
 
+
 def evaluate_trap_results():
-    best_threshold = 0.601
+    best_threshold = 0.611
 
     recall_list = []
     precision_list = []
@@ -640,15 +648,19 @@ def evaluate_trap_results():
                 all_prob = np.array(all_probs[key])
 
                 # Apply non-max-suppression on final bboxes to get the output bounding boxes
-                new_boxes, new_probs, new_all_prob = non_max_suppression_fast_with_all_probs(bbox, np.array(probs[key]), all_prob, overlap_thresh=0.2)
+                new_boxes, new_probs, new_all_prob = non_max_suppression_fast_with_all_probs(bbox, np.array(probs[key]),
+                                                                                             all_prob,
+                                                                                             overlap_thresh=0.2)
                 for jk in range(new_boxes.shape[0]):
                     (x1, y1, x2, y2) = new_boxes[jk, :]
-                    det = {'x1': x1, 'x2': x2, 'y1': y1, 'y2': y2, 'class': key, 'prob': new_probs[jk], 'all_probs': new_all_prob[jk]}
+                    det = {'x1': x1, 'x2': x2, 'y1': y1, 'y2': y2, 'class': key, 'prob': new_probs[jk],
+                           'all_probs': new_all_prob[jk]}
                     all_dets.append(det)
 
             print('Elapsed time = {}'.format(time.time() - st))
-            t, p = get_map(all_dets, img_data['bboxes'], (fx, fy)) #p contient les proba de prédiction des classes
-            T_all_for_image_conf, P_all_for_image_conf = get_map_all(all_dets, img_data['bboxes'], (fx, fy), class_mapping)
+            t, p = get_map(all_dets, img_data['bboxes'], (fx, fy))  # p contient les proba de prédiction des classes
+            T_all_for_image_conf, P_all_for_image_conf = get_map_all(all_dets, img_data['bboxes'], (fx, fy),
+                                                                     class_mapping)
             for T_all_box_conf in T_all_for_image_conf:
                 T_all_conf = np.append(T_all_conf, np.array([T_all_box_conf]), axis=0)
             for P_all_box_conf in P_all_for_image_conf:
@@ -674,12 +686,11 @@ def evaluate_trap_results():
 
     print('Mean recall for all classes : {}'.format(str(np.mean(recall_list))))
     print('Mean precision for all classes : {}'.format(str(np.mean(precision_list))))
-    
+
     recall_array = np.array(recall_list)
     recall_array[recall_array > 0.0] = 1
-    detection_proba = np.sum(recall_array)/len(recall_array)
+    detection_proba = np.sum(recall_array) / len(recall_array)
     print('Probability that an insect is correctly detected at least once : {}'.format(str(detection_proba)))
-
 
     # P_all_conf[P_all_conf >= best_threshold] = 1
     # P_all_conf[P_all_conf < best_threshold] = 0
@@ -689,6 +700,7 @@ def evaluate_trap_results():
     # precision_all_insects = precision_score(T_all_conf, P_all_conf)
     # print('[All classes] Recall : {}'.format(str(recall_all_insects)))
     # print('[All classes] Precision : {}'.format(str(precision_all_insects)))
+
 
 if __name__ == "__main__":
 
@@ -733,8 +745,7 @@ if __name__ == "__main__":
     parser.add_argument('--processed_directory', type=str, required=False, default="new_directory",
                         metavar="directory_name",
                         help="Name of the directory in which the processed images will be saved when show_images is "
-                             "True") 
-
+                             "True")
 
     args = parser.parse_args()
 
