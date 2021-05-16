@@ -217,10 +217,18 @@ def draw_box_on_images(noise_reduction, histogram_equalization, gamma_correction
         plt.grid()
         plt.imshow(cv2.cvtColor(initial_img, cv2.COLOR_BGR2RGB))
         if trap_images:
+            insect_directory = filename = filepath.split("/")[3]
+            try:
+                os.mkdir('predictions/{}/{}'.format(processed_directory, insect_directory))
+            except OSError:
+                print('Creation of the directory {} failed'.format(insect_directory))
+            else:
+                print('Successfully created the directory {}'.format(insect_directory))
             filename = filepath.split("/")[4]
+            plt.savefig('predictions/{}/{}/{}.jpg'.format(processed_directory, insect_directory, filename))
         else:
             filename = filepath.split(".")[0].split("/")[-1].split("\\")[-1]
-        plt.savefig('predictions/{}/{}.jpg'.format(processed_directory, filename))
+            plt.savefig('predictions/{}/{}.jpg'.format(processed_directory, filename))
 
         print(class_mapping)
 
