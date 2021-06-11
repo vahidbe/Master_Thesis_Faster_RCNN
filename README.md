@@ -26,3 +26,5 @@ The project contains scripts that facilitates the download of images from [gbif]
 We also included a script *raspberry_real_time.py* (and related helper scripts) to run the detection on a raspberry pi equiped with a camera to automatically record the presence of detected species.
 
 Finally, a script *add_meteorological_data.py* is provided to parse the results of the detections on raspberry pi and add data concerning the weather. This data can only be provided if you add a API key for the [OpenWeatherMap](https://openweathermap.org/) interface in the resources folder.
+
+Please find the bibliography of our [master thesis]() as well as the citations in the *other/citations* folder.
