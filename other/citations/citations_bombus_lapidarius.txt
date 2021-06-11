@@ -1,0 +1,13 @@
+When using this dataset please use the following citation and pay attention to the rights documented in rights.txt:
+Turpel A, Walisch T (2021). Collections and observation data National Museum of Natural History Luxembourg. Musée national d'histoire naturelle Luxembourg. Occurrence dataset https://doi.org/10.15468/s2iu7d accessed via GBIF.org on 2021-03-22.
+Møller J, Wenøe Breddam D, Calabuig I, Skovgaard Mathorne J, Skipper L (2020). Species recordings from the Danish National portal Arter.dk. Miljøstyrelsen / The Danish Environmental Protection Agency. Occurrence dataset https://doi.org/10.15468/q3yy4u accessed via GBIF.org on 2021-03-22.
+Natural History Museum (2021). Natural History Museum (London) Collection Specimens. Occurrence dataset https://doi.org/10.5519/0002965 accessed via GBIF.org on 2021-03-22.
+The International Barcode of Life Consortium (2016). International Barcode of Life project (iBOL). Occurrence dataset https://doi.org/10.15468/inygc6 accessed via GBIF.org on 2021-03-22.
+Estonian Naturalists’ Society. Estonian Naturalists’ Society. Occurrence dataset https://doi.org/10.15468/bmk3ab accessed via GBIF.org on 2021-03-22.
+Bakker F, Creuwels J (2021). Naturalis Biodiversity Center (NL) - Hymenoptera. Naturalis Biodiversity Center. Occurrence dataset https://doi.org/10.15468/jgywgc accessed via GBIF.org on 2021-03-22.
+Orrell T, Informatics Office (2021). NMNH Extant Specimen Records. Version 1.41. National Museum of Natural History, Smithsonian Institution. Occurrence dataset https://doi.org/10.15468/hnhrg3 accessed via GBIF.org on 2021-03-22.
+Bentley A, Thomas J (2021). Snow Entomological Museum Collection. Version 26.48. University of Kansas Biodiversity Institute. Occurrence dataset https://doi.org/10.15468/fhntpy accessed via GBIF.org on 2021-03-22.
+The Norwegian Biodiversity Information Centre ., Hoem S (2021). Norwegian Species Observation Service. Version 1.122. The Norwegian Biodiversity Information Centre (NBIC). Occurrence dataset https://doi.org/10.15468/zjbzel accessed via GBIF.org on 2021-03-22.
+Lennuk L. Estonian Museum of Natural History Department of Zoology. Estonian Museum of Natural History. Occurrence dataset https://doi.org/10.15468/98cxtc accessed via GBIF.org on 2021-03-22.
+Ueda K (2021). iNaturalist Research-grade Observations. iNaturalist.org. Occurrence dataset https://doi.org/10.15468/ab3s5x accessed via GBIF.org on 2021-03-22.
+de Vries H, Lemmens M. Observation.org, Nature data from around the World. Observation.org. Occurrence dataset https://doi.org/10.15468/5nilie accessed via GBIF.org on 2021-03-22.

@@ -1,0 +1,4 @@
+raw_01-05-2021_10-50-01.jpg,218,179,694,426,vespula_vulgaris
+raw_01-05-2021_10-50-02.jpg,133,151,524,373,vespula_vulgaris
+raw_01-05-2021_10-50-03.jpg,113,135,637,388,vespula_vulgaris
+raw_01-05-2021_10-50-04.jpg,222,176,590,434,vespula_vulgaris

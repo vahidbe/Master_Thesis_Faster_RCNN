@@ -1,0 +1,12 @@
+cropped_11-05-2021_14-12-50_1.jpg,594,299,1073,758,vespula_vulgaris
+cropped_11-05-2021_14-12-50_2.jpg,356,297,823,756,vespula_vulgaris
+cropped_11-05-2021_14-16-52_1.jpg,368,282,758,674,vespula_vulgaris
+cropped_11-05-2021_14-16-53_1.jpg,303,273,697,672,vespula_vulgaris
+cropped_11-05-2021_14-16-54_1.jpg,186,288,643,678,vespula_vulgaris
+cropped_11-05-2021_14-16-55_1.jpg,187,318,616,703,vespula_vulgaris
+cropped_11-05-2021_14-16-56_1.jpg,145,280,591,707,vespula_vulgaris
+cropped_11-05-2021_14-16-57_1.jpg,12,364,458,793,vespula_vulgaris
+cropped_11-05-2021_14-16-58_1.jpg,7,281,384,661,vespula_vulgaris
+cropped_11-05-2021_14-16-59_1.jpg,8,314,324,680,vespula_vulgaris
+cropped_11-05-2021_14-17-00_1.jpg,1,308,312,724,vespula_vulgaris
+cropped_11-05-2021_14-17-00_2.jpg,1,378,315,772,vespula_vulgaris

@@ -17,6 +17,16 @@
 /data_test_small
 /captured_insects
 /11-04
+/04-05
+/test
 /trap_results
 test.py
 /sub_data
+/internet_sample
+/results
+/gbif/
+/other/powerBI/model6000/
+/other/powerBI/model800/
+new_trap_results
+test_trap
+other/powerBI/model6000_val_epoch/Detections.pbix

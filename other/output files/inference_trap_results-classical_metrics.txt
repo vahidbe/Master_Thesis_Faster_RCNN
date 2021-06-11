@@ -1,0 +1,1611 @@
+2021-05-16 23:21:48.134409: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libnvinfer.so.6'; dlerror: libnvinfer.so.6: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /usr/local/cuda-10.2/lib64:/usr/local/cuda-10.1/lib64
+2021-05-16 23:21:48.134492: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libnvinfer_plugin.so.6'; dlerror: libnvinfer_plugin.so.6: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /usr/local/cuda-10.2/lib64:/usr/local/cuda-10.1/lib64
+2021-05-16 23:21:48.134504: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:30] Cannot dlopen some TensorRT libraries. If you would like to use Nvidia GPU with TensorRT, please make sure the missing libraries mentioned above are installed properly.
+2021-05-16 23:21:48.874926: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2021-05-16 23:21:48.898058: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 3000000000 Hz
+2021-05-16 23:21:48.898309: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x5576ac6ef5c0 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2021-05-16 23:21:48.898326: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+2021-05-16 23:21:48.919742: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcuda.so.1
+2021-05-16 23:21:48.993376: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-05-16 23:21:48.993764: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x5576ac771380 initialized for platform CUDA (this does not guarantee that XLA will be used). Devices:
+2021-05-16 23:21:48.993786: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): GeForce GTX 1660 SUPER, Compute Capability 7.5
+2021-05-16 23:21:48.993915: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-05-16 23:21:48.994114: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1555] Found device 0 with properties: 
+pciBusID: 0000:01:00.0 name: GeForce GTX 1660 SUPER computeCapability: 7.5
+coreClock: 1.83GHz coreCount: 22 deviceMemorySize: 5.80GiB deviceMemoryBandwidth: 312.97GiB/s
+2021-05-16 23:21:49.015857: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.1
+2021-05-16 23:21:49.050679: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10
+2021-05-16 23:21:49.054829: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10
+2021-05-16 23:21:49.055645: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10
+2021-05-16 23:21:49.060361: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10
+2021-05-16 23:21:49.063230: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10
+2021-05-16 23:21:49.073373: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
+2021-05-16 23:21:49.073735: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-05-16 23:21:49.074660: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-05-16 23:21:49.075305: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1697] Adding visible gpu devices: 0
+2021-05-16 23:21:49.075423: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.1
+2021-05-16 23:21:49.076388: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1096] Device interconnect StreamExecutor with strength 1 edge matrix:
+2021-05-16 23:21:49.076436: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1102]      0 
+2021-05-16 23:21:49.076457: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] 0:   N 
+2021-05-16 23:21:49.076699: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-05-16 23:21:49.077764: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-05-16 23:21:49.078507: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1241] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 5342 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1660 SUPER, pci bus id: 0000:01:00.0, compute capability: 7.5)
+2021-05-16 23:21:49.087293: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-05-16 23:21:49.087737: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1555] Found device 0 with properties: 
+pciBusID: 0000:01:00.0 name: GeForce GTX 1660 SUPER computeCapability: 7.5
+coreClock: 1.83GHz coreCount: 22 deviceMemorySize: 5.80GiB deviceMemoryBandwidth: 312.97GiB/s
+2021-05-16 23:21:49.087808: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.1
+2021-05-16 23:21:49.087843: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10
+2021-05-16 23:21:49.087872: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10
+2021-05-16 23:21:49.087899: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10
+2021-05-16 23:21:49.087927: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10
+2021-05-16 23:21:49.087956: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10
+2021-05-16 23:21:49.087985: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
+2021-05-16 23:21:49.088076: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-05-16 23:21:49.088511: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-05-16 23:21:49.088880: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1697] Adding visible gpu devices: 0
+2021-05-16 23:21:49.089395: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-05-16 23:21:49.089791: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1555] Found device 0 with properties: 
+pciBusID: 0000:01:00.0 name: GeForce GTX 1660 SUPER computeCapability: 7.5
+coreClock: 1.83GHz coreCount: 22 deviceMemorySize: 5.80GiB deviceMemoryBandwidth: 312.97GiB/s
+2021-05-16 23:21:49.089837: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudart.so.10.1
+2021-05-16 23:21:49.089867: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10
+2021-05-16 23:21:49.089909: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcufft.so.10
+2021-05-16 23:21:49.089961: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcurand.so.10
+2021-05-16 23:21:49.089994: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusolver.so.10
+2021-05-16 23:21:49.090024: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcusparse.so.10
+2021-05-16 23:21:49.090052: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
+2021-05-16 23:21:49.090137: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-05-16 23:21:49.090571: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-05-16 23:21:49.090940: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1697] Adding visible gpu devices: 0
+2021-05-16 23:21:49.090977: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1096] Device interconnect StreamExecutor with strength 1 edge matrix:
+2021-05-16 23:21:49.090989: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1102]      0 
+2021-05-16 23:21:49.090999: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] 0:   N 
+2021-05-16 23:21:49.091107: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-05-16 23:21:49.091545: I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:981] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+2021-05-16 23:21:49.091927: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1241] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 5342 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1660 SUPER, pci bus id: 0000:01:00.0, compute capability: 7.5)
+2021-05-16 23:21:49.702529: W tensorflow/core/framework/cpu_allocator_impl.cc:81] Allocation of 411041792 exceeds 10% of system memory.
+2021-05-16 23:21:50.513273: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcudnn.so.7
+2021-05-16 23:21:51.268227: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcublas.so.10
+2021-05-16 23:21:51.474880: W tensorflow/core/common_runtime/bfc_allocator.cc:309] Garbage collection: deallocate free memory regions (i.e., allocations) so that we can re-allocate a larger region to avoid OOM due to memory fragmentation. If you see this message frequently, you are running near the threshold of the available device memory and re-allocation may incur great performance overhead. You may try smaller batch sizes to observe the performance impact. Set TF_ENABLE_GPU_GARBAGE_COLLECTION=false if you'd like to disable this feature.
+2021-05-16 23:21:51.557515: I tensorflow/stream_executor/cuda/cuda_driver.cc:801] failed to allocate 4.00G (4294967296 bytes) from device: CUDA_ERROR_OUT_OF_MEMORY: out of memory
+2021-05-16 23:21:51.558504: I tensorflow/stream_executor/cuda/cuda_driver.cc:801] failed to allocate 3.60G (3865470464 bytes) from device: CUDA_ERROR_OUT_OF_MEMORY: out of memory
+Using TensorFlow backend.
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+Creation of the directory new_directory failed
+Loading weights from ./model/model10classes.hdf5
+{0: 'apis_mellifera', 1: 'bombus_hypnorum', 2: 'anthophora_plumipes', 3: 'bombus_hortorum', 4: 'bombus_lapidarius', 5: 'bombus_lucorum', 6: 'bombus_pascuorum', 7: 'bombus_pratorum', 8: 'bombus_terrestris', 9: 'vespula_vulgaris', 10: 'bg'}
+10
+Parsing annotation files
+idx=1idx=2idx=3idx=4idx=5idx=6idx=7idx=8idx=9idx=10idx=11idx=12idx=13idx=14idx=15idx=16idx=17idx=18idx=19idx=20idx=21idx=22idx=23idx=24idx=25idx=26idx=27idx=28idx=29idx=30idx=31idx=32idx=33idx=34idx=35idx=36idx=37idx=38idx=39idx=40idx=41idx=42idx=43idx=44idx=45idx=46idx=47idx=48idx=49idx=50idx=51idx=52idx=53idx=54idx=55idx=56idx=57idx=58idx=59idx=60idx=61idx=62idx=63idx=64idx=65idx=66idx=67idx=68idx=69idx=70idx=71idx=72idx=73idx=74idx=75idx=76idx=77idx=78idx=79idx=80idx=810/80
+other/trap_results_all/cropped_07-05-2021_13-11-15_1.jpg
+Elapsed time = 2.0955893993377686
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.0
+1/80
+other/trap_results_all/cropped_07-05-2021_13-15-14_1.jpg
+Elapsed time = 0.8725173473358154
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.5
+2/80
+other/trap_results_all/cropped_07-05-2021_13-15-15_1.jpg
+Elapsed time = 1.0024352073669434
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6666666666666666
+3/80
+other/trap_results_all/cropped_07-05-2021_13-15-17_1.jpg
+Elapsed time = 0.9340341091156006
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.75
+4/80
+other/trap_results_all/cropped_07-05-2021_13-15-18_1.jpg
+Elapsed time = 0.7685482501983643
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.8
+5/80
+other/trap_results_all/cropped_07-05-2021_13-15-25_1.jpg
+Elapsed time = 0.9225912094116211
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.8333333333333333
+6/80
+other/trap_results_all/cropped_07-05-2021_13-15-38_1.jpg
+Elapsed time = 0.8720417022705078
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.857142857142857
+7/80
+other/trap_results_all/cropped_07-05-2021_13-15-38_3.jpg
+Elapsed time = 0.8834254741668701
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.875
+8/80
+other/trap_results_all/cropped_07-05-2021_13-27-00_1.jpg
+Elapsed time = 0.768479585647583
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.7628968253968254
+9/80
+other/trap_results_all/cropped_07-05-2021_13-27-43_1.jpg
+Elapsed time = 1.0870285034179688
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.7881944444444444
+10/80
+other/trap_results_all/cropped_07-05-2021_13-27-50_1.jpg
+Elapsed time = 0.9408121109008789
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.8085858585858587
+11/80
+other/trap_results_all/cropped_07-05-2021_13-27-53_1.jpg
+Elapsed time = 0.7199454307556152
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.7412037037037038
+12/80
+other/trap_results_all/cropped_07-05-2021_13-27-54_1.jpg
+Elapsed time = 0.5781056880950928
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.7618881118881118
+13/80
+other/trap_results_all/cropped_07-05-2021_13-28-04_1.jpg
+Elapsed time = 0.8896870613098145
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.7794913419913418
+14/80
+other/trap_results_all/cropped_07-05-2021_13-28-05_1.jpg
+Elapsed time = 0.8453783988952637
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.7946581196581197
+15/80
+other/trap_results_all/cropped_07-05-2021_13-28-06_1.jpg
+Elapsed time = 0.90232253074646
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.807864010989011
+16/80
+other/trap_results_all/cropped_07-05-2021_13-28-08_1.jpg
+Elapsed time = 0.8728547096252441
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.8194677871148459
+17/80
+other/trap_results_all/cropped_07-05-2021_13-28-09_1.jpg
+Elapsed time = 0.8956289291381836
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.7739417989417989
+18/80
+other/trap_results_all/cropped_07-05-2021_13-28-10_1.jpg
+Elapsed time = 0.534576416015625
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.7860745614035087
+19/80
+other/trap_results_all/cropped_07-05-2021_13-28-10_2.jpg
+Elapsed time = 0.8038122653961182
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.7467708333333334
+20/80
+other/trap_results_all/cropped_07-05-2021_13-28-11_1.jpg
+Elapsed time = 0.7546155452728271
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.7590161064425771
+21/80
+other/trap_results_all/cropped_07-05-2021_13-28-48_1.jpg
+Elapsed time = 0.7955803871154785
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.7701277480689244
+22/80
+other/trap_results_all/cropped_07-05-2021_13-28-50_1.jpg
+Elapsed time = 0.8316938877105713
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.7317891782952691
+23/80
+other/trap_results_all/cropped_07-05-2021_13-28-52_1.jpg
+Elapsed time = 0.595179557800293
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.7408132130776286
+24/80
+other/trap_results_all/cropped_07-05-2021_13-28-53_1.jpg
+Elapsed time = 0.741382360458374
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.7472759226497618
+25/80
+other/trap_results_all/cropped_07-05-2021_13-28-54_1.jpg
+Elapsed time = 0.7640514373779297
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.7185345410093861
+26/80
+other/trap_results_all/cropped_07-05-2021_13-28-55_1.jpg
+Elapsed time = 0.7469973564147949
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6919221506016309
+27/80
+other/trap_results_all/cropped_07-05-2021_13-28-56_3.jpg
+Elapsed time = 0.741107702255249
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6672106452230014
+28/80
+other/trap_results_all/cropped_07-05-2021_15-21-40_1.jpg
+Elapsed time = 0.5380847454071045
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.644203381594622
+29/80
+other/trap_results_all/cropped_07-05-2021_15-21-42_1.jpg
+Elapsed time = 1.0438928604125977
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6545787494955451
+30/80
+other/trap_results_all/cropped_07-05-2021_15-21-47_2.jpg
+Elapsed time = 0.682584285736084
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6663030548836609
+31/80
+other/trap_results_all/cropped_07-05-2021_15-21-49_2.jpg
+Elapsed time = 0.70458984375
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6772407308001558
+bombus_pratorum AP: nan
+32/80
+other/trap_results_all/cropped_07-05-2021_15-21-50_2.jpg
+Elapsed time = 0.4847853183746338
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6874704938174878
+bombus_pratorum AP: nan
+bombus_terrestris AP: nan
+33/80
+other/trap_results_all/cropped_07-05-2021_15-21-51_2.jpg
+Elapsed time = 0.7306954860687256
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6672507734110912
+bombus_pratorum AP: nan
+bombus_terrestris AP: nan
+34/80
+other/trap_results_all/cropped_07-05-2021_15-21-52_2.jpg/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+
+Elapsed time = 0.499798059463501
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6771445448960977
+bombus_pratorum AP: nan
+bombus_terrestris AP: nan
+35/80
+other/trap_results_all/cropped_07-05-2021_15-21-53_1.jpg
+Elapsed time = 0.3829360008239746
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6583349742045395
+bombus_pratorum AP: nan
+bombus_terrestris AP: nan
+36/80
+other/trap_results_all/cropped_07-05-2021_15-21-55_1.jpg
+Elapsed time = 0.6409883499145508
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6405421370638762
+bombus_pratorum AP: nan
+bombus_terrestris AP: nan
+37/80
+other/trap_results_all/cropped_07-05-2021_15-22-02_2.jpg
+Elapsed time = 0.7982306480407715
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6236857650358794
+bombus_pratorum AP: nan
+bombus_terrestris AP: nan
+38/80
+other/trap_results_all/cropped_07-05-2021_15-22-05_1.jpg
+Elapsed time = 0.5712733268737793
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6076938223426519
+bombus_pratorum AP: nan
+bombus_terrestris AP: nan
+39/80
+other/trap_results_all/cropped_07-05-2021_15-22-05_2.jpg
+Elapsed time = 0.7560040950775146
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.617811605564323
+bombus_pratorum AP: nan
+bombus_terrestris AP: nan
+40/80
+other/trap_results_all/cropped_07-05-2021_15-22-06_1.jpg
+Elapsed time = 0.26099157333374023
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6274116561338196
+bombus_pratorum AP: nan
+bombus_terrestris AP: nan
+41/80
+other/trap_results_all/cropped_07-05-2021_15-22-08_1.jpg
+Elapsed time = 0.5643136501312256
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.5915866937771171
+bombus_pratorum AP: nan
+bombus_terrestris AP: nan
+42/80
+other/trap_results_all/cropped_07-05-2021_15-22-10_1.jpg
+Elapsed time = 0.8839364051818848
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6024731429263182
+bombus_pratorum AP: nan
+bombus_terrestris AP: nan
+43/80
+other/trap_results_all/cropped_08-05-2021_15-52-00_1.jpg
+Elapsed time = 0.7427933216094971
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6024731429263182
+bombus_pratorum AP: nan
+bombus_terrestris AP: 1.0
+44/80
+other/trap_results_all/cropped_08-05-2021_15-52-01_1.jpg
+Elapsed time = 0.4592263698577881
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6024731429263182
+bombus_pratorum AP: nan
+bombus_terrestris AP: 0.5
+bombus_hortorum AP: nan
+45/80
+other/trap_results_all/cropped_08-05-2021_15-52-01_2.jpg
+Elapsed time = 0.3515012264251709
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6024731429263182
+bombus_pratorum AP: nan
+bombus_terrestris AP: 0.6666666666666666
+bombus_hortorum AP: nan
+46/80
+other/trap_results_all/cropped_08-05-2021_15-52-02_1.jpg
+Elapsed time = 0.45415663719177246
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6024731429263182
+bombus_pratorum AP: nan
+bombus_terrestris AP: 0.5
+bombus_hortorum AP: nan
+47/80
+other/trap_results_all/raw_22-04-2021_08-38-34.jpg
+Elapsed time = 0.4834003448486328
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6024731429263182
+bombus_pratorum AP: nan
+bombus_terrestris AP: 0.6
+bombus_hortorum AP: nan
+48/80
+other/trap_results_all/raw_22-04-2021_08-38-35.jpg
+Elapsed time = 0.7642936706542969
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6024731429263182
+bombus_pratorum AP: nan
+bombus_terrestris AP: 0.6666666666666666
+bombus_hortorum AP: nan
+49/80
+other/trap_results_all/raw_22-04-2021_08-44-41.jpg
+Elapsed time = 0.24721240997314453
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6024731429263182
+bombus_pratorum AP: nan
+bombus_terrestris AP: 0.7142857142857142
+bombus_hortorum AP: nan
+50/80
+other/trap_results_all/raw_22-04-2021_08-44-42.jpg
+Elapsed time = 0.5601093769073486
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6024731429263182
+bombus_pratorum AP: nan
+bombus_terrestris AP: 0.75
+bombus_hortorum AP: nan
+51/80
+other/trap_results_all/raw_22-04-2021_09-15-22.jpg
+Elapsed time = 0.4596269130706787
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6024731429263182
+bombus_pratorum AP: nan
+bombus_terrestris AP: 0.7
+bombus_hortorum AP: nan
+bombus_lapidarius AP: nan
+52/80
+other/trap_results_all/raw_22-04-2021_09-15-27.jpg
+Elapsed time = 0.25986194610595703
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6024731429263182
+bombus_pratorum AP: nan
+bombus_terrestris AP: 0.7272727272727273
+bombus_hortorum AP: nan
+bombus_lapidarius AP: nan
+53/80
+other/trap_results_all/raw_22-04-2021_09-15-29.jpg
+Elapsed time = 0.2692546844482422
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6024731429263182
+bombus_pratorum AP: nan
+bombus_terrestris AP: 0.7412037037037038
+bombus_hortorum AP: nan
+bombus_lapidarius AP: nan
+54/80
+other/trap_results_all/raw_22-04-2021_09-15-30.jpg
+Elapsed time = 0.47553348541259766
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6024731429263182
+bombus_pratorum AP: nan
+bombus_terrestris AP: 0.684188034188034
+bombus_hortorum AP: nan
+bombus_lapidarius AP: nan
+55/80
+other/trap_results_all/raw_22-04-2021_09-15-34.jpg
+Elapsed time = 0.6888060569763184
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6024731429263182
+bombus_pratorum AP: nan
+bombus_terrestris AP: 0.6353174603174603
+bombus_hortorum AP: nan
+bombus_lapidarius AP: nan
+56/80
+other/trap_results_all/raw_22-04-2021_09-29-04.jpg
+Elapsed time = 0.5614714622497559
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6024731429263182
+bombus_pratorum AP: nan
+bombus_terrestris AP: 0.6532659932659932
+bombus_hortorum AP: nan
+bombus_lapidarius AP: nan
+57/80
+other/trap_results_all/raw_22-04-2021_09-29-08.jpg
+Elapsed time = 0.36343955993652344
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6024731429263182
+bombus_pratorum AP: nan
+bombus_terrestris AP: 0.6124368686868686
+bombus_hortorum AP: nan
+bombus_lapidarius AP: nan
+58/80
+other/trap_results_all/raw_22-04-2021_09-29-19.jpg
+Elapsed time = 0.3687717914581299
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6024731429263182
+bombus_pratorum AP: nan
+bombus_terrestris AP: 0.6301099227569815
+bombus_hortorum AP: nan
+bombus_lapidarius AP: nan
+59/80
+other/trap_results_all/raw_22-04-2021_09-29-41.jpg
+Elapsed time = 0.3626537322998047
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6024731429263182
+bombus_pratorum AP: nan
+bombus_terrestris AP: 0.6462078045411379
+bombus_hortorum AP: nan
+bombus_lapidarius AP: nan
+60/80
+other/trap_results_all/raw_22-04-2021_09-29-52.jpg
+Elapsed time = 0.2494978904724121
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6024731429263182
+bombus_pratorum AP: nan
+bombus_terrestris AP: 0.6520575485745763
+bombus_hortorum AP: nan
+bombus_lapidarius AP: nan
+61/80
+other/trap_results_all/raw_22-04-2021_09-29-58.jpg
+Elapsed time = 0.4534580707550049
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6024731429263182
+bombus_pratorum AP: nan
+bombus_terrestris AP: 0.6194546711458477
+bombus_hortorum AP: nan
+bombus_lapidarius AP: nan
+62/80
+other/trap_results_all/raw_22-04-2021_09-29-59.jpg
+Elapsed time = 0.4681696891784668
+bombus_pascuorum AP: nan/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:951: UndefinedMetricWarning: No positive samples in y_true, true positive value should be meaningless
+  UndefinedMetricWarning)
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:951: UndefinedMetricWarning: No positive samples in y_true, true positive value should be meaningless
+  UndefinedMetricWarning)
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:951: UndefinedMetricWarning: No positive samples in y_true, true positive value should be meaningless
+  UndefinedMetricWarning)
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:951: UndefinedMetricWarning: No positive samples in y_true, true positive value should be meaningless
+  UndefinedMetricWarning)
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:951: UndefinedMetricWarning: No positive samples in y_true, true positive value should be meaningless
+  UndefinedMetricWarning)
+frcnn_test.py:268: RuntimeWarning: More than 20 figures have been opened. Figures created through the pyplot interface (`matplotlib.pyplot.figure`) are retained until explicitly closed and may consume too much memory. (To control this warning, see the rcParam `figure.max_open_warning`).
+  plt.figure()
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:817: RuntimeWarning: invalid value encountered in true_divide
+  recall = tps / tps[-1]
+/home/jonathan/Master_Thesis/Faster_RCNN_for_Open_Images_Dataset_Keras/venv/lib/python3.7/site-packages/sklearn/metrics/_ranking.py:951: UndefinedMetricWarning: No positive samples in y_true, true positive value should be meaningless
+  UndefinedMetricWarning)
+
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6024731429263182
+bombus_pratorum AP: nan
+bombus_terrestris AP: 0.589956829662712
+bombus_hortorum AP: nan
+bombus_lapidarius AP: nan
+63/80
+other/trap_results_all/raw_22-04-2021_09-34-42.jpg
+Elapsed time = 0.2482438087463379
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6024731429263182
+bombus_pratorum AP: nan
+bombus_terrestris AP: 0.6058548403468189
+bombus_hortorum AP: nan
+bombus_lapidarius AP: nan
+64/80
+other/trap_results_all/cropped_11-05-2021_14-12-50_1.jpg
+Elapsed time = 0.2562546730041504
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6024731429263182
+bombus_pratorum AP: nan
+bombus_terrestris AP: 0.6058548403468189
+bombus_hortorum AP: nan
+bombus_lapidarius AP: nan
+vespula_vulgaris AP: 1.0
+65/80
+other/trap_results_all/cropped_11-05-2021_14-12-50_2.jpg
+Elapsed time = 0.2609536647796631
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6024731429263182
+bombus_pratorum AP: nan
+bombus_terrestris AP: 0.6058548403468189
+bombus_hortorum AP: nan
+bombus_lapidarius AP: nan
+vespula_vulgaris AP: 1.0
+66/80
+other/trap_results_all/cropped_11-05-2021_14-16-52_1.jpg
+Elapsed time = 0.6638398170471191
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6024731429263182
+bombus_pratorum AP: nan
+bombus_terrestris AP: 0.6058548403468189
+bombus_hortorum AP: nan
+bombus_lapidarius AP: nan
+vespula_vulgaris AP: 1.0
+67/80
+other/trap_results_all/cropped_11-05-2021_14-16-53_1.jpg
+Elapsed time = 0.2504398822784424
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6024731429263182
+bombus_pratorum AP: nan
+bombus_terrestris AP: 0.6058548403468189
+bombus_hortorum AP: nan
+bombus_lapidarius AP: nan
+vespula_vulgaris AP: 1.0
+68/80
+other/trap_results_all/cropped_11-05-2021_14-16-54_1.jpg
+Elapsed time = 0.77225661277771
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6024731429263182
+bombus_pratorum AP: nan
+bombus_terrestris AP: 0.6058548403468189
+bombus_hortorum AP: nan
+bombus_lapidarius AP: nan
+vespula_vulgaris AP: 1.0
+69/80
+other/trap_results_all/cropped_11-05-2021_14-16-55_1.jpg
+Elapsed time = 0.46689534187316895
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6024731429263182
+bombus_pratorum AP: nan
+bombus_terrestris AP: 0.6058548403468189
+bombus_hortorum AP: nan
+bombus_lapidarius AP: nan
+vespula_vulgaris AP: 1.0
+70/80
+other/trap_results_all/cropped_11-05-2021_14-16-56_1.jpg
+Elapsed time = 0.44609975814819336
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6024731429263182
+bombus_pratorum AP: nan
+bombus_terrestris AP: 0.6058548403468189
+bombus_hortorum AP: nan
+bombus_lapidarius AP: nan
+vespula_vulgaris AP: 0.9999999999999998
+71/80
+other/trap_results_all/cropped_11-05-2021_14-16-57_1.jpg
+Elapsed time = 0.7348392009735107
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6024731429263182
+bombus_pratorum AP: nan
+bombus_terrestris AP: 0.6058548403468189
+bombus_hortorum AP: nan
+bombus_lapidarius AP: nan
+vespula_vulgaris AP: 0.8582589285714286
+72/80
+other/trap_results_all/cropped_11-05-2021_14-16-58_1.jpg
+Elapsed time = 0.5600097179412842
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6024731429263182
+bombus_pratorum AP: nan
+bombus_terrestris AP: 0.6058548403468189
+bombus_hortorum AP: nan
+bombus_lapidarius AP: nan
+vespula_vulgaris AP: 0.7628968253968256
+73/80
+other/trap_results_all/cropped_11-05-2021_14-16-59_1.jpg
+Elapsed time = 0.6082196235656738
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6024731429263182
+bombus_pratorum AP: nan
+bombus_terrestris AP: 0.6058548403468189
+bombus_hortorum AP: nan
+bombus_lapidarius AP: nan
+vespula_vulgaris AP: 0.6763888888888888
+74/80
+other/trap_results_all/cropped_11-05-2021_14-17-00_1.jpg
+Elapsed time = 0.7796211242675781
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6024731429263182
+bombus_pratorum AP: nan
+bombus_terrestris AP: 0.6058548403468189
+bombus_hortorum AP: nan
+bombus_lapidarius AP: nan
+vespula_vulgaris AP: 0.61489898989899
+75/80
+other/trap_results_all/cropped_11-05-2021_14-17-00_2.jpg
+Elapsed time = 1.0235769748687744
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6024731429263182
+bombus_pratorum AP: nan
+bombus_terrestris AP: 0.6058548403468189
+bombus_hortorum AP: nan
+bombus_lapidarius AP: nan
+vespula_vulgaris AP: 0.5569444444444445
+76/80
+other/trap_results_all/raw_01-05-2021_10-50-01.jpg
+Elapsed time = 0.6548721790313721
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.6024731429263182
+bombus_pratorum AP: nan
+bombus_terrestris AP: 0.6058548403468189
+bombus_hortorum AP: nan
+bombus_lapidarius AP: nan
+vespula_vulgaris AP: 0.560207100591716
+77/80
+other/trap_results_all/raw_01-05-2021_10-50-02.jpg
+Elapsed time = 0.5177218914031982
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.5977076970196198
+bombus_pratorum AP: nan
+bombus_terrestris AP: 0.6058548403468189
+bombus_hortorum AP: nan
+bombus_lapidarius AP: nan
+vespula_vulgaris AP: 0.5651295133437991
+78/80
+other/trap_results_all/raw_01-05-2021_10-50-03.jpg
+Elapsed time = 0.2722916603088379
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.5977076970196198
+bombus_pratorum AP: nan
+bombus_terrestris AP: 0.6058548403468189
+bombus_hortorum AP: nan
+bombus_lapidarius AP: nan
+vespula_vulgaris AP: 0.5998346098346098
+79/80
+other/trap_results_all/raw_01-05-2021_10-50-04.jpg
+Elapsed time = 0.5366823673248291
+bombus_pascuorum AP: nan
+bombus_hypnorum AP: nan
+anthophora_plumipes AP: nan
+apis_mellifera AP: 0.5977076970196198
+bombus_pratorum AP: nan
+bombus_terrestris AP: 0.6058548403468189
+bombus_hortorum AP: nan
+bombus_lapidarius AP: nan
+vespula_vulgaris AP: 0.5623449467199467
+bombus_pascuorum
+ROC AUC for bombus_pascuorum = nan
+bombus_hypnorum
+ROC AUC for bombus_hypnorum = nan
+anthophora_plumipes
+ROC AUC for anthophora_plumipes = nan
+apis_mellifera
+ROC AUC for apis_mellifera = 0.4593023255813954
+bombus_pratorum
+ROC AUC for bombus_pratorum = nan
+bombus_terrestris
+ROC AUC for bombus_terrestris = 0.5545454545454546
+bombus_hortorum
+ROC AUC for bombus_hortorum = nan
+bombus_lapidarius
+ROC AUC for bombus_lapidarius = nan
+vespula_vulgaris
+ROC AUC for vespula_vulgaris = 0.5089285714285714
+Final mean average precision value = nan
+Final mean ROC AUC value = nan
+ROC AUC for all classes = 0.5005847953216375
+AP score over all classes: 0.45697871824466935
+Best data summary with order : (Threshold, F-score, precision, recall)
+{'bombus_pascuorum': (-1, 0, -1, -1), 'bombus_hypnorum': (-1, 0, -1, -1), 'anthophora_plumipes': (-1, 0, -1, -1), 'apis_mellifera': (0.34, 0.73, 0.871, 0.628), 'bombus_pratorum': (-1, 0, -1, -1), 'bombus_terrestris': (0.37, 0.722, 0.929, 0.591), 'bombus_hortorum': (-1, 0, -1, -1), 'bombus_lapidarius': (-1, 0, -1, -1), 'vespula_vulgaris': (0.783, 0.645, 0.667, 0.625), 'all classes': (0.611, 0.53, 0.571, 0.494)}
+Accuracy of the model : 0.5965909090909091
+Precision of the model : 0.5714285714285714
+Recall of the model : 0.49382716049382713

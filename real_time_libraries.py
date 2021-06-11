@@ -43,9 +43,10 @@ def init_session(use_gpu):
         session = tf.compat.v1.InteractiveSession(config=config)
 
 
-def run_detection(fps, resolution, alpha, min_area, use_motor, C, frame_queue, flag_queue):
+def run_detection(fps, resolution, alpha, min_area, crop_margin, use_motor, images_output_dir, C, frame_queue, flag_queue):
     import imutils
     import cv2
+    import os
     from picamera.array import PiRGBArray
     from picamera import PiCamera
     import time
@@ -85,6 +86,9 @@ def run_detection(fps, resolution, alpha, min_area, use_motor, C, frame_queue, f
             break
         # resize the frame, convert it to grayscale, and blur it
         frame_gray = imutils.resize(frame.copy(), width=500)
+        frame_w, frame_h, _ = frame.shape
+        frame_gray_w, frame_gray_h, _ = frame_gray.shape
+        frame_w_ratio = frame_gray_w / frame_w
         gray = cv2.cvtColor(frame_gray, cv2.COLOR_BGR2GRAY)
         gray = cv2.GaussianBlur(gray, (21, 21), 0)
         # if the first frame is None, initialize it
@@ -106,18 +110,40 @@ def run_detection(fps, resolution, alpha, min_area, use_motor, C, frame_queue, f
                                 cv2.CHAIN_APPROX_SIMPLE)
         cnts = imutils.grab_contours(cnts)
         # loop over the contours
+        count = 0
+        found = False
         for c in cnts:
             # if the contour is too small, ignore it
             if cv2.contourArea(c) < min_area:
                 continue
+            timestamp = get_timestamp()
+            if not found:
+                cv2.imwrite(os.path.join(images_output_dir, "raw_{}.jpg".format(timestamp)), frame)
+                frame_queue.put((timestamp, frame.copy(), 0))
+                found = True
             if C.verbose:
                 print("[INFO] detection_proc - *** Movement detected ***", flush=True)
             if use_motor:
                 if p_trap is None or not p_trap.is_alive():
                     p_trap = Process(target=trap_insect, args=(kit, 60, 30))
                     p_trap.start()
-            frame_queue.put((get_timestamp(), frame.copy()))
-            break
+
+            (x, y, w, h) = cv2.boundingRect(c)
+            x = int(x / frame_w_ratio)
+            y = int(y / frame_w_ratio)
+            w = int(w / frame_w_ratio)
+            h = int(h / frame_w_ratio)
+            # cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
+            new_x1 = max(x - crop_margin, 0)
+            new_y1 = max(y - crop_margin, 0)
+            new_x2 = min(x + w + crop_margin, frame_w)
+            new_y2 = min(y + h + crop_margin, frame_h)
+            cropped_frame = frame[new_y1:new_y2, new_x1:new_x2].copy()
+            count += 1
+            cv2.imwrite(os.path.join(images_output_dir, "cropped_{}_{}.jpg".format(timestamp, count)), cropped_frame)
+            frame_queue.put((timestamp, cropped_frame.copy(), count))
+
+        found = False
 
         if C.show_images:
             cv2.imshow("image", frame)
@@ -174,7 +200,7 @@ def run_demo(C, bbox_threshold):
     vs.stop()
 
 
-def run_processing(bbox_threshold, C, output_results_filename, use_gpu, frame_queue, flag_queue):
+def run_processing(bbox_threshold, C, record_path, images_output_dir, use_gpu, frame_queue, flag_queue):
 
     print("[INFO] processing_proc - initializing session...", flush=True)
     import numpy as np
@@ -184,11 +210,6 @@ def run_processing(bbox_threshold, C, output_results_filename, use_gpu, frame_qu
     import time
     import cv2
     import os
-
-    record_path = os.path.join(output_results_filename, "raw_detections_{}.csv".format(get_timestamp()))
-    images_output_dir = os.path.join(output_results_filename, "images_{}".format(get_timestamp()))
-    if not os.path.exists(images_output_dir):
-        os.mkdir(images_output_dir)
 
     init_session(use_gpu)
     if C.verbose:
@@ -206,8 +227,7 @@ def run_processing(bbox_threshold, C, output_results_filename, use_gpu, frame_qu
 
     while True:
         time.sleep(1)
-        timestamp, img = frame_queue.get(block=True, timeout=None)
-        cv2.imwrite(os.path.join(images_output_dir, "raw_{}.jpg".format(timestamp)), img)
+        timestamp, img, count = frame_queue.get(block=True, timeout=None)
         if C.verbose:
             print("[INFO] processing_proc - starting detection on a new image", flush=True)
             print("[INFO] processing_proc - number of frames waiting to be processed: {}".format(frame_queue.qsize()), flush=True)
@@ -221,8 +241,7 @@ def run_processing(bbox_threshold, C, output_results_filename, use_gpu, frame_qu
                          'x1': x1, 'y1': y1, 'x2': x2, 'y2': y2, 'temperature': 'empty', 'humidity': 'empty',
                          'pressure': 'empty', 'wind': 'empty', 'sun_exposure': 'empty', 'rain': 'empty',
                          'weather description': 'empty', 'lat': 'empty', 'lon': 'empty'})
-
-        cv2.imwrite(os.path.join(images_output_dir, "processed_{}.jpg".format(timestamp)), img)
+        cv2.imwrite(os.path.join(images_output_dir, "processed_{}_{}.jpg".format(timestamp, count)), img)
         if C.show_images:
             cv2.imshow("detection", img)
             key = cv2.waitKey(1000) & 0xFF

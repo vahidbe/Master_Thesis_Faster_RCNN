@@ -1,0 +1,20 @@
+cropped_07-05-2021_13-27-00_1.jpg,605,82,904,360,apis_mellifera
+cropped_07-05-2021_13-27-43_1.jpg,530,22,815,345,apis_mellifera
+cropped_07-05-2021_13-27-50_1.jpg,470,124 ,734,347,apis_mellifera
+cropped_07-05-2021_13-27-53_1.jpg,414,0,701,224,apis_mellifera
+cropped_07-05-2021_13-27-54_1.jpg,442,122,740,450,apis_mellifera
+cropped_07-05-2021_13-28-04_1.jpg,239,0,535,275,apis_mellifera
+cropped_07-05-2021_13-28-05_1.jpg,522,234,777,508,apis_mellifera
+cropped_07-05-2021_13-28-06_1.jpg,553,236,866,555,apis_mellifera
+cropped_07-05-2021_13-28-08_1.jpg,606,299,935,619,apis_mellifera
+cropped_07-05-2021_13-28-09_1.jpg,590,341,840,650,apis_mellifera
+cropped_07-05-2021_13-28-10_1.jpg,544,212,860,460,apis_mellifera
+cropped_07-05-2021_13-28-10_2.jpg,623,344,870,640,apis_mellifera
+cropped_07-05-2021_13-28-11_1.jpg,627,233,901,491,apis_mellifera
+cropped_07-05-2021_13-28-48_1.jpg,368,235,679,463,apis_mellifera
+cropped_07-05-2021_13-28-50_1.jpg,195,222,500,456,apis_mellifera
+cropped_07-05-2021_13-28-52_1.jpg,447,238,722,483,apis_mellifera
+cropped_07-05-2021_13-28-53_1.jpg,511,244,749,473,apis_mellifera
+cropped_07-05-2021_13-28-54_1.jpg,521,247,799,477,apis_mellifera
+cropped_07-05-2021_13-28-55_1.jpg,482,249,732,478,apis_mellifera
+cropped_07-05-2021_13-28-56_3.jpg,368,234,670,490,apis_mellifera
